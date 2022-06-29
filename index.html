@@ -74,9 +74,14 @@
  		</div>
  		<canvas id='canvas_od' width="720" height="1280"></canvas>
  	</div>
+ 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+ 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+
  	<script src="saecross.js"></script>
  	<script>
  		window.addEventListener('DOMContentLoaded', function(){
+ 		
  			let comidas=[
  			{obj:"hotdog.glb",size:1},
  			{obj:"bolo.glb",size:2},
@@ -93,21 +98,12 @@
  			{obj:"tree_blocks.glb",size:1},
  			{obj:"bench.glb",size:1}
  			];
- 			appInfografico3d("od1",false,comidas,objobstaculos,roads,coletaveis);
+ 			CrossSae("od1",false,comidas,objobstaculos,roads,coletaveis);
+
+
  		});
 
 
-
- 		const firebaseConfig = {
- 			apiKey: "AIzaSyB7BTdzgz_UDoIkef5LGELF3T4gnWK1Qi8",
- 			authDomain: "kanbanod-add45.firebaseapp.com",
- 			databaseURL: "https://kanbanod-add45.firebaseio.com",
- 			projectId: "kanbanod-add45",
- 			storageBucket: "kanbanod-add45.appspot.com",
- 			messagingSenderId: "336620924995",
- 			appId: "1:336620924995:web:430e3d13d8376c024ea4f6"
- 		};
- 		firebase.initializeApp(firebaseConfig);
  	</script>
 
  </body>

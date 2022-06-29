@@ -1,105 +1,112 @@
 
-let jogavel=true;
-var piii = new Piii({
-	filters: [
-	...Object.values(piiiFilters)
-	]
-})
-console.log(piii.filter("bicha"))
+var CrossSae=function(_id,_dentroModulo,_itens,_meshObstaculos,_roads,_coletaveis){
+	const firebaseConfig = {
+		apiKey: "AIzaSyCfqDevF3qM8hwTHjNI7YRC_uuqQOirwq4",
+		authDomain: "saecrossfit.firebaseapp.com",
+		databaseURL: "https://saecrossfit-default-rtdb.firebaseio.com",
+		projectId: "saecrossfit",
+		storageBucket: "saecrossfit.appspot.com",
+		messagingSenderId: "973592643536",
+		appId: "1:973592643536:web:d67aba6279da33cd9d1bd5",
+		measurementId: "G-KFX08SCTK5"
+	};
+	const defaultProject = firebase.initializeApp(firebaseConfig);
+	console.log(defaultProject.name);
+	var defaultFirestore = defaultProject.firestore();
+	defaultFirestore = firebase.firestore();
+	let jogavel=true;
+	var piii = new Piii({
+		filters: [
+		...Object.values(piiiFilters)
+		]
+	})
 
-var xhttpRecebe = new XMLHttpRequest();
-xhttpRecebe.onreadystatechange = function() {
-	const nodeItens = document.getElementById("leaderboard_itens");
-	nodeItens.innerHTML = '';
-	if (this.readyState == 4 && this.status == 200) {
-		const obj = JSON.parse(this.responseText);
-		const nodeData=obj.data;
-		let j=0;
-		for (let i = 0; i < nodeData.length; i++) {
-			let li = document.createElement('li');
-			if(j==0){
-				j=1;
-				li.style.background= "#fa6855";
-			}else{
-				j=0;
-				li.style.background= "#e0574f";
-			}
-			
-			let mark = document.createElement('mark');
-			mark.innerHTML=nodeData[i].name;
-			let small = document.createElement('small');
-			small.innerHTML=nodeData[i].score;
-			li.appendChild(mark);
-			li.appendChild(small);
-			nodeItens.appendChild(li);
-		}
-	}
-};
+	MostraScore();
 
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-	if (this.readyState == 4 && this.status == 200) {
-		MostraScore();
-	}
-};
-
-
-
-MostraScore();
-
-document.getElementById("btPlay").onclick = function(){
-	IniciaJogo();
-};
-document.getElementById("btSalva").onclick = function(){
-	ClickSalva();
-};
-function IniciaJogo(){
-	jogavel=true;
-	document.getElementById("gui_le_score").style.display="none";
-	document.getElementById("gui_salva_score").style.display="none";
-	document.getElementById("heartBeat").style.display="block";
-	document.getElementById("gui_passos").style.display="block";
-	document.getElementById("gui").classList.add("avoid-clicks");
-}
-function MostraScore(){
-	var myFormData = new FormData();
-	xhttpRecebe.open("POST", "read_score.php", true);
-	xhttpRecebe.send(myFormData);
-	document.getElementById("gui_le_score").style.display="block";
-	document.getElementById("gui_salva_score").style.display="none";
-	document.getElementById("gui_passos").style.display="none";
-	document.getElementById("heartBeat").style.display="none";
-	document.getElementById("gui").classList.remove("avoid-clicks");
-
-}
-function MostraGuiSalva(){
-	document.getElementById("gui_score_pontos").innerText =localStorage.recorde+" pontos";
-	document.getElementById("gui_passos").style.display="none";
-	document.getElementById("btSalva").disabled = false; 
-	document.getElementById("heartBeat").style.display="none";
-	document.getElementById("gui_salva_score").style.display="block";
-	document.getElementById("gui").classList.remove("avoid-clicks");
-
-}
-function ClickSalva(){
-	let myFormData = new FormData();
-	let censura=piii.filter(document.getElementById("playerName").value);
-	myFormData.append("playerName", censura);
-	myFormData.append("score", localStorage.recorde);
-	xhttp.open("POST", "add_score.php", true);
-	xhttp.send(myFormData);
-	document.getElementById("btSalva").disabled = true; 
-}
-var input = document.getElementById("playerName");
-input.addEventListener("keyup", function(event) {
-	console.log("teste")
-	if (event.keyCode === 13) {
-		event.preventDefault();
+	document.getElementById("btPlay").onclick = function(){
+		IniciaJogo();
+	};
+	document.getElementById("btSalva").onclick = function(){
 		ClickSalva();
+	};
+	function IniciaJogo(){
+		jogavel=true;
+		document.getElementById("gui_le_score").style.display="none";
+		document.getElementById("gui_salva_score").style.display="none";
+		document.getElementById("heartBeat").style.display="block";
+		document.getElementById("gui_passos").style.display="block";
+		document.getElementById("gui").classList.add("avoid-clicks");
 	}
-}); 
+	function MostraScore(){
+		const nodeItens = document.getElementById("leaderboard_itens");
+		nodeItens.innerHTML = '';
+		defaultFirestore.collection("users").get().then((querySnapshot) => {
+			let j=0;
+			querySnapshot.forEach((doc) => {
+				const nodeData=doc.data();
+				let li = document.createElement('li');
+				if(j==0){
+					j=1;
+					li.style.background= "#fa6855";
+				}else{
+					j=0;
+					li.style.background= "#e0574f";
+				}
+				let mark = document.createElement('mark');
+				mark.innerHTML=nodeData.name;
+				let small = document.createElement('small');
+				small.innerHTML=nodeData.score;
+				li.appendChild(mark);
+				li.appendChild(small);
+				nodeItens.appendChild(li);
+				
+			});
+		});
+		document.getElementById("gui_le_score").style.display="block";
+		document.getElementById("gui_salva_score").style.display="none";
+		document.getElementById("gui_passos").style.display="none";
+		document.getElementById("heartBeat").style.display="none";
+		document.getElementById("gui").classList.remove("avoid-clicks");
 
-var appInfografico3d=function(_id,_dentroModulo,_itens,_meshObstaculos,_roads,_coletaveis){
+	}
+	function MostraGuiSalva(){
+		document.getElementById("gui_score_pontos").innerText =localStorage.recorde+" pontos";
+		document.getElementById("gui_passos").style.display="none";
+		document.getElementById("btSalva").disabled = false; 
+		document.getElementById("heartBeat").style.display="none";
+		document.getElementById("gui_salva_score").style.display="block";
+		document.getElementById("gui").classList.remove("avoid-clicks");
+
+	}
+	function ClickSalva(){
+
+		let censura=piii.filter(document.getElementById("playerName").value);
+		document.getElementById("btSalva").disabled = true; 
+
+		defaultFirestore.collection("users").add({
+			name: censura,
+			score: localStorage.recorde
+		})
+		.then((docRef) => {
+			console.log("Document written with ID: ", docRef.id);
+			MostraScore();
+		})
+		.catch((error) => {
+			console.error("Error adding document: ", error);
+		});
+	}
+	var input = document.getElementById("playerName");
+	input.addEventListener("keyup", function(event) {
+		console.log("teste")
+		if (event.keyCode === 13) {
+			event.preventDefault();
+			ClickSalva();
+		}
+	}); 
+
+
+
+
 
 	var orientacao;
 	var widthToHeight = 9 / 16;
