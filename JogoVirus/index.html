@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8"  />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://kit.fontawesome.com/175c9e1d35.js" crossorigin="anonymous"></script>
+	<!-- Bootstrap core JS-->
+	<script src="js/jquery.min.js"></script>
+	<script src="https://pixijs.download/release/pixi.js"></script>
+	<script src="https://unpkg.com/piii"></script>
+</head>
+<body>
+	<div id="divCanvas" style="width: 1280px;height:720px">
+		<div id="gui" style="width: 1280px;height:720px">
+			<div id="gui_le_score" class="gui_janela"  style="display: none">
+				<button id="btPlay" class="btn play">JOGAR</button>
+				<div class="container">
+					<div class="leaderboard">
+						<div class="head">
+							<i class='fas fa-crown' style='font-size:40px;color: orange'></i>
+							<h1>RANKING:</h1>
+						</div>
+						<div class="body">
+							<ol id="leaderboard_itens">
+ 								<!--
+ 								<li>
+ 									<mark>Jerry Wood</mark>
+ 									<small>948</small>
+ 								</li>
+ 								!-->			
+ 							</ol>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			<div id="gui_salva_score" class="gui_janela" style="display: none">
+ 				<div style="width: 100%;height: 10%">
+ 					<center>
+ 						<h3 id="gui_score_pontos">0</h3>
+ 					</center>
+ 					
+ 				</div>
+ 				<button id="btSalva" style="top:60%" class="btn play">SALVA</button>
+ 				<div class="container" style="height: 15%">
+ 					<div class="submitDiv">
+ 						<label for="playerName">Nick:</label>
+ 						<input type="text" id="playerName" name="playerName" placeholder="seu nick..">
+ 					</div>
+ 				</div>
+ 			</div>
+ 			<center>
+ 				<div id="popup">
+ 					Virus!
+ 				</div>
+ 			</center>
+
+ 		</div>
+ 		<canvas id='canvas_od'></canvas>
+ 	</div>
+
+ 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+ 	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+
+ 	<script>
+ 		window.addEventListener('DOMContentLoaded', function(){
+ 			const firebaseConfig = {
+ 				apiKey: "AIzaSyBLIgkLUZbZRlhRhbiWmrxfoHpdGRRZFbY",
+ 				authDomain: "escapevirus-251fe.firebaseapp.com",
+ 				projectId: "escapevirus-251fe",
+ 				storageBucket: "escapevirus-251fe.appspot.com",
+ 				messagingSenderId: "42028126806",
+ 				appId: "1:42028126806:web:9c7aa4f3c6478c243021f7"
+ 			};
+ 			const defaultProject = firebase.initializeApp(firebaseConfig);
+ 			console.log(defaultProject.name);
+ 			var defaultFirestore = defaultProject.firestore();
+ 			defaultFirestore = firebase.firestore();
+ 			let jogavel=true;
+ 			let caminho="image/";
+ 			var jogoativo=false;
+ 			var count=0;
+ 			var particles=[];
+ 			var freq=300;
+ 			var tempo=0;
+ 			var velocidade=1.5;
+ 			var player;
+ 			var seconds=0;
+ 			var posicoes=[
+ 			[200,-250,"down"],[550,-250,"down"],[800,-250,"down"],
+ 			[200,900,"up"],[550,900,"up"],[800,900,"up"],
+ 			[1350,200,"left"],[1350,400,"left"],[1350,500,"left"],
+ 			[-200,200,"right"],[-200,350,"right"],[-200,550,"right"]
+ 			]
+
+ 			MostraScore();
+
+ 			document.getElementById("btPlay").onclick = function(){
+ 				IniciaJogo();
+ 			};
+ 			document.getElementById("btSalva").onclick = function(){
+ 				ClickSalva();
+ 			};
+ 			function IniciaJogo(){
+ 				jogoativo=true;
+ 				count=0;
+ 				freq=300;
+ 				velocidade=1.5;
+ 				seconds=0;
+
+ 				for (var i = 0; i < particles.length; i++) {
+ 					content.removeChild(particles[i]);
+ 				}
+ 				particles=[];
+
+ 				document.getElementById("gui_le_score").style.display="none";
+ 				document.getElementById("gui_salva_score").style.display="none";
+ 				document.getElementById("gui").classList.add("avoid-clicks");
+ 			}
+ 			function MostraScore(){
+ 				const nodeItens = document.getElementById("leaderboard_itens");
+ 				nodeItens.innerHTML = '';
+ 				defaultFirestore.collection("users").get().then((querySnapshot) => {
+ 					let j=0;
+ 					querySnapshot.forEach((doc) => {
+ 						const nodeData=doc.data();
+ 						let li = document.createElement('li');
+ 						if(j==0){
+ 							j=1;
+ 							li.style.background= "#fa6855";
+ 						}else{
+ 							j=0;
+ 							li.style.background= "#e0574f";
+ 						}
+ 						let mark = document.createElement('mark');
+ 						mark.innerHTML=nodeData.name;
+ 						let small = document.createElement('small');
+ 						small.innerHTML=nodeData.score;
+ 						li.appendChild(mark);
+ 						li.appendChild(small);
+ 						nodeItens.appendChild(li);
+
+ 					});
+ 				});
+ 				document.getElementById("gui_le_score").style.display="block";
+ 				document.getElementById("gui_salva_score").style.display="none";
+ 				document.getElementById("gui").classList.remove("avoid-clicks");
+
+ 			}
+ 			function MostraGuiSalva(){
+ 				document.getElementById("gui_score_pontos").innerText =localStorage.recorde+" pontos";
+ 				document.getElementById("btSalva").disabled = false; 
+ 				document.getElementById("gui_salva_score").style.display="block";
+ 				document.getElementById("gui").classList.remove("avoid-clicks");
+
+ 			}
+ 			function ClickSalva(){
+
+ 				let censura=document.getElementById("playerName").value;
+ 				document.getElementById("btSalva").disabled = true; 
+
+ 				defaultFirestore.collection("users").add({
+ 					name: censura,
+ 					score: localStorage.recorde
+ 				})
+ 				.then((docRef) => {
+ 					console.log("Document written with ID: ", docRef.id);
+ 					MostraScore();
+ 				})
+ 				.catch((error) => {
+ 					console.error("Error adding document: ", error);
+ 				});
+ 			}
+ 			var input = document.getElementById("playerName");
+ 			input.addEventListener("keyup", function(event) {
+ 				console.log("teste")
+ 				if (event.keyCode === 13) {
+ 					event.preventDefault();
+ 					ClickSalva();
+ 				}
+ 			}); 
+
+
+ 			let app = new PIXI.Application({ 
+ 				width: 1280, 
+ 				height: 720,
+ 				backgroundColor: 0x999999,
+ 				view: document.querySelector("#canvas_od")
+ 			});
+ 			content = new PIXI.Container();
+ 			app.stage.addChild(content);
+ 			const loader = PIXI.Loader.shared;
+ 			loader.add('imgFundo',  caminho+'fundo.jpg');
+ 			loader.add('bac1',  caminho+'bac1.png');
+ 			loader.add('redcell',  caminho+'redcell.png');
+
+ 			loader.onComplete.add(postLoad);
+ 			loader.load();
+
+ 			function postLoad(){
+
+ 				let imgFundo = PIXI.Sprite.from(loader.resources["imgFundo"].texture);
+ 				content.addChild(imgFundo);
+
+ 				player = PIXI.Sprite.from(loader.resources["redcell"].texture);
+ 				content.addChild(player);
+ 				player.anchor.set(0.5);
+
+ 				tempo = new PIXI.Text("0s", new PIXI.TextStyle({
+ 					align: 'left',
+ 					fontFamily: 'arial',
+ 					fill:['#FFFFFF'],
+ 					fontSize:"100px"
+ 				}));
+ 				tempo.x=50;
+ 				tempo.y=50;
+ 				content.addChild(tempo);
+ 				console.log("texto width: "+tempo.height);
+ 			}
+ 			function reinicia(){
+
+ 			}
+ 			function checkme(a,b){
+
+ 				let ab = a.getBounds();
+ 				let bb = b.getBounds();
+
+ 				/*diminui a area de hit pela mentade*/
+ 				let bbX=bb.x+bb.width/4;
+ 				let bbY=bb.y+bb.height/4;
+ 				let bbWidth=bb.width/2;
+ 				let bbHeight=bb.height/2;
+
+ 				return ab.x + ab.width > bbX 
+ 				&& ab.x < bbX + bbWidth 
+ 				&& ab.y + ab.height > bbY 
+ 				&& ab.y < bbY + bbHeight;
+ 			}
+ 			app.ticker.add((delta) => {
+
+ 				if(jogoativo){
+ 					seconds += (1 / 60) * delta;
+ 					if(seconds >= 0.5 ){
+ 						tempo.text=Math.floor(seconds)+"s";
+ 					}
+
+ 					player.x=app.renderer.plugins.interaction.mouse.global.x;
+ 					player.y=app.renderer.plugins.interaction.mouse.global.y;
+ 					if(count>freq){
+ 						count=0;
+ 						let rand=Math.floor(Math.random()*posicoes.length);
+ 						let bac = PIXI.Sprite.from(loader.resources["bac1"].texture);
+ 						bac.anchor.set(0.5);
+ 						content.addChild(bac);
+ 						bac.direcao=posicoes[rand][2];
+ 						bac.x=posicoes[rand][0];
+ 						bac.y=posicoes[rand][1];
+ 						particles.push(bac);
+ 						console.log(particles.length);
+ 						if(freq>60){
+ 							freq-=5;
+ 						}
+ 						if(velocidade<3){
+ 							velocidade+=0.05;
+ 						}
+
+ 					}else{
+ 						count++;
+ 					}
+
+ 					for (var i = 0; i < particles.length; i++) {
+ 						if(checkme(player,particles[i])){
+ 							console.log("bate");
+ 							jogoativo=false;
+
+ 							localStorage.recorde = seconds;
+ 							MostraGuiSalva();
+
+
+ 						}
+ 						if(particles[i].direcao=="down"){
+ 							particles[i].y+=velocidade;
+ 							particles[i].rotation+=0.005;
+ 							if(particles[i].y>850){
+ 								content.removeChild(particles[i]);
+ 								particles.splice(i,1);
+ 							}
+ 						}
+ 						if(particles[i].direcao=="up"){
+ 							particles[i].y-=velocidade;
+ 							particles[i].rotation-=0.005;
+ 							if(particles[i].y<0){
+ 								content.removeChild(particles[i]);
+ 								particles.splice(i,1);
+ 							}
+ 						}
+ 						if(particles[i].direcao=="left"){
+ 							particles[i].x-=velocidade;
+ 							particles[i].rotation+=0.005;
+ 							if(particles[i].x<-200){
+ 								content.removeChild(particles[i]);
+ 								particles.splice(i,1);
+ 							}
+ 						}
+ 						if(particles[i].direcao=="right"){
+ 							particles[i].x+=velocidade;
+ 							particles[i].rotation-=0.005;
+ 							if(particles[i].x>1350){
+ 								content.removeChild(particles[i]);
+ 								particles.splice(i,1);
+ 							}
+ 						}
+
+ 					}
+
+ 				}
+
+ 			});
+ 		});
+ 	</script>
+ </body>
+ </html>
