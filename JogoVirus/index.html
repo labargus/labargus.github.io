@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8"  />
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://kit.fontawesome.com/175c9e1d35.js" crossorigin="anonymous"></script>
 	<!-- Bootstrap core JS-->
 	<script src="js/jquery.min.js"></script>
@@ -64,6 +64,15 @@
 
  	<script>
  		window.addEventListener('DOMContentLoaded', function(){
+
+ 			var orientacao;
+ 			var widthToHeight =16 / 9;
+ 			var newWidth = window.innerWidth;
+ 			var newHeight = window.innerHeight;
+ 			var newWidthToHeight = newWidth / newHeight;
+ 			let div_canvas=document.getElementById("divCanvas");
+ 			let div_gui=document.getElementById("gui");
+
  			const firebaseConfig = {
  				apiKey: "AIzaSyBLIgkLUZbZRlhRhbiWmrxfoHpdGRRZFbY",
  				authDomain: "escapevirus-251fe.firebaseapp.com",
@@ -120,8 +129,10 @@
  			function MostraScore(){
  				const nodeItens = document.getElementById("leaderboard_itens");
  				nodeItens.innerHTML = '';
- 				defaultFirestore.collection("users").get().then((querySnapshot) => {
- 					let j=0;
+ 				let j=0
+ 				defaultFirestore.collection("users").orderBy("score", "desc")
+ 				.get()
+ 				.then((querySnapshot) => {
  					querySnapshot.forEach((doc) => {
  						const nodeData=doc.data();
  						let li = document.createElement('li');
@@ -139,8 +150,10 @@
  						li.appendChild(mark);
  						li.appendChild(small);
  						nodeItens.appendChild(li);
-
  					});
+ 				})
+ 				.catch((error) => {
+ 					console.log("Error getting documents: ", error);
  				});
  				document.getElementById("gui_le_score").style.display="block";
  				document.getElementById("gui_salva_score").style.display="none";
@@ -316,6 +329,32 @@
  				}
 
  			});
+
+ 			window.addEventListener('resize', redimensionaGame, false);
+ 			function redimensionaGame() {
+ 				resizeDiv();
+ 			}
+ 			function resizeDiv() {
+ 				var newWidth = window.innerWidth;
+ 				var newHeight = window.innerHeight;
+ 				widthToHeight = 16 / 9;
+ 				orientacao=1; 
+
+ 				if (newWidthToHeight > widthToHeight) {
+ 					newWidth = newHeight * widthToHeight;
+ 					$('#divCanvas').css("marginLeft",(window.innerWidth-newWidth)/2 + 'px');
+ 					$('#divCanvas').css("marginTop", (window.innerHeight-newHeight)/2 + 'px');
+ 				} else { 
+ 					newHeight = newWidth / widthToHeight;
+ 					$('#divCanvas').css("marginLeft",(window.innerWidth-newWidth)/2 + 'px');
+ 					$('#divCanvas').css("marginTop", (window.innerHeight-newHeight)/2 + 'px');
+ 				}
+ 				$('#divCanvas').css("width",newWidth + 'px');
+ 				$('#divCanvas').css("height",newHeight + 'px');
+ 				$('#gui').css("width",newWidth + 'px');
+ 				$('#gui').css("height",newHeight + 'px');
+ 			}
+ 			resizeDiv();
  		});
  	</script>
  </body>
