@@ -1,15 +1,15 @@
-<!doctype html>
-<html>
-<head>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta charset="utf-8">
+	<title>Arrastar</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8"  />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://kit.fontawesome.com/175c9e1d35.js" crossorigin="anonymous"></script>
-	<!-- Bootstrap core JS-->
-	<script src="js/jquery.min.js"></script>
-	<script src="https://pixijs.download/release/pixi.js"></script>
-	<script src="https://unpkg.com/piii"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/libs.js" crossorigin="anonymous"></script>
+	
+
 </head>
-<body>
+<body id="JogoArraste01">
 	<div id="divCanvas" style="width: 1280px;height:720px">
 		<div id="gui" style="width: 1280px;height:720px">
 			<div id="gui_le_score" class="gui_janela"  style="display: none">
@@ -55,23 +55,45 @@
  			</center>
 
  		</div>
- 		<canvas id='canvas_od'></canvas>
+ 		<canvas id='canvas_od' width="1280" height="720"></canvas>
  	</div>
 
  	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
  	<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
+ 	<script type="text/javascript">
 
- 	<script>
+ 		var itens=[
+ 		[
+ 		[["f0.png",[388,78,1,1],"h0.png",[630,100,1,1],"f0.png",[630,100,1,1]],
+ 		["f1.png",[250,230,1,1],"h1.png",[630,250,1,1],"f1.png",[630,250,1,1]],
+ 		["f2.png",[250,400,1,1],"h2.png",[630,320,1,1],"f2.png",[630,320,1,1]],
+ 		["f3.png",[388,600,1,1],"h3.png",[630,320,1,1],"f3.png",[630,320,1,1]],
+ 		["f4.png",[870,100,1,1],"h4.png",[580,400,1,1],"f4.png",[580,400,1,1]],
+ 		["f5.png",[1050,200,1,1],"h5.png",[680,400,1,1],"f5.png",[680,400,1,1]],
+ 		["f6.png",[1000,350,1,1],"h6.png",[630,450,1,1],"f6.png",[630,450,1,1]],
+ 		["f7.png",[1070,500,1,1],"h7.png",[630,500,1,1],"f7.png",[630,500,1,1]],
+ 		["f8.png",[900,600,1,1],"h8.png",[630,550,1,1],"f8.png",[630,550,1,1]]
+ 		],"fundo.png",3,["00s", "75px Arial", "#000000"]
+ 		],
+ 		[
+ 		[["f0.png",[388,78,1,1],"h0.png",[630,100,1,1],"f0.png",[630,100,1,1]],
+ 		["f1.png",[388,230,1,1],"h1.png",[630,250,1,1],"f1.png",[630,250,1,1]],
+ 		["f2.png",[388,430,1,1],"h2.png",[630,320,1,1],"f2.png",[630,320,1,1]],
+ 		["f3.png",[388,530,1,1],"h3.png",[630,320,1,1],"f3.png",[630,320,1,1]],
+ 		["f4.png",[870,100,1,1],"h4.png",[580,400,1,1],"f4.png",[580,400,1,1]],
+ 		["f5.png",[1050,160,1,1],"h5.png",[680,400,1,1],"f5.png",[680,400,1,1]],
+ 		["f6.png",[900,230,1,1],"h6.png",[630,450,1,1],"f6.png",[630,450,1,1]],
+ 		["f7.png",[1070,400,1,1],"h7.png",[630,500,1,1],"f7.png",[630,500,1,1]],
+ 		["f8.png",[900,600,1,1],"h8.png",[630,550,1,1],"f8.png",[630,550,1,1]]
+ 		],"fundo.png",3,["00s", "75px Arial", "#000000"]
+ 		]
+ 		];
+
+
+
  		window.addEventListener('DOMContentLoaded', function(){
-
- 			var orientacao;
- 			var widthToHeight =16 / 9;
- 			var newWidth = window.innerWidth;
- 			var newHeight = window.innerHeight;
- 			var newWidthToHeight = newWidth / newHeight;
- 			let div_canvas=document.getElementById("divCanvas");
- 			let div_gui=document.getElementById("gui");
+ 			var bodyId = document.getElementsByTagName("body")[0].id;
 
  			const firebaseConfig = {
  				apiKey: "AIzaSyBLIgkLUZbZRlhRhbiWmrxfoHpdGRRZFbY",
@@ -85,52 +107,35 @@
  			console.log(defaultProject.name);
  			var defaultFirestore = defaultProject.firestore();
  			defaultFirestore = firebase.firestore();
- 			let jogavel=true;
- 			let caminho="image/";
- 			var jogoativo=false;
- 			var count=0;
- 			var particles=[];
- 			var freq=300;
- 			var tempo=0;
- 			var velocidade=1.5;
- 			var player;
- 			var seconds=0;
- 			var posicoes=[
- 			[200,-250,"down"],[550,-250,"down"],[800,-250,"down"],
- 			[200,900,"up"],[550,900,"up"],[800,900,"up"],
- 			[1350,200,"left"],[1350,400,"left"],[1350,500,"left"],
- 			[-200,200,"right"],[-200,350,"right"],[-200,550,"right"]
- 			]
 
- 			MostraScore();
+ 			//MostraScore();
+ 			document.getElementById("gui").classList.add("avoid-clicks");
 
  			document.getElementById("btPlay").onclick = function(){
  				IniciaJogo();
+ 				document.getElementById("gui").classList.add("avoid-clicks");
  			};
  			document.getElementById("btSalva").onclick = function(){
  				ClickSalva();
  			};
  			function IniciaJogo(){
- 				jogoativo=true;
- 				count=0;
- 				freq=300;
- 				velocidade=1.5;
- 				seconds=0;
-
- 				for (var i = 0; i < particles.length; i++) {
- 					content.removeChild(particles[i]);
- 				}
- 				particles=[];
+ 				jogavel=true;
+ 				startTime = (new Date()).getTime();
+ 				btFim.visible=false;
+ 				cenaAtual=0;
+ 				txt.x=120;
+ 				txt.y=60;
+ 				montaCena();
 
  				document.getElementById("gui_le_score").style.display="none";
  				document.getElementById("gui_salva_score").style.display="none";
- 				document.getElementById("gui").classList.add("avoid-clicks");
+ 				
  			}
  			function MostraScore(){
  				const nodeItens = document.getElementById("leaderboard_itens");
  				nodeItens.innerHTML = '';
  				let j=0
- 				defaultFirestore.collection("users").orderBy("score", "desc")
+ 				defaultFirestore.collection(bodyId).orderBy("score", "desc")
  				.get()
  				.then((querySnapshot) => {
  					querySnapshot.forEach((doc) => {
@@ -165,6 +170,7 @@
  				document.getElementById("btSalva").disabled = false; 
  				document.getElementById("gui_salva_score").style.display="block";
  				document.getElementById("gui").classList.remove("avoid-clicks");
+ 				
 
  			}
  			function ClickSalva(){
@@ -172,7 +178,7 @@
  				let censura=document.getElementById("playerName").value;
  				document.getElementById("btSalva").disabled = true; 
 
- 				defaultFirestore.collection("users").add({
+ 				defaultFirestore.collection(bodyId).add({
  					name: censura,
  					score: localStorage.recorde
  				})
@@ -193,168 +199,320 @@
  				}
  			}); 
 
+ 			var orientacao;
+ 			var widthToHeight =16 / 9;
+ 			var newWidth = window.innerWidth;
+ 			var newHeight = window.innerHeight;
+ 			var newWidthToHeight = newWidth / newHeight;
 
- 			let app = new PIXI.Application({ 
- 				width: 1280, 
- 				height: 720,
- 				backgroundColor: 0x999999,
- 				view: document.querySelector("#canvas_od")
- 			});
- 			content = new PIXI.Container();
- 			app.stage.addChild(content);
- 			const loader = PIXI.Loader.shared;
- 			loader.add('imgFundo',  caminho+'fundo.jpg');
- 			loader.add('bac1',  caminho+'bac1.png');
- 			loader.add('redcell',  caminho+'redcell.png');
+ 			var canvas;
+ 			var stage;
+ 			var fundo;
+ 			var conta;
+ 			var jogavel=false;
+ 			var clicavel=false;
+ 			var cenaAtual=0;
+ 			var countfase=0;
+ 			var btFull;
+ 			var container_cenas;
+ 			var container_telaFinal;
+ 			var container_arrastaveis;
+ 			var container_arrastaveis;
+ 			var posicoes=[];
+ 			var bts=[];
+ 			var inicioFim=[];
+ 			var loaded1=false;
+ 			var loaded2=true;
+ 			var sponge; 
+ 			var caminho="image/";
+ 			var countTick=0;
+ 			var count=0;
+ 			var btiniciar ;
+ 			var btFim;
+ 			var loaderBar;
+ 			var btFim;
+ 			var bar = new createjs.Shape();
+ 			var imageContainer;
+ 			var currentImage;
+ 			var loaderWidth;
+ 			var loaderColor;
+ 			var borderPadding;
+ 			var preload;
+ 			var oldItem;
+ 			var titulo;
+ 			var arrastaveis=[];
+ 			var colisores=[];
+ 			var fundoFim;
+ 			var startTime;
+ 			var time;
+ 			const audioTitle=new Audio(caminho+"EI22_G3_L4_LA_01.mp3");
+ 			const audioClean=new Audio(caminho+"clean.mp3");
+ 			const audioBless=new Audio(caminho+"bless.mp3");
 
- 			loader.onComplete.add(postLoad);
- 			loader.load();
-
- 			function postLoad(){
-
- 				let imgFundo = PIXI.Sprite.from(loader.resources["imgFundo"].texture);
- 				content.addChild(imgFundo);
-
- 				player = PIXI.Sprite.from(loader.resources["redcell"].texture);
- 				content.addChild(player);
- 				player.anchor.set(0.5);
-
- 				tempo = new PIXI.Text("0s", new PIXI.TextStyle({
- 					align: 'left',
- 					fontFamily: 'arial',
- 					fill:['#FFFFFF'],
- 					fontSize:"100px"
- 				}));
- 				tempo.x=50;
- 				tempo.y=50;
- 				content.addChild(tempo);
- 				console.log("texto width: "+tempo.height);
- 			}
- 			function reinicia(){
-
- 			}
- 			function checkme(a,b){
-
- 				let ab = a.getBounds();
- 				let bb = b.getBounds();
-
- 				/*diminui a area de hit pela mentade*/
- 				let bbX=bb.x+bb.width/4;
- 				let bbY=bb.y+bb.height/4;
- 				let bbWidth=bb.width/2;
- 				let bbHeight=bb.height/2;
-
- 				return ab.x + ab.width > bbX 
- 				&& ab.x < bbX + bbWidth 
- 				&& ab.y + ab.height > bbY 
- 				&& ab.y < bbY + bbHeight;
- 			}
- 			app.ticker.add((delta) => {
-
- 				if(jogoativo){
- 					seconds += (1 / 60) * delta;
- 					if(seconds >= 0.5 ){
- 						tempo.text=Math.floor(seconds)+"s";
- 					}
-
- 					player.x=app.renderer.plugins.interaction.mouse.global.x;
- 					player.y=app.renderer.plugins.interaction.mouse.global.y;
- 					if(count>freq){
- 						count=0;
- 						let rand=Math.floor(Math.random()*posicoes.length);
- 						let bac = PIXI.Sprite.from(loader.resources["bac1"].texture);
- 						bac.anchor.set(0.5);
- 						content.addChild(bac);
- 						bac.direcao=posicoes[rand][2];
- 						bac.x=posicoes[rand][0];
- 						bac.y=posicoes[rand][1];
- 						particles.push(bac);
- 						console.log(particles.length);
- 						if(freq>60){
- 							freq-=5;
- 						}
- 						if(velocidade<3){
- 							velocidade+=0.05;
- 						}
-
- 					}else{
- 						count++;
- 					}
-
- 					for (var i = 0; i < particles.length; i++) {
- 						if(checkme(player,particles[i])){
- 							console.log("bate");
- 							jogoativo=false;
-
- 							localStorage.recorde = seconds;
- 							MostraGuiSalva();
+ 			var txt = new createjs.Text(itens[cenaAtual][3][0], itens[cenaAtual][3][1], itens[cenaAtual][3][2]);
+ 			txt.textAlign = 'center';
+ 			txt.textBaseline = 'middle';
 
 
- 						}
- 						if(particles[i].direcao=="down"){
- 							particles[i].y+=velocidade;
- 							particles[i].rotation+=0.005;
- 							if(particles[i].y>850){
- 								content.removeChild(particles[i]);
- 								particles.splice(i,1);
- 							}
- 						}
- 						if(particles[i].direcao=="up"){
- 							particles[i].y-=velocidade;
- 							particles[i].rotation-=0.005;
- 							if(particles[i].y<0){
- 								content.removeChild(particles[i]);
- 								particles.splice(i,1);
- 							}
- 						}
- 						if(particles[i].direcao=="left"){
- 							particles[i].x-=velocidade;
- 							particles[i].rotation+=0.005;
- 							if(particles[i].x<-200){
- 								content.removeChild(particles[i]);
- 								particles.splice(i,1);
- 							}
- 						}
- 						if(particles[i].direcao=="right"){
- 							particles[i].x+=velocidade;
- 							particles[i].rotation-=0.005;
- 							if(particles[i].x>1350){
- 								content.removeChild(particles[i]);
- 								particles.splice(i,1);
- 							}
- 						}
+ 			canvas = document.getElementById("canvas_od");
+ 			stage = new createjs.Stage(canvas);
+ 			container_cenas = new createjs.Container();
+ 			container_telaFinal = new createjs.Container();
+ 			container_arrastaveis = new createjs.Container();
+ 			container_colisores = new createjs.Container();
+ 			createjs.Touch.enable(stage);
+ 			stage.enableMouseOver();
+ 			stage.mouseMoveOutside = true;
+ 			stage.addChild(container_cenas);
+ 			stage.addChild(container_colisores);
+ 			stage.addChild(container_arrastaveis);
+ 			stage.addChild(container_telaFinal);
 
- 					}
-
+ 			var manifest = [
+ 			{src: "fundo.jpg", id: "fundo"},
+ 			{src: "bt_ini.png", id: "bt_ini"},
+ 			{src: "fundoClose.jpg", id: "fundoClose"},
+ 			{src: "parabens.png", id: "parabens"}
+ 			];
+ 			for (var i = 0; i < itens.length; i++) {
+ 				let _arrayTemp = itens[i][1].split(".");
+ 				let _temp={src:itens[i][1],id:"fundo_"+i};
+ 				manifest.push(_temp);
+ 				for (var j = 0; j < itens[i][0].length; j++) {
+ 					let _arrayTemp = itens[i][0][j][0].split(".");
+ 					let _arrayTemp2 = itens[i][0][j][2].split(".");
+ 					let _arrayTemp3 = itens[i][0][j][4].split(".");
+ 					let _temp={src:itens[i][0][j][0],id: _arrayTemp[0]};
+ 					let _temp2={src:itens[i][0][j][2],id: _arrayTemp2[0]};
+ 					let _temp3={src:itens[i][0][j][4],id: _arrayTemp3[0]};
+ 					manifest.push(_temp);
+ 					manifest.push(_temp2);
+ 					manifest.push(_temp3);
  				}
+ 			}
+ 			console.log(manifest);
 
- 			});
+ 			var preload = new createjs.LoadQueue(true, caminho);
+
+
+ 			preload.on("progress", handleProgress);
+ 			preload.on("complete", handleComplete);
+ 			preload.on("fileload", handleFileLoad);
+ 			preload.loadManifest(manifest, true, caminho);
+ 			function handleProgress(event) {
+ 				bar.scaleX = event.loaded;
+ 			}
+ 			function handleFileLoad(event) {
+
+ 			}
+ 			function handleComplete(event) {
+ 				imageContainer.visible=false;
+ 				bar.visible=false;
+ 				init();
+ 			}
+
+ 			imageContainer = new createjs.Bitmap(caminho+"carregando.jpg");
+ 			imageContainer.image.onload = function(){
+ 				stage.addChild(imageContainer);
+ 				loaderWidth = 267;
+ 				bar.graphics.beginFill("#4ec208").drawRect(0, 505, loaderWidth, 72);
+ 				bar.x=490;
+ 				stage.addChild(bar);
+ 			};
+
+ 			function init(){
+ 				montaCena();
+ 				btiniciar = new createjs.Bitmap(preload.getResult("bt_ini"));
+ 				stage.addChild(btiniciar);
+ 				btiniciar.on("click", function() {
+ 					console.log("clicou")
+ 					jogavel=true;
+ 					startTime = (new Date()).getTime();
+ 					btiniciar.visible=false;
+ 					stage.addChild(txt);
+ 					txt.x=120;
+ 					txt.y=60;
+ 				});
+
+ 				btFim = new createjs.Bitmap(preload.getResult("parabens"));
+ 				stage.addChild(btFim);
+ 				btFim.on("click", function() {
+ 					MostraGuiSalva();
+ 				});
+ 				btFim.visible=false;
+ 				btFim.x=canvas.width/2;
+ 				btFim.y=canvas.height/2;
+ 				btFim.regX=btFim.getBounds().width/2;
+ 				btFim.regY=btFim.getBounds().height/2;
+ 			}
+
+ 			function montaCena(){
+ 				countfase=0;
+ 				container_arrastaveis.removeAllChildren();
+ 				container_colisores.removeAllChildren();
+ 				container_cenas.removeAllChildren();
+
+ 				fundo = new createjs.Bitmap(preload.getResult("fundo_"+cenaAtual));
+ 				container_cenas.addChild(fundo);
+
+ 				for (var i = 0; i <itens[cenaAtual][0].length; i++) {
+ 					let _arrayTemp = itens[cenaAtual][0][i][0].split(".");
+ 					let _arrayTemp2 = itens[cenaAtual][0][i][2].split(".");
+ 					let _arrayTempimgFinal = itens[cenaAtual][0][i][4].split(".");
+
+
+ 					arrastaveis[i] = new createjs.Bitmap(preload.getResult(_arrayTemp[0]));
+ 					container_arrastaveis.addChild(arrastaveis[i]);
+ 					arrastaveis[i].hit=_arrayTemp2[0];
+ 					arrastaveis[i].x=itens[cenaAtual][0][i][1][0];
+ 					arrastaveis[i].y=itens[cenaAtual][0][i][1][1];
+ 					arrastaveis[i].px=itens[cenaAtual][0][i][1][0];
+ 					arrastaveis[i].py=itens[cenaAtual][0][i][1][1];
+ 					arrastaveis[i].regX=arrastaveis[i].getBounds().width/2;
+ 					arrastaveis[i].regY=arrastaveis[i].getBounds().height/2;
+ 					arrastaveis[i].on("mousedown",function(evt) {
+ 						if(jogavel){
+ 							clicavel=true;
+ 							var global = stage.localToGlobal(this.x, this.y);
+ 							this.offset = { 'x': global.x - evt.stageX, 'y': global.y - evt.stageY };
+ 							this.scaleX=0.8;
+ 							this.scaleY=0.8;
+ 							createjs.Tween.get(this).to({ scaleX: 1,scaleY: 1 }, 300, createjs.Ease.backOut);
+ 						}
+
+ 					});
+ 					arrastaveis[i].on("pressmove", function (evt) {
+ 						if(jogavel && clicavel){
+ 							var local = stage.globalToLocal(evt.stageX + this.offset.x, evt.stageY + this.offset.y);
+ 							this.x = local.x;
+ 							this.y = local.y;
+ 							var posAtual=[local.x,local.y];
+
+ 						}
+
+ 					});
+ 					arrastaveis[i].on("pressup", function (evt) {
+ 						
+ 						clicavel=true;
+ 						jogavel=true;
+
+ 						for (var i = 0; i < colisores.length; i++) {
+ 							var colisao = ndgmr.checkPixelCollision(colisores[i], this, 0.1, true);
+ 							if(colisao && this.hit==colisores[i].name && colisores[i].pode){
+ 								countfase++;
+ 								audioClean.play();
+ 								//this.visible=false;
+ 								container_arrastaveis.removeChild(this);
+ 								//colisores[i].visible=false;
+ 								container_colisores.removeChild(colisores[i]);
+ 								colisores[i].pode=false;
+ 								var imgfinal = new createjs.Bitmap(preload.getResult(colisores[i].imgfinal));
+ 								container_cenas.addChild(imgfinal);
+ 								imgfinal.x=colisores[i].posfinal[0];
+ 								imgfinal.y=colisores[i].posfinal[1];
+ 								imgfinal.regX=imgfinal.getBounds().width/2;
+ 								imgfinal.regY=imgfinal.getBounds().height/2;
+ 								
+
+ 								console.log("countfase"+itens[cenaAtual][0].length);
+ 								//createjs.Tween.get(this).to({ x: ninho.x+Math.random()*30+30,y:ninho.y+Math.random()*30+40,scaleX:0.1,scaleY:0.1 }, 500, createjs.Ease.backOut);
+ 								if(countfase>=itens[cenaAtual][0].length){
+ 									console.log("fimfase");
+ 									cenaAtual+=1;
+ 									if(cenaAtual>=itens.length){
+ 										jogavel=false;
+ 										txt.x=canvas.width/2;
+ 										txt.y=canvas.height/2+50;
+ 										btFim.visible=true;
+ 										localStorage.recorde=time;
+ 										
+ 									}else{
+ 										montaCena();
+ 									}
+ 								}
+ 								break;
+ 							}else{
+ 								createjs.Tween.get(this).to({ x: this.px,y:this.py }, 1000, createjs.Ease.backOut);
+ 							}
+ 						}
+ 					});
+
+
+ 					colisores[i] = new createjs.Bitmap(preload.getResult(_arrayTemp2[0]));
+ 					container_colisores.addChild(colisores[i]);
+ 					colisores[i].name=_arrayTemp2[0];
+ 					colisores[i].pode=true;
+ 					colisores[i].x=itens[cenaAtual][0][i][3][0];
+ 					colisores[i].y=itens[cenaAtual][0][i][3][1];
+ 					colisores[i].regX=colisores[i].getBounds().width/2;
+ 					colisores[i].regY=colisores[i].getBounds().height/2;
+
+ 					colisores[i].imgfinal=_arrayTempimgFinal[0];
+ 					colisores[i].posfinal=itens[cenaAtual][0][i][5];
+
+
+
+ 					arrastaveis[i].scaleX=0.01;
+ 					arrastaveis[i].scaleY=0.01;
+ 					createjs.Tween.get(arrastaveis[i]).to({ scaleX: 1,scaleY: 1 }, 300, createjs.Ease.backOut);
+
+ 					colisores[i].scaleX=0.01;
+ 					colisores[i].scaleY=0.01;
+ 					createjs.Tween.get(colisores[i]).to({ scaleX: 1,scaleY: 1 }, 300, createjs.Ease.backOut);
+
+ 					
+ 				}
+ 			}
+
+
+ 			createjs.Ticker.setFPS(30);
+ 			createjs.Ticker.addEventListener("tick", ticker);
+
+ 			function Fim(){
+ 				btFim.y=900;
+ 				btFim.visible=true;
+ 				createjs.Tween.get(btFim).to({ y: 0 }, 550, createjs.Ease.backOut);
+ 			}
+ 			function ticker(event){
+ 				stage.update();
+
+ 				if(jogavel){
+ 					currentTime = (new Date()).getTime();
+ 					time = Math.floor((currentTime-startTime)/1000);
+ 					txt.text = time + "s";
+ 				}
+ 				
+ 			}
+ 			function destroyMe(){
+ 				container_telaFinal.removeChild(this);
+ 			}
 
  			window.addEventListener('resize', redimensionaGame, false);
  			function redimensionaGame() {
- 				resizeDiv();
+ 				//resizeDiv();
+ 				retornaOrientacaoVideo($('#divCanvas'));
  			}
- 			function resizeDiv() {
- 				var newWidth = window.innerWidth;
- 				var newHeight = window.innerHeight;
- 				widthToHeight = 16 / 9;
- 				orientacao=1; 
+ 			function retornaOrientacaoVideo(_this) {
+ 				var widthToHeight = 16 / 9;
+ 				var newWidth = window.innerWidth-75;
+ 				var newHeight = window.innerHeight-75;
+ 				var newWidthToHeight = newWidth / newHeight;
+ 				$imgAtual = $(_this);
 
  				if (newWidthToHeight > widthToHeight) {
  					newWidth = newHeight * widthToHeight;
- 					$('#divCanvas').css("marginLeft",(window.innerWidth-newWidth)/2 + 'px');
- 					$('#divCanvas').css("marginTop", (window.innerHeight-newHeight)/2 + 'px');
- 				} else { 
+ 					$imgAtual.css("marginLeft", (window.innerWidth - newWidth) / 2 + 'px');
+ 					$imgAtual.css("marginTop", (window.innerHeight - newHeight) / 2 + 'px');
+ 				} else {
  					newHeight = newWidth / widthToHeight;
- 					$('#divCanvas').css("marginLeft",(window.innerWidth-newWidth)/2 + 'px');
- 					$('#divCanvas').css("marginTop", (window.innerHeight-newHeight)/2 + 'px');
+ 					$imgAtual.css("marginLeft", (window.innerWidth - newWidth) / 2 + 'px');
+ 					$imgAtual.css("marginTop", (window.innerHeight - newHeight) / 2 + 'px');
  				}
- 				$('#divCanvas').css("width",newWidth + 'px');
- 				$('#divCanvas').css("height",newHeight + 'px');
- 				$('#gui').css("width",newWidth + 'px');
- 				$('#gui').css("height",newHeight + 'px');
+ 				$imgAtual.css("width", newWidth + 'px');
+ 				$imgAtual.css("height", newHeight + 'px');
  			}
- 			resizeDiv();
+
+ 			redimensionaGame();
  		});
  	</script>
  </body>
