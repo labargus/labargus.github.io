@@ -12,49 +12,21 @@
 </head>
 
 <body>
-	<button onclick="copyCanvasContentsToClipboard(document.getElementById('renderCanvas'))">Copia imagem</button>
+	<button onclick="copyCanvasContentsToClipboard()">Copia imagem</button>
 	<canvas id = "renderCanvas"></canvas>
 	<script type = "text/javascript">
 		var canvas = document.getElementById("renderCanvas");
-		function copyCanvasContentsToClipboard(canvas) {
-			canvas.toBlob(function(blob) { 
-				const item = new ClipboardItem({ "image/png": blob });
-				navigator.clipboard.write([item]); 
-			});
-		}
-
-		function imageToBlob(imageURL) {
-			const img = new Image;
-			const c = document.createElement("canvas");
-			const ctx = c.getContext("2d");
-			img.crossOrigin = "";
-			img.src = imageURL;
-			return new Promise(resolve => {
-				img.onload = function () {
-					c.width = this.naturalWidth;
-					c.height = this.naturalHeight;
-					ctx.drawImage(this, 0, 0);
-					c.toBlob((blob) => {
-
-						resolve(blob)
-					}, "image/png", 0.75);
-				};
-			})
-		}
-
-		async function copyImage(imageURL){
-			const blob = await imageToBlob(imageURL)
-			const item = new ClipboardItem({ "image/png": blob });
-			navigator.clipboard.write([item]);
-		}
-
-
-
-		var camera;
+		var camera,scene;
 
 		var engine = new BABYLON.Engine(canvas, true);
+
+
+		function copyCanvasContentsToClipboard() {
+			BABYLON.Tools.CreateScreenshotUsingRenderTarget(engine, camera, 1600);
+		}
+		
 		var createScene  = function() {
-			var scene = new BABYLON.Scene(engine);
+			scene = new BABYLON.Scene(engine);
 			scene.clearColor = new BABYLON.Color3(1, 1, 1);
 
 			camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 7, new BABYLON.Vector3(0, 0, 0), scene);
