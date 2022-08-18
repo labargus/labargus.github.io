@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title> Babylon.JS : Demo2</title>
+	<script src = "js/babylon.js"></script>
+	<script src = "js/babylonjs.loaders.min.js"></script>
+	<script src = "js/babylon.gui.min.js"></script>
+	<style>
+		canvas { width: 100%; height: 100%;}
+	</style>
+</head>
+
+<body>
+	<button onclick="copyCanvasContentsToClipboard(document.getElementById('renderCanvas'))">Copia imagem</button>
+	<canvas id = "renderCanvas"></canvas>
+	<script type = "text/javascript">
+		var canvas = document.getElementById("renderCanvas");
+		function copyCanvasContentsToClipboard(canvas) {
+			canvas.toBlob(function(blob) { 
+				const item = new ClipboardItem({ "image/png": blob });
+				navigator.clipboard.write([item]); 
+			});
+		}
+
+		function imageToBlob(imageURL) {
+			const img = new Image;
+			const c = document.createElement("canvas");
+			const ctx = c.getContext("2d");
+			img.crossOrigin = "";
+			img.src = imageURL;
+			return new Promise(resolve => {
+				img.onload = function () {
+					c.width = this.naturalWidth;
+					c.height = this.naturalHeight;
+					ctx.drawImage(this, 0, 0);
+					c.toBlob((blob) => {
+
+						resolve(blob)
+					}, "image/png", 0.75);
+				};
+			})
+		}
+
+		async function copyImage(imageURL){
+			const blob = await imageToBlob(imageURL)
+			const item = new ClipboardItem({ "image/png": blob });
+			navigator.clipboard.write([item]);
+		}
+
+
+
+		var camera;
+
+		var engine = new BABYLON.Engine(canvas, true);
+		var createScene  = function() {
+			var scene = new BABYLON.Scene(engine);
+			scene.clearColor = new BABYLON.Color3(1, 1, 1);
+
+			camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 7, new BABYLON.Vector3(0, 0, 0), scene);
+			scene.activeCamera.attachControl(canvas);
+			camera.fov = 0.5;
+
+			var light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 0, 30), scene);
+			var light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+
+			BABYLON.SceneLoader.AppendAsync("./", "cadeirarodas.glb", scene).then(function (scene) {
+			});
+
+			var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+
+			var panel = new BABYLON.GUI.StackPanel();
+			panel.width = "220px";
+			panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+			panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+			advancedTexture.addControl(panel);
+
+			var header = new BABYLON.GUI.TextBlock();
+			header.text = "Y-rotation: 0 deg";
+			header.height = "30px";
+			header.color = "white";
+			panel.addControl(header); 
+
+			var slider = new BABYLON.GUI.Slider();
+			slider.minimum = 0;
+			slider.maximum = 2 * Math.PI;
+			slider.value = 0.5;
+			slider.isVertical = true;
+			slider.height = "200px";
+			slider.width = "20px";
+			slider.onValueChangedObservable.add(function(value) {
+				header.text = "FOV da camera: " + camera.fov;
+				if (camera) {
+					camera.fov = value;
+				}
+			});
+			panel.addControl(slider);  
+			return scene;
+		};
+		var scene = createScene();
+		engine.runRenderLoop(function() {
+			scene.render();
+		});
+	</script>
+</body>
+</html>
