@@ -38,8 +38,10 @@
 			camera.fov = 0.5;
 			camera.wheelPrecision = 10.5; 
 
-			var light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 0, 30), scene);
+			var light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0, 20, 30), scene);
+			light0.intensity = 100;
 			var light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+			light.intensity = 2;
 
 			BABYLON.SceneLoader.AppendAsync("./", "cadeirarodas.glb", scene).then(function (scene) {
 			});
@@ -48,8 +50,8 @@
 
 			var panel = new BABYLON.GUI.StackPanel();
 			panel.width = "220px";
-			panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-			panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
+			panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+			panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
 			advancedTexture.addControl(panel);
 
 			var header = new BABYLON.GUI.TextBlock();
@@ -59,9 +61,10 @@
 			panel.addControl(header); 
 
 			var slider = new BABYLON.GUI.Slider();
-			slider.minimum = 0;
-			slider.maximum = 2 * Math.PI;
+			slider.minimum = 0.1;
+			slider.maximum = 1.5;
 			slider.value = 0.5;
+			slider.step=0.01;
 			slider.isVertical = true;
 			slider.height = "200px";
 			slider.width = "20px";
@@ -73,6 +76,31 @@
 				}
 			});
 			panel.addControl(slider);  
+
+
+
+			var header2 = new BABYLON.GUI.TextBlock();
+			header2.text = "LUZ: 0.5";
+			header2.height = "30px";
+			header2.color = "black";
+			panel.addControl(header2); 
+
+			var slider2 = new BABYLON.GUI.Slider();
+			slider2.minimum = 0.5;
+			slider2.maximum = 100;
+			slider2.value = 2;
+			slider2.step=1;
+			slider2.isVertical = true;
+			slider2.height = "200px";
+			slider2.width = "20px";
+			slider2.onValueChangedObservable.add(function(value) {
+				header2.text = "LUZ: " + Math.round(value * 100) / 100
+;
+				if (light) {
+					light.intensity = value;
+				}
+			});
+			panel.addControl(slider2);  
 			return scene;
 		};
 		var scene = createScene();
