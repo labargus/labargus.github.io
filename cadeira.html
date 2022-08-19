@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset = "utf-8">
-	<title> Babylon.JS : Demo2</title>
+	<title> Cadeira de rodas SAE</title>
 	<script src = "js/babylon.js"></script>
 	<script src = "js/babylonjs.loaders.min.js"></script>
 	<script src = "js/babylon.gui.min.js"></script>
@@ -15,7 +15,8 @@
 </head>
 
 <body>
-	<button onclick="copyCanvasContentsToClipboard()" class="btn btn-success" style="position: absolute; margin-top: 20px;margin-left: 10px">Copia imagem</button>
+	<button onclick="copyCanvasContentsToClipboard()" class="btn btn-success" style="position: absolute; margin-top: 150px;margin-left: 10px">Salva Screenshot</button>
+	<h1 style="position: absolute; margin-top: 20px;margin-left: 10px">Cadeira de Rodas</h1>
 	<canvas id = "renderCanvas"></canvas>
 	<script type = "text/javascript">
 		var canvas = document.getElementById("renderCanvas");
@@ -47,14 +48,14 @@
 
 			var panel = new BABYLON.GUI.StackPanel();
 			panel.width = "220px";
-			panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+			panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
 			panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER;
 			advancedTexture.addControl(panel);
 
 			var header = new BABYLON.GUI.TextBlock();
-			header.text = "Y-rotation: 0 deg";
+			header.text = "FOV da camera: 0.5";
 			header.height = "30px";
-			header.color = "white";
+			header.color = "black";
 			panel.addControl(header); 
 
 			var slider = new BABYLON.GUI.Slider();
@@ -65,9 +66,10 @@
 			slider.height = "200px";
 			slider.width = "20px";
 			slider.onValueChangedObservable.add(function(value) {
-				header.text = "FOV da camera: " + camera.fov;
+				header.text = "FOV da camera: " + Math.round(value * 100) / 100
+;
 				if (camera) {
-					camera.fov = value;
+					camera.fov = Math.round(value * 100) / 100;
 				}
 			});
 			panel.addControl(slider);  
