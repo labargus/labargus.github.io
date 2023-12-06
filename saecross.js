@@ -539,7 +539,7 @@ var CrossSae=function(_id,_dentroModulo,_itens,_meshObstaculos,_roads,_coletavei
  							box2.rotation.y = Math.PI/randRot[random];
  							obstaculos.push(box2);
  						}else{
- 							if(countBonus>300){
+ 							if(countBonus>20){
  								console.log("cria bonus "+count);
  								countBonus=0;
  								let _bonusRand = meshHearts[Math.floor(Math.random() * meshHearts.length)];
