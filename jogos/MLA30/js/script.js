@@ -82,8 +82,9 @@ function updateCanvasSize() {
     explica.x = 150;
     explica.y = 200;
   } else {
-    contentTudo.scaleX = contentTudo.scaleY = 0.75;
-    contentTudo.x = window.innerWidth / 2 - 455;
+    //455
+    contentTudo.scaleX = contentTudo.scaleY = 0.65;
+    contentTudo.x = window.innerWidth / 2 - 390;
     contentTudo.y = 10;
     explica.x = 400;
     explica.y = 400;
@@ -213,11 +214,12 @@ function pulaFase() {
     console.log("PULA FASE", fase);
     if (itens[fase].titulo == "Fim") {
       document.querySelector('.thumbsUp1').classList.remove('hidden');
+      document.querySelector('.parabens' + fase).classList.remove('hidden');
     } else {
 
 
-      document.querySelector('.botaoNext' + fase).classList.add('hidden');
-      document.querySelector('.botaoNextAceso' + fase).classList.remove('hidden');
+      document.querySelector('.btnext' + fase).classList.add('hidden');
+      document.querySelector('.btnextA' + fase).classList.remove('hidden');
       document.querySelector('.navegacao' + fase + 'a').classList.add('hidden');
       document.querySelector('.navegacao' + fase + 'b').classList.remove('hidden');
 

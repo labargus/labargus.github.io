@@ -185,7 +185,7 @@ body {
 
 
 
-.botaoNext1 {
+.botaoNext {
  background-image: url('../assets/next.png');
  background-repeat: no-repeat;
  background-size: contain;
@@ -194,29 +194,15 @@ body {
  background-position: center; /* Centraliza horizontal e verticalmente */
 }
 @media screen and (max-width: 600px) {
-  .botaoNext1 {
+  .botaoNext {
     margin-top: -42px;
   }
+  .botaoNextAceso {
+    margin-top: -42px;
+  }
+  
 }
-.botaoNextAceso1 {
- background-image: url('../assets/nextAceso.png');
- background-repeat: no-repeat;
- background-size: contain;
- min-height: 40%;
- width: 30vw;
- margin-top: -42px;
- background-position: center; /* Centraliza horizontal e verticalmente */
-}
-
-.botaoNext2 {
- background-image: url('../assets/next.png');
- background-repeat: no-repeat;
- background-size: contain;
- min-height: 40%;
- width: 30vw;
- background-position: center; /* Centraliza horizontal e verticalmente */
-}
-.botaoNextAceso2 {
+.botaoNextAceso {
  background-image: url('../assets/nextAceso.png');
  background-repeat: no-repeat;
  background-size: contain;
@@ -225,22 +211,6 @@ body {
  background-position: center; /* Centraliza horizontal e verticalmente */
 }
 
-.botaoNext3 {
- background-image: url('../assets/next.png');
- background-repeat: no-repeat;
- background-size: contain;
- min-height: 40%;
- width: 30vw;
- background-position: center; /* Centraliza horizontal e verticalmente */
-}
-.botaoNextAceso3 {
- background-image: url('../assets/nextAceso.png');
- background-repeat: no-repeat;
- background-size: contain;
- min-height: 40%;
- width: 30vw;
- background-position: center; /* Centraliza horizontal e verticalmente */
-}
 
 .botaoConcluir4 {
  background-image: url('../assets/concluir.png');
