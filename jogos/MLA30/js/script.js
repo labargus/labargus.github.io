@@ -99,6 +99,7 @@ var itens = [
   {
     titulo: "Fase1",
     fundofase: "fundoExerc01b.png",
+    fundofaseAjuda: "fundoExerc01.png",
     fundofaseX: 379,
     fundofaseY: 70,
     rotacoes: 90,
@@ -114,6 +115,7 @@ var itens = [
   }, {
     titulo: "Fase2",
     fundofase: "fundoExerc02b.png",
+    fundofaseAjuda: "fundoExerc01.png",
     fundofaseX: 359,
     fundofaseY: 70,
     rotacoes: 30,
@@ -129,6 +131,7 @@ var itens = [
   }, {
     titulo: "Fase3",
     fundofase: "fundoExerc03a.png",
+    fundofaseAjuda: "fundoExerc03b.png",
     fundofaseX: 395,
     fundofaseY: 293,
     rotacoes: 90,
@@ -140,16 +143,17 @@ var itens = [
   }, {
     titulo: "Fase4",
     fundofase: "fundoExerc04a.png",
+    fundofaseAjuda: "fundoExerc04b.png",
     fundofaseX: 395,
-    fundofaseY: 192,
+    fundofaseY: 92,
     rotacoes: 90,
     gabarito: [
-      { peca: "TriangleAmarelo.png", posicao: [613, 283], rotacao: [180], rotacionavel: true },
-      { peca: "TriangleAmarelo.png", posicao: [722, 282], rotacao: [0], rotacionavel: true },
-      { peca: "TriangleAmarelo.png", posicao: [724, 459], rotacao: [180], rotacionavel: true },
-      { peca: "TriangleAmarelo.png", posicao: [616, 459], rotacao: [0], rotacionavel: true },
-      { peca: "TriangleAmarelo.png", posicao: [506, 460], rotacao: [180], rotacionavel: true },
-      { peca: "TriangleAmarelo.png", posicao: [506, 284], rotacao: [0], rotacionavel: true }
+      { peca: "TriangleAmarelo.png", posicao: [513, 283], rotacao: [180], rotacionavel: true },
+      { peca: "TriangleAmarelo.png", posicao: [622, 282], rotacao: [0], rotacionavel: true },
+      { peca: "TriangleAmarelo.png", posicao: [624, 459], rotacao: [180], rotacionavel: true },
+      { peca: "TriangleAmarelo.png", posicao: [516, 459], rotacao: [0], rotacionavel: true },
+      { peca: "TriangleAmarelo.png", posicao: [406, 460], rotacao: [180], rotacionavel: true },
+      { peca: "TriangleAmarelo.png", posicao: [406, 284], rotacao: [0], rotacionavel: true }
     ]
   }, {
     titulo: "Fim",
@@ -193,7 +197,7 @@ for (var i = 0; i < itens[fase].gabarito.length; i++) {
   let _rotacionavel = itens[fase].gabarito[i].rotacionavel;
   criaGuias(_tipo, _x, _y, _rot, _rotacionavel);
 }
-criaFundo();
+criaFundo(itens[fase].fundofase);
 
 clicavel = true;
 
@@ -203,7 +207,10 @@ contentgui.visible = false;
 createjs.Ticker.setFPS(60);
 createjs.Ticker.addEventListener("tick", ticker);
 
+function criaAjuda(){
+  criaFundo(itens[fase].fundofaseAjuda);
 
+}
 /////////////////Funcao para pular de tela e identificar o fim
 function pulaFase() {
   if (!hasExecuted) {
@@ -215,6 +222,8 @@ function pulaFase() {
     if (itens[fase].titulo == "Fim") {
       document.querySelector('.thumbsUp1').classList.remove('hidden');
       document.querySelector('.parabens' + fase).classList.remove('hidden');
+      document.querySelector('.navegacao' + fase + 'a').classList.add('hidden');
+      document.querySelector('.navegacao' + fase + 'b').classList.remove('hidden');
     } else {
 
 
@@ -253,7 +262,7 @@ function escondeTelaInteratividade() {
   }
 
 
-  criaFundo();
+  criaFundo(itens[fase].fundofase);
   //cria fase
   clicavel = true;
   hasExecuted = false;
@@ -264,8 +273,9 @@ function escondeTelaInteratividade() {
   let cv = document.querySelector('.divCanvas');
   divfooter.appendChild(cv);
 }
-function criaFundo() {
-  let fundofase = new createjs.Bitmap(caminho + itens[fase].fundofase);
+function criaFundo(_qual) {
+  contentfundos.removeAllChildren();
+  let fundofase = new createjs.Bitmap(caminho + _qual);
   contentfundos.addChild(fundofase);
   fundofase.scaleX = fundofase.scaleY = 0.75;
 
