@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>Conteúdo Digital</title>
+  
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery.lib.min.js"></script>
+  <script src="js/jquery.lib.ods.min.js"></script>
+
+
+  <!-- Google Analytics -->
+ <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+ <script>
+     window.dataLayer = window.dataLayer || [];
+
+     function gtag() {
+         dataLayer.push(arguments);
+     }
+     gtag('js', new Date());
+
+     gtag('config', 'UA-124031348-1');
+ </script>
+ <!-- Google Analytics -->
+
+ <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/normalize.css">
+ 
+ 
+
+</head>
+
+<body>
+
+  <!-- TELA INICIAL -->
+  <section class="telaInicial block">
+
+    <!-- CREDITOS-->
+    <div class="botaoCredito button creditos"></div>
+    <!-- CREDITOS-->
+
+    <!-- LOGO -->
+    <div class="logo"></div>
+    <!-- LOGO -->
+
+    <!-- BOTAO -->
+    <div class="botaoIniciar" onclick="escondeTelaInicial()"></div>
+    <!-- BOTAO -->
+
+  </section>
+  <!-- TELA INICIAL -->
+
+  <!--CREDITOS-->
+  <section class="tela-creditos is-hidden">
+   <div class="container" id="creditos">
+
+       <div id="estrutura" style="display: none">
+           <!-- Conteúdo da div que você deseja clonar -->
+           <div class="colunas">
+               <!-- Insira na ID a coleção (CQT, SAE ou SPE) -->
+               <div class="colecao" id="SPE">
+                   <!-- Insira na ID o segmento (EducacaoInfantil, AnosIniciais, AnosFinais ou EnsinoMedio) -->
+                   <div class="segmento" ID="AnosIniciais">
+                       <div class="setor diretorGeral"></div>
+                       <div class="setor diretorConteudo"></div>
+                       <div class="setor NCE"></div>
+                       <div class="setor NEL"></div>
+                       <div class="setor NTC"></div>
+                   </div>
+
+                   <!-- caso não haja créditos de imagem, comentar a div -->
+                   <!--<div class="creditos-imagens">
+                               <h2 class="cargo">Créditos de imagem:</h2>
+                               <p class="nome">teste</p>
+                           </div>-->
+               </div>
+               <div id="desenvolvimento"></div>
+           </div>
+           <div class="direitos"></div>
+       </div>
+
+       <script src="js/info-creditos.js"></script>
+
+       <!--Aqui vai os nomes da equipe do pedagógico e Interações Digitais -->
+       <div class="producaoOeds" style="display: none">
+           <div class="nome" id="nome_tamirisF"></div>
+           <div class="cargo" id="cargo_designerInstrucional"></div>
+       </div>
+       <div class="producaoOeds" style="display: none">
+           <div class="nome" id="nome_denyM"></div>
+           <div class="cargo" id="cargo_designerDigital"></div>
+       </div>
+       <div class="producaoOeds" style="display: none">
+           <div class="nome" id="nome_robertoQ"></div>
+           <div class="cargo" id="cargo_desenvolvedor"></div>
+       </div>
+
+       <iframe id="iframeCredito" width="100%" height="100%"></iframe>
+   </div>
+   <div class="fechar-creditos">
+       <div class="fechar"></div>
+   </div>
+  </section>
+  <!--CREDITOS-->
+
+  <!-- TELA INTERATIVIDADE 01 -->
+  <section class="telas telaInteratividade1 hidden">
+
+    <!-- TELA HEADER -->
+    <div class="header">
+      <div class="numeroQuestao1"></div>
+      <div class="espacoVazio"></div>
+      <div class="navegacao1a"></div>
+      <div class="navegacao1b hidden"></div>
+
+      <div class="botaoNext1"></div>
+      <div class="botaoNextAceso1 hidden" onclick="escondeTelaInteratividade()"></div>
+    </div>
+    <!-- TELA HEADER -->
+
+    <!-- TELA FOOTER -->
+    <div class="footer">
+
+      <div class="bandeja">
+        <div>
+          <p class="textoBandeja1">Utilize um hexágono e seis triângulos</p>
+          <p class="parabens1 hidden">Parabéns, você conseguiu</p>
+        </div>
+        <div class="imagemBandeja pecas" style="background-image: url('assets/TriangleGreen.png');" onclick="criaPecaPre(this)" data-nome="TriangleGreen.png" data-bool="true">
+        </div>
+        <div class="imagemBandeja pecas" style="background-image: url('assets/hexagonRed.png');" onclick="criaPecaPre(this)" data-nome="hexagonRed.png" data-bool="false">
+        </div>
+      </div>
+
+
+
+      <div class="divCanvas"> <!-- onclick="mostraBotaoNext1()"
+        <div class="explica" onclick="retiraExplica()"> </div>
+        <div class="explicaGirar" onclick="retiraExplicaGirar()"> </div> -->
+        <canvas id="myCanvas" width="2000" height="1000" style="border:1px solid #000;"></canvas>
+        <div class="thumbsUp1 hidden"></div>
+      </div>
+
+    </div>
+    <!-- TELA FOOTER -->
+
+  </section>
+  <!-- TELA INTERATIVIDADE 01 -->
+
+
+  <!-- TELA INTERATIVIDADE 02 -->
+  <section class="telas telaInteratividade2 hidden">
+
+    <!-- TELA HEADER -->
+    <div class="header">
+      <div class="numeroQuestao2"></div>
+      <div class="espacoVazio"></div>
+      <div class="navegacao2a"></div>
+      <div class="navegacao2b hidden"></div>
+      <div class="botaoNext2"></div>
+      <div class="botaoNextAceso2 hidden" onclick="escondeTelaInteratividade()"></div>
+    </div>
+    <!-- TELA HEADER -->
+
+    <!-- TELA FOOTER -->
+    <div class="footer">
+
+      <div class="bandeja">
+        <div>
+          <p class="textoBandeja2">Utilize um hexágono e seis quadriláteros.</p>
+          <p class="parabens2 hidden">Parabéns, você conseguiu</p>
+        </div>
+        <div class="imagemBandeja pecas" style="background-image: url('assets/quadradoAmarelo.png');" onclick="criaPecaPre(this)" data-nome="quadradoAmarelo.png" data-bool="true">
+        </div>
+        <div class="imagemBandeja pecas" style="background-image: url('assets/hexagonRoxo.png');" onclick="criaPecaPre(this)" data-nome="hexagonRoxo.png" data-bool="false">
+        </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- TELA FOOTER -->
+
+  </section>
+  <!-- TELA INTERATIVIDADE 02 -->
+
+
+  <!-- TELA INTERATIVIDADE 03 -->
+  <section class="telas telaInteratividade3 hidden">
+
+    <!-- TELA HEADER -->
+    <div class="header">
+      <div class="numeroQuestao3"></div>
+      <div class="espacoVazio"></div>
+      <div class="navegacao3a"></div>
+      <div class="navegacao3b hidden"></div>
+      <div class="botaoNext3"></div>
+      <div class="botaoNextAceso3 hidden" onclick="escondeTelaInteratividade()"></div>
+    </div>
+    <!-- TELA HEADER -->
+
+    <!-- TELA FOOTER -->
+    <div class="footer">
+
+      <div class="bandeja">
+        <div>
+          <p class="textoBandeja3">Componha a figura ao lado usando somente triângulos.</p>
+          <p class="parabens3 hidden">Parabéns, você conseguiu</p>
+        </div>
+        <div class="ajuda"></div>
+        <div class="imagemBandeja pecas" style="background-image: url('assets/TriangleAmarelo.png');" onclick="criaPecaPre(this)" data-nome="TriangleAmarelo.png" data-bool="true">
+        </div>
+        <div class="espacoVazio"></div>
+
+      </div>
+
+
+    </div>
+    <!-- TELA FOOTER -->
+
+  </section>
+  <!-- TELA INTERATIVIDADE 03 -->
+
+
+  <!-- TELA INTERATIVIDADE 04 -->
+  <section class="telas telaInteratividade4 hidden">
+
+    <!-- TELA HEADER -->
+    <div class="header">
+      <div class="numeroQuestao4"></div>
+      <div class="espacoVazio"></div>
+      <div class="navegacao4a"></div>
+      <div class="navegacao4b hidden"></div>
+      <div class="botaoVazio"></div>
+      <!--<div class="botaoConcluir4"></div>
+    <div class="botaoConcluirAceso4 hidden" onclick="escondeTelaInteratividade4()"></div>-->
+    </div>
+    <!-- TELA HEADER -->
+
+    <!-- TELA FOOTER -->
+    <div class="footer">
+
+      <div class="bandeja">
+        <div>
+          <p class="textoBandeja4">Componha a figura ao lado usando somente triângulos.</p>
+          <p class="parabens4 hidden">Parabéns, você conseguiu</p>
+        </div>
+        <div class="ajuda"></div>
+        <div class="imagemBandeja pecas" style="background-image: url('assets/TriangleAmarelo.png');" onclick="criaPecaPre(this)" data-nome="TriangleAmarelo.png" data-bool="true">
+        </div>
+        <div class="espacoVazio"></div>
+      </div>
+
+    </div>
+    <!-- TELA FOOTER -->
+
+  </section>
+  <!-- TELA INTERATIVIDADE 04 -->
+  <section class="telas telaFim hidden">
+
+
+  </section>
+
+</body>
+<script src="js/script.js"></script>
+
+</html>

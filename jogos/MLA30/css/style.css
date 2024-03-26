@@ -1,0 +1,577 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+
+
+body {
+ margin: 0;
+ overflow: hidden;
+}
+
+.telaInicial {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ flex-wrap: wrap;
+ align-items: center;
+ background-image: url('../assets/background_inicial.png');
+ height: 100vh;
+ width: 100vw;
+ top: 0px;
+ left: 0px;
+}
+
+.logo {
+ position: relative;
+ background-image: url('../assets/logo.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 300px;
+ width: 70%;
+ background-position: center;
+}
+
+
+
+
+.botaoIniciar {
+ position: relative;
+ background-image: url('../assets/botao.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 100px;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.hidden, .is-hidden {
+ display: none !important;
+}
+
+
+.botaoCredito{
+ background-color: rgb(115, 142, 215);
+ height: 30px;
+ width: 30px;
+ right: 5vw;
+ top: 5vw;
+ z-index: 1000;
+ position: fixed;
+ cursor: pointer;
+}
+
+.header {
+ background-image: url('../assets/header.png');
+ background-repeat: no-repeat;
+ background-size: cover;
+ top: 0;
+ height: 20vh;
+ width: 100%;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;  
+ flex-wrap: wrap;
+ align-items: center;
+
+}
+
+.footer {
+ position: fixed;
+ background-color: rgb(180, 137, 84);
+ height: 100%;
+ width: 100%;
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ flex-wrap: wrap;
+}
+
+.numeroQuestao1 {
+ background-image: url('../assets/questao1.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.numeroQuestao2 {
+ background-image: url('../assets/questao2.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.numeroQuestao3 {
+ background-image: url('../assets/questao3.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.numeroQuestao4 {
+ background-image: url('../assets/questao4.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.navegacao1a {
+ background-image: url('../assets/navegacao1a.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao1b {
+ background-image: url('../assets/navegacao1b.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao2a {
+ background-image: url('../assets/navegacao2a.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao2b {
+ background-image: url('../assets/navegacao2b.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao3a {
+ background-image: url('../assets/navegacao3a.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao3b {
+ background-image: url('../assets/navegacao3b.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao4a {
+ background-image: url('../assets/navegacao4a.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.navegacao4b {
+ background-image: url('../assets/navegacao4b.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 20%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+
+
+.botaoNext1 {
+ background-image: url('../assets/next.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+@media screen and (max-width: 600px) {
+  .botaoNext1 {
+    margin-top: -42px;
+  }
+}
+.botaoNextAceso1 {
+ background-image: url('../assets/nextAceso.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ margin-top: -42px;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.botaoNext2 {
+ background-image: url('../assets/next.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.botaoNextAceso2 {
+ background-image: url('../assets/nextAceso.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.botaoNext3 {
+ background-image: url('../assets/next.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.botaoNextAceso3 {
+ background-image: url('../assets/nextAceso.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.botaoConcluir4 {
+ background-image: url('../assets/concluir.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.botaoConcluirAceso4 {
+ background-image: url('../assets/concluirAceso.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.botaoVazio {
+ background-image: url('../assets/botaoVazio.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 40%;
+ width: 30vw;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.espacoVazio {
+ height: 100px;
+ width: 100px;
+}
+
+.bandeja {
+ background-image: url('../assets/bandeja.png');
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 80%;
+ width: 20%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ flex-wrap: wrap;
+ align-items: center;
+ justify-content: space-around;  
+ font-family:'open Sans';
+ font-size:  1.5rem;
+}
+
+.textoBandeja1,
+.textoBandeja2,
+.textoBandeja3,
+.textoBandeja4 {
+ padding-left: 20%;
+ padding-right: 20%;
+}
+.imagemBandeja {
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30%;
+  width: 50%;
+  background-position: center; /* Centraliza horizontal e verticalmente */
+ }
+.imagem1Bandeja1 {
+ background-image: url('../assets/TriangleGreen.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 30%;
+ width: 50%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.imagem2Bandeja1 {
+ background-image: url('../assets/hexagonRed.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 30%;
+ width: 50%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.imagem1Bandeja2 {
+ background-image: url('../assets/quadradoAmerelo.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 30%;
+ width: 50%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.imagem2Bandeja2 {
+ background-image: url('../assets/hexagonRoxo.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 30%;
+ width: 50%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.imagem1Bandeja3 {
+ background-image: url('../assets/TriangleGreen.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 30%;
+ width: 50%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+.imagem1Bandeja4 {
+ background-image: url('../assets/TriangleAmarelo.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ height: 30%;
+ width: 50%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+.divCanvas {
+ background-image: url('../assets/background_inicial.png');
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 100%;
+ width: 80%;
+ background-position: center; /* Centraliza horizontal e verticalmente */
+}
+
+#myCanvas {
+ width: 1000;
+}
+
+.ajuda {
+ position: absolute;
+ background-image: url('../assets/ajuda.png');
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 8vh;
+ width: 27vh;
+ bottom: 30vh;
+ right: 12vh;
+
+}
+
+.explica {
+ /*background-color: aqua;*/
+ background-image: url('../assets/fundoExerc01.png');
+ background-position: bottom;
+ background-position: left;
+ background-repeat: no-repeat;
+ background-size: 10%;
+ background-position-x: 400px;
+ height: 80%;
+ width: 100%;
+ z-index: 1000;
+ position: fixed;
+ bottom:0px;
+ left: 130px;
+}
+
+.parabens1,
+.parabens2, 
+.parabens3,
+.parabens4 {
+ color: #3d79f3;
+ font-size: 2.5rem;
+ padding-left: 10%;
+ padding-right: 10%;
+}
+
+.thumbsUp1,
+.thumbsUp2,
+.thumbsUp3,
+.thumbsUp4 {
+ background-image: url('../assets/thumbsUp.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ min-height: 15%;
+ width: 120vw;
+ background-position: center;
+ position: fixed;
+ bottom: 80vh;
+ animation: moveUpDown 2s infinite reverse; /* Aplica a animação */
+}
+
+@keyframes moveUpDown {
+ 0% {
+  top: 30vh; /* No início, a div está no topo */
+}
+50% {
+  top: 33vh; /* Aos 50%, a div sobe 20 pixels */
+}
+100% {
+  top: 30vh; /* No final, a div volta à posição inicial */
+}
+}
+
+
+@media screen and (max-width: 600px) {
+ .logo {
+  background-image: url('../assets/logo_retrato.png');
+  height: 900px;
+  width: 70%;
+  padding-bottom: 20vh;
+ }
+ .botaoIniciar {
+  position: absolute;
+  background-image: url('../assets/botao.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  min-height: 100px;
+  width: 45vw;
+  background-position: center; 
+  bottom: 5vh;
+ }
+ .botaoCredito{
+  background-color: rgb(115, 142, 215);
+  height: 40px;
+  width: 40px;
+  right: 5vw;
+  top: 5vw;
+  z-index: 10;
+  position: fixed;
+ }
+ .bandeja {
+  background-image: url('../assets/bandeja.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 25%;
+  width: 100%;
+  background-position: center; /* Centraliza horizontal e verticalmente */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;  
+  font-family:'open Sans';
+  font-size:  1.2rem;
+  bottom:0px;
+  position: inherit;
+  padding-top: 5px;
+ }
+ .textoBandeja1, .textoBandeja2, .textoBandeja3, .textoBandeja4 {
+  padding-left: 5%;
+  padding-right: 5%;
+  top: 5px;
+}
+.imagemBandeja {
+ height: 23%;
+ width: 20%;
+ bottom: 2vh;
+ position: relative;
+}
+.navegacao2a {
+ right: 10px;
+ position: relative;
+}
+.botaoNext2{
+ bottom: 30px;
+ position: relative;
+}
+.header{
+ height: 13vh;
+}
+.divCanvas {
+ width: 100%;
+}
+#myCanvas {
+ width: 100%;
+}
+
+
+
+}
+
+
+
+/* Tela de Créditos*/
+.tela-creditos {
+ background: rgba(255, 255, 255, 0.9);
+ width: 100vw;
+ height: 100vh;
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 100;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.tela-creditos h2 {
+ font-weight: 800;
+ font-size: 1rem;
+ text-transform: uppercase;
+}
+
+.fechar-creditos {
+ border-radius: 40px;
+ width: 40px;
+ height: 40px;
+ position: absolute;
+ top: 20px;
+ right: 20px;
+ cursor: pointer;
+ transition: 1s;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.fechar-creditos .fechar {
+ background-image: url(../assets/voltar-creditos.svg);
+ background-size: contain;
+ background-repeat: no-repeat;
+ width: 25px;
+ height: 25px;
+}
+
+.fechar-creditos:hover {
+ transition: 1s;
+ transform: scale(1.1);
+}
+
+.blurdiv {
+ backdrop-filter: blur(20px);
+}
+
+iframe {
+ width: 100vw;
+ height: 100vh;
+}
+
+#creditos {
+ max-width: 100vw;
+ width: 100vw;
+ height: 100vh;
+}
+
+/*Fim Tela Créditos*/
