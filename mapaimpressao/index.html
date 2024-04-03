@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de impressao</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+    <script type="text/javascript" src="js/jspdf.umd.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/jakob');
+
+        html {
+            font-family: 'Jakob', sans-serif;
+            font-size: 22px;
+        }
+
+        body {
+            font-family: 'Jakob', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cont {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        .left {
+            margin-right: 20px;
+        }
+
+        .right {
+            width: 80%;
+            overflow-y: auto;
+        }
+
+        #pagesContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-gap: 10px;
+            overflow-x: hidden;
+
+        }
+
+        .caderno {
+            width: 100%;
+            /* Expand to fill the grid column */
+            height: 150px;
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            flex-wrap: wrap;
+            justify-content:space-evenly
+        }
+
+        .pagina {
+            width: calc(50% - 10px);
+            height: 45%;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+         
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagina2 {
+            width: calc(50% - 20px);
+            height: 40%;
+            background-color: #f0f0f0;
+            border: 2px solid #ccc;
+            border-radius: 2px;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page-number {
+            font-size: 11px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .controls {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            top: 20px;
+            left: 20px;
+            width: 15%;
+        }
+
+        #exportBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #8d2be2;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .roundbutton {
+            background-color: #fe8d03;
+            border: none;
+            color: white;
+            line-height: 12px;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .button {
+            background-color: #fe8d03;
+            border: none;
+            color: white;
+            padding: 20px;
+            line-height: 12px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            width: 50px;
+            height: 50px;
+            border-radius: 20px;
+        }
+
+        .caixaInfo {
+            background-color: #ffcc00;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .quebraLinha {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caixaDanger {
+            background-color: #ff0000;
+            color: white;
+        }
+
+        .popModal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30%;
+            height: 30%;
+            border-radius: 20px;
+            filter: drop-shadow(0 0 0.75rem rgb(121, 41, 5));
+            background-color: #ffcc00;
+            padding: 20px;
+        }
+
+        .popContent {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+
+        }
+
+        .btModo {
+            width: 120px;
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #ffea00;
+            border-radius: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .color-palette {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .color-box {
+            width: 50px;
+            height: 50px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pageText {
+            pointer-events: none;
+        }
+
+        .checkmark {
+            position: absolute;
+            display: inline-block;
+
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            -ms-transform: rotate(45deg);
+            /* IE 9 */
+            -webkit-transform: rotate(45deg);
+            /* Chrome, Safari, Opera */
+            transform: rotate(45deg);
+        }
+
+        .checkmark_stem {
+            position: absolute;
+            width: 6px;
+            height: 18px;
+            background-color: #ffffff;
+            left: 11px;
+            top: 0px;
+        }
+
+        .checkmark_kick {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            left: 5px;
+            top: 12px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-200">
+    <div class="cont">
+        <div class="controls">
+            <label for="number-input"
+                class="block mb-2 text-2xl font-medium text-gray-900 dark:text-white">Páginas:</label>
+            <input type="number" placeholder="1" id="pageNumber" min="1" value='default text'
+                aria-describedby="helper-text-explanation"
+                class="min-w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
+                required style="font-size: 25px;" />
+            <div class="caixaInfo caixaCaderno quebraLinha">
+                <span class="checkmark hidden">
+                    <div class="checkmark_stem"></div>
+                    <div class="checkmark_kick"></div>
+                </span>
+                <label class="text-sm">Cadernos:</label>
+                <label style="font-size: 30px;" id="nCadernos">1</label>
+            </div>
+            <div class="caixaInfo">
+                <label for="number-input"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visualização:</label>
+                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;">
+                    <button class="roundbutton" onclick="zoomin()" style="font-size: 2em;">+</button>
+                    <button class="roundbutton" onclick="zoomout()"
+                        style="font-size: 2em; line-height: -5px;">-</button>
+                </div>
+
+                <div
+                    style="display: none; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 20px;font-size: 15px;">
+                    <div class="btModo" onclick="criaPaginas2()">
+                        Paginas
+                    </div>
+                    <div class="btModo" onclick="criaPaginas()">
+                        Caderno
+                    </div>
+                </div>
+
+            </div>
+            <button id="exportBtn" style="width: 100%;">Exportar</button>
+
+        </div>
+        <div class="left">
+
+        </div>
+        <div class="right" id="pagesContainer">
+            <!-- As divs representando as páginas serão adicionadas aqui -->
+        </div>
+    </div>
+    <div class="popModal hidden">
+        <div class="popContent">
+            <label for="base-color">Selecione a cor: </label>
+            <input type="color" value="#0091fe" id="base-color" onchange="mudaCor(this)" />
+            <button id="closeBtn" class="button" style="width: 100%;" onclick="fechaModal()">fechar</button>
+        </div>
+    </div>
+    <script>
+        var body = document.body,
+            html = document.documentElement;
+
+        var height = Math.max(body.scrollHeight, body.offsetHeight,
+            html.clientHeight, html.scrollHeight, html.offsetHeight);
+        var width = Math.max(body.scrollWidth, body.offsetWidth,
+            html.clientWidth, html.scrollWidth, html.offsetWidth);
+
+        console.log(height, width);
+
+        //const doc = new jsPDF();
+        var levelZoom = 150;
+
+        const nomesPaginas = [
+            {
+                nome: "Folha de rosto",
+                sigla: "FR",
+                pagina: 1
+            },
+            {
+                nome: "Ficha catalográfica",
+                sigla: "FC",
+                pagina: 2
+            }
+        ]
+        const pageNumberInput = document.getElementById('pageNumber');
+        const pagesContainer = document.getElementById('pagesContainer');
+        const nCadernos = document.getElementById('nCadernos');
+        const exportBtn = document.getElementById('exportBtn');
+        const caixaCaderno = document.querySelector('.caixaCaderno');
+        const popModal = document.querySelector('.popModal');
+        const checkmark = document.querySelector('.checkmark');
+        var divSelected;
+
+        pageNumberInput.addEventListener('input', () => {
+            criaPaginas();
+        });
+        function criaPaginas2() {
+
+            const numPages = pageNumberInput.value;
+            pagesContainer.innerHTML = '';
+
+            const totalPages = Math.ceil(numPages);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageGroup = document.createElement('div');
+                pageGroup.classList.add('caderno', "flex", "items-center");
+                //pagesContainer.appendChild(pageGroup);
+
+                const pageDiv = document.createElement('div');
+                pageDiv.classList.add('pagina');
+                pageDiv.innerHTML = `<span class="page-number" style="pointer-events:none">${procuraPagina(i)}</span>`;
+                pagesContainer.appendChild(pageDiv);
+
+            }
+
+        }
+        function criaPaginas() {
+            const numPages = pageNumberInput.value;
+            pagesContainer.innerHTML = '';
+
+            const totalPages = Math.ceil(numPages / 4);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const pageGroup = document.createElement('div');
+                pageGroup.classList.add('caderno', "flex", "items-center");
+
+                for (let j = 1; j <= 4; j++) {
+                    const pageIndex = (i - 1) * 4 + j;
+
+                    if (numPages < pageIndex) {
+                        pageGroup.style.backgroundColor = '#ffbfbf';
+                        pageGroup.style.borderColor = 'red';
+                    }
+                    if (pageIndex <= numPages) {
+                        const pageDiv = document.createElement('div');
+                        pageDiv.classList.add('pagina');
+                        pageDiv.innerHTML = `<span class="page-number" style="pointer-events:none">${procuraPagina(pageIndex)}</span>`;
+                        pageGroup.appendChild(pageDiv);
+                        pageDiv.addEventListener('click', (evt) => {
+                            console.log(evt.target);
+                            divSelected = evt.target;
+                            popModal.classList.remove("hidden");
+                            if (evt.pageY > height - 500) {
+                                popModal.style.top = height - 500 + "px";
+                            } else {
+                                popModal.style.top = evt.pageY + "px";
+                            }
+
+                            if (evt.pageX > width - 500) {
+                                popModal.style.left = width - 500 + "px";
+                            } else {
+                                popModal.style.left = evt.pageX + "px";
+                            }
+
+
+                        });
+                    }
+                }
+
+                pagesContainer.appendChild(pageGroup);
+            }
+            let nCad = numPages / 4
+            //nCadernos.innerHTML = nCad;
+            anime({
+                targets: nCadernos,
+                innerHTML: [nCadernos.innerHTML, nCad],
+                easing: 'easeOutQuad',
+                duration: 500,
+                round: 10 // Will round the animated value to 1 decimal
+            });
+
+            if (isInt(nCad)) {
+
+                caixaCaderno.classList.remove("caixaDanger")
+                checkmark.classList.remove("hidden");
+            } else {
+                caixaCaderno.classList.add("caixaDanger");
+                checkmark.classList.add("hidden");
+                anime({
+                    targets: caixaCaderno,
+                    scale: [1.25, 1]
+                });
+            }
+
+            zoomTotal();
+
+            height = Math.max(body.scrollHeight, body.offsetHeight,
+                html.clientHeight, html.scrollHeight, html.offsetHeight);
+            width = Math.max(body.scrollWidth, body.offsetWidth,
+                html.clientWidth, html.scrollWidth, html.offsetWidth);
+
+            console.log(height, width);
+        }
+        exportBtn.addEventListener('click', () => {
+            html2canvas(pagesContainer, {
+                onrendered: function (canvas) {
+                    const imgData = canvas.toDataURL('image/png');
+                    const img = new Image();
+                    img.src = imgData;
+                    console.log("reder ok")
+
+                    const link = document.createElement('a');
+                    link.href = imgData;
+                    link.download = 'paginas.png';
+                    link.click();
+                    //const pdf = new jsPDF();
+                    //pdf.addImage(img, 'PNG', 0, 0, canvas.width / 2, canvas.height / 2);
+                    //pdf.save('paginas.png');
+                }
+            });
+        });
+        function fechaModal() {
+            popModal.classList.add("hidden");
+        }
+        function mudaCor(evt) {
+            console.log(evt.value);
+            divSelected.style.backgroundColor = evt.value;
+            popModal.classList.add("hidden");
+        }
+        function zoomin() {
+            if (levelZoom < 300) {
+                levelZoom += 25;
+            }
+
+            zoomTotal()
+        }
+        function zoomout() {
+            if (levelZoom > 100) {
+                levelZoom -= 25;
+            }
+
+            zoomTotal()
+        }
+        function zoomTotal() {
+            var elementCont = document.querySelector('#pagesContainer');
+            var elements = document.querySelectorAll('.caderno');
+            elementCont.setAttribute('style',
+                'grid-template-columns: repeat(auto-fill, minmax(' + levelZoom + 'px,1fr))');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.height = levelZoom + "px";
+            }
+        }
+        function procuraPagina(_pag) {
+            let retorna = _pag;
+            nomesPaginas.forEach(element => {
+                if (element.pagina == _pag) {
+                    if (levelZoom > 150) {
+                        retorna = element.nome;
+                    } else {
+                        retorna = element.sigla;
+                    }
+
+                }
+            });
+            return retorna;
+        }
+        function isInt(value) {
+            return !isNaN(value) &&
+                parseInt(Number(value)) == value &&
+                !isNaN(parseInt(value, 10));
+        }
+
+        criaPaginas();
+    </script>
+
+</body>
+
+</html>
