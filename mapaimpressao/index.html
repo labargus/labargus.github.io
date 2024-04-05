@@ -11,7 +11,7 @@
 
     <script type="text/javascript" src="js/jspdf.umd.js"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         @import url('https://fonts.cdnfonts.com/css/jakob');
 
@@ -24,6 +24,7 @@
             font-family: 'Jakob', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: rgb(226 232 240);
         }
 
         .cont {
@@ -44,7 +45,7 @@
 
         #pagesContainer {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            /*grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));*/
             grid-gap: 10px;
             overflow-x: hidden;
 
@@ -54,34 +55,48 @@
             width: 100%;
             /* Expand to fill the grid column */
             height: 150px;
-            background-color: #ffffff;
             border: 2px solid #ccc;
             border-radius: 5px;
             flex-wrap: wrap;
-            justify-content:space-evenly
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .cadBranco {
+            background-color: #f0f0f0;
+        }
+
+        .cadVermelho {
+            background-color: #ff0000;
         }
 
         .pagina {
-            width: calc(50% - 10px);
-            height: 45%;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
             border-radius: 2px;
-         
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
-        .pagina2 {
-            width: calc(50% - 20px);
-            height: 40%;
-            background-color: #f0f0f0;
-            border: 2px solid #ccc;
-            border-radius: 2px;
-            margin: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        .pagina-after {
+            content: '';
+            position: absolute;
+            right: 0;
+            width: 10px;
+            height: 100%;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 9px, #ccc 9px, #ccc 10px);
+            clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+        }
+        .pagina-before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 9px, #ccc 9px, #ccc 10px);
+            clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
         }
 
         .page-number {
@@ -90,9 +105,11 @@
         }
 
         input[type="number"] {
-            width: 100px;
             padding: 10px;
-            font-size: 16px;
+            font-size: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 10px;
         }
 
         .controls {
@@ -112,6 +129,8 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
+            font-size: 22px;
+            
         }
 
         .roundbutton {
@@ -246,35 +265,115 @@
             left: 5px;
             top: 12px;
         }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #de8d00;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .nome{
+            font-size: 15px;
+        }
     </style>
 </head>
 
 <body class="bg-slate-200">
     <div class="cont">
         <div class="controls">
-            <label for="number-input"
-                class="block mb-2 text-2xl font-medium text-gray-900 dark:text-white">Páginas:</label>
-            <input type="number" placeholder="1" id="pageNumber" min="1" value='default text'
-                aria-describedby="helper-text-explanation"
-                class="min-w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 text-center"
-                required style="font-size: 25px;" />
+
+            <label for="number-input">Páginas:</label>
+            <input type="number" placeholder="1" id="pageNumber" min="1" value='default text' />
+            <div class="caixaInfo">
+                <label class="nome">Páginas por caderno:</label>
+                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
+                    <label>4</label>
+                    <label class="switch">
+                        <input id="inputQuantCadernos" type="checkbox" onchange="mudaModoQuantCaderno(event)">
+                        <span class="slider round"></span>
+                    </label>
+                    <label>8</label>
+                </div>
+            </div>
             <div class="caixaInfo caixaCaderno quebraLinha">
                 <span class="checkmark hidden">
                     <div class="checkmark_stem"></div>
                     <div class="checkmark_kick"></div>
                 </span>
-                <label class="text-sm">Cadernos:</label>
+                <label class="nome">Cadernos:</label>
                 <label style="font-size: 30px;" id="nCadernos">1</label>
+
+
             </div>
             <div class="caixaInfo">
-                <label for="number-input"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visualização:</label>
-                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;">
+                <label class="nome">Visualização:</label>
+                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
                     <button class="roundbutton" onclick="zoomin()" style="font-size: 2em;">+</button>
                     <button class="roundbutton" onclick="zoomout()"
                         style="font-size: 2em; line-height: -5px;">-</button>
                 </div>
-
+                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
+                    <label>C</label>
+                    <label class="switch">
+                        <input id="inputVisualizacao" type="checkbox" onchange="mudaModoVisualizacao(event)">
+                        <span class="slider round"></span>
+                    </label>
+                    <label>P</label>
+                </div>
                 <div
                     style="display: none; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 20px;font-size: 15px;">
                     <div class="btModo" onclick="criaPaginas2()">
@@ -303,213 +402,7 @@
             <button id="closeBtn" class="button" style="width: 100%;" onclick="fechaModal()">fechar</button>
         </div>
     </div>
-    <script>
-        var body = document.body,
-            html = document.documentElement;
-
-        var height = Math.max(body.scrollHeight, body.offsetHeight,
-            html.clientHeight, html.scrollHeight, html.offsetHeight);
-        var width = Math.max(body.scrollWidth, body.offsetWidth,
-            html.clientWidth, html.scrollWidth, html.offsetWidth);
-
-        console.log(height, width);
-
-        //const doc = new jsPDF();
-        var levelZoom = 150;
-
-        const nomesPaginas = [
-            {
-                nome: "Folha de rosto",
-                sigla: "FR",
-                pagina: 1
-            },
-            {
-                nome: "Ficha catalográfica",
-                sigla: "FC",
-                pagina: 2
-            }
-        ]
-        const pageNumberInput = document.getElementById('pageNumber');
-        const pagesContainer = document.getElementById('pagesContainer');
-        const nCadernos = document.getElementById('nCadernos');
-        const exportBtn = document.getElementById('exportBtn');
-        const caixaCaderno = document.querySelector('.caixaCaderno');
-        const popModal = document.querySelector('.popModal');
-        const checkmark = document.querySelector('.checkmark');
-        var divSelected;
-
-        pageNumberInput.addEventListener('input', () => {
-            criaPaginas();
-        });
-        function criaPaginas2() {
-
-            const numPages = pageNumberInput.value;
-            pagesContainer.innerHTML = '';
-
-            const totalPages = Math.ceil(numPages);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageGroup = document.createElement('div');
-                pageGroup.classList.add('caderno', "flex", "items-center");
-                //pagesContainer.appendChild(pageGroup);
-
-                const pageDiv = document.createElement('div');
-                pageDiv.classList.add('pagina');
-                pageDiv.innerHTML = `<span class="page-number" style="pointer-events:none">${procuraPagina(i)}</span>`;
-                pagesContainer.appendChild(pageDiv);
-
-            }
-
-        }
-        function criaPaginas() {
-            const numPages = pageNumberInput.value;
-            pagesContainer.innerHTML = '';
-
-            const totalPages = Math.ceil(numPages / 4);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageGroup = document.createElement('div');
-                pageGroup.classList.add('caderno', "flex", "items-center");
-
-                for (let j = 1; j <= 4; j++) {
-                    const pageIndex = (i - 1) * 4 + j;
-
-                    if (numPages < pageIndex) {
-                        pageGroup.style.backgroundColor = '#ffbfbf';
-                        pageGroup.style.borderColor = 'red';
-                    }
-                    if (pageIndex <= numPages) {
-                        const pageDiv = document.createElement('div');
-                        pageDiv.classList.add('pagina');
-                        pageDiv.innerHTML = `<span class="page-number" style="pointer-events:none">${procuraPagina(pageIndex)}</span>`;
-                        pageGroup.appendChild(pageDiv);
-                        pageDiv.addEventListener('click', (evt) => {
-                            console.log(evt.target);
-                            divSelected = evt.target;
-                            popModal.classList.remove("hidden");
-                            if (evt.pageY > height - 500) {
-                                popModal.style.top = height - 500 + "px";
-                            } else {
-                                popModal.style.top = evt.pageY + "px";
-                            }
-
-                            if (evt.pageX > width - 500) {
-                                popModal.style.left = width - 500 + "px";
-                            } else {
-                                popModal.style.left = evt.pageX + "px";
-                            }
-
-
-                        });
-                    }
-                }
-
-                pagesContainer.appendChild(pageGroup);
-            }
-            let nCad = numPages / 4
-            //nCadernos.innerHTML = nCad;
-            anime({
-                targets: nCadernos,
-                innerHTML: [nCadernos.innerHTML, nCad],
-                easing: 'easeOutQuad',
-                duration: 500,
-                round: 10 // Will round the animated value to 1 decimal
-            });
-
-            if (isInt(nCad)) {
-
-                caixaCaderno.classList.remove("caixaDanger")
-                checkmark.classList.remove("hidden");
-            } else {
-                caixaCaderno.classList.add("caixaDanger");
-                checkmark.classList.add("hidden");
-                anime({
-                    targets: caixaCaderno,
-                    scale: [1.25, 1]
-                });
-            }
-
-            zoomTotal();
-
-            height = Math.max(body.scrollHeight, body.offsetHeight,
-                html.clientHeight, html.scrollHeight, html.offsetHeight);
-            width = Math.max(body.scrollWidth, body.offsetWidth,
-                html.clientWidth, html.scrollWidth, html.offsetWidth);
-
-            console.log(height, width);
-        }
-        exportBtn.addEventListener('click', () => {
-            html2canvas(pagesContainer, {
-                onrendered: function (canvas) {
-                    const imgData = canvas.toDataURL('image/png');
-                    const img = new Image();
-                    img.src = imgData;
-                    console.log("reder ok")
-
-                    const link = document.createElement('a');
-                    link.href = imgData;
-                    link.download = 'paginas.png';
-                    link.click();
-                    //const pdf = new jsPDF();
-                    //pdf.addImage(img, 'PNG', 0, 0, canvas.width / 2, canvas.height / 2);
-                    //pdf.save('paginas.png');
-                }
-            });
-        });
-        function fechaModal() {
-            popModal.classList.add("hidden");
-        }
-        function mudaCor(evt) {
-            console.log(evt.value);
-            divSelected.style.backgroundColor = evt.value;
-            popModal.classList.add("hidden");
-        }
-        function zoomin() {
-            if (levelZoom < 300) {
-                levelZoom += 25;
-            }
-
-            zoomTotal()
-        }
-        function zoomout() {
-            if (levelZoom > 100) {
-                levelZoom -= 25;
-            }
-
-            zoomTotal()
-        }
-        function zoomTotal() {
-            var elementCont = document.querySelector('#pagesContainer');
-            var elements = document.querySelectorAll('.caderno');
-            elementCont.setAttribute('style',
-                'grid-template-columns: repeat(auto-fill, minmax(' + levelZoom + 'px,1fr))');
-            for (var i = 0; i < elements.length; i++) {
-                elements[i].style.height = levelZoom + "px";
-            }
-        }
-        function procuraPagina(_pag) {
-            let retorna = _pag;
-            nomesPaginas.forEach(element => {
-                if (element.pagina == _pag) {
-                    if (levelZoom > 150) {
-                        retorna = element.nome;
-                    } else {
-                        retorna = element.sigla;
-                    }
-
-                }
-            });
-            return retorna;
-        }
-        function isInt(value) {
-            return !isNaN(value) &&
-                parseInt(Number(value)) == value &&
-                !isNaN(parseInt(value, 10));
-        }
-
-        criaPaginas();
-    </script>
-
+    <script type="text/javascript" src="./index.js"></script>
 </body>
 
 </html>
