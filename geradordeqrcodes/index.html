@@ -351,6 +351,7 @@
   <script>
     const resQRcode = document.getElementById('resQRcode');
     const resBorda = document.getElementById('resBorda');
+    var docQr=document.getElementById('qrcode');
     var downloadAllButton = document.querySelector(".downAll");
     var names = [];
 
@@ -358,7 +359,7 @@
     function generateQRCode() {
       downloadAllButton.classList.add("hidden");
 
-      document.getElementById('qrcode').innerHTML = "";
+      docQr.innerHTML = "";
       names = [];
 
       var links = document.getElementById('linksArea').value.trim().split('\n');
@@ -391,6 +392,10 @@
           context.fillStyle = "#FFFFFF"; // White background
           context.fillRect(0, 0, canvas.width, canvas.height);
           context.drawImage(element, 21, 21); // Drawing the original canvas with a 21px border
+          docQr.innerHTML = "";
+          docQr.appendChild(canvas);
+
+
           var imgData = canvas.toDataURL("image/png");
           var base64Data = imgData.replace(/^data:image\/png;base64,/, "");
 
@@ -410,7 +415,7 @@
             saveAs(content, "qrcodes.zip");
           });
         };
-      }, 5000)
+      }, 3000)
 
     }
   </script>
