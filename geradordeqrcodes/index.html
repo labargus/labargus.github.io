@@ -382,6 +382,7 @@
         console.log("qrcode gerado");
       });
       setTimeout(() => {
+        docQr.innerHTML = "";
         var imgs = document.querySelectorAll("canvas");
         let index = 0;
         imgs.forEach(element => {
@@ -392,7 +393,7 @@
           context.fillStyle = "#FFFFFF"; // White background
           context.fillRect(0, 0, canvas.width, canvas.height);
           context.drawImage(element, 21, 21); // Drawing the original canvas with a 21px border
-          docQr.innerHTML = "";
+          
           docQr.appendChild(canvas);
 
 
