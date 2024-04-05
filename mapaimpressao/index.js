@@ -5,8 +5,11 @@ const exportBtn = document.getElementById('exportBtn');
 const caixaCaderno = document.querySelector('.caixaCaderno');
 const popModal = document.querySelector('.popModal');
 const checkmark = document.querySelector('.checkmark');
-var loadScreen = document.querySelector('#loaderSc');
+var loadScreen = document.querySelector('.loaderSc');
+var editText = document.getElementById('editText');
+var corselected = "#000000";
 var divSelected;
+var idSelected = 0;
 var body = document.body,
     html = document.documentElement;
 
@@ -20,34 +23,36 @@ console.log(loadScreen);
 //const doc = new jsPDF();
 var levelZoom = 150;
 var nPag = 4;
-if(document.getElementById('inputQuantCadernos').checked){
-    nPag=8;
-}else{
-    nPag=4;
+if (document.getElementById('inputQuantCadernos').checked) {
+    nPag = 8;
+} else {
+    nPag = 4;
 }
 
 var visualizacao = "caderno";//caderno ou pagina
-if(document.getElementById('inputVisualizacao').checked){
-    visualizacao="pagina";
-}else{
-    visualizacao="caderno";
+if (document.getElementById('inputVisualizacao').checked) {
+    visualizacao = "pagina";
+} else {
+    visualizacao = "caderno";
 }
 
 const itens = [
     {
         nome: "Folha de rosto",
         sigla: "FR",
-        pagina: 1
+        pagina: 1,
+        cor: "rgb(245, 245, 247)"
     },
     {
         nome: "Ficha catalográfica",
         sigla: "FC",
-        pagina: 2
+        pagina: 2,
+        cor: "rgb(245, 245, 247)"
     }
 ]
 
 for (let i = 0; i < 1000; i++) {
-    const element = {nome:i+3,sigla:i+3,pagina:i+3};
+    const element = { nome: "", sigla: "", pagina: i + 3, cor: "#ffffff" };
     itens.push(element);
 }
 console.log(itens)
@@ -55,29 +60,29 @@ console.log(itens)
 
 
 pageNumberInput.addEventListener('input', () => {
-    if(pageNumberInput.value<1000){
+    if (pageNumberInput.value < 1000) {
         criaPaginas();
-    }else{
-    alert("numero maximo de paginas deve ser 1000");
+    } else {
+        alert("numero maximo de paginas deve ser 1000");
 
     }
-    
+
 });
-function mudaModoVisualizacao(evt){
+function mudaModoVisualizacao(evt) {
     console.log(evt.target.checked);
-    if(evt.target.checked){
-        visualizacao="pagina";
-    }else{
-        visualizacao="caderno";
+    if (evt.target.checked) {
+        visualizacao = "pagina";
+    } else {
+        visualizacao = "caderno";
     }
     criaPaginas();
 }
-function mudaModoQuantCaderno(evt){
+function mudaModoQuantCaderno(evt) {
     console.log(evt.target.checked);
-    if(evt.target.checked){
-        nPag=8;
-    }else{
-        nPag=4;
+    if (evt.target.checked) {
+        nPag = 8;
+    } else {
+        nPag = 4;
     }
     criaPaginas();
 }
@@ -98,34 +103,41 @@ function criaPaginas() {
             if (numPages < pageIndex) {
                 console.log("pagina vermelha");
                 pageGroup.classList.add('cadVermelho');
-            }else{
+            } else {
                 pageGroup.classList.add('cadBranco');
             }
             if (pageIndex <= numPages) {
                 let pageDiv = document.createElement('div');
                 pageDiv.classList.add('pagina');
+                pageDiv.style.backgroundColor = itens[pageIndex - 1].cor;
+                pageDiv.setAttribute('data-id', pageIndex);
+
                 let molinhazz = document.createElement('div');
                 pageDiv.appendChild(molinhazz);
                 molinhazz.classList.add('pagina-after');
 
                 let span = document.createElement('span');
-                span.classList.add('page-number');
+                span.classList.add('page-text');
                 span.style.pointerEvents = 'none';
-                //span.innerHTML = procuraPagina(pageIndex);
-                span.innerHTML =itens[pageIndex-1].nome;
+                span.innerHTML = itens[pageIndex - 1].nome;
                 pageDiv.appendChild(span);
+
+
+                let spanPag = document.createElement('span');
+                spanPag.classList.add('page-number');
+                spanPag.style.pointerEvents = 'none';
+                spanPag.innerHTML = itens[pageIndex - 1].pagina;
+                pageDiv.appendChild(spanPag);
 
 
                 let molinhazz2 = document.createElement('div');
                 pageDiv.appendChild(molinhazz2);
                 molinhazz2.classList.add('pagina-before');
-                
+
                 if (nPag == 8) {
                     pageDiv.style.height = '32px';
 
                 }
-
-                //pageDiv.innerHTML = `<span class="page-number" style="pointer-events:none">${procuraPagina(pageIndex)}</span>`;
                 if (visualizacao == "caderno") {
                     pageGroup.appendChild(pageDiv);
                 } else {
@@ -133,8 +145,34 @@ function criaPaginas() {
                 }
 
                 pageDiv.addEventListener('click', (evt) => {
-                    console.log(evt.target);
+                    console.log(evt.target.style.backgroundColor);
                     divSelected = evt.target;
+                    let obcor = document.querySelector("#base-color");
+                    let txt = divSelected.querySelector(".page-text");
+                    editText.value=txt.innerHTML;
+
+
+                    function rgbToHex(rgb) {
+                        let sep = rgb.indexOf(",") > -1 ? "," : " ";
+                        rgb = rgb.substr(4).split(")")[0].split(sep);
+
+                        let r = (+rgb[0]).toString(16),
+                            g = (+rgb[1]).toString(16),
+                            b = (+rgb[2]).toString(16);
+
+                        if (r.length == 1)
+                            r = "0" + r;
+                        if (g.length == 1)
+                            g = "0" + g;
+                        if (b.length == 1)
+                            b = "0" + b;
+
+                        return "#" + r + g + b;
+                    }
+
+                    obcor.value = rgbToHex(divSelected.style.backgroundColor);
+
+
                     popModal.classList.remove("hidden");
                     if (evt.pageY > height - 500) {
                         popModal.style.top = height - 500 + "px";
@@ -209,26 +247,65 @@ exportBtn.addEventListener('click', () => {
 });
 function fechaModal() {
     popModal.classList.add("hidden");
+    let dataId = divSelected.getAttribute('data-id');
+    let obcor = document.querySelector("#base-color");
+
+    itens[dataId - 1].nome = editText.value;
+    itens[dataId - 1].cor = obcor.value;
+
+    let txt = divSelected.querySelector(".page-text");
+    txt.innerHTML = editText.value;
+    divSelected.style.backgroundColor = obcor.value;
+    popModal.classList.add("hidden");
+
+    txt.innerHTML = editText.value;
 }
 function mudaCor(evt) {
-    console.log(evt.value);
+    let dataId = divSelected.getAttribute('data-id');
+    let obcor = document.querySelector("#base-color");
+    obcor.value = evt.value;
+    corselected = evt.value;
     divSelected.style.backgroundColor = evt.value;
     popModal.classList.add("hidden");
+    itens[dataId - 1].nome = editText.value;
+    itens[dataId - 1].cor = corselected;
+    let txt = divSelected.querySelector(".page-text");
+    txt.innerHTML = editText.value;
+
 }
-function zoomin() {
+function zoomin(evt) {
     if (levelZoom < 300) {
         levelZoom += 25;
     }
-    loadScreen.style.display="flex";
-    zoomTotal();
-    
+    loadScreen.style.display = "flex";
+    evt.target.style.pointerEvents = "none";
+    evt.target.style.opacity = "0.25";
+    setTimeout(() => {
+        zoomTotal();
+    }, 200);
+    setTimeout((evt) => {
+        evt.target.style.pointerEvents = "auto";
+        evt.target.style.opacity = "1";
+        loadScreen.style.display = "none";
+    }, 300, evt);
+
+
 }
-function zoomout() {
+function zoomout(evt) {
     if (levelZoom > 100) {
         levelZoom -= 25;
     }
-    loadScreen.style.display="flex";
-    zoomTotal()
+    loadScreen.style.display = "flex";
+    evt.target.style.pointerEvents = "none";
+    evt.target.style.opacity = "0.25";
+    setTimeout(() => {
+        zoomTotal();
+    }, 200);
+    setTimeout((evt) => {
+        evt.target.style.pointerEvents = "auto";
+        evt.target.style.opacity = "1";
+        loadScreen.style.display = "none";
+    }, 300, evt);
 }
 function zoomTotal() {
     var elements = document.querySelectorAll('.caderno');
@@ -252,39 +329,39 @@ function zoomTotal() {
     }
 
     for (var i = 0; i < elementsPag.length; i++) {
-        let pagafter=elementsPag[i].querySelector('.pagina-after');
-        let pagbefore=elementsPag[i].querySelector('.pagina-before');
-        pagbefore.style.display='none';
+        let pagafter = elementsPag[i].querySelector('.pagina-after');
+        let pagbefore = elementsPag[i].querySelector('.pagina-before');
+        pagbefore.style.display = 'none';
         if (visualizacao == "caderno") {
-            pagafter.style.display='none';
+            pagafter.style.display = 'none';
             if (nPag == 8) {
                 elementsPag[i].setAttribute('style', 'width:calc(50% - 10px);height:22%');
             } else {
                 elementsPag[i].setAttribute('style', 'width:calc(50% - 10px);height:45%');
             }
         } else {
-            
-            elementsPag[i].setAttribute('style', 'width:' + levelZoom / 1.5 + 'px;height:' + levelZoom + 'px;margin-top:20px');
+
+            elementsPag[i].setAttribute('style', 'width:' + levelZoom / 1.5 + 'px;height:' + levelZoom + 'px;margin-top:20px;background-color:' + elementsPag[i].style.backgroundColor);
             var estilomola = document.createElement("style");
             if ((i + 1) % 2 === 0) {
                 elementsPag[i].style.marginLeft = "10px";
-                pagafter.style.display='block';
+                pagafter.style.display = 'block';
                 //elementsPag[i].classList.add("pagina-after");
                 //estilomola.innerHTML = ".pagina::after {content: '';position: absolute;right: 0;width: 10px; height: 100%;background-image: repeating-linear-gradient(0deg, transparent, transparent 9px, #ccc 9px, #ccc 10px);clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);} ";   
-            }else{
-                pagafter.style.display='none';
+            } else {
+                pagafter.style.display = 'none';
                 elementsPag[i].style.marginLeft = "0px";
-                if(i>1){
-                    pagbefore.style.display='block';
+                if (i > 1) {
+                    pagbefore.style.display = 'block';
                 }
-               // estilomola.innerHTML = ".pagina::after {content: '';position: absolute;right: 0;width: 10px; height: 100%;background-image: repeating-linear-gradient(0deg, transparent, transparent 9px, #ccc 9px, #ccc 10px);clip-path: polygon(0 0, 0 0, 0 0, 0 0);} "; 
+                // estilomola.innerHTML = ".pagina::after {content: '';position: absolute;right: 0;width: 10px; height: 100%;background-image: repeating-linear-gradient(0deg, transparent, transparent 9px, #ccc 9px, #ccc 10px);clip-path: polygon(0 0, 0 0, 0 0, 0 0);} "; 
             }
 
             elementsPag[i].appendChild(estilomola);
         }
 
     }
-    loadScreen.style.display="none";
+
 }
 function procuraPagina(_pag) {
     let retorna = _pag;

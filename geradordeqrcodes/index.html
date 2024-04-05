@@ -388,12 +388,12 @@
         docQr.innerHTML = "";
         imgs.forEach(element => {
           var canvas = document.createElement('canvas');
-          canvas.width = element.width + resBorda.value * 2; // Adding 21px border on each side
-          canvas.height = element.height + resBorda.value * 2; // Adding 21px border on each side
+          canvas.width = element.width + resBorda.value * 2; 
+          canvas.height = element.height + resBorda.value * 2; 
           var context = canvas.getContext('2d');
-          context.fillStyle = "#FFFFFF"; // White background
+          context.fillStyle = "#FFFFFF";
           context.fillRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(element, 21, 21); // Drawing the original canvas with a 21px border
+          context.drawImage(element, resBorda.value, resBorda.value); 
           
           docQr.appendChild(canvas);
 

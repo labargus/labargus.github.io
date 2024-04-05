@@ -24,7 +24,7 @@
             font-family: 'Jakob', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: rgb(226 232 240);
+            background-color: rgb(245, 245, 247);
         }
 
         .cont {
@@ -52,7 +52,7 @@
         }
 
         .caderno {
-            width: 100%;
+            width: 97%;
             /* Expand to fill the grid column */
             height: 150px;
             border: 2px solid #ccc;
@@ -75,9 +75,10 @@
             border: 1px solid #ccc;
             border-radius: 2px;
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
             position: relative;
+            flex-direction: column;
         }
 
         .pagina-after {
@@ -100,10 +101,17 @@
             clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
         }
 
+        .page-text {
+            font-size: 13px;
+            color: #333;
+            word-wrap: break-word;
+        }
+
         .page-number {
             font-size: 13px;
             color: #333;
             word-wrap: break-word;
+            bottom: 5px;
         }
 
         input[type="number"] {
@@ -379,15 +387,17 @@
                 <label class="nome">Zoom:</label>
                 <div
                     style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
-                    <img src="assets/zoom-in.svg" alt="Grid View" style="width: 20%;" onclick="zoomin()">
-                    <img src="assets/zoom-out.svg" alt="Grid View" style="width: 20%;" onclick="zoomout()">
+                    <img src="assets/zoom-in.svg" alt="Grid View" style="width: 20%;" onclick="zoomin(event)"
+                        id="btZoom1">
+                    <img src="assets/zoom-out.svg" alt="Grid View" style="width: 20%;" onclick="zoomout(event)"
+                        id="btZoom2">
                 </div>
                 <label class="nome">Visualização:</label>
                 <div
                     style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
                     <img src="assets/ballot.svg" alt="Grid View" style="width: 12%;">
                     <label class="switch">
-                        <input id="inputVisualizacao" type="checkbox" onchange="mudaModoVisualizacao(event)">
+                        <input id="inputVisualizacao" type="checkbox" checked onchange="mudaModoVisualizacao(event)">
                         <span class="slider round"></span>
                     </label>
                     <img src="assets/document.svg" alt="Grid View" style="width: 12%;">
@@ -406,14 +416,18 @@
     </div>
     <div class="popModal hidden">
         <div class="popContent">
-            <label for="base-color">Selecione a cor: </label>
+            <label for="base-color">Textor: </label>
+            <input placeholder="texto" id="editText"/>
+            <label for="base-color">Cor: </label>
             <input type="color" value="#0091fe" id="base-color" onchange="mudaCor(this)" />
             <button id="closeBtn" class="button" style="width: 100%;" onclick="fechaModal()">fechar</button>
         </div>
     </div>
-    <script type="text/javascript" src="./index.js"></script>
-    <div id="loaderSc" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center; z-index: 9999;">
+
+    <div class="loaderSc"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center; z-index: 9999;">
         <img src="assets/loading.svg" alt="Grid View" style="width: 5%;">
+        <script type="text/javascript" src="./index.js"></script>
     </div>
 </body>
 
