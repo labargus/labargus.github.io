@@ -76,6 +76,13 @@
     top: 20px;
     left: 20px;
     width: 28%;
+    background-color: #001236;
+    top: 0;
+    left: 0;
+    height: 100%;
+    margin-right: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 
   .btn {
@@ -292,9 +299,13 @@
 <body>
   <div class="cont">
     <div class="controls">
-
-      <label for="number-input">Resolucao:</label>
-      <input type="number" placeholder="256" id="resQRcode" min="128" value='256' />
+      <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+        <img src="marca_site.png" style="width: 20%; margin-top: 20px;" alt="Marca do Site">
+      </div>
+      <div class="caixaInfo">
+        <label for="number-input">Resolucao:</label>
+        <input type="number" placeholder="256" id="resQRcode" min="128" value='256' />
+      </div>
       <div class="caixaInfo">
         <label class="nome">Links:</label>
         <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
@@ -374,7 +385,7 @@
           index++;
         });
 
-        
+
         downloadAllButton.classList.remove("hidden");
         anime({
           targets: downloadAllButton,
