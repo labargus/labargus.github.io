@@ -3,20 +3,24 @@
 
 <head>
   <title>Gerador de QRCODES por lista</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 </head>
 <style>
+  @import url('https://fonts.cdnfonts.com/css/jakob');
+
   #qrcode {
     display: flex;
     flex-wrap: wrap;
   }
 
-  @import url('https://fonts.cdnfonts.com/css/jakob');
 
-  html {
+
+  * {
     font-family: 'Jakob', sans-serif;
     font-size: 22px;
   }
@@ -319,7 +323,7 @@
           <textarea id="linksArea" rows="10" cols="50">https://apis.sae.digital/redirect/r/EXT212MATA07I1</textarea>
         </div>
 
-        <button onclick="generateQRCode()" class="btn">Generate QR Codes</button>
+        <button onclick="generateQRCode()" class="btn">Gerar QRCodes</button>
       </div>
       <div class="caixaInfo">
         <button onclick="generateQRCode()" class="btn downAll hidden">Exportar ZIP</button>
