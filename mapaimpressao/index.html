@@ -89,6 +89,7 @@
             background-image: repeating-linear-gradient(0deg, transparent, transparent 9px, #ccc 9px, #ccc 10px);
             clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
         }
+
         .pagina-before {
             content: '';
             position: absolute;
@@ -100,8 +101,9 @@
         }
 
         .page-number {
-            font-size: 11px;
+            font-size: 13px;
             color: #333;
+            word-wrap: break-word;
         }
 
         input[type="number"] {
@@ -110,6 +112,7 @@
             border-radius: 20px;
             text-align: center;
             margin-top: 10px;
+            width: 90%;
         }
 
         .controls {
@@ -119,6 +122,13 @@
             top: 20px;
             left: 20px;
             width: 15%;
+            background-color: #001236;
+            top: 0;
+            left: 0;
+            height: 100%;
+            margin-right: 10px;
+            padding-right: 10px;
+            padding-left: 10px;
         }
 
         #exportBtn {
@@ -130,7 +140,7 @@
             border-radius: 20px;
             cursor: pointer;
             font-size: 22px;
-            
+
         }
 
         .roundbutton {
@@ -326,8 +336,9 @@
         .slider.round:before {
             border-radius: 50%;
         }
-        .nome{
-            font-size: 15px;
+
+        .nome {
+            font-size: 25px;
         }
     </style>
 </head>
@@ -335,12 +346,17 @@
 <body>
     <div class="cont">
         <div class="controls">
-
-            <label for="number-input">Páginas:</label>
-            <input type="number" placeholder="1" id="pageNumber" min="1" value='default text' />
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+                <img src="assets/marca_site.png" style="width: 28%; margin-top: 20px;" alt="Marca do Site">
+            </div>
+            <div class="caixaInfo">
+                <label for="number-input">Páginas:</label>
+                <input type="number" placeholder="1" id="pageNumber" min="1" max="1000" value='default text' />
+            </div>
             <div class="caixaInfo">
                 <label class="nome">Páginas por caderno:</label>
-                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
+                <div
+                    style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
                     <label>4</label>
                     <label class="switch">
                         <input id="inputQuantCadernos" type="checkbox" onchange="mudaModoQuantCaderno(event)">
@@ -360,28 +376,21 @@
 
             </div>
             <div class="caixaInfo">
-                <label class="nome">Visualização:</label>
-                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
-                    <button class="roundbutton" onclick="zoomin()" style="font-size: 2em;">+</button>
-                    <button class="roundbutton" onclick="zoomout()"
-                        style="font-size: 2em; line-height: -5px;">-</button>
+                <label class="nome">Zoom:</label>
+                <div
+                    style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
+                    <img src="assets/zoom-in.svg" alt="Grid View" style="width: 20%;" onclick="zoomin()">
+                    <img src="assets/zoom-out.svg" alt="Grid View" style="width: 20%;" onclick="zoomout()">
                 </div>
-                <div style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
-                    <label>C</label>
+                <label class="nome">Visualização:</label>
+                <div
+                    style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
+                    <img src="assets/ballot.svg" alt="Grid View" style="width: 12%;">
                     <label class="switch">
                         <input id="inputVisualizacao" type="checkbox" onchange="mudaModoVisualizacao(event)">
                         <span class="slider round"></span>
                     </label>
-                    <label>P</label>
-                </div>
-                <div
-                    style="display: none; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 20px;font-size: 15px;">
-                    <div class="btModo" onclick="criaPaginas2()">
-                        Paginas
-                    </div>
-                    <div class="btModo" onclick="criaPaginas()">
-                        Caderno
-                    </div>
+                    <img src="assets/document.svg" alt="Grid View" style="width: 12%;">
                 </div>
 
             </div>
@@ -403,6 +412,9 @@
         </div>
     </div>
     <script type="text/javascript" src="./index.js"></script>
+    <div id="loaderSc" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center; z-index: 9999;">
+        <img src="assets/loading.svg" alt="Grid View" style="width: 5%;">
+    </div>
 </body>
 
 </html>

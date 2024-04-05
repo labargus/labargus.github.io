@@ -1,3 +1,12 @@
+const pageNumberInput = document.getElementById('pageNumber');
+const pagesContainer = document.getElementById('pagesContainer');
+const nCadernos = document.getElementById('nCadernos');
+const exportBtn = document.getElementById('exportBtn');
+const caixaCaderno = document.querySelector('.caixaCaderno');
+const popModal = document.querySelector('.popModal');
+const checkmark = document.querySelector('.checkmark');
+var loadScreen = document.querySelector('#loaderSc');
+var divSelected;
 var body = document.body,
     html = document.documentElement;
 
@@ -6,7 +15,7 @@ var height = Math.max(body.scrollHeight, body.offsetHeight,
 var width = Math.max(body.scrollWidth, body.offsetWidth,
     html.clientWidth, html.scrollWidth, html.offsetWidth);
 
-console.log(height, width);
+console.log(loadScreen);
 
 //const doc = new jsPDF();
 var levelZoom = 150;
@@ -24,7 +33,7 @@ if(document.getElementById('inputVisualizacao').checked){
     visualizacao="caderno";
 }
 
-const nomesPaginas = [
+const itens = [
     {
         nome: "Folha de rosto",
         sigla: "FR",
@@ -36,17 +45,23 @@ const nomesPaginas = [
         pagina: 2
     }
 ]
-const pageNumberInput = document.getElementById('pageNumber');
-const pagesContainer = document.getElementById('pagesContainer');
-const nCadernos = document.getElementById('nCadernos');
-const exportBtn = document.getElementById('exportBtn');
-const caixaCaderno = document.querySelector('.caixaCaderno');
-const popModal = document.querySelector('.popModal');
-const checkmark = document.querySelector('.checkmark');
-var divSelected;
+
+for (let i = 0; i < 1000; i++) {
+    const element = {nome:i+3,sigla:i+3,pagina:i+3};
+    itens.push(element);
+}
+console.log(itens)
+
+
 
 pageNumberInput.addEventListener('input', () => {
-    criaPaginas();
+    if(pageNumberInput.value<1000){
+        criaPaginas();
+    }else{
+    alert("numero maximo de paginas deve ser 1000");
+
+    }
+    
 });
 function mudaModoVisualizacao(evt){
     console.log(evt.target.checked);
@@ -92,10 +107,12 @@ function criaPaginas() {
                 let molinhazz = document.createElement('div');
                 pageDiv.appendChild(molinhazz);
                 molinhazz.classList.add('pagina-after');
+
                 let span = document.createElement('span');
                 span.classList.add('page-number');
                 span.style.pointerEvents = 'none';
-                span.innerHTML = procuraPagina(pageIndex);
+                //span.innerHTML = procuraPagina(pageIndex);
+                span.innerHTML =itens[pageIndex-1].nome;
                 pageDiv.appendChild(span);
 
 
@@ -202,14 +219,15 @@ function zoomin() {
     if (levelZoom < 300) {
         levelZoom += 25;
     }
-
-    zoomTotal()
+    loadScreen.style.display="flex";
+    zoomTotal();
+    
 }
 function zoomout() {
     if (levelZoom > 100) {
         levelZoom -= 25;
     }
-
+    loadScreen.style.display="flex";
     zoomTotal()
 }
 function zoomTotal() {
@@ -266,10 +284,11 @@ function zoomTotal() {
         }
 
     }
+    loadScreen.style.display="none";
 }
 function procuraPagina(_pag) {
     let retorna = _pag;
-    nomesPaginas.forEach(element => {
+    itens.forEach(element => {
         if (element.pagina == _pag) {
             if (levelZoom > 150) {
                 retorna = element.nome;
@@ -288,4 +307,5 @@ function isInt(value) {
 }
 
 criaPaginas();
+
 
