@@ -382,9 +382,10 @@
         console.log("qrcode gerado");
       });
       setTimeout(() => {
-        docQr.innerHTML = "";
+        
         var imgs = document.querySelectorAll("canvas");
         let index = 0;
+        docQr.innerHTML = "";
         imgs.forEach(element => {
           var canvas = document.createElement('canvas');
           canvas.width = element.width + resBorda.value * 2; // Adding 21px border on each side
