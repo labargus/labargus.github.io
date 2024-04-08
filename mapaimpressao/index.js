@@ -23,11 +23,7 @@ console.log(loadScreen);
 //const doc = new jsPDF();
 var levelZoom = 150;
 var nPag = 4;
-if (document.getElementById('inputQuantCadernos').checked) {
-    nPag = 8;
-} else {
-    nPag = 4;
-}
+
 
 var visualizacao = "caderno";//caderno ou pagina
 if (document.getElementById('inputVisualizacao').checked) {
@@ -41,13 +37,13 @@ const itens = [
         nome: "Folha de rosto",
         sigla: "FR",
         pagina: 1,
-        cor: "rgb(245, 245, 247)"
+        cor: "#e5e5e5"
     },
     {
         nome: "Ficha catalográfica",
         sigla: "FC",
         pagina: 2,
-        cor: "rgb(245, 245, 247)"
+        cor: "#e5e5e5"
     }
 ]
 
@@ -78,12 +74,8 @@ function mudaModoVisualizacao(evt) {
     criaPaginas();
 }
 function mudaModoQuantCaderno(evt) {
-    console.log(evt.target.checked);
-    if (evt.target.checked) {
-        nPag = 8;
-    } else {
-        nPag = 4;
-    }
+    console.log(evt.target.value);
+    nPag = evt.target.value
     criaPaginas();
 }
 
@@ -129,6 +121,8 @@ function criaPaginas() {
                 spanPag.innerHTML = itens[pageIndex - 1].pagina;
                 pageDiv.appendChild(spanPag);
 
+                verificaCor(itens[pageIndex - 1].cor,span,spanPag);
+
 
                 let molinhazz2 = document.createElement('div');
                 pageDiv.appendChild(molinhazz2);
@@ -136,7 +130,9 @@ function criaPaginas() {
 
                 if (nPag == 8) {
                     pageDiv.style.height = '32px';
-
+                }
+                if (nPag == 16) {
+                    pageDiv.style.height = '12px';
                 }
                 if (visualizacao == "caderno") {
                     pageGroup.appendChild(pageDiv);
@@ -245,12 +241,23 @@ exportBtn.addEventListener('click', () => {
         }
     });
 });
-function verificaCor(){
+function updateBaseColor(color) {
+    let dataId = divSelected.getAttribute('data-id');
     let obcor = document.querySelector("#base-color");
     let txt = divSelected.querySelector(".page-text");
     let txtN = divSelected.querySelector(".page-number");
-    // Determine if the background color is too dark
-    const color = obcor.value;
+    document.getElementById('base-color').value = color;
+
+    itens[dataId - 1].nome = editText.value;
+    itens[dataId - 1].cor = obcor.value;
+
+    txt.innerHTML = editText.value;
+    divSelected.style.backgroundColor = obcor.value;
+
+    verificaCor(obcor.value,txt,txtN);
+    
+}
+function verificaCor(color,txt,txtN){
     const rgb = parseInt(color.substring(1), 16);   // convert hex to decimal
     const r = (rgb >> 16) & 0xff;  // extract red
     const g = (rgb >>  8) & 0xff;  // extract green
@@ -272,15 +279,17 @@ function fechaModal() {
     popModal.classList.add("hidden");
     let dataId = divSelected.getAttribute('data-id');
     let obcor = document.querySelector("#base-color");
+    let txt = divSelected.querySelector(".page-text");
+    let txtN = divSelected.querySelector(".page-number");
 
     itens[dataId - 1].nome = editText.value;
     itens[dataId - 1].cor = obcor.value;
 
-    let txt = divSelected.querySelector(".page-text");
+    
     txt.innerHTML = editText.value;
     divSelected.style.backgroundColor = obcor.value;
 
-    verificaCor();
+    verificaCor(obcor.value,txt,txtN);
 }
 function mudaCor(evt) {
     let dataId = divSelected.getAttribute('data-id');
@@ -333,7 +342,11 @@ function zoomTotal() {
     var elements = document.querySelectorAll('.caderno');
     var elementsPag = document.querySelectorAll('.pagina');
     if (visualizacao == "caderno") {
-        pagesContainer.setAttribute('style', 'display:grid;grid-template-columns: repeat(auto-fill, minmax(' + levelZoom + 'px,1fr))');
+        if(nPag == 16){
+            pagesContainer.setAttribute('style', 'display:grid;grid-template-columns: repeat(auto-fill, minmax(' + (levelZoom+150) + 'px,1fr))');
+        } else {
+            pagesContainer.setAttribute('style', 'display:grid;grid-template-columns: repeat(auto-fill, minmax(' + levelZoom + 'px,1fr))');
+        }
     } else {
         pagesContainer.setAttribute('style', 'display:flex;flex-wrap:wrap;grid-gap:0px');
     }
@@ -341,6 +354,8 @@ function zoomTotal() {
     for (var i = 0; i < elements.length; i++) {
         if (visualizacao == "caderno") {
             if (nPag == 8) {
+                elements[i].setAttribute('style', 'display:flex;height:' + (levelZoom + 100) + 'px;');
+            } else if(nPag == 16){
                 elements[i].setAttribute('style', 'display:flex;height:' + (levelZoom + 100) + 'px;');
             } else {
                 elements[i].setAttribute('style', 'display:flex;height:' + levelZoom + 'px;');
@@ -358,6 +373,8 @@ function zoomTotal() {
             pagafter.style.display = 'none';
             if (nPag == 8) {
                 elementsPag[i].setAttribute('style', 'width:calc(50% - 10px);height:22%');
+            } else if(nPag == 16){
+                elementsPag[i].setAttribute('style', 'width:calc(50% - 70px);height:15%');
             } else {
                 elementsPag[i].setAttribute('style', 'width:calc(50% - 10px);height:45%');
             }

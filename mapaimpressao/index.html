@@ -110,7 +110,7 @@
         }
 
         .page-number {
-            font-size: 13px;
+            font-size: 16px;
             color: #333;
             word-wrap: break-word;
             bottom: 5px;
@@ -346,7 +346,27 @@
         .slider.round:before {
             border-radius: 50%;
         }
-
+        .color-swatch {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        border: 2px solid darkgrey;
+                    }
+                    .color-swatch[data-color="#FFD700"] { background-color: #FFD700; }
+                    .color-swatch[data-color="#FF8C00"] { background-color: #FF8C00; }
+                    .color-swatch[data-color="#FF6347"] { background-color: #FF6347; }
+                    .color-swatch[data-color="#FF4500"] { background-color: #FF4500; }
+                    .color-swatch[data-color="#FF1493"] { background-color: #FF1493; }
+                    .color-swatch[data-color="#DB7093"] { background-color: #DB7093; }
+                    .color-swatch[data-color="#B0C4DE"] { background-color: #B0C4DE; }
+                    .color-swatch[data-color="#ADD8E6"] { background-color: #ADD8E6; }
+                    .color-swatch[data-color="#87CEEB"] { background-color: #87CEEB; }
+                    .color-swatch[data-color="#6A5ACD"] { background-color: #6A5ACD; }
+                    .color-swatch[data-color="#00ff37"] { background-color: #00ff37; }
+                .color-swatch[data-color="#a7ff70"] { background-color: #a7ff70; }
+                .color-swatch[data-color="#609df8"] { background-color: #609df8; }
+                .color-swatch[data-color="#000000"] { background-color: #000000; }
+                .color-swatch[data-color="#5b5b5b"] { background-color: #5b5b5b; }
         .nome {
             font-size: 18px;
         }
@@ -365,6 +385,15 @@
             </div>
             <div class="caixaInfo">
                 <label class="nome">Páginas por caderno:</label>
+                <div style="display: flex; justify-content: space-around; align-items: center;">
+                    <input type="radio" id="pages4" name="pagesPerBooklet" value="4" checked onchange="mudaModoQuantCaderno(event)">
+                    <label for="pages4">4</label>
+                    <input type="radio" id="pages8" name="pagesPerBooklet" value="8" onchange="mudaModoQuantCaderno(event)">
+                    <label for="pages8">8</label>
+                    <input type="radio" id="pages16" name="pagesPerBooklet" value="16" onchange="mudaModoQuantCaderno(event)">
+                    <label for="pages16">16</label>
+                </div>
+                <!--
                 <div
                     style="display: flex; width: 100%; justify-content: space-evenly; align-items: center;margin-top: 10px;">
                     <label>4</label>
@@ -374,6 +403,7 @@
                     </label>
                     <label>8</label>
                 </div>
+                -->
             </div>
             <div class="caixaInfo caixaCaderno quebraLinha">
                 <span class="checkmark hidden">
@@ -421,19 +451,29 @@
             <label for="base-color">Texto: </label>
             <textarea placeholder="texto" id="editText" style="width: 80%;" rows="3"></textarea>
             <label for="base-color">Cor: </label>
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px; gap: 10px;">
-                <div class="color-swatch" style="background-color: #FFD700; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FFD700'"></div>
-                <div class="color-swatch" style="background-color: #FF8C00; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF8C00'"></div>
-                <div class="color-swatch" style="background-color: #FF6347; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF6347'"></div>
-                <div class="color-swatch" style="background-color: #FF4500; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF4500'"></div>
-                <div class="color-swatch" style="background-color: #FF1493; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF1493'"></div>
-                <div class="color-swatch" style="background-color: #DB7093; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#DB7093'"></div>
-                <div class="color-swatch" style="background-color: #B0C4DE; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#B0C4DE'"></div>
-                <div class="color-swatch" style="background-color: #ADD8E6; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#ADD8E6'"></div>
-                <div class="color-swatch" style="background-color: #87CEEB; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#87CEEB'"></div>
-                <div class="color-swatch" style="background-color: #6A5ACD; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#6A5ACD'"></div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; gap: 10px;">
+                <style>
+
+                </style>
+
+                <div class="color-swatch" data-color="#FFD700" onclick="updateBaseColor('#FFD700')"></div>
+                <div class="color-swatch" data-color="#FF8C00" onclick="updateBaseColor('#FF8C00')"></div>
+                <div class="color-swatch" data-color="#FF6347" onclick="updateBaseColor('#FF6347')"></div>
+                <div class="color-swatch" data-color="#FF4500" onclick="updateBaseColor('#FF4500')"></div>
+                <div class="color-swatch" data-color="#FF1493" onclick="updateBaseColor('#FF1493')"></div>
+                <div class="color-swatch" data-color="#DB7093" onclick="updateBaseColor('#DB7093')"></div>
+                <div class="color-swatch" data-color="#B0C4DE" onclick="updateBaseColor('#B0C4DE')"></div>
+                <div class="color-swatch" data-color="#ADD8E6" onclick="updateBaseColor('#ADD8E6')"></div>
+                <div class="color-swatch" data-color="#87CEEB" onclick="updateBaseColor('#87CEEB')"></div>
+                <div class="color-swatch" data-color="#6A5ACD" onclick="updateBaseColor('#6A5ACD')"></div>
+                <div class="color-swatch" data-color="#00ff37" onclick="updateBaseColor('#00ff37')"></div>
+                <div class="color-swatch" data-color="#a7ff70" onclick="updateBaseColor('#a7ff70')"></div>
+                <div class="color-swatch" data-color="#609df8" onclick="updateBaseColor('#609df8')"></div>
+                <div class="color-swatch" data-color="#000000" onclick="updateBaseColor('#000000')"></div>
+
+                
             </div>
-            <input type="color" value="#0091fe" id="base-color" onchange="mudaCor(this)" />
+            <input type="color" value="#0091fe" id="base-color" onchange="mudaCor(this)" class="hidden"/>
             <button id="closeBtn" class="button" style="width: 30%;" onclick="fechaModal()">Salvar</button>
         </div>
     </div>
