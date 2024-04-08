@@ -105,6 +105,8 @@
             font-size: 13px;
             color: #333;
             word-wrap: break-word;
+            width: 80%;
+        text-align: center;
         }
 
         .page-number {
@@ -202,7 +204,7 @@
             top: 0;
             left: 0;
             width: 30%;
-            height: 30%;
+            height: 40%;
             border-radius: 20px;
             filter: drop-shadow(0 0 0.75rem rgb(121, 41, 5));
             background-color: #ffcc00;
@@ -417,8 +419,20 @@
     <div class="popModal hidden">
         <div class="popContent">
             <label for="base-color">Texto: </label>
-            <input placeholder="texto" id="editText"/>
+            <textarea placeholder="texto" id="editText" style="width: 80%;" rows="3"></textarea>
             <label for="base-color">Cor: </label>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; padding: 20px; gap: 10px;">
+                <div class="color-swatch" style="background-color: #FFD700; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FFD700'"></div>
+                <div class="color-swatch" style="background-color: #FF8C00; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF8C00'"></div>
+                <div class="color-swatch" style="background-color: #FF6347; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF6347'"></div>
+                <div class="color-swatch" style="background-color: #FF4500; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF4500'"></div>
+                <div class="color-swatch" style="background-color: #FF1493; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#FF1493'"></div>
+                <div class="color-swatch" style="background-color: #DB7093; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#DB7093'"></div>
+                <div class="color-swatch" style="background-color: #B0C4DE; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#B0C4DE'"></div>
+                <div class="color-swatch" style="background-color: #ADD8E6; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#ADD8E6'"></div>
+                <div class="color-swatch" style="background-color: #87CEEB; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#87CEEB'"></div>
+                <div class="color-swatch" style="background-color: #6A5ACD; width: 40px; height: 40px; border-radius: 50%; border: 2px solid darkgrey;" onclick="document.getElementById('base-color').value = '#6A5ACD'"></div>
+            </div>
             <input type="color" value="#0091fe" id="base-color" onchange="mudaCor(this)" />
             <button id="closeBtn" class="button" style="width: 30%;" onclick="fechaModal()">Salvar</button>
         </div>

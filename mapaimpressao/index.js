@@ -181,7 +181,7 @@ function criaPaginas() {
                     }
 
                     if (evt.pageX > width - 500) {
-                        popModal.style.left = width - 500 + "px";
+                        popModal.style.left = width - 700 + "px";
                     } else {
                         popModal.style.left = evt.pageX + "px";
                     }
@@ -245,6 +245,29 @@ exportBtn.addEventListener('click', () => {
         }
     });
 });
+function verificaCor(){
+    let obcor = document.querySelector("#base-color");
+    let txt = divSelected.querySelector(".page-text");
+    let txtN = divSelected.querySelector(".page-number");
+    // Determine if the background color is too dark
+    const color = obcor.value;
+    const rgb = parseInt(color.substring(1), 16);   // convert hex to decimal
+    const r = (rgb >> 16) & 0xff;  // extract red
+    const g = (rgb >>  8) & 0xff;  // extract green
+    const b = (rgb >>  0) & 0xff;  // extract blue
+
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+
+    console.log("luma",luma)
+
+    if (luma < 150) {
+        txt.style.color = 'white'; // bright text for dark backgrounds
+        txtN.style.color = 'white';
+    } else {
+        txt.style.color = 'black'; // dark text for bright backgrounds
+        txtN.style.color = 'black';
+    }
+}
 function fechaModal() {
     popModal.classList.add("hidden");
     let dataId = divSelected.getAttribute('data-id');
@@ -256,9 +279,8 @@ function fechaModal() {
     let txt = divSelected.querySelector(".page-text");
     txt.innerHTML = editText.value;
     divSelected.style.backgroundColor = obcor.value;
-    popModal.classList.add("hidden");
 
-    txt.innerHTML = editText.value;
+    verificaCor();
 }
 function mudaCor(evt) {
     let dataId = divSelected.getAttribute('data-id');
@@ -271,7 +293,7 @@ function mudaCor(evt) {
     itens[dataId - 1].cor = corselected;
     let txt = divSelected.querySelector(".page-text");
     txt.innerHTML = editText.value;
-
+    verificaCor();
 }
 function zoomin(evt) {
     if (levelZoom < 300) {
