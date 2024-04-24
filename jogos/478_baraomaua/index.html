@@ -24,11 +24,20 @@
             background-image: url('assets/478_layout_capa.jpg');
             background-size: cover;
             background-position: center;
+
+        }
+
+        .tela{
             height: 100vh;
             width: 100vw;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .background2 {
+            background-image: url('assets/478_layout_capa.jpg');
+            background-size: cover;
+            background-position: center;
         }
 
         .container {
@@ -59,6 +68,10 @@
             color: white;
             text-shadow: 3px 3px 4px rgb(84, 84, 84), 0 0 3px #FFF;
             text-align: right;
+        }
+
+        .right-side h2 {
+            margin-top: -40px;
         }
 
         .right-side h1 span {
@@ -143,12 +156,15 @@
                 text-align: center;
                 font-size: 1em;
             }
+            .escondido{
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="background">
+    <div class="telaEntrada tela background">
         <div class="container">
             <div class="overlay"></div>
             <div class="left-side">
@@ -159,11 +175,25 @@
                 <h2>Assista a um trecho do filme
                     sobre a vida do Barão de Mauá
                     e responda ao quiz.</h2>
-                <a href="#" class="button">Iniciar Jogo <img src="assets/setinha.png" style="height: 20px;"></a>
+                <a href="#" class="button" onclick="iniciaJogo()">Iniciar Jogo <img src="assets/setinha.png" style="height: 20px;"></a>
 
             </div>
         </div>
     </div>
+    <div class="tela1 tela background2 escondido">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <script>
+        const telaentrada=document.querySelector(".telaEntrada");
+        const tela1=document.querySelector(".tela1");
+        function iniciaJogo(){
+            telaentrada.classList.add("escondido");
+            tela1.classList.remove("escondido");
+        }
+    </script>
 </body>
 
 </html>
