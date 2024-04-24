@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
     <title>Tela Inicial</title>
     <style>
         @font-face {
@@ -20,6 +23,14 @@
 
         }
 
+        .tela {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .background {
             background-image: url('assets/478_layout_capa.jpg');
             background-size: cover;
@@ -27,15 +38,26 @@
 
         }
 
-        .tela{
-            height: 100vh;
-            width: 100vw;
+        .videoQuadro {
+            background-color: white;
+            border-radius: 20px;
+            width: 60%;
+            height: 90%;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
+
+
         .background2 {
-            background-image: url('assets/478_layout_capa.jpg');
+            background-image: url('assets/478_layout_capa2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .background3 {
+            background-image: url('assets/fundoquiz.png');
             background-size: cover;
             background-position: center;
         }
@@ -72,6 +94,7 @@
 
         .right-side h2 {
             margin-top: -40px;
+            font-family: 'Arial Narrow';
         }
 
         .right-side h1 span {
@@ -81,7 +104,7 @@
         }
 
         .right-side h2 {
-            font-family: 'Arial Narrow', Courier, monospace;
+            font-family: 'Arial Narrow';
             font-size: 1.5em;
             color: #ffffff;
             width: 60%;
@@ -118,8 +141,97 @@
             mix-blend-mode: multiply;
         }
 
+
+
         .button:hover {
             background-color: #0056b3;
+        }
+
+        .escondido {
+            display: none;
+        }
+
+        .caixaResp {
+            border-radius: 20px;
+            background-color: white;
+            width: 100%;
+            height: 50%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Customize the label (the container) */
+        .contCheckbox {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border-radius: 8px;
+
+        }
+
+        /* Hide the browser's default checkbox */
+        .contCheckbox input {
+
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+
+
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+
+        /* When the checkbox is checked, add a blue background */
+        .contCheckbox input:checked~.checkmark {
+            background-color: #229113;
+            border-radius: 8px;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .contCheckbox input:checked~.checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .contCheckbox .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
         }
 
         @media (max-width: 768px) {
@@ -156,9 +268,7 @@
                 text-align: center;
                 font-size: 1em;
             }
-            .escondido{
-                display: none;
-            }
+
         }
     </style>
 </head>
@@ -175,24 +285,300 @@
                 <h2>Assista a um trecho do filme
                     sobre a vida do Barão de Mauá
                     e responda ao quiz.</h2>
-                <a href="#" class="button" onclick="iniciaJogo()">Iniciar Jogo <img src="assets/setinha.png" style="height: 20px;"></a>
+                <a href="#" class="button" onclick="iniciaJogo()">Iniciar Jogo <img src="assets/setinha.png"
+                        style="height: 20px;"></a>
 
             </div>
         </div>
     </div>
     <div class="tela1 tela background2 escondido">
-        <div class="container">
+        <div class="video1 videoQuadro">
+            <div class="texto" style="padding: 2%;font-family: Arial;">
+                <h3>Assista a um trecho do filme Mauá: o imperador e o rei, de Sergio Rezende, que retrata a vida de
+                    Irineu Evangelista de Souza, considerado um dos maiores empreendedores do Brasil no século XIX.</h3>
+            </div>
+            <div class="video-container" style="width: 95%; margin-top: -10px;">
+                <video id="v1" src="assets/SPE_HIS_EF83_LA_35_2ap_trecho1.mp4" style="width: 100%;" controls></video>
+            </div>
+            <div class="botoes"
+                style="display: flex; width: 100%; align-items: center;justify-content: center; gap: 10px;">
 
+                <a href="#" class="button" style="width: 20%;" onclick="pulaVideo()">Avançar
+                    <img src="assets/setinha.png" style="height: 20px;">
+                </a>
+
+            </div>
+        </div>
+        <div class="video2 videoQuadro escondido">
+            <div class="texto" style="padding: 2%;font-family: Arial;">
+                <h3>Neste trecho, o Barão de Mauá vai em busca de recursos para realizar seus projetos para o Rio de
+                    Janeiro.</h3>
+            </div>
+            <div class="video-container" style="width: 95%; margin-top: -10px;">
+                <video id="v2" src="assets/SPE_HIS_EF83_LA_35_2ap_trecho2.mp4" style="width: 100%;" controls></video>
+            </div>
+            <div class="texto" style="padding: 2%;font-family: Arial;">
+                <h3>Para consolidar seus conhecimentos sobre o papel do Barão de Mauá no desenvolvimento brasileiro
+                    responda às questões da tela seguinte. </h3>
+            </div>
+            <div class="botoes"
+                style="display: flex; width: 100%; align-items: center;justify-content: center; gap: 10px; margin-top: -50px;">
+                <a href="#" class="button" style="width: 20%;" onclick="voltaVideo()">Voltar
+                    <img src="assets/setinha.png" style="height: 20px; transform: scaleX(-1);">
+                </a>
+                <a href="#" class="button" style="width: 20%;" onclick="pulaParaQuestoes()">Quiz
+                    <img src="assets/setinha.png" style="height: 20px;">
+                </a>
+
+            </div>
         </div>
     </div>
+    <div class="tela2 tela background3 escondido fase1" style="flex-direction: column;gap: 10px;">
+        <div class="containerTop" style="display: flex;height: 50%; width: 60%; gap: 10px;margin-top: 10px;">
+            <div
+                style="border-radius: 20px; background-color: white; width: 100%; display: flex; flex-wrap: wrap;align-items: center;justify-content: center;">
+                <h2 style=" text-align: center; flex-grow: 4;">1. Assinale os fatores que contribuíram para o
+                    desenvolvimento das fábricas no Brasil no Segundo Reinado.</h2>
+                <div
+                    style="position: relative; bottom:2%;width: 80%;height: 8%; border-radius: 5px;background-color: #7dca76;z-index: 20;color: #33612f;text-align: center;margin: auto;display: flex;align-items: center;justify-content: center;">
+                    Selecione apenas as corretas</div>
+            </div>
 
+        </div>
+        <div class="containerBottom" style="display: flex;height: 40%; width: 60%; gap: 10px;">
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Chegada de famílias de imigrantes ao Brasil.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Tarifa Alves Branco.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="width: 70%;" class="textResposta">
+                        Aumento do comércio de escravizados.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Aumento da produção de café.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%;" class="textResposta">
+                        Proibição do tráfico negreiro.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Instauração da República.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="containerBottom" style="display: flex;width: 60%; gap: 10px;justify-content: end;">
+            <a href="#" class="button" style="width: 20%;" onclick="verificarGabaritoFase1()">Verificar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+        </div>
+    </div>
+    <div class="modalFeedback"
+        style="display: none;background-color: rgba(33, 3, 0, 0.58);width: 100%;height: 100%;position: absolute;top: 0px;align-items: end;justify-content: center;">
+        <div class="feedBack"
+            style="width: 60%;height: 50%;background-color: #ffffff; border-top-left-radius: 20px; border-top-right-radius: 20px;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;justify-content: center;gap: 10px;">
+            <h2 class="txtFeed">Você respondeu incorretamente todas as alternativas</h2>
+            <a class="button" style="width: 30%;" onclick="btTentarNovamente()">Tentar novamente
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+            <a class="button btAvancaFase1" style="width: 30%; display: none;" onclick="location.reload()">Avançar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+        </div>
+    </div>
     <script>
-        const telaentrada=document.querySelector(".telaEntrada");
-        const tela1=document.querySelector(".tela1");
-        function iniciaJogo(){
+
+        const telaentrada = document.querySelector(".telaEntrada");
+        const tela1 = document.querySelector(".tela1");
+        const tela2 = document.querySelector(".tela2");
+        const telaVideo1 = document.querySelector(".video1");
+        const telaVideo2 = document.querySelector(".video2");
+
+        const objFase1 = document.querySelector(".fase1");
+        var respFase1 = objFase1.querySelectorAll(".caixaResp");
+        var checkFase1 = objFase1.querySelectorAll("input[type='checkbox']");
+
+        const modalFeedback = document.querySelector(".modalFeedback");
+        const feedBack = document.querySelector(".feedBack");
+
+        function iniciaJogo() {
             telaentrada.classList.add("escondido");
             tela1.classList.remove("escondido");
+            document.querySelector("#v1").play();
+            anime({
+                targets: telaVideo1,
+                translateY: [1080, 0],
+                duration: 750,
+                easing: 'easeOutExpo',
+                complete: function () {
+                    console.log("Animation completed");
+                }
+            });
         }
+        function voltaVideo() {
+            telaVideo1.classList.remove("escondido");
+            telaVideo2.classList.add("escondido");
+            document.querySelector("#v1").play();
+            document.querySelector("#v2").pause();
+            anime({
+                targets: telaVideo1,
+                translateY: [1080, 0],
+                duration: 750,
+                easing: 'easeOutExpo'
+            });
+
+        }
+        function pulaVideo() {
+            document.querySelector("#v2").play();
+            document.querySelector("#v1").pause();
+            telaVideo1.classList.add("escondido");
+            telaVideo2.classList.remove("escondido");
+            anime({
+                targets: telaVideo2,
+                translateY: [1080, 0],
+                duration: 750,
+                easing: 'easeOutExpo'
+            });
+
+        }
+        function pulaParaQuestoes() {
+            telaentrada.classList.add("escondido");
+            document.querySelector("#v2").pause();
+            document.querySelector("#v1").pause();
+            tela1.classList.add("escondido");
+            tela2.classList.remove("escondido");
+            anime({
+                targets: tela2,
+                translateY: [1080, 0],
+                duration: 750,
+                easing: 'easeOutExpo'
+            });
+
+        }
+        function cliqueResposta(evt) {
+            evt.querySelector("input[type='checkbox']").checked = !evt.querySelector("input[type='checkbox']").checked;
+            console.log(evt.getAttribute("data-gabarito"));
+
+            for (var i = 0; i < respFase1.length; i++) {
+                if (respFase1[i].getAttribute('data-gabarito') === 'checked') {
+                    console.log(respFase1[i].getAttribute('data-gabarito'));
+                }
+            }
+            anime({
+                targets: evt,
+                translateY: [20, 0],
+                duration: 750,
+                easing: 'easeOutExpo'
+            });
+
+        }
+        function verificarGabaritoFase1(){
+            verificarGabarito(respFase1,checkFase1,".btAvancaFase1");
+        }
+        function verificarGabarito(_resp,_check,_btAvanca) {
+            document.querySelector( _btAvanca).style.display = "none";
+            modalFeedback.style.display = "flex";
+            let iAll = 0;
+            let iAcerto = 0;
+            let iErro = 0;
+
+            anime({
+                targets: feedBack,
+                translateY: [1080, 0],
+                duration: 750,
+                easing: 'easeOutExpo'
+            });
+            for (var i = 0; i < _resp.length; i++) {
+                if (_resp[i].getAttribute('data-gabarito') === 'true') {
+                    iAll+=1;
+                }
+
+            }
+            for (var i = 0; i < _resp.length; i++) {
+                if (_check[i].checked) {
+                    console.log("respFase1[i].getAttribute('data-gabarito')",_resp[i].getAttribute('data-gabarito'));
+                    if (_resp[i].getAttribute('data-gabarito') === 'true') {
+                        iAcerto += 1; // Corrected variable name from iResp to iAcerto
+                    } else {
+                        iErro += 1;
+                    }
+                }
+            };
+            if (iAcerto > 0 && iErro > 0) {
+                document.querySelector(".txtFeed").textContent = "Você respondeu incorretamente algumas alternativas";
+            } else if (iAcerto == 0 && iErro > 0) {
+                document.querySelector(".txtFeed").textContent = "Você respondeu incorretamente TODAS as alternativas";
+            } else if (iAcerto == iAll && iErro == 0) {
+                document.querySelector(".txtFeed").textContent = "Você respondeu todas corretamente";
+                document.querySelector( _btAvanca).style.display = "inline-block";
+            }else{
+                document.querySelector(".txtFeed").textContent = "Você respondeu algumas corretas";
+            }
+            console.log(iAcerto,iErro,iAll);
+
+        }
+        function btTentarNovamente() {
+            modalFeedback.style.display = "none";
+        }
+        //pulaParaQuestoes()
     </script>
 </body>
 
