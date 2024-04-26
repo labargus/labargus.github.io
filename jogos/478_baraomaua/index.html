@@ -2,278 +2,89 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conteudo Digital</title>
+    <link rel="shortcut icon" type="imagex/png" href="assets/icon.ico">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-124031348-1');
+    </script>
+
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-    <title>Tela Inicial</title>
-    <style>
-        @font-face {
-            font-family: 'Cooper Black';
-            src: url('assets/CooperBlack-Std.otf') format('opentype');
-        }
 
-        body,
-        html {
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/estilo.css">
 
-            font-family: 'Cooper Black';
-            height: 100%;
-            margin: 0;
-
-        }
-
-        .tela {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .background {
-            background-image: url('assets/478_layout_capa.jpg');
-            background-size: cover;
-            background-position: center;
-
-        }
-
-        .videoQuadro {
-            background-color: white;
-            border-radius: 20px;
-            width: 60%;
-            height: 90%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-
-        .background2 {
-            background-image: url('assets/478_layout_capa2.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .background3 {
-            background-image: url('assets/fundoquiz.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            height: 100%;
-        }
-
-        .left-side img {
-            position: absolute;
-            max-width: 50%;
-            height: auto;
-            bottom: 0px;
-        }
-
-        .right-side {
-            position: absolute;
-            width: 50%;
-            padding: 20px;
-            right: 0px;
-        }
-
-        .right-side h1 {
-            width: 60%;
-            font-size: 5em;
-            color: white;
-            text-shadow: 3px 3px 4px rgb(84, 84, 84), 0 0 3px #FFF;
-            text-align: right;
-        }
-
-        .right-side h2 {
-            margin-top: -40px;
-            font-family: 'Arial Narrow';
-        }
-
-        .right-side h1 span {
-            color: rgb(255, 170, 0);
-            font-size: 1.5em;
-            z-index: 2;
-        }
-
-        .right-side h2 {
-            font-family: 'Arial Narrow';
-            font-size: 1.5em;
-            color: #ffffff;
-            width: 60%;
-            text-align: right;
-            z-index: 2;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1.5em;
-            width: 60%;
-            text-align: center;
-        }
-
-        .button img {
-            margin-left: 10px;
-            height: 10%;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            width: 100%;
-            height: 70%;
-            background-color: rgba(33, 3, 0, 0.58);
-            mix-blend-mode: multiply;
-        }
-
-
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        .escondido {
-            display: none;
-        }
-
-        .caixaResp {
-            border-radius: 20px;
-            background-color: white;
-            width: 100%;
-            height: 50%;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 10%;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Customize the label (the container) */
-        .contCheckbox {
-            display: block;
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            font-size: 22px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            border-radius: 8px;
-
-        }
-
-        /* Hide the browser's default checkbox */
-        .contCheckbox input {
-
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-
-
-        }
-
-        /* Create a custom checkbox */
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 25px;
-            width: 25px;
-            background-color: #eee;
-        }
-
-
-        /* When the checkbox is checked, add a blue background */
-        .contCheckbox input:checked~.checkmark {
-            background-color: #229113;
-            border-radius: 8px;
-        }
-
-        /* Create the checkmark/indicator (hidden when not checked) */
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-        }
-
-        /* Show the checkmark when checked */
-        .contCheckbox input:checked~.checkmark:after {
-            display: block;
-        }
-
-        /* Style the checkmark/indicator */
-        .contCheckbox .checkmark:after {
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-
-            .left-side img {
-                max-width: 100%;
-            }
-
-            .left-side,
-            .right-side {
-
-                font-size: 0.8em;
-                width: 100%;
-                display: flex;
-                top: 15%;
-                padding: 0%;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .right-side h1 {
-                text-align: center;
-            }
-
-            .right-side h2 {
-                text-align: center;
-            }
-
-            .right-side h1 span {
-                text-align: center;
-                font-size: 1em;
-            }
-
-        }
-    </style>
 </head>
 
 <body>
+    <section class="tela-creditos escondido">
+        <div class="container" id="creditos">
+
+            <div id="estrutura" style="display: none">
+                <!-- Conteúdo da div que você deseja clonar -->
+                <div class="colunas">
+                    <!-- Insira na ID a coleção (CQT, SAE ou SPE) -->
+                    <div class="colecao" id="SPE">
+                        <!-- Insira na ID o segmento (EducacaoInfantil, AnosIniciais, AnosFinais ou EnsinoMedio) -->
+                        <div class="segmento" ID="AnosIniciais">
+                            <div class="setor diretorGeral"></div>
+                            <div class="setor diretorConteudo"></div>
+                            <div class="setor NCE"></div>
+                            <div class="setor NEL"></div>
+                            <div class="setor NTC"></div>
+                        </div>
+
+                        <!-- caso não haja créditos de imagem, comentar a div -->
+                        <!--<div class="creditos-imagens">
+                                <h2 class="cargo">Créditos de imagem:</h2>
+                                <p class="nome">@Adobe Stock/Zig Koch</p>
+                            </div>-->
+                    </div>
+                    <div id="desenvolvimento"></div>
+                </div>
+                <div class="direitos"></div>
+            </div>
+
+            <script src="js/info-creditos.js"></script>
+
+            <!--Aqui vai os nomes da equipe do pedagógico e Interações Digitais -->
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_andreaB"></div>
+                <div class="cargo" id="cargo_designerInstrucional"></div>
+            </div>
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_denyM"></div>
+                <div class="cargo" id="cargo_designerDigital"></div>
+            </div>
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_leandroS"></div>
+                <div class="cargo" id="cargo_desenvolvedor"></div>
+            </div>
+
+            <iframe id="iframeCredito" width="100%" height="100%"></iframe>
+        </div>
+        <div class="fechar-creditos">
+            <div class="fechar"></div>
+        </div>
+    </section>
     <div class="telaEntrada tela background">
         <div class="container">
             <div class="overlay"></div>
@@ -285,48 +96,48 @@
                 <h2>Assista a um trecho do filme
                     sobre a vida do Barão de Mauá
                     e responda ao quiz.</h2>
-                <a href="#" class="button" onclick="iniciaJogo()">Iniciar Jogo <img src="assets/setinha.png"
-                        style="height: 20px;"></a>
+                <a href="#" class="button" onclick="iniciaJogo()">Iniciar Jogo</a>
 
             </div>
         </div>
+        <div class="creditos"></div>
     </div>
     <div class="tela1 tela background2 escondido">
         <div class="video1 videoQuadro">
-            <div class="texto" style="padding: 2%;font-family: Arial;">
+            <div class="texto" style="padding: 2%;font-family: Roboto Condensed;">
                 <h3>Assista a um trecho do filme Mauá: o imperador e o rei, de Sergio Rezende, que retrata a vida de
                     Irineu Evangelista de Souza, considerado um dos maiores empreendedores do Brasil no século XIX.</h3>
             </div>
-            <div class="video-container" style="width: 95%; margin-top: -10px;">
+            <div class="video-container" style="width: 85%;">
                 <video id="v1" src="assets/SPE_HIS_EF83_LA_35_2ap_trecho1.mp4" style="width: 100%;" controls></video>
             </div>
             <div class="botoes"
                 style="display: flex; width: 100%; align-items: center;justify-content: center; gap: 10px;">
 
-                <a href="#" class="button" style="width: 20%;" onclick="pulaVideo()">Avançar
+                <a href="#" class="button bttipo1" onclick="pulaVideo()">Próximo Vídeo
                     <img src="assets/setinha.png" style="height: 20px;">
                 </a>
 
             </div>
         </div>
         <div class="video2 videoQuadro escondido">
-            <div class="texto" style="padding: 2%;font-family: Arial;">
+            <div class="texto" style="padding: 2%;font-family: Roboto Condensed;">
                 <h3>Neste trecho, o Barão de Mauá vai em busca de recursos para realizar seus projetos para o Rio de
                     Janeiro.</h3>
             </div>
-            <div class="video-container" style="width: 95%; margin-top: -10px;">
+            <div class="video-container" style="width: 85%">
                 <video id="v2" src="assets/SPE_HIS_EF83_LA_35_2ap_trecho2.mp4" style="width: 100%;" controls></video>
             </div>
-            <div class="texto" style="padding: 2%;font-family: Arial;">
+            <div class="texto" style="padding: 2%;font-family: Roboto Condensed;">
                 <h3>Para consolidar seus conhecimentos sobre o papel do Barão de Mauá no desenvolvimento brasileiro
                     responda às questões da tela seguinte. </h3>
             </div>
             <div class="botoes"
-                style="display: flex; width: 100%; align-items: center;justify-content: center; gap: 10px; margin-top: -50px;">
-                <a href="#" class="button" style="width: 20%;" onclick="voltaVideo()">Voltar
+                style="display: flex; width: 100%; align-items: center;justify-content: center; gap: 10px; ">
+                <a href="#" class="button bttipo1" onclick="voltaVideo()">Vídeo anterior
                     <img src="assets/setinha.png" style="height: 20px; transform: scaleX(-1);">
                 </a>
-                <a href="#" class="button" style="width: 20%;" onclick="pulaParaQuestoes()">Quiz
+                <a href="#" class="button bttipo1" onclick="pulaParaQuestoes()">Quiz
                     <img src="assets/setinha.png" style="height: 20px;">
                 </a>
 
@@ -334,18 +145,20 @@
         </div>
     </div>
     <div class="tela2 tela background3 escondido fase1" style="flex-direction: column;gap: 10px;">
-        <div class="containerTop" style="display: flex;height: 50%; width: 60%; gap: 10px;margin-top: 10px;">
+        <div class="containerTop">
             <div
                 style="border-radius: 20px; background-color: white; width: 100%; display: flex; flex-wrap: wrap;align-items: center;justify-content: center;">
-                <h2 style=" text-align: center; flex-grow: 4;">1. Assinale os fatores que contribuíram para o
+                <h2 style=" text-align: center; flex-grow: 4;font-family: Roboto Condensed;padding: 20px;">1. Assinale
+                    os fatores que
+                    contribuíram para o
                     desenvolvimento das fábricas no Brasil no Segundo Reinado.</h2>
                 <div
-                    style="position: relative; bottom:2%;width: 80%;height: 8%; border-radius: 5px;background-color: #7dca76;z-index: 20;color: #33612f;text-align: center;margin: auto;display: flex;align-items: center;justify-content: center;">
+                    style="position: relative; bottom:2%;width: 80%;height: 8%; border-radius: 5px;background-color: #b1e9a8;z-index: 20;color: #33612f;text-align: center;margin: auto;display: flex;align-items: center;justify-content: center;">
                     Selecione apenas as corretas</div>
             </div>
 
         </div>
-        <div class="containerBottom" style="display: flex;height: 40%; width: 60%; gap: 10px;">
+        <div class="containerBottomPerguntas">
             <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
                 <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
                     <div style="width: 70%; pointer-events: none;" class="textResposta">
@@ -425,161 +238,260 @@
 
 
         </div>
-        <div class="containerBottom" style="display: flex;width: 60%; gap: 10px;justify-content: end;">
-            <a href="#" class="button" style="width: 20%;" onclick="verificarGabaritoFase1()">Verificar
+        <div class="containerBottom">
+            <a href="#" class="button bttipo1" onclick="verificarGabaritoFase1()">Verificar
                 <img src="assets/setinha.png" style="height: 20px;">
             </a>
         </div>
     </div>
-    <div class="modalFeedback"
-        style="display: none;background-color: rgba(33, 3, 0, 0.58);width: 100%;height: 100%;position: absolute;top: 0px;align-items: end;justify-content: center;">
-        <div class="feedBack"
-            style="width: 60%;height: 50%;background-color: #ffffff; border-top-left-radius: 20px; border-top-right-radius: 20px;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;justify-content: center;gap: 10px;">
+    <!--pergunta 2-->
+    <div class="tela3 tela background3 escondido fase2" style="flex-direction: column;gap: 10px;">
+        <div class="containerTop">
+            <div
+                style="border-radius: 20px; background-color: white; width: 100%; display: flex; flex-wrap: wrap;align-items: center;justify-content: center;">
+                <h2 style=" text-align: center; flex-grow: 4;font-family: Roboto Condensed;padding: 20px;">2. Assinale
+                    as iniciativas modernizadoras desenvolvidas pelo Barão de Mauá no Segundo Reinado.</h2>
+                <div
+                    style="position: relative; bottom:2%;width: 80%;height: 8%; border-radius: 5px;background-color: #b1e9a8;z-index: 20;color: #33612f;text-align: center;margin: auto;display: flex;align-items: center;justify-content: center;">
+                    Selecione apenas as corretas</div>
+            </div>
+
+        </div>
+        <div class="containerBottomPerguntas">
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Expansão da rede ferroviária.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Sistema de iluminação a gás.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="width: 70%;" class="textResposta">
+                        Saneamento básico.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="pointer-events: none;" class="textResposta">
+                        Desenvolvimento de um novo sistema de irrigação na agricultura.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%;" class="textResposta">
+                        Implantação do telégrafo no Brasil.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="pointer-events: none;" class="textResposta">
+                        Desenvolvimento de rodovias no interior do Brasil.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="containerBottom">
+            <a href="#" class="button bttipo1" onclick="verificarGabaritoFase2()">Verificar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+        </div>
+    </div>
+
+    <!--pergunta 3-->
+    <div class="tela4 tela background3 escondido fase3" style="flex-direction: column;gap: 10px;">
+        <div class="containerTop">
+            <div
+                style="border-radius: 20px; background-color: white; width: 100%; display: flex; flex-wrap: wrap;align-items: center;justify-content: center;">
+                <h2 style=" text-align: center; flex-grow: 4;font-family: Roboto Condensed;padding: 20px;">3. Assinale
+                    os motivos que geraram a falência do Barão de Mauá.</h2>
+                <div
+                    style="position: relative; bottom:2%;width: 80%;height: 8%; border-radius: 5px;background-color: #b1e9a8;z-index: 20;color: #33612f;text-align: center;margin: auto;display: flex;align-items: center;justify-content: center;">
+                    Selecione apenas as corretas</div>
+            </div>
+
+        </div>
+        <div class="containerBottomPerguntas">
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Falta de apoio do governo.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="pointer-events: none;" class="textResposta">
+                        Concorrência de empreendimentos estrangeiros.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%;" class="textResposta">
+                        Oposição de Mauá à Guerra do Paraguai.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="true">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Manutenção da estrutura colonial agroexportadora e escravista.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 33%;display: flex; gap: 10px;flex-direction: column;">
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="width: 70%;" class="textResposta">
+                        Dificuldade de encontrar mão de obra para o trabalho nas fábricas de Mauá.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+
+                </div>
+                <div class="caixaResp" onclick="cliqueResposta(this)" data-gabarito="false">
+                    <div style="width: 70%; pointer-events: none;" class="textResposta">
+                        Posição contrária de Mauá ao movimento abolicionista.
+                    </div>
+                    <div style="width: 10%;">
+                        <label class="contCheckbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="containerBottom">
+            <a href="#" class="button bttipo1" onclick="verificarGabaritoFase3()">Verificar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+        </div>
+    </div>
+    <div class="modalFeedback modalFundo" style="display: none;align-items: end;">
+        <div class="feedBack">
             <h2 class="txtFeed">Você respondeu incorretamente todas as alternativas</h2>
-            <a class="button" style="width: 30%;" onclick="btTentarNovamente()">Tentar novamente
+
+            <a class="button btAvancaFase1 bttipo2" style="display: none;" onclick="pulaFase1()">Avançar
                 <img src="assets/setinha.png" style="height: 20px;">
             </a>
-            <a class="button btAvancaFase1" style="width: 30%; display: none;" onclick="location.reload()">Avançar
+            <a class="button btAvancaFase2 bttipo2" style="display: none;" onclick="pulaFase2()">Avançar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+            <a class="button btAvancaFase3 bttipo2" style="display: none;" onclick="pulaFim()">Avançar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
+            <a class="button bttipo2" onclick="btTentarNovamente()">Tentar novamente
                 <img src="assets/setinha.png" style="height: 20px;">
             </a>
         </div>
     </div>
-    <script>
+    <div class="modalFim modalFundo" style="display: none;align-items: center;">
+        <div class="feedBackFim">
+            <div class="metade">
+                <img src="assets/trofeu.png" class="trofeu" onclick="abreMakingoff()">
+            </div>
+            <div class="metade" style="display: flex;align-items: center; flex-direction: column;">
+                <h2 class="txtFeed">Você respondeu todas
+                    corretamente, <b>Arrasou!</b></h2>
 
-        const telaentrada = document.querySelector(".telaEntrada");
-        const tela1 = document.querySelector(".tela1");
-        const tela2 = document.querySelector(".tela2");
-        const telaVideo1 = document.querySelector(".video1");
-        const telaVideo2 = document.querySelector(".video2");
+                <a class="button bttipo2" onclick="location.reload()">jogar novamente
+                    <img src="assets/setinha.png" style="height: 20px;">
+                </a>
+            </div>
 
-        const objFase1 = document.querySelector(".fase1");
-        var respFase1 = objFase1.querySelectorAll(".caixaResp");
-        var checkFase1 = objFase1.querySelectorAll("input[type='checkbox']");
+        </div>
+    </div>
 
-        const modalFeedback = document.querySelector(".modalFeedback");
-        const feedBack = document.querySelector(".feedBack");
+    <div class="modalMakingOff modalFundo" style="display: none;align-items: center;flex-direction: column;">
 
-        function iniciaJogo() {
-            telaentrada.classList.add("escondido");
-            tela1.classList.remove("escondido");
-            document.querySelector("#v1").play();
-            anime({
-                targets: telaVideo1,
-                translateY: [1080, 0],
-                duration: 750,
-                easing: 'easeOutExpo',
-                complete: function () {
-                    console.log("Animation completed");
-                }
-            });
-        }
-        function voltaVideo() {
-            telaVideo1.classList.remove("escondido");
-            telaVideo2.classList.add("escondido");
-            document.querySelector("#v1").play();
-            document.querySelector("#v2").pause();
-            anime({
-                targets: telaVideo1,
-                translateY: [1080, 0],
-                duration: 750,
-                easing: 'easeOutExpo'
-            });
+        <div class="video-container" style="width: 75%;">
+            <video id="v1" src="assets/makingoff.mp4" style="width: 100%;" controls></video>
+        </div>
+        <div class="botoes" style="display: flex; width: 100%; align-items: center;justify-content: center; gap: 10px;">
 
-        }
-        function pulaVideo() {
-            document.querySelector("#v2").play();
-            document.querySelector("#v1").pause();
-            telaVideo1.classList.add("escondido");
-            telaVideo2.classList.remove("escondido");
-            anime({
-                targets: telaVideo2,
-                translateY: [1080, 0],
-                duration: 750,
-                easing: 'easeOutExpo'
-            });
+            <a href="#" class="button bttipo1" onclick="location.reload()">Fechar
+                <img src="assets/setinha.png" style="height: 20px;">
+            </a>
 
-        }
-        function pulaParaQuestoes() {
-            telaentrada.classList.add("escondido");
-            document.querySelector("#v2").pause();
-            document.querySelector("#v1").pause();
-            tela1.classList.add("escondido");
-            tela2.classList.remove("escondido");
-            anime({
-                targets: tela2,
-                translateY: [1080, 0],
-                duration: 750,
-                easing: 'easeOutExpo'
-            });
-
-        }
-        function cliqueResposta(evt) {
-            evt.querySelector("input[type='checkbox']").checked = !evt.querySelector("input[type='checkbox']").checked;
-            console.log(evt.getAttribute("data-gabarito"));
-
-            for (var i = 0; i < respFase1.length; i++) {
-                if (respFase1[i].getAttribute('data-gabarito') === 'checked') {
-                    console.log(respFase1[i].getAttribute('data-gabarito'));
-                }
-            }
-            anime({
-                targets: evt,
-                translateY: [20, 0],
-                duration: 750,
-                easing: 'easeOutExpo'
-            });
-
-        }
-        function verificarGabaritoFase1(){
-            verificarGabarito(respFase1,checkFase1,".btAvancaFase1");
-        }
-        function verificarGabarito(_resp,_check,_btAvanca) {
-            document.querySelector( _btAvanca).style.display = "none";
-            modalFeedback.style.display = "flex";
-            let iAll = 0;
-            let iAcerto = 0;
-            let iErro = 0;
-
-            anime({
-                targets: feedBack,
-                translateY: [1080, 0],
-                duration: 750,
-                easing: 'easeOutExpo'
-            });
-            for (var i = 0; i < _resp.length; i++) {
-                if (_resp[i].getAttribute('data-gabarito') === 'true') {
-                    iAll+=1;
-                }
-
-            }
-            for (var i = 0; i < _resp.length; i++) {
-                if (_check[i].checked) {
-                    console.log("respFase1[i].getAttribute('data-gabarito')",_resp[i].getAttribute('data-gabarito'));
-                    if (_resp[i].getAttribute('data-gabarito') === 'true') {
-                        iAcerto += 1; // Corrected variable name from iResp to iAcerto
-                    } else {
-                        iErro += 1;
-                    }
-                }
-            };
-            if (iAcerto > 0 && iErro > 0) {
-                document.querySelector(".txtFeed").textContent = "Você respondeu incorretamente algumas alternativas";
-            } else if (iAcerto == 0 && iErro > 0) {
-                document.querySelector(".txtFeed").textContent = "Você respondeu incorretamente TODAS as alternativas";
-            } else if (iAcerto == iAll && iErro == 0) {
-                document.querySelector(".txtFeed").textContent = "Você respondeu todas corretamente";
-                document.querySelector( _btAvanca).style.display = "inline-block";
-            }else{
-                document.querySelector(".txtFeed").textContent = "Você respondeu algumas corretas";
-            }
-            console.log(iAcerto,iErro,iAll);
-
-        }
-        function btTentarNovamente() {
-            modalFeedback.style.display = "none";
-        }
-        //pulaParaQuestoes()
-    </script>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
