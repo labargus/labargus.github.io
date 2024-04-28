@@ -91,9 +91,9 @@ html {
     font-size: 5em;
     color: white;
     text-shadow: -1px 1px 0 #000,
-                1px 1px 0 #000,
-                1px -1px 0 #000,
-                -1px -1px 0 #000;
+        1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000;
     text-align: right;
 }
 
@@ -359,10 +359,15 @@ h2 {
 }
 
 @media (max-width: 768px) {
+    .overlay {
+        top: 40%;
+        height: 60%;
+    }
 
-    .left-side{
+    .left-side {
         height: 70%;
     }
+
     .textResposta {
         width: 0%;
     }
@@ -379,6 +384,7 @@ h2 {
     .containerTop {
         width: 95%;
         height: 30%;
+        margin-top: -80px;
     }
 
     .containerBottom {
@@ -394,12 +400,15 @@ h2 {
 
     .containerBottomPerguntas {
         width: 95%;
-        height: 45%;
+        height: 48%;
     }
+
+
 
     .videoQuadro {
         width: 85%;
         height: 77%;
+        margin-top: -80px;
     }
 
 
@@ -440,7 +449,7 @@ h2 {
         width: 100%;
         display: flex;
         right: 0px;
-        top: 15%;
+        top: 10%;
         padding: 0%;
         flex-direction: column;
         align-items: center;
