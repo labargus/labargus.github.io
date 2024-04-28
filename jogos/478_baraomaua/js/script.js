@@ -10,7 +10,8 @@ $('.fechar-creditos').on('click', function () {
     window.parent.document.querySelector("#iframeCredito").src = "";
 });
 
-
+var tentativas=0;
+var countTentativas=0;
 const telaentrada = document.querySelector(".telaEntrada");
 const tela1 = document.querySelector(".tela1");
 const tela2 = document.querySelector(".tela2");
@@ -127,6 +128,10 @@ function pulaFim() {
     //tela4.classList.add("escondido");
     modalFeedback.style.display = "none";
     modalFim.style.display = "flex";
+    if(countTentativas>0){
+        document.querySelectorAll(".txtFeed")[1].textContent = "Você respondeu todas corretamente, porém, com ajuda :)";
+    }
+    
     anime({
         targets: modalFim,
         translateY: [1080, 0],
@@ -187,10 +192,28 @@ function verificarGabaritoFase3() {
     verificarGabarito(respFase3, checkFase3, ".btAvancaFase3");
 }
 function verificarGabarito(_resp, _check, _btAvanca) {
+    var respFaseAll = document.querySelectorAll(".caixaResp");
+    for (let i = 0; i < respFaseAll.length; i++) {
+        if (respFaseAll[i].getAttribute('data-gabarito') === 'true') {
+
+        respFaseAll[i].style.backgroundColor = "#ffffff";
+
+        }
+        
+    }
+
     document.querySelector(".btAvancaFase1").style.display = "none";
     document.querySelector(".btAvancaFase2").style.display = "none";
     document.querySelector(".btAvancaFase3").style.display = "none";
     modalFeedback.style.display = "flex";
+    tentativas++;
+    if(tentativas>3){
+        tentativas=0;
+        countTentativas+=1;
+        document.querySelector(".btMostraRespostas").style.display = "block";
+
+    }
+
     let iAll = 0;
     let iAcerto = 0;
     let iErro = 0;
@@ -230,7 +253,20 @@ function verificarGabarito(_resp, _check, _btAvanca) {
     console.log(iAcerto, iErro, iAll);
 
 }
-function btTentarNovamente() {
+function btTentarNovamente(pode) {
     modalFeedback.style.display = "none";
+
+    if(pode){
+        document.querySelector(".btMostraRespostas").style.display = "none";
+        var respFaseAll = document.querySelectorAll(".caixaResp");
+        for (let i = 0; i < respFaseAll.length; i++) {
+            if (respFaseAll[i].getAttribute('data-gabarito') === 'true') {
+
+            respFaseAll[i].style.backgroundColor = "#b1e9a8";
+
+            }
+            
+        }
+    }
 }
 //pulaParaQuestoes()
