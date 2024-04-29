@@ -1,0 +1,210 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #7b44eb;
+    font-family: sans-serif;
+}
+.modal-content {
+    background-color: white;
+    font-size: 10pt;
+    overflow: hidden;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modal-content p {
+    margin-bottom: 10px;
+}
+
+.modal-content p.dir {
+    font-size: 7pt;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.creditos {
+    background: url(../assets/credito.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 0;
+    width: 120px;
+    height: 120px;
+    top: 30px;
+    right: 30px;
+    position: absolute;
+    z-index: 15;
+}
+
+.creditos:hover {
+    transition: all 1s;
+    transform: scale(1.1);
+}
+#abertura{
+    position: fixed; display: flex; z-index: 1; width:100%;height: 100vh;align-items: center;justify-content: center;
+}
+#jogo{
+    display: none;
+    width: 100vw;
+    height: 100vw;
+}
+.keybord{
+
+    width: 50vw;
+    margin:300px auto 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:20px 20px;
+    border-radius: 10px;
+}
+.row{
+    width: 60vw;
+    margin:5px ;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn{
+
+    width: 5vw;
+    height: 120px;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 0 4px;
+    background-color: #ffcc2d;
+    color:black;
+    cursor: pointer;
+
+    border: 3px solid #000;
+    border-radius: 15px;
+    box-shadow: #ffffff 0px 5px inset,0px 5px #d15300,0px 7px #000000;
+
+}
+.keybord .active{
+    background: #7a44eb;
+    border: 3px solid #000;
+    border-radius: 15px;
+    box-shadow: 0px 5px #7a44eb,0px 7px #000000;
+}
+.imageTop{
+    width: 100%;
+    height:auto;
+}
+#letraV{
+    position: absolute;
+    width: 200px;
+    text-align: center;
+    left: 38vw;
+    top:30vw;
+    font-size: 6em;
+}
+#letraH{
+    position: absolute;
+    width: 200px;
+    text-align: center;
+    left: 22vw;
+    top:5vw;
+    font-size: 6em;
+}
+#topHorizontal{
+    top: 0px;
+    position: absolute;
+    z-index: -10;
+}
+#topVertical{
+    display: none;
+    width: 100vw;
+    min-height: 30px;
+    text-align: center;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 165px;
+    left: 50%;
+    margin: -50px auto;
+    transform:translateX(-50%) ;
+    font-size: 18px;
+    text-transform: capitalize;
+    z-index: -10;
+}
+@media (orientation: portrait) {
+    /* Portrait mode styles */
+    .keybord {
+        width: 100%;
+        height: auto;
+    }
+    .row{
+        width: 90vw;
+        height: 12vw;
+
+    }
+    .btn{
+
+        width: 7vw;
+        height: 11vw;
+    }
+    .keybord{
+        margin:100vw auto 50px;
+
+    }
+    #topVertical{
+        display: block;
+    }
+
+    #topHorizontal{
+        display: none;
+    }
+    .imagePaisagem{
+        display: none;
+    }
+
+    .imageimageRetrato{
+        display: block;
+        width: 90%
+    }
+}
+
+@media (orientation: landscape) {
+    /* Landscape mode styles */
+    .keybord {
+        width: auto;
+        height: 100%;
+    }
+    .imagePaisagem{
+        display: block;
+        width: 80%
+    }
+
+    .imageimageRetrato{
+        display: none;
+    }
+}
+
+.show {
+    -o-transition: opacity 3s;
+    -moz-transition: opacity 3s;
+    -webkit-transition: opacity 3s;
+    transition: opacity 3s;
+    opacity:1;
+    /* This timing applies on the way OUT */
+    transition-timing-function: ease-in;
+    /* Hide thing by pushing it outside by default */
+    transform: translateX(100%);
+}
+.hide{  
+    opacity:0; 
+    /* This timing applies on the way IN */
+    transition-timing-function: ease-out;
+
+    /* A litttttle slower on the way in */
+    transition: 1s;
+
+    /* Move into place */
+    transform: translateX(0%);
+}
