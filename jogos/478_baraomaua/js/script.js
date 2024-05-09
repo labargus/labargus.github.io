@@ -9,9 +9,49 @@ $('.fechar-creditos').on('click', function () {
     $('.tela-creditos').toggleClass('is-hidden');
     window.parent.document.querySelector("#iframeCredito").src = "";
 });
+function isMobile() {
+    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent);
+}
 
-var tentativas=0;
-var countTentativas=0;
+
+function checkMobileAndLandscape() {
+    if (isMobile()) {
+        if (window.innerHeight < window.innerWidth) {
+            document.body.style.fontSize = "10px";
+            let allbut=document.querySelectorAll(".button");
+            allbut.forEach(element => {
+                element.style.width="40%";
+            });
+            let allperg=document.querySelectorAll(".containerTop");
+            let allresp=document.querySelectorAll(".containerBottomPerguntas");
+            allperg.forEach(element => {
+                element.style.width="80%";
+            });
+            allresp.forEach(element => {
+                element.style.width="80%";
+            });
+            let allvid=document.querySelectorAll(".videoQuadro");
+            allvid.forEach(element => {
+                element.style.width="95%";
+            });
+
+            let allvid2=document.querySelectorAll(".video-container");
+            allvid2.forEach(element => {
+                element.style.width="30%";
+            });
+        }
+        console.log("Mobile device detected");
+    } else {
+        console.log("Desktop device detected");
+    }
+}
+
+window.addEventListener('resize', checkMobileAndLandscape);
+checkMobileAndLandscape();
+
+var tentativas = 0;
+var countTentativas = 0;
 const telaentrada = document.querySelector(".telaEntrada");
 const tela1 = document.querySelector(".tela1");
 const tela2 = document.querySelector(".tela2");
@@ -128,10 +168,10 @@ function pulaFim() {
     //tela4.classList.add("escondido");
     modalFeedback.style.display = "none";
     modalFim.style.display = "flex";
-    if(countTentativas>0){
+    if (countTentativas > 0) {
         document.querySelectorAll(".txtFeed")[1].textContent = "Você respondeu todas corretamente, porém, com ajuda :)";
     }
-    
+
     anime({
         targets: modalFim,
         translateY: [1080, 0],
@@ -196,10 +236,10 @@ function verificarGabarito(_resp, _check, _btAvanca) {
     for (let i = 0; i < respFaseAll.length; i++) {
         if (respFaseAll[i].getAttribute('data-gabarito') === 'true') {
 
-        respFaseAll[i].style.backgroundColor = "#ffffff";
+            respFaseAll[i].style.backgroundColor = "#ffffff";
 
         }
-        
+
     }
 
     document.querySelector(".btAvancaFase1").style.display = "none";
@@ -207,9 +247,9 @@ function verificarGabarito(_resp, _check, _btAvanca) {
     document.querySelector(".btAvancaFase3").style.display = "none";
     modalFeedback.style.display = "flex";
     tentativas++;
-    if(tentativas>3){
-        tentativas=0;
-        countTentativas+=1;
+    if (tentativas > 3) {
+        tentativas = 0;
+        countTentativas += 1;
         document.querySelector(".btMostraRespostas").style.display = "block";
 
     }
@@ -256,16 +296,16 @@ function verificarGabarito(_resp, _check, _btAvanca) {
 function btTentarNovamente(pode) {
     modalFeedback.style.display = "none";
 
-    if(pode){
+    if (pode) {
         document.querySelector(".btMostraRespostas").style.display = "none";
         var respFaseAll = document.querySelectorAll(".caixaResp");
         for (let i = 0; i < respFaseAll.length; i++) {
             if (respFaseAll[i].getAttribute('data-gabarito') === 'true') {
 
-            respFaseAll[i].style.backgroundColor = "#b1e9a8";
+                respFaseAll[i].style.backgroundColor = "#b1e9a8";
 
             }
-            
+
         }
     }
 }
