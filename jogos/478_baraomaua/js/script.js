@@ -22,6 +22,16 @@ function checkMobileAndLandscape() {
             let allbut=document.querySelectorAll(".button");
             allbut.forEach(element => {
                 element.style.width="40%";
+                element.style.fontSize="1.2em"
+            });
+            let chks=document.querySelectorAll(".checkmark");
+            chks.forEach(element => {
+                element.style.width="15px"
+                element.style.height="15px"
+            });
+            let txtResp=document.querySelectorAll(".textResposta");
+            txtResp.forEach(element => {
+                element.style.fontSize="10px"
             });
             let allperg=document.querySelectorAll(".containerTop");
             let allresp=document.querySelectorAll(".containerBottomPerguntas");

@@ -79,7 +79,7 @@ html {
     position: absolute;
     width: 50%;
     padding: 20px;
-    right: 20%;
+    right: 10%;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -87,7 +87,7 @@ html {
 }
 
 .right-side h1 {
-    width: 60%;
+    width: 80%;
     font-size: 5em;
     color: white;
     text-shadow: -1px 1px 0 #000,
@@ -95,6 +95,8 @@ html {
         1px -1px 0 #000,
         -1px -1px 0 #000;
     text-align: right;
+    line-height: 0.9;
+    margin-top: 10px;
 }
 
 
@@ -105,11 +107,11 @@ html {
 }
 
 .right-side h2 {
-    margin-top: -40px;
+    margin-top: -30px;
     font-family: 'Roboto Condensed';
     font-size: 1.5em;
     color: #ffffff;
-    width: 60%;
+    width: 80%;
     text-align: right;
 
 }
@@ -275,7 +277,7 @@ h2 {
 
 .containerBottom {
     display: flex;
-    width: 60%;
+    width: 80%;
     gap: 10px;
     justify-content: end;
 }
@@ -357,25 +359,27 @@ h2 {
     gap: 10px;
     flex-direction: column;
 }
-@media screen and (max-width: 1024px){
 
-}
+@media screen and (max-width: 1024px) {}
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 639px) {
 
     .creditos {
         width: 40px;
         height: 40px;
     }
+
     .overlay {
         top: 40%;
         height: 60%;
     }
+
     .feedBackFim {
         width: 80%;
         height: 80%;
 
     }
+
     .left-side {
         height: 70%;
     }
@@ -397,6 +401,10 @@ h2 {
         width: 95%;
         height: 30%;
         margin-top: -80px;
+    }
+
+    .containerTop h2 {
+       font-size: 1.2em;
     }
 
     .containerBottom {
@@ -473,8 +481,9 @@ h2 {
     .left-side,
     .right-side {
 
-        font-size: 0.8em;
+        font-size: 0.7em;
         width: 100%;
+        height: 50%;
         display: flex;
         right: 0px;
         top: 10%;
