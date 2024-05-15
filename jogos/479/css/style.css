@@ -1,11 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo:wght@400;700&display=swap');
+
+
+
 body {
     overflow-x: hidden;
+    font-family: "Caprasimo", serif;
 }
-
-div {
+.fundos {
     height: 100vh;
     font-size: 60px;
-    border: solid 2px black;
+}
+.telas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 60px;
 }
 
 .pintura1 {
@@ -14,7 +25,6 @@ div {
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
-    z-index: -20;
     top: 0;
     left: 0;
 }
@@ -24,10 +34,10 @@ div {
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
-    z-index: -19;
-    opacity: 0.7;
+    opacity: 0;
     top: 0;
     left: 0;
+    transform: scale(0.5);
 }
 .pintura3 {
     background-image: url(../assets/pintura_03_detalhe.png);
@@ -35,19 +45,57 @@ div {
     background-size: cover;
     background-repeat: no-repeat;
     position: fixed;
-    z-index: -18;
-    opacity: 0.7;
+    opacity: 0;
     top: 0;
     left: 0;
 }
-
-.telas {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.pintura4 {
+    background-image: url(../assets/pintura_03_editada_01.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
 }
-
-
-.text-animate {
-    color: white;
+.pintura5 {
+    background-image: url(../assets/pintura_03_editada_02.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+.pintura6 {
+    background-image: url(../assets/pintura_03_original.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+.pintura7 {
+    background-image: url(../assets/pintura_03_final.png);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+.pintura8 {
+    background-image: url(../assets/pintura_04.jpg);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
 }
