@@ -1,0 +1,42 @@
+body {
+    overflow-x: hidden;
+}
+
+div {
+    height: 100vh;
+    font-size: 60px;
+    border: solid 2px black;
+}
+
+.pintura1 {
+    background-image: url(../assets/pintura_01.jpg);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    z-index: -20;
+    top: 0;
+    left: 0;
+}
+.pintura2 {
+    background-image: url(../assets/pintura_02_duotone.jpg);
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: fixed;
+    z-index: -19;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+}
+
+.telas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.text-animate {
+    color: white;
+}
