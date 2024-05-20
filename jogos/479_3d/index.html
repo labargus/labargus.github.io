@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo animejs com scroll</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+  </head>
+  <body>
+    <!-- cada div de tela e fundo sao 100hv, os fundos ficam fixos com opacity 0 apenas o opacity é animado-->
+    <div class="pintura1 fundos" style="z-index: -20">
+      <canvas id="renderCanvas" touch-action="none"></canvas>
+    </div>
+    <!-- aqui a quantidade de divs "telas" deve ser igual as de fundos mesmo que fiquem vazias pra ficarem em sincronia-->
+    <div class="telas" style="color: white;">Tabuleiro de Xadrez</div>
+    <div class="telas" style="color: white;">Peças pretas</div>
+    <div class="telas"></div>
+    <div class="telas"></div>
+    <div class="telas"></div>
+    <div class="telas"></div>
+    <div class="telas" style="color: white;">Peças brancas</div>
+    <div class="telas">continua...</div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+      integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
