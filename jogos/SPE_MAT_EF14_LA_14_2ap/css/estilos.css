@@ -1,0 +1,857 @@
+.screen {
+    display: none;
+}
+
+.visivel {
+    display: block;
+}
+
+
+.creditos {
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 0;
+    width: 65px;
+    height: 40px;
+    top: calc(11% - 20px);
+    right: 7vh;
+    position: absolute;
+    z-index: 15;
+    cursor: pointer;
+    background-color: var(--cor-fundo-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width:1200px) and (orientation: portrait) {
+    .creditos {
+        right: 20vw;
+    }
+}
+
+@media screen and (max-width:750px) and (orientation: portrait) {
+    .creditos {
+        right: 14vw;
+    }
+}
+
+.creditos:hover {
+    transition: all 1s;
+    transform: scale(1.1);
+}
+
+/* Tela de Créditos*/
+.tela-creditos {
+    background: rgba(255, 255, 255, 0.9);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tela-creditos h2 {
+    font-weight: var(--font-weight-2);
+    font-size: var(--font-size-3);
+    text-transform: uppercase;
+}
+
+.fechar-creditos {
+    border-radius: var(--border-radius-creditos);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fechar-creditos .fechar {
+    background-image: url(../assets/voltar-creditos.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.fechar-creditos:hover {
+    transition: 1s;
+    transform: scale(1.1);
+}
+
+.blurdiv {
+    backdrop-filter: blur(20px);
+}
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
+#creditos {
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+}
+
+/*Fim Tela Créditos*/
+
+
+/* Rotação Tela */
+
+.rotate {
+    justify-content: flex-start;
+}
+
+.telaGirar {
+    background-color: var(--cor-fundo-rotate);
+    opacity: 0.98;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1000;
+}
+
+.dispositivoGirar {
+    background-image: url('../assets/girar.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 25vh;
+    width: 50vw;
+    position: absolute;
+    top: 37.5vh;
+    left: 25vw;
+    z-index: 1001;
+    opacity: 0.5;
+    transform: rotate(-45deg);
+    animation: girar 3s linear infinite;
+}
+
+.textoGirar {
+    position: absolute;
+    color: var(--cor-preto);
+    font-size: 15px;
+    font-weight: var(--font-weight-2);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-4);
+    z-index: 1000;
+    width: 51%;
+    margin: 6% 24%;
+    text-align: center;
+    line-height: 133%;
+}
+
+
+@keyframes girar {
+    25% {
+        transform: rotate(-90deg);
+    }
+
+    55% {
+        transform: rotate(-180deg);
+    }
+
+    90% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-45deg);
+    }
+}
+
+/* Fim Rotação Tela */
+
+/* TELAS PARA TODAS AS TELAS */
+.telas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    background-image: url(../assets/fundo_branco.jpg);
+    background-size: cover;
+}
+
+.tela-apresentacao,
+.tela-jogo-1,
+.tela-jogo-2, .tela-jogo-3,
+.tela-final {
+    background-image: url(../assets/fundo_marrom.jpg);
+}
+
+.btn {
+    width: 30%;
+    position: relative;
+    top: 40vw;
+    right: -26vw;
+    font-size: var(--font-size-4);
+    background-color: var(--cor-fundo-3);
+    border-radius: var(--border-radius);
+    color: var(--cor-texto-2);
+    font-weight: var(--font-weight-2);
+    font-family: var(--font-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+.div-fundos{
+    background-color: var(--cor-fundo-3);
+    border-radius: var(--border-radius);
+    width: 85vw;
+    height: 12vh;
+}
+
+.container-jogo{
+    width: 100vw;
+    height: 89vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+/* FIM TELAS PARA TODAS AS TELAS */
+
+/* TELA INICIO */
+.div-secao-inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.titulo {
+    width: 100vw;
+    cursor: pointer;
+}
+
+
+/* FIM TELA INICIO */
+
+/* TELA APRESENTACAO */
+.container {
+    margin: 0 auto;
+}
+
+.div-container-apresentacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.div-apresentacao, .div-apresentacao-input, .input-nome{
+    font-size: var(--font-size-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+}
+.input-nome{
+    color: var(--cor-texto-3);
+    text-transform: uppercase;
+}
+
+.input-nome:focus{
+    background-color: var(--cor-fundo-1);
+}
+/* FIM TELA APRESENTACAO */
+
+/* TELA JOGO 1 */
+.div-jogar-dados{
+    font-size: var(--font-size-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+}
+
+.btn-ajuda{
+    top: -6px;
+    right: -29vw;
+}
+
+.div-pontos{
+    display: flex;
+    gap: 13px;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-nome-pontos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 35vh;
+    padding: 5%;
+    gap: 10px;
+    width: 42vw;
+}
+
+.nome{
+    font-size: var(--font-size-5);
+}
+
+.div-rodadas, .div-jogar-dados{
+    width: 89vw;
+    height: 16vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div-jogar-dados{
+    cursor: pointer;
+}
+
+.estrela-grande-rodadas, .estrela-grande-rodadas-01, .estrela-grande-rodadas-02, .estrela-grande-rodadas-intr-01, .estrela-grande-rodadas-intr-03{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    width: 8%;
+}
+
+.estrela-pequena{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.estrela-pequena>img, .estrela-grande>img{
+    width: 6%;
+}
+
+.estrela-grande>img{
+    width: 18%;
+}
+/* FIM TELA JOGO 1 */
+
+/* TELA JOGO 2 */
+.star {
+    width: 20px;
+    height: 20px;
+    background-image: url('../assets/estrela_maior.png');
+    background-size: cover;
+    display: inline-block;
+}
+
+.img-jogar-dados{
+    width: 34%;
+}
+
+.btn-pecas{
+    display: flex;
+    gap: 23px;
+}
+
+.btn-peca{
+    top: 0;
+    right: 0;
+    padding: 6px;
+    width: 40vw;
+}
+/* FIM TELA JOGO 1 */
+
+/* TELAS MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-container {
+    margin: 4% auto;
+    padding: 8% 1%;
+    width: 82%;
+    height: 68vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--cor-branco);
+}
+
+.div-texto-seta{
+    display: flex;
+    width: 87vw;
+}
+
+.texto-modal {
+    color: var(--cor-branco);
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-1);
+    width: 58vw;
+    line-height: 150%;
+}
+
+.close {
+    color: var(--cor-texto-2);
+    float: right;
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-4);
+    margin: 0% -80% 0% 0%;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--cor-texto-3);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* MODAL INSTRUCAO-1 */
+.seta-01{
+    width: 31%;
+    height: 90%;
+    margin-top: 51px;
+}
+
+.btn-avancar-01, .btn-avancar-02, .btn-avancar-03, .btn-avancar-04, .btn-avancar-05{
+    top: -7vw;
+    padding: 1% 1%;
+    width: 35%;
+    right: -29vw;
+    color: var(--cor-branco);
+}
+/* FIM MODAL INSTRUCAO-1 */
+
+/* MODAL INSTRUCAO-2 */
+.container-modal-02{
+    height: 88vh;
+}
+
+.btn-avancar-02{
+    top: -13vw;
+}
+/* FIM MODAL INSTRUCAO-2 */
+
+/* MODAL INSTRUCAO-3 */
+.container-modal-03{
+    height: 83vh;
+    margin: 9% auto;
+}
+
+.seta-02{
+    width: 31%;
+    height: 29%;
+    position: absolute;
+    right: 65vw;
+    top: 56vw;
+}
+
+.seta-03{
+    width: 25%;
+    height: 45%;
+    position: absolute;
+    right: 9vw;
+    top: 53vw;
+}
+
+.div-texto-seta-03{
+    justify-content: center;
+    text-align: center;
+}
+
+.div-rodadas-03{
+    height: 12vh;
+    margin-top: 58px;
+}
+
+.texto-modal-03{
+    width: 68vw;
+    position: relative;
+    top: -17vw;
+}
+/* FIM MODAL INSTRUCAO-3 */
+
+/* MODAL INSTRUCAO-4 */
+.container-modal-04{
+    height: 100vh;
+    padding: 1% 1%;
+}
+
+.seta-04{
+    width: 31%;
+    height: 41%;
+    position: absolute;
+    right: 52vw;
+    top: 90vw;
+    transform: rotate(22deg);
+}
+
+.btn-pecas-modal-04{
+    position: relative;
+    top: 9vw;
+}
+
+.btn-pecas-04{
+    color: var(--cor-branco);
+}
+
+.btn-avancar-04{
+    top: -20vw;
+    color: var(--cor-branco);
+    width: 38%;
+    right: -29vw;
+}
+
+.texto-modal-04{
+    position: relative;
+    top: -38vw;
+}
+
+.div-texto-seta-04{
+    width: 80vw;
+    justify-content: flex-end;
+}
+/* FIM MODAL INSTRUCAO-4 */
+
+/* MODAL INSTRUCAO-5 */
+.seta-05{
+    width: 31%;
+    height: 32%;
+    position: absolute;
+    right: 56vw;
+    top: 114vw;
+    transform: rotate(7deg);
+}
+
+.btn-avancar-05 {
+    top: -4vw;
+}
+
+.texto-modal-05 {
+    width: 44vw;
+}
+
+.div-texto-seta-05 {
+    margin-top: 30px;
+    justify-content: flex-end;
+}
+/* FIM MODAL INSTRUCAO-5 */
+
+/* MODAL MUITO BEM */
+#modal-muito-bem, #modal-numero-sorteado{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container-feedback{
+    height: 95vh;
+}
+
+.div-feedback{
+    background-color: var(--cor-fundo-4);
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.texto-modal-feedback-bom, .texto-modal-feedback-ruim, .texto-modal-feedback-parabens{
+    color: var(--cor-verde);
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-2);
+    text-align: center;
+    margin-top: -6vw;
+    width: 52vw;
+}
+/* FIM MODAL MUITO BEM */
+
+/* MODAL O NUMERO SORTEADO É MENOR */
+.texto-modal-feedback-ruim, .texto-modal-feedback-parabens-errou{
+    color: var(--cor-vermelho);
+    width: 61vw;
+    margin-top: -3vw;
+}
+/* FIM MODAL O NUMERO SORTEADO É MENOR */
+
+/* MODAL PARABENS */
+.modal-parabens{
+    background-color: rgba(98, 78, 59, 0.5);
+}
+
+.btn-parabens{
+    width: 85vw;
+    position: relative;
+    top: 28vw;
+    right: 0vw;
+    font-size: var(--font-size-5);
+    background-color: var(--cor-fundo-4);
+    border-radius: var(--border-radius);
+    color: var(--cor-texto-2);
+}
+
+.texto-modal-feedback-parabens, .texto-modal-feedback-parabens-errou{
+    font-size: var(--font-size-5);
+    font-weight: var(--font-weight-2);
+    text-align: center;
+    margin-top: 10vw;
+    width: 44vw;
+}
+
+.texto-modal-feedback-parabens-errou{
+    width: 40vw;
+}
+/* FIM MODAL PARABENS */
+
+/* MODAL QUE PENA */
+.feedback-que-pena{
+    height: 103vw;
+}
+/* FIM MODAL QUE PENA */
+/* FIM TELA MODAL */
+
+/* MODAL DADOS */
+.dice {
+    display: block;
+    width: 223px;
+    height: 223px;
+    background-image: url('../assets/dado.png');
+    /* background-image: url('../assets/dado-1.png'); */
+    /* background-image: url('../assets/Dice.png'); */
+    /* background-image: url('../assets/Dice_02.png'); */
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+.d1 {
+    background-position: 0 0;
+}
+
+.d2 {
+    background-position: -223px 0px;
+}
+
+.d3 {
+    background-position: -446px 0;
+}
+
+.d4 {
+    background-position: 0 -223px;
+}
+
+.d5 {
+    background-position: -223px -223px;
+}
+
+.d6 {
+    background-position: -446px -223px;
+}
+
+.container-dado {
+    width: 223px;
+    height: 223px;
+    position: relative;
+    -o-perspective: 1000px;
+    -webkit-perspective: 1000px;
+    -ms-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+    margin: 203px auto;
+}
+
+#cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -o-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    animation: girarDado 3s ease-in-out forwards;
+    transform: rotateX(0deg) rotateY(0deg); /* Changed this line */
+}
+
+@keyframes girarDado {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+
+    25% {
+        transform: rotateX(360deg) rotateY(0deg) rotateZ(90deg);
+    }
+
+    50% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg);
+    }
+}
+
+
+#cube figure,
+#cube figure p {
+    margin: 0;
+    padding: 0;
+    width: 223px;
+    height: 223px;
+    display: block;
+    position: absolute;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px dotted #434343;
+}
+
+#cube .front {
+    -o-transform: rotateY(0deg) translateZ(113px);
+    -webkit-transform: rotateY(0deg) translateZ(113px);
+    -ms-transform: rotateY(0deg) translateZ(113px);
+    -moz-transform: rotateY(0deg) translateZ(113px);
+    transform: rotateY(0deg) translateZ(113px);
+}
+
+#cube .back {
+    -o-transform: rotateX(180deg) translateZ(113px);
+    -webkit-transform: rotateX(180deg) translateZ(113px);
+    -ms-transform: rotateX(180deg) translateZ(113px);
+    -moz-transform: rotateX(180deg) translateZ(113px);
+    transform: rotateX(180deg) translateZ(113px);
+}
+
+#cube .right {
+    -o-transform: rotateY(90deg) translateZ(113px);
+    -webkit-transform: rotateY(90deg) translateZ(113px);
+    -ms-transform: rotateY(90deg) translateZ(113px);
+    -moz-transform: rotateY(90deg) translateZ(113px);
+    transform: rotateY(90deg) translateZ(113px);
+}
+
+#cube .left {
+    -o-transform: rotateY(-90deg) translateZ(113px);
+    -webkit-transform: rotateY(-90deg) translateZ(113px);
+    -ms-transform: rotateY(-90deg) translateZ(113px);
+    -moz-transform: rotateY(-90deg) translateZ(113px);
+    transform: rotateY(-90deg) translateZ(113px);
+}
+
+#cube .top {
+    -o-transform: rotateX(90deg) translateZ(113px);
+    -webkit-transform: rotateX(90deg) translateZ(113px);
+    -ms-transform: rotateX(90deg) translateZ(113px);
+    -moz-transform: rotateX(90deg) translateZ(113px);
+    transform: rotateX(90deg) translateZ(113px);
+}
+
+#cube .bottom {
+    -o-transform: rotateX(-90deg) translateZ(113px);
+    -webkit-transform: rotateX(-90deg) translateZ(113px);
+    -ms-transform: rotateX(-90deg) translateZ(113px);
+    -moz-transform: rotateX(-90deg) translateZ(113px);
+    transform: rotateX(-90deg) translateZ(113px);
+}
+
+
+#cube.show-d1 {
+    transform: rotateX(0deg) rotateY(0deg);
+}
+
+#cube.show-d2 {
+    transform: rotateX(-180deg);
+}
+
+#cube.show-d3 {
+    transform: rotateY(-90deg);
+}
+
+#cube.show-d4 {
+    transform: rotateY(90deg);
+}
+
+#cube.show-d5 {
+    transform: rotateX(-90deg);
+}
+
+#cube.show-d6 {
+    transform: rotateX(90deg);
+}
+
+#cube {
+    -o-transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -moz-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.fechar-dado{
+    margin: 18% 22% 0% 0%;
+}
+/* FIM MODAL DADOS */
+
+
+/* TELAS RESPONSIVAS */
+@media screen and (min-width: 320px) and (max-width: 359px) {}
+
+@media screen and (min-width: 425px) {}
+
+@media screen and (min-width: 768px) {}
+
+@media screen and (min-width: 930px) {}
+
+@media only screen and (min-width: 1024px) {
+    html, body {
+        overflow: hidden;
+    }
+
+    .titulo {
+        width: 40vw;
+        cursor: pointer;
+    }
+    .modal-incorreta {
+        margin: 10% auto;
+        width: 50%;
+        height: 54vh;
+    }
+}
+
+@media screen and (min-width: 1180px) {
+    
+    .modal-incorreta {
+        margin: 21% auto;
+    }
+}
+
+@media screen and (min-width: 1240px) {
+ 
+
+    .modal-incorreta {
+        margin: 10% auto;
+        width: 50%;
+        height: 54vh;
+    }
+
+
+}
+
+@media screen and (min-width: 2000px) {}
+
+/* FIM TELAS RESPONSIVAS */

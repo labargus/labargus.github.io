@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conteudo Digital</title>
+    <link rel="shortcut icon" type="imagex/png" href="assets/icon.ico">
+
+    <!-- js -->
+    <script type="module" defer src="js/script.js"></script>
+
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+
+    <!-- estilos -->
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/globalStyles.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+    <!-- TELA CREDITOS -->
+    <section class="tela-creditos is-hidden">
+        <div class="container" id="creditos">
+
+            <div id="estrutura" style="display: none">
+                <!-- Conteúdo da div que você deseja clonar -->
+                <div class="colunas">
+                    <!-- Insira na ID a coleção (CQT, SAE ou SPE) -->
+                    <div class="colecao" id="SPE">
+                        <!-- Insira na ID o segmento (EducacaoInfantil, AnosIniciais, AnosFinais ou EnsinoMedio) -->
+                        <div class="segmento" ID="AnosFinais">
+                            <div class="setor diretorGeral"></div>
+                            <div class="setor diretorConteudo"></div>
+                            <div class="setor NCE"></div>
+                            <div class="setor NEL"></div>
+                            <div class="setor NTC"></div>
+                        </div>
+
+                        <!-- caso não haja créditos de imagem, comentar a div -->
+                        <!--<div class="creditos-imagens">
+                                <h2 class="cargo">Créditos de imagem:</h2>
+                                <p class="nome"></p>@Adobe Stock/Zig Koch</p>
+                            </div>-->
+                    </div>
+                    <div id="desenvolvimento"></div>
+                </div>
+                <div class="direitos"></div>
+            </div>
+
+            <script src="js/info-creditos.js"></script>
+            <!--Aqui vai os nomes da equipe do pedagógico e Interações Digitais -->
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_andreaB"></div>
+                <div class="cargo" id="cargo_designerInstrucional"></div>
+            </div>
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_nayaraG"></div>
+                <div class="cargo" id="cargo_desenvolvedor"></div>
+            </div>
+
+            <iframe id="iframeCredito" width="100%" height="100%"></iframe>
+        </div>
+        <div class="fechar-creditos">
+            <div class="fechar"></div>
+        </div>
+    </section>
+    <!-- TELA ROTAÇAO -->
+    <section class="tela rotate is-hidden">
+        <div class="telaGirar"></div>
+        <div class="dispositivoGirar"></div>
+        <div class="textoGirar">
+            <p>PARA UMA MELHOR EXPERIÊNCIA DEIXE SEU DISPOSITIVO NA POSIÇÃO VERTICAL</p>
+        </div>
+    </section>
+    <!-- TELA INICIO -->
+    <section id="secao-inicio" class="telas fundos tela-inicio">
+        <div class="div-secao-inicio">
+            <img id="btn_inicio" class="titulo" src="assets/logo_iniciar.png" alt="">
+        </div>
+        <div class="creditos">CRÉDITOS</div>
+    </section>
+    <!-- TELA APRESENTAÇÃO -->
+    <section id="secao-apresentacao" class="telas tela-apresentacao is-hidden">
+        <div class="div-container-apresentacao container">
+            <div class="div-apresentacao div-fundos">DIGITE SEU NOME</div>
+            <input id="nome-participante" class="input-nome div-fundos" type="text">
+        </div>
+        <button id="btn-apresentacao" class="btn btn-avancar">AVANÇAR</button>
+    </section>
+    <!-- TELA JOGO 1 -->
+    <section id="secao-jogo-1" class="telas tela-jogo-1 is-hidden">
+        <div class="container-jogo container-jogo-1">
+            <button id="btn-ajuda" class="btn btn-ajuda">AJUDA</button>
+            <div class="div-pontos">
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome jogador"></p>
+                    <div class="estrela-grande">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                    </div>
+                </div>
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome">COMPUTADOR</p>
+                    <div class="estrela-grande">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="div-rodadas div-fundos">
+                <div class="estrela-grande-rodadas-01">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                </div>
+            </div>
+            <div class="div-jogar-dados div-fundos">
+                <img class="img-jogar-dados" src="assets/dado03.png" alt="">
+            </div>
+            <div class="estrela-pequena">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_branca.png" alt="">
+            </div>
+            <div class="btn-pecas">
+                <button id="btn-pegar" class="btn btn-peca">PEGAR PEÇAS</button>
+                <button id="btn-nao-pegar" class="btn btn-peca">NÃO PEGAR</button>
+            </div>
+        </div>
+        <!-- TELA MODAL INSTRUCAO-1 -->
+        <div id="modal-instrucao-1" class="modal">
+            <div class="container-jogo modal-container">
+                <button id="btn-modal-01" class="btn btn-avancar-01">AVANÇAR</button>
+                <div class="div-texto-seta">
+                    <p class="texto-modal">AQUI APARECERÃO AS PEÇAS QUE VOCÊ DEVERÁ COMPARAR A QUANTIDADE COM O VALOR
+                        QUE SERÁ SORTEADO NO DADO</p>
+                    <img class="seta-01" src="assets/seta01.png" alt="">
+                </div>
+                <div class="div-rodadas div-fundos">
+                    <div class="estrela-grande-rodadas-intr-01">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL INSTRUCAO-2 -->
+        <div id="modal-instrucao-2" class="modal">
+            <div class="container-jogo modal-container container-modal-02">
+                <button id="btn-modal-02" class="btn btn-avancar-02">AVANÇAR</button>
+                <div class="div-texto-seta">
+                    <p class="texto-modal">PARA GANHAR AS PEÇAS QUE ESTÃO NA CAIXA, LANCE OS DADOS.</p>
+                    <img class="seta-01" src="assets/seta01.png" alt="">
+                </div>
+                <div class="div-jogar-dados div-fundos">JOGAR DADOS</div>
+            </div>
+        </div>
+        <!-- TELA MODAL INSTRUCAO-3 -->
+        <div id="modal-instrucao-3" class="modal">
+            <div class="container-jogo modal-container container-modal-03">
+                <button id="btn-modal-03" class="btn btn-avancar-02">AVANÇAR</button>
+                <div class="div-texto-seta div-texto-seta-03">
+                    <img class="seta-02" src="assets/seta02.png" alt="">
+                    <p class="texto-modal texto-modal-03">VOCÊ PODE PEGAR AS PEÇAS SE A QUANTIDADE DE PONTOS NO DADO FOR
+                        MAIOR.</p>
+                    <img class="seta-03" src="assets/seta03.png" alt="">
+                </div>
+                <div class="div-rodadas div-fundos div-rodadas-03">
+                    <div class="estrela-grande-rodadas-intr-03">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                    </div>
+                </div>
+                <div class="div-jogar-dados div-fundos">
+                    <img class="img-jogar-dados" src="assets/dado03.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL INSTRUCAO-4 -->
+        <div id="modal-instrucao-4" class="modal">
+            <div class="container-jogo modal-container container-modal-04">
+                <button id="btn-modal-04" class="btn btn-avancar-04">AVANÇAR</button>
+                <div class="div-texto-seta div-texto-seta-04">
+                    <p class="texto-modal texto-modal-04">AQUI VOCÊ CLICA SE QUER PEGAR AS PEÇAS OU SE NÃO QUER</p>
+                    <img class="seta-04" src="assets/seta02.png" alt="">
+                </div>
+                <div class="btn-pecas btn-pecas-modal-04">
+                    <button id="btn-pegar" class="btn btn-peca btn-pecas-04">PEGAR PEÇAS</button>
+                    <button id="btn-nao-pegar" class="btn btn-peca btn-pecas-04">NÃO PEGAR</button>
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL INSTRUCAO-5 -->
+        <div id="modal-instrucao-5" class="modal">
+            <div class="container-jogo modal-container container-modal-05">
+                <button id="btn-modal-05" class="btn btn-avancar-05">AVANÇAR</button>
+                <div class="div-pontos">
+                    <div class="div-nome-pontos div-fundos">
+                        <p class="nome jogador"></p>
+                        <div class="estrela-grande">
+                            <img src="assets/estrela_maior.png" alt="">
+                            <img src="assets/estrela_maior.png" alt="">
+                            <img src="assets/estrela_maior.png" alt="">
+                        </div>
+                    </div>
+                    <div class="div-nome-pontos div-fundos">
+                        <p class="nome">COMPUTADOR</p>
+                        <div class="estrela-grande">
+                            <img src="assets/estrela_maior.png" alt="">
+                            <img src="assets/estrela_maior.png" alt="">
+                            <img src="assets/estrela_maior.png" alt="">
+                            <img src="assets/estrela_maior.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="div-texto-seta div-texto-seta-05">
+                    <img class="seta-05" src="assets/seta04.png" alt="">
+                    <p class="texto-modal texto-modal-05">AS PEÇAS GANHAS FICAM AQUI. GANHA O JOGO QUEM FICAR COM O
+                        MAIOR NÚMERO DE PEÇAS NO FINAL.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- TELA JOGO 2 -->
+    <section id="secao-jogo-2" class="telas tela-jogo-2 is-hidden">
+        <div class="container-jogo container-jogo-1">
+            <button id="btn-ajuda" class="btn btn-ajuda">AJUDA</button>
+            <div class="div-pontos">
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome jogador"></p>
+                    <div class="estrela-grande">
+                        <!-- <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome">COMPUTADOR</p>
+                    <div class="estrela-grande">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="div-rodadas div-fundos">
+                <div class="estrela-grande-rodadas-02">
+                    <!-- <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt=""> -->
+                </div>
+            </div>
+            <!-- <div class="div-jogar-dados div-fundos">
+                <img class="img-jogar-dados" src="assets/dado03.png" alt="">
+            </div> -->
+            <div class="div-jogar-dados div-fundos jogar">JOGAR DADOS</div>
+            <div class="estrela-pequena">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_branca.png" alt="">
+            </div>
+        </div>
+    </section>
+    <!-- TELA JOGO 3 -->
+    <section id="secao-jogo-3" class="telas tela-jogo-3 is-hidden">
+        <div class="container-jogo container-jogo-1">
+            <button id="btn-ajuda" class="btn btn-ajuda">AJUDA</button>
+            <div class="div-pontos">
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome jogador"></p>
+                    <div class="estrela-grande espaco-jogador">
+                        <!-- <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome">COMPUTADOR</p>
+                    <div class="estrela-grande espaço-computador">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="div-rodadas div-fundos estrela-rodadas">
+                <!-- <div class="estrela-grande-rodadas"> -->
+                <!-- <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt=""> -->
+                <!-- </div> -->
+            </div>
+            <div id="resultadoDado" class="div-jogar-dados div-fundos">
+                <!-- <img id="resultadoDado" class="img-jogar-dados" src="" alt=""> -->
+            </div>
+            <!-- <div class="div-jogar-dados div-fundos">JOGAR DADOS</div> -->
+            <div class="estrela-pequena">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_branca.png" alt="">
+            </div>
+            <div class="btn-pecas">
+                <button id="btn-pegar-03" class="btn btn-peca">PEGAR PEÇAS</button>
+                <button id="btn-nao-pegar-03" class="btn btn-peca">NÃO PEGAR</button>
+            </div>
+        </div>
+        <!-- TELA MODAL 'MUITO BEM' -->
+        <div id="modal-muito-bem" class="modal">
+            <div class="container-feedback modal-container">
+                <div class="div-fundos div-feedback">
+                    <span class="close correctOption bt-close">&times;</span>
+                    <p class="texto-modal texto-modal-feedback-bom">MUITO BEM! AGORA É A VEZ DO OUTRO JOGADOR.</p>
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL 'O NUMERO SORTEADO É MENOR' -->
+        <div id="modal-numero-sorteado" class="modal">
+            <div class="container-feedback modal-container">
+                <div class="div-fundos div-feedback">
+                    <span class="close bt-close">&times;</span>
+                    <p class="texto-modal texto-modal-feedback-ruim">O NÚMERO SORTEADO NÃO É MAIOR QUE O NÚMERO DE
+                        PEÇAS.</p>
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL 'QUE PENA' -->
+        <div id="modal-que-pena" class="modal">
+            <div class="container-feedback modal-container">
+                <div class="div-fundos div-feedback feedback-que-pena">
+                    <span class="close bt-close">&times;</span>
+                    <p class="texto-modal texto-modal-feedback-ruim">QUE PENA! VOCÊ PODERIA TER PEGADO AS PEÇAS. O
+                        NÚMERO SORTEADO É MAIOR QUE A QUANTIDADE DE PEÇAS.</p>
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL PARABENS -->
+        <div id="modal-parabens" class="modal">
+            <div class="container-feedback modal-container">
+                <div class="div-fundos div-feedback">
+                    <p class="texto-modal texto-modal-feedback-parabens">PARABÉNS! VOCÊ GANHOU.</p>
+                    <button id="btn-modal-parabens" class="btn btn-parabens">TENTAR NOVAMENTE</button>
+                </div>
+            </div>
+        </div>
+        <!-- TELA MODAL ERROU -->
+        <div id="modal-errou" class="modal">
+            <div class="container-feedback modal-container">
+                <div class="div-fundos div-feedback">
+                    <p class="texto-modal texto-modal-feedback-parabens-errou">NÃO FOI DESSA VEZ!</p>
+                    <button id="btn-modal-errou" class="btn btn-parabens">TENTAR NOVAMENTE</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        Alteracoes no index.html
+        -movi a tela modal do dado para fora das outras, para ser acessada de qualquer parte
+        -adicionei class bt-close para os botoes de fechar para nao conflitar com o botao fechar Dado
+        
+        TELA MODAL JOGAR DADO -->
+    <div id="modal-jogar-dado" class="modal">
+        <span id="fechar-dado-01" class="close fechar-dado">X</span>
+        <div class="container-dado ">
+            <div id="cube">
+                <figure class="front d1 dice">
+                    <p></p>
+                </figure>
+                <figure class="back d2 dice">
+                    <p></p>
+                </figure>
+                <figure class="right d3 dice">
+                    <p></p>
+                </figure>
+                <figure class="left d4 dice">
+                    <p></p>
+                </figure>
+                <figure class="top d5 dice">
+                    <p></p>
+                </figure>
+                <figure class="bottom d6 dice">
+                    <p></p>
+                </figure>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+/* ---- Fontes para titulo ---- */
+
+/* AMATIC ---- 
+font-family: 'Amatic SC', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
+/* ---------------------------- */
+
+/* BEBAS---- 
+font-family: "Bebas Neue", sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+/* ---------------------------- */
+
+/* ---- Fontes para texto ---- */
+
+/* Opens Sans ---- 
+font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,800;1,300;1,500;1,800&display=swap');
+
+/* ---------------------------- */
+
+/* Amatic SC ---- 
+font-family: "Amatic SC", sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
+/* ---------------------------- */
+
+
+:root {
+    --cor-fundo-1: #F1F1F1;
+    --cor-fundo-2: #fffcfcc0;
+    --cor-fundo-3: rgba(232, 232, 232, 0.6);
+    --cor-fundo-4: #F5F3F1;
+    --cor-fundo-rotate:#DDD4CA;
+
+    --cor-texto-1: #96897C;
+    --cor-texto-2: #5E4934;
+    --cor-texto-3: #7A6F66;
+
+    --cor-branco: #ffffff;
+    --cor-preto: #000000;
+    --cor-verde: #265640;
+    --cor-vermelho: #893F36;
+
+    --cor-cinza-1: #A4A4A4;
+    --cor-cinza-2: #666666;
+    --cor-cinza-3: #242424;
+
+    --font-primary: "Amatic SC", sans-serif;
+
+    --font-size-1: clamp(0.813rem, 0.494rem + 0.85vw, 1.875rem);
+    --font-size-2: clamp(1rem, 0.738rem + 0.7vw, 1.875rem);
+    --font-size-3: clamp(1.125rem, 0.9rem + 0.6vw, 1.875rem);
+    --font-size-4: clamp(24px, 1.125rem + 1vw, 2.75rem);
+    --font-size-5:clamp(1.875rem, 1.766rem + 0.605vw, 2.75rem);
+    --font-size-6: clamp(39.008px, 2.214rem + 0.595vw, 2.75rem);
+
+    --font-weight-1: 400;
+    --font-weight-2: 700;
+
+    --border-radius-creditos: 40px;
+    --border-radius: 11px;
+}
+
+
+body {
+    position: relative;
+    height: 100%;
+    background-size: cover;
+    background-repeat: repeat;
+    background-color: var(--cor-fundo-rotate);
+    min-height: 100vh;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-2);
+    color: var(--cor-texto-2);
+}
+
+html, body {
+    overflow-x: hidden;
+}
