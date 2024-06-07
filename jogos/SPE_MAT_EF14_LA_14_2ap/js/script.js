@@ -5,25 +5,17 @@ $(document).ready(function () {
   const resultadoDado = $('#resultadoDado');
   const estrelaPlayer = $('#estrela-player');
   const estrelaComputador = $('#estrela-computador');
+
+
   var nDado = 0;
   var numStars = 0;
   var starsToAdd = 0;
   var choice = 0;
   var isUserPlaying = true;
-  var stages = [
-    { stars: 2 },
-    { stars: 4 },
-    { stars: 5 },
-    { stars: 3 },
-    { stars: 1 },
-    { stars: 5 },
-    { stars: 1 },
-    { stars: 2 },
-    { stars: 3 },
-    { stars: 4 },
-    { stars: 5 },
-    { stars: 3 }
-  ]
+  var pulaFaseComputer = false;
+  var addStars = false;
+  var countTurn = 0;
+  var endTurns = 2;
 
 
 
@@ -138,48 +130,26 @@ $(document).ready(function () {
 
     }
   });
-
-
-  //troquei o nome para btClose para nao conflitar com o botao de fechar o dado
-  $('.bt-close').click(function (event) {
-    //habilita cliques apaenas para o usuario
-    if (isUserPlaying) {
-      // $('#secao-jogo-1').removeClass('is-hidden');
-      $('#modal-muito-bem').hide();
-      $('#modal-numero-sorteado').hide();
-      $('#modal-que-pena').hide();
-      $('#modal-parabens').hide();
-
-      if ($(this).hasClass("correctOption")) {
-        isUserPlaying = false;
-        ComputerPlay(event);
-      }
-
-      if ($(this).hasClass("wrongOption")) {
-        isUserPlaying = false;
-        ComputerPlay(event);
-      }
-    }
-  });
-
   $('#btn-modal-parabens').click(function () {
     //habilita cliques apaenas para o usuario
     if (isUserPlaying) {
       location.reload();
     }
   });
-
   $('#btn-modal-errou').click(function () {
     //habilita cliques apaenas para o usuario
     if (isUserPlaying) {
       location.reload();
     }
   });
+  //troquei o nome para btClose para nao conflitar com o botao de fechar o dado
+  $('.bt-close').click(function (event) {
+    VerifyContinue($(this));
+  });
 
   $('.fechar-dado').click(function () {
     closeDice();
   });
-
   function closeDice() {
     if (isUserPlaying) {
       $('#modal-jogar-dado').hide();
@@ -190,9 +160,45 @@ $(document).ready(function () {
       //$('#secao-jogo-3').removeClass('is-hidden');
     }
   }
+  function VerifyContinue(_obj) {
 
-  function nextFase(_addStars) {
-    if (_addStars) {
+    //aqui verifica se jogo chegou ao FIM, e se o usuario tem mais estrelas que o computador
+    if (countTurn >= endTurns) {
+      $('#modal-muito-bem').hide();
+      $('#modal-numero-sorteado').hide();
+      $('#modal-que-pena').hide();
+      if($('#estrela-player').children().length>$("#estrela-computador").children().length){
+        $('#modal-parabens').show();
+      }else{
+        $('#modal-errou').show();
+      }
+      return;
+    }
+    //habilita cliques apaenas para o usuario
+    console.log("bt-close")
+    if (isUserPlaying) {
+      // $('#secao-jogo-1').removeClass('is-hidden');
+      $('#modal-muito-bem').hide();
+      $('#modal-numero-sorteado').hide();
+      $('#modal-que-pena').hide();
+      $('#modal-parabens').hide();
+
+      if (_obj.hasClass("correctOption")) {
+        nextFase();
+        isUserPlaying = false;
+        ComputerPlay();
+      }
+
+      if (_obj.hasClass("wrongOption")) {
+        isUserPlaying = false;
+        ComputerPlay();
+      }
+    }
+  }
+  function nextFase() {
+
+
+    if (addStars) {
 
       if (isUserPlaying) {
         for (var i = 0; i < numStars; i++) {
@@ -209,9 +215,13 @@ $(document).ready(function () {
         }
 
       }
+      countTurn++;
+      randomizaFase();
     }
+    pulaFaseComputer = false;
+    addStars = false;
 
-    randomizaFase();
+
 
 
   }
@@ -226,15 +236,15 @@ $(document).ready(function () {
       container.append(star);
     }
   }
-  function getObjPos(_obj,_dir) {
-    if(_dir=="left"){
+  function getObjPos(_obj, _dir) {
+    if (_dir == "left") {
       return $(_obj).offset().left - $('.littleHand').offset().left;
-    }else{
+    } else {
       return $(_obj).offset().top - $('.littleHand').offset().top;
     }
-    
+
   }
-  function ComputerPlay(event) {
+  function ComputerPlay() {
 
     setTimeout(() => {
       console.log("inicia jogada do computador")
@@ -254,14 +264,14 @@ $(document).ready(function () {
         if (choice < 0.5) {
           anime({
             targets: ['.littleHand'],
-            translateX:getObjPos('#btn-pegar3',"left"),
-            translateY:getObjPos('#btn-pegar3',"top")
+            translateX: '20vw',
+            translateY: '85vh'
           });
         } else {
           anime({
             targets: ['.littleHand'],
-            translateX: getObjPos('#btn-nao-pegar3',"left"),
-            translateY: getObjPos('#btn-nao-pegar3',"top")
+            translateX: '70vw',
+            translateY: '85vh'
           });
         }
         setTimeout(() => {
@@ -279,7 +289,7 @@ $(document).ready(function () {
             }
             anime({
               targets: ['.littleHand'],
-              translateX: '70vw',
+              translateX: '75vw',
               translateY: '40vh'
             });
 
@@ -289,6 +299,10 @@ $(document).ready(function () {
               $('.btn-pecas').addClass('is-hidden');
               $('#btn-pegar3').css('opacity', '1');
               $('#btn-nao-pegar3').css('opacity', '1');
+
+              if (pulaFaseComputer) {
+                nextFase();
+              }
 
               //esconde telas de aviso 
               $("#modal-muito-bem").hide();
@@ -367,7 +381,9 @@ $(document).ready(function () {
       if (faceUm.length > 0 && numStars == 1) {
         setTimeout(function () {
           $("#modal-muito-bem").show();
-          nextFase(true);
+          pulaFaseComputer = true;
+          addStars = true;
+          //nextFase(true);
         }, 200);
 
         return true;
@@ -381,7 +397,9 @@ $(document).ready(function () {
         setTimeout(function () {
 
           $("#modal-muito-bem").show();
-          nextFase(true);
+          pulaFaseComputer = true;
+          addStars = true;
+          //nextFase(true);
         }, 200);
         return true;
       } else if (faceDois.length > 0 && numStars > 2) {
@@ -395,7 +413,9 @@ $(document).ready(function () {
         setTimeout(function () {
 
           $("#modal-muito-bem").show();
-          nextFase(true);
+          pulaFaseComputer = true;
+          addStars = true;
+          //nextFase(true);
         }, 200);
 
         return true;
@@ -410,7 +430,9 @@ $(document).ready(function () {
         setTimeout(function () {
 
           $("#modal-muito-bem").show();
-          nextFase(true);
+          pulaFaseComputer = true;
+          addStars = true;
+          //nextFase(true);
         }, 200);
         return true;
       } else if (faceQuatro.length > 0 && numStars > 4) {
@@ -423,7 +445,9 @@ $(document).ready(function () {
         setTimeout(function () {
 
           $("#modal-muito-bem").show();
-          nextFase(true);
+          pulaFaseComputer = true;
+          addStars = true;
+          //nextFase(true);
         }, 200);
         return true;
       } else if (faceCinco.length > 0 && numStars > 5) {
@@ -436,7 +460,9 @@ $(document).ready(function () {
         setTimeout(function () {
 
           $("#modal-muito-bem").show();
-          nextFase(true);
+          pulaFaseComputer = true;
+          addStars = true;
+          //nextFase(true);
         }, 200);
         return true;
       } else if (faceSeis.length > 0 && numStars > 6) {
