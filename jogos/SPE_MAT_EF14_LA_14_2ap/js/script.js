@@ -3,8 +3,27 @@ $(document).ready(function () {
 
   const cube = $('#cube');
   const resultadoDado = $('#resultadoDado');
+  const estrelaPlayer = $('#estrela-player');
+  const estrelaComputador = $('#estrela-computador');
+  var nDado = 0;
   var numStars = 0;
+  var starsToAdd = 0;
+  var choice = 0;
   var isUserPlaying = true;
+  var stages = [
+    { stars: 2 },
+    { stars: 4 },
+    { stars: 5 },
+    { stars: 3 },
+    { stars: 1 },
+    { stars: 5 },
+    { stars: 1 },
+    { stars: 2 },
+    { stars: 3 },
+    { stars: 4 },
+    { stars: 5 },
+    { stars: 3 }
+  ]
 
 
 
@@ -100,6 +119,7 @@ $(document).ready(function () {
     $('#modal-instrucao-5').hide();
     $('#secao-jogo-1').addClass('is-hidden');
     $('#secao-jogo-2').removeClass('is-hidden');
+    randomizaFase();
   });
 
   $('.btn-ajuda').click(function () {
@@ -114,17 +134,8 @@ $(document).ready(function () {
     if (isUserPlaying) {
       $('#modal-jogar-dado').show();
       //Aqui eu mando girar o Dado pois ele estava girando em falso ao abrir a div (no edge)
-      roll(event);
+      roll();
 
-
-      numStars = getRandomInt(1, 7); // Armazena a quantidade de estrelas
-      var container = $('.estrela-rodadas');
-      container.empty();
-
-      for (var i = 0; i < numStars; i++) {
-        var star = $('<div class="star"></div>');
-        container.append(star);
-      }
     }
   });
 
@@ -137,8 +148,14 @@ $(document).ready(function () {
       $('#modal-muito-bem').hide();
       $('#modal-numero-sorteado').hide();
       $('#modal-que-pena').hide();
+      $('#modal-parabens').hide();
 
       if ($(this).hasClass("correctOption")) {
+        isUserPlaying = false;
+        ComputerPlay(event);
+      }
+
+      if ($(this).hasClass("wrongOption")) {
         isUserPlaying = false;
         ComputerPlay(event);
       }
@@ -148,60 +165,145 @@ $(document).ready(function () {
   $('#btn-modal-parabens').click(function () {
     //habilita cliques apaenas para o usuario
     if (isUserPlaying) {
-      $('#modal-parabens').hide();
-      $('#secao-jogo-3').addClass('is-hidden');
-      $('#secao-jogo-2').removeClass('is-hidden');
-      $('#nome-participante').val('');
+      location.reload();
     }
   });
 
   $('#btn-modal-errou').click(function () {
     //habilita cliques apaenas para o usuario
     if (isUserPlaying) {
-      $('#modal-errou').hide();
-      $('#secao-jogo-3').addClass('is-hidden');
-      $('#secao-jogo-2').removeClass('is-hidden');
-      $('#nome-participante').val('');
+      location.reload();
     }
   });
-
 
   $('.fechar-dado').click(function () {
-    //habilita cliques apaenas para o usuario
-    if (isUserPlaying) {
-      $('#modal-jogar-dado').hide();
-      $('#secao-jogo-2').addClass('is-hidden');
-      $('#secao-jogo-3').removeClass('is-hidden');
-    }
+    closeDice();
   });
 
+  function closeDice() {
+    if (isUserPlaying) {
+      $('#modal-jogar-dado').hide();
+      $('.jogar').addClass('is-hidden');
+      $('#resultadoDado').removeClass('is-hidden');
+      $('.btn-pecas').removeClass('is-hidden');
+      //$('#secao-jogo-2').addClass('is-hidden');
+      //$('#secao-jogo-3').removeClass('is-hidden');
+    }
+  }
+
+  function nextFase(_addStars) {
+    if (_addStars) {
+
+      if (isUserPlaying) {
+        for (var i = 0; i < numStars; i++) {
+          console.log('Adicionando estrela:', i + 1);
+          var star = $('<div class="star"></div>');
+          estrelaPlayer.append(star);
+        }
+
+      } else {
+        for (var i = 0; i < numStars; i++) {
+          console.log('Adicionando estrela:', i + 1);
+          var star = $('<div class="star"></div>');
+          estrelaComputador.append(star);
+        }
+
+      }
+    }
+
+    randomizaFase();
+
+
+  }
+  function randomizaFase() {
+
+    numStars = getRandomInt(1, 6); // Armazena a quantidade de estrelas
+    var container = $('.estrela-rodadas');
+    container.empty();
+
+    for (var i = 0; i < numStars; i++) {
+      var star = $('<div class="star"></div>');
+      container.append(star);
+    }
+  }
+  function getObjPos(_obj,_dir) {
+    if(_dir=="left"){
+      return $(_obj).offset().left - $('.littleHand').offset().left;
+    }else{
+      return $(_obj).offset().top - $('.littleHand').offset().top;
+    }
+    
+  }
   function ComputerPlay(event) {
+
     setTimeout(() => {
       console.log("inicia jogada do computador")
       $('#modal-jogar-dado').show();
+      choice = Math.random();
       //Aqui eu mando girar o Dado pois ele estava girando em falso ao abrir a div (no edge)
-      roll(event);
-
-
-      numStars = getRandomInt(1, 7); // Armazena a quantidade de estrelas
-      var container = $('.estrela-rodadas');
-      container.empty();
-
-      for (var i = 0; i < numStars; i++) {
-        var star = $('<div class="star"></div>');
-        container.append(star);
-      }
-
+      roll();
 
       setTimeout(() => {
         console.log("espera 6s para fechar tela do dado");
 
         $('#modal-jogar-dado').hide();
-        $('#secao-jogo-2').addClass('is-hidden');
-        $('#secao-jogo-3').removeClass('is-hidden');
+        $('.btn-pecas').removeClass('is-hidden');
 
-        
+        //anima a posicao da maozinha pra mostrar que é a vez do computador
+        $('.littleHand').removeClass('is-hidden');
+        if (choice < 0.5) {
+          anime({
+            targets: ['.littleHand'],
+            translateX:getObjPos('#btn-pegar3',"left"),
+            translateY:getObjPos('#btn-pegar3',"top")
+          });
+        } else {
+          anime({
+            targets: ['.littleHand'],
+            translateX: getObjPos('#btn-nao-pegar3',"left"),
+            translateY: getObjPos('#btn-nao-pegar3',"top")
+          });
+        }
+        setTimeout(() => {
+          if (choice < 0.5) {
+            $('#btn-nao-pegar3').css('opacity', '0.5');
+          } else {
+            $('#btn-pegar3').css('opacity', '0.5');
+          }
+          setTimeout(() => {
+            console.log("espera 1s randomiza resposta entre pegar e nao pegar");
+            if (choice < 0.5) {
+              pickItem();
+            } else {
+              dontPickItem();
+            }
+            anime({
+              targets: ['.littleHand'],
+              translateX: '70vw',
+              translateY: '40vh'
+            });
 
+            setTimeout(() => {
+              console.log("espera 3s fecha popups e passa vez pro jogador");
+              //esconde botoes paga pegar
+              $('.btn-pecas').addClass('is-hidden');
+              $('#btn-pegar3').css('opacity', '1');
+              $('#btn-nao-pegar3').css('opacity', '1');
+
+              //esconde telas de aviso 
+              $("#modal-muito-bem").hide();
+              $("#modal-que-pena").hide();
+              $("#modal-numero-sorteado").hide();
+              $("#modal-parabens").hide();
+              //mostra novamente botao jogar
+              $('.jogar').removeClass('is-hidden');
+              $('#resultadoDado').addClass('is-hidden');
+
+              $('.littleHand').addClass('is-hidden');
+              isUserPlaying = true;
+            }, 3000);
+          }, 1500);
+        }, 1500);
       }, 6000);
 
 
@@ -212,9 +314,12 @@ $(document).ready(function () {
 
 
 
-  function roll(event) {
+  function roll() {
+    $('.btn-pecas').addClass('is-hidden');
     var n = Math.floor((Math.random() * 6) + 1);
+    nDado = n;
     cube.removeClass(); // Remove todas as classes anteriores
+    atualizarImagem();
     cube.addClass('show-d' + n); // Adiciona a classe para mostrar a face correta
     cube.css('animation', 'none'); // Remove qualquer animação existente para reiniciar a animação
     setTimeout(function () {
@@ -222,9 +327,11 @@ $(document).ready(function () {
     }, 10); // Pequeno delay para garantir que a animação seja reiniciada
 
     console.log('dice is: ' + n);
+    atualizarImagem();
 
     setTimeout(() => {
-      console.log('Terminou jogada do Dado, caso seja Computador passa pra');
+
+      closeDice()
     }, 4000);
   }
 
@@ -234,234 +341,190 @@ $(document).ready(function () {
 
 
   // Adicionando estrelas na div grande se a condição for verdadeira
-  $('#btn-pegar-03').click(function () {
+  $('#btn-pegar3').click(function () {
     //habilita cliques apaenas para o usuario
+    console.log("pegar!")
     if (isUserPlaying) {
-      function verificarFaceDado() {
-        var faceUm = resultadoDado.find('img[alt="Face 1 do dado"]');
-        var faceDois = resultadoDado.find('img[alt="Face 2 do dado"]');
-        var faceTres = resultadoDado.find('img[alt="Face 3 do dado"]');
-        var faceQuatro = resultadoDado.find('img[alt="Face 4 do dado"]');
-        var faceCinco = resultadoDado.find('img[alt="Face 5 do dado"]');
-        var faceSeis = resultadoDado.find('img[alt="Face 6 do dado"]');
-
-        if (faceUm.length > 0 && numStars == 1) {
-          console.log('A face 1 do dado está presente.');
-          console.log('Entrou no if, numStars:', numStars);
-          var containerGrande = $('.espaco-jogador');
-          // containerGrande.empty();
-
-
-          console.log('Preparando para entrar no loop for com numStars:', numStars);
-          for (var i = 0; i < numStars; i++) {
-            console.log('Adicionando estrela:', i + 1);
-            var star = $('<div class="star"></div>');
-            containerGrande.append(star); // Adiciona as estrelas na div grande
-            setTimeout(function () {
-              $("#modal-muito-bem").show();
-            }, 200);
-          }
-          return true;
-        } else if ((faceUm.length > 0 && numStars > 1)) {
-          setTimeout(function () {
-            $("#modal-numero-sorteado").show();
-          }, 200);
-        }
-
-        if (faceDois.length > 0 && numStars <= 2) {
-          console.log('A face 2 do dado está presente.');
-          console.log('Entrou no if, numStars:', numStars);
-          var containerGrande = $('.espaco-jogador');
-          // containerGrande.empty();
-
-          console.log('Preparando para entrar no loop for com numStars:', numStars);
-          for (var i = 0; i < numStars; i++) {
-            console.log('Adicionando estrela:', i + 1);
-            var star = $('<div class="star"></div>');
-            containerGrande.append(star); // Adiciona as estrelas na div grande
-            setTimeout(function () {
-              $("#modal-muito-bem").show();
-            }, 200);
-          }
-          return true;
-        } else if (faceDois.length > 0 && numStars > 2) {
-          setTimeout(function () {
-            $("#modal-numero-sorteado").show();
-          }, 200);
-        }
-
-        if (faceTres.length > 0 && numStars <= 3) {
-          console.log('A face 3 do dado está presente.');
-          console.log('Entrou no if, numStars:', numStars);
-          var containerGrande = $('.espaco-jogador');
-          // containerGrande.empty();
-
-          console.log('Preparando para entrar no loop for com numStars:', numStars);
-          for (var i = 0; i < numStars; i++) {
-            console.log('Adicionando estrela:', i + 1);
-            var star = $('<div class="star"></div>');
-            containerGrande.append(star); // Adiciona as estrelas na div grande
-            setTimeout(function () {
-              $("#modal-muito-bem").show();
-            }, 200);
-          }
-          return true;
-        } else if (faceTres.length > 0 && numStars > 3) {
-          setTimeout(function () {
-            $("#modal-numero-sorteado").show();
-          }, 200);
-        }
-
-        if (faceQuatro.length > 0 && numStars <= 4) {
-          console.log('A face 4 do dado está presente.');
-          console.log('Entrou no if, numStars:', numStars);
-          var containerGrande = $('.espaco-jogador');
-          // containerGrande.empty();
-
-          console.log('Preparando para entrar no loop for com numStars:', numStars);
-          for (var i = 0; i < numStars; i++) {
-            console.log('Adicionando estrela:', i + 1);
-            var star = $('<div class="star"></div>');
-            containerGrande.append(star); // Adiciona as estrelas na div grande
-            setTimeout(function () {
-              $("#modal-muito-bem").show();
-            }, 200);
-          }
-          return true;
-        } else if (faceQuatro.length > 0 && numStars > 4) {
-          setTimeout(function () {
-            $("#modal-numero-sorteado").show();
-          }, 200);
-        }
-
-        if (faceCinco.length > 0 && numStars <= 5) {
-          console.log('A face 5 do dado está presente.');
-          console.log('Entrou no if, numStars:', numStars);
-          var containerGrande = $('.espaco-jogador');
-          // containerGrande.empty();
-
-
-          console.log('Preparando para entrar no loop for com numStars:', numStars);
-          for (var i = 0; i < numStars; i++) {
-            console.log('Adicionando estrela:', i + 1);
-            var star = $('<div class="star"></div>');
-            containerGrande.append(star); // Adiciona as estrelas na div grande
-            setTimeout(function () {
-              $("#modal-muito-bem").show();
-            }, 200);
-          }
-
-          return true;
-        } else if (faceCinco.length > 0 && numStars > 5) {
-          setTimeout(function () {
-            $("#modal-numero-sorteado").show();
-          }, 200);
-        }
-
-        if (faceSeis.length > 0 && numStars <= 6) {
-          console.log('A face 6 do dado está presente.');
-          console.log('Entrou no if, numStars:', numStars);
-          var containerGrande = $('.espaco-jogador');
-          // containerGrande.empty();
-
-          console.log('Preparando para entrar no loop for com numStars:', numStars);
-          for (var i = 0; i < numStars; i++) {
-            console.log('Adicionando estrela:', i + 1);
-            var star = $('<div class="star"></div>');
-            containerGrande.append(star); // Adiciona as estrelas na div grande
-            setTimeout(function () {
-              $("#modal-muito-bem").show();
-            }, 200);
-          }
-          return true;
-        } else if (faceSeis.length > 0 && numStars > 6) {
-          setTimeout(function () {
-            $("#modal-numero-sorteado").show();
-          }, 200);
-        }
-      }
-
-      // Você pode chamar essa função quando necessário para verificar a condição
-      verificarFaceDado();
+      pickItem();
     }
   });
-
-  $('#btn-nao-pegar-03').click(function () {
+  $('#btn-nao-pegar3').click(function () {
     //habilita cliques apaenas para o usuario
     if (isUserPlaying) {
-      function verificarFaceDado() {
-        var faceUm = resultadoDado.find('img[alt="Face 1 do dado"]');
-        var faceDois = resultadoDado.find('img[alt="Face 2 do dado"]');
-        var faceTres = resultadoDado.find('img[alt="Face 3 do dado"]');
-        var faceQuatro = resultadoDado.find('img[alt="Face 4 do dado"]');
-        var faceCinco = resultadoDado.find('img[alt="Face 5 do dado"]');
-        var faceSeis = resultadoDado.find('img[alt="Face 6 do dado"]');
-
-        if (faceUm.length > 0 && numStars == 1) {
-          setTimeout(function () {
-            $("#modal-que-pena").show();
-          }, 200);
-        } else if ((faceUm.length > 0 && numStars > 1)) {
-          setTimeout(function () {
-            $("#modal-muito-bem").show();
-          }, 200);
-        }
-
-        if (faceDois.length > 0 && numStars <= 2) {
-          setTimeout(function () {
-            $("#modal-que-pena").show();
-          }, 200);
-        } else if (faceDois.length > 0 && numStars > 2) {
-          setTimeout(function () {
-            $("#modal-muito-bem").show();
-          }, 200);
-        }
-
-        if (faceTres.length > 0 && numStars <= 3) {
-          setTimeout(function () {
-            $("#modal-que-pena").show();
-          }, 200);
-        } else if (faceTres.length > 0 && numStars > 3) {
-          setTimeout(function () {
-            $("#modal-muito-bem").show();
-          }, 200);
-        }
-
-        if (faceQuatro.length > 0 && numStars <= 4) {
-          setTimeout(function () {
-            $("#modal-que-pena").show();
-          }, 200);
-        } else if (faceQuatro.length > 0 && numStars > 4) {
-          setTimeout(function () {
-            $("#modal-muito-bem").show();
-          }, 200);
-        }
-
-        if (faceCinco.length > 0 && numStars <= 5) {
-          setTimeout(function () {
-            $("#modal-que-pena").show();
-          }, 200);
-        } else if (faceCinco.length > 0 && numStars > 5) {
-          setTimeout(function () {
-            $("#modal-muito-bem").show();
-          }, 200);
-        }
-
-        if (faceSeis.length > 0 && numStars <= 6) {
-          setTimeout(function () {
-            $("#modal-que-pena").show();
-          }, 200);
-        } else if (faceSeis.length > 0 && numStars > 6) {
-          setTimeout(function () {
-            $("#modal-muito-bem").show();
-          }, 200);
-        }
-      }
-
-      // Você pode chamar essa função quando necessário para verificar a condição
-      verificarFaceDado();
+      dontPickItem();
     }
   });
+  function pickItem() {
+    console.log("pegar", nDado, numStars);
+    function verificarFaceDado() {
+      var faceUm = resultadoDado.find('img[alt="Face 1 do dado"]');
+      var faceDois = resultadoDado.find('img[alt="Face 2 do dado"]');
+      var faceTres = resultadoDado.find('img[alt="Face 3 do dado"]');
+      var faceQuatro = resultadoDado.find('img[alt="Face 4 do dado"]');
+      var faceCinco = resultadoDado.find('img[alt="Face 5 do dado"]');
+      var faceSeis = resultadoDado.find('img[alt="Face 6 do dado"]');
+
+      if (faceUm.length > 0 && numStars == 1) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+          nextFase(true);
+        }, 200);
+
+        return true;
+      } else if ((faceUm.length > 0 && numStars > 1)) {
+        setTimeout(function () {
+          $("#modal-numero-sorteado").show();
+        }, 200);
+      }
+
+      if (faceDois.length > 0 && numStars <= 2) {
+        setTimeout(function () {
+
+          $("#modal-muito-bem").show();
+          nextFase(true);
+        }, 200);
+        return true;
+      } else if (faceDois.length > 0 && numStars > 2) {
+        setTimeout(function () {
+          $("#modal-numero-sorteado").show();
+        }, 200);
+      }
+
+      if (faceTres.length > 0 && numStars <= 3) {
+        console.log('A face 3 do dado está presente.');
+        setTimeout(function () {
+
+          $("#modal-muito-bem").show();
+          nextFase(true);
+        }, 200);
+
+        return true;
+      } else if (faceTres.length > 0 && numStars > 3) {
+        setTimeout(function () {
+          $("#modal-numero-sorteado").show();
+        }, 200);
+      }
+
+      if (faceQuatro.length > 0 && numStars <= 4) {
+        console.log('A face 4 do dado está presente.');
+        setTimeout(function () {
+
+          $("#modal-muito-bem").show();
+          nextFase(true);
+        }, 200);
+        return true;
+      } else if (faceQuatro.length > 0 && numStars > 4) {
+        setTimeout(function () {
+          $("#modal-numero-sorteado").show();
+        }, 200);
+      }
+      if (faceCinco.length > 0 && numStars <= 5) {
+        console.log('A face 5 do dado está presente.');
+        setTimeout(function () {
+
+          $("#modal-muito-bem").show();
+          nextFase(true);
+        }, 200);
+        return true;
+      } else if (faceCinco.length > 0 && numStars > 5) {
+        setTimeout(function () {
+          $("#modal-numero-sorteado").show();
+        }, 200);
+      }
+      if (faceSeis.length > 0 && numStars <= 6) {
+        console.log('A face 6 do dado está presente.');
+        setTimeout(function () {
+
+          $("#modal-muito-bem").show();
+          nextFase(true);
+        }, 200);
+        return true;
+      } else if (faceSeis.length > 0 && numStars > 6) {
+        setTimeout(function () {
+          $("#modal-numero-sorteado").show();
+        }, 200);
+      }
+    }
+
+    // Você pode chamar essa função quando necessário para verificar a condição
+    verificarFaceDado();
+
+  }
+  function dontPickItem() {
+    console.log("nao pegar", nDado, numStars);
+    function verificarFaceDado() {
+      var faceUm = resultadoDado.find('img[alt="Face 1 do dado"]');
+      var faceDois = resultadoDado.find('img[alt="Face 2 do dado"]');
+      var faceTres = resultadoDado.find('img[alt="Face 3 do dado"]');
+      var faceQuatro = resultadoDado.find('img[alt="Face 4 do dado"]');
+      var faceCinco = resultadoDado.find('img[alt="Face 5 do dado"]');
+      var faceSeis = resultadoDado.find('img[alt="Face 6 do dado"]');
+
+      if (faceUm.length > 0 && numStars == 1) {
+        setTimeout(function () {
+          $("#modal-que-pena").show();
+        }, 200);
+      } else if ((faceUm.length > 0 && numStars > 1)) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+        }, 200);
+      }
+
+      if (faceDois.length > 0 && numStars <= 2) {
+        setTimeout(function () {
+          $("#modal-que-pena").show();
+        }, 200);
+      } else if (faceDois.length > 0 && numStars > 2) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+        }, 200);
+      }
+
+      if (faceTres.length > 0 && numStars <= 3) {
+        setTimeout(function () {
+          $("#modal-que-pena").show();
+        }, 200);
+      } else if (faceTres.length > 0 && numStars > 3) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+        }, 200);
+      }
+
+      if (faceQuatro.length > 0 && numStars <= 4) {
+        setTimeout(function () {
+          $("#modal-que-pena").show();
+        }, 200);
+      } else if (faceQuatro.length > 0 && numStars > 4) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+        }, 200);
+      }
+
+      if (faceCinco.length > 0 && numStars <= 5) {
+        setTimeout(function () {
+          $("#modal-que-pena").show();
+        }, 200);
+      } else if (faceCinco.length > 0 && numStars > 5) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+        }, 200);
+      }
+
+      if (faceSeis.length > 0 && numStars <= 6) {
+        setTimeout(function () {
+          $("#modal-que-pena").show();
+        }, 200);
+      } else if (faceSeis.length > 0 && numStars > 6) {
+        setTimeout(function () {
+          $("#modal-muito-bem").show();
+        }, 200);
+      }
+    }
+
+    // Você pode chamar essa função quando necessário para verificar a condição
+    verificarFaceDado();
+
+  }
 
 
   function getRandomInt(min, max) {
@@ -491,17 +554,17 @@ $(document).ready(function () {
 
   function atualizarImagem() {
     if (cube.hasClass('show-d1')) {
-      resultadoDado.html('<img class="img-jogar-dados" src="../assets/dado01.png" alt="Face 1 do dado">');
+      resultadoDado.html('<img class="img-jogar-dados" src="assets/dado01.png" alt="Face 1 do dado">');
     } else if (cube.hasClass('show-d2')) {
-      resultadoDado.html('<img class="img-jogar-dados" src="../assets/dado02.png" alt="Face 2 do dado">');
+      resultadoDado.html('<img class="img-jogar-dados" src="assets/dado02.png" alt="Face 2 do dado">');
     } else if (cube.hasClass('show-d3')) {
-      resultadoDado.html('<img class="img-jogar-dados" src="../assets/dado03.png" alt="Face 3 do dado">');
+      resultadoDado.html('<img class="img-jogar-dados" src="assets/dado03.png" alt="Face 3 do dado">');
     } else if (cube.hasClass('show-d4')) {
-      resultadoDado.html('<img class="img-jogar-dados" src="../assets/dado04.png" alt="Face 4 do dado">');
+      resultadoDado.html('<img class="img-jogar-dados" src="assets/dado04.png" alt="Face 4 do dado">');
     } else if (cube.hasClass('show-d5')) {
-      resultadoDado.html('<img class="img-jogar-dados" src="../assets/dado05.png" alt="Face 5 do dado">');
+      resultadoDado.html('<img class="img-jogar-dados" src="assets/dado05.png" alt="Face 5 do dado">');
     } else if (cube.hasClass('show-d6')) {
-      resultadoDado.html('<img class="img-jogar-dados" src="../assets/dado06.png" alt="Face 6 do dado">');
+      resultadoDado.html('<img class="img-jogar-dados" src="assets/dado06.png" alt="Face 6 do dado">');
     }
     else {
       resultadoDado.empty(); // Limpa a div se não for a classe show-d1

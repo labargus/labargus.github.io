@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="imagex/png" href="assets/icon.ico">
 
     <!-- js -->
+    <script src="js/anime.min.js"></script>
     <script type="module" defer src="js/script.js"></script>
 
     <!-- jquery -->
@@ -252,7 +253,7 @@
             <div class="div-pontos">
                 <div class="div-nome-pontos div-fundos">
                     <p class="nome jogador"></p>
-                    <div class="estrela-grande">
+                    <div class="estrela-grande" id="estrela-player">
                         <!-- <img src="assets/estrela_maior.png" alt="">
                         <img src="assets/estrela_maior.png" alt="">
                         <img src="assets/estrela_maior.png" alt=""> -->
@@ -260,54 +261,7 @@
                 </div>
                 <div class="div-nome-pontos div-fundos">
                     <p class="nome">COMPUTADOR</p>
-                    <div class="estrela-grande">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="div-rodadas div-fundos">
-                <div class="estrela-grande-rodadas-02">
-                    <!-- <img src="assets/estrela_maior.png" alt="">
-                    <img src="assets/estrela_maior.png" alt="">
-                    <img src="assets/estrela_maior.png" alt="">
-                    <img src="assets/estrela_maior.png" alt=""> -->
-                </div>
-            </div>
-            <!-- <div class="div-jogar-dados div-fundos">
-                <img class="img-jogar-dados" src="assets/dado03.png" alt="">
-            </div> -->
-            <div class="div-jogar-dados div-fundos jogar">JOGAR DADOS</div>
-            <div class="estrela-pequena">
-                <img src="assets/estrela_amarela.png" alt="">
-                <img src="assets/estrela_amarela.png" alt="">
-                <img src="assets/estrela_amarela.png" alt="">
-                <img src="assets/estrela_branca.png" alt="">
-            </div>
-        </div>
-    </section>
-    <!-- TELA JOGO 3 -->
-    <section id="secao-jogo-3" class="telas tela-jogo-3 is-hidden">
-        <div class="container-jogo container-jogo-1">
-            <button id="btn-ajuda" class="btn btn-ajuda">AJUDA</button>
-            <div class="div-pontos">
-                <div class="div-nome-pontos div-fundos">
-                    <p class="nome jogador"></p>
-                    <div class="estrela-grande espaco-jogador">
-                        <!-- <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt=""> -->
-                    </div>
-                </div>
-                <div class="div-nome-pontos div-fundos">
-                    <p class="nome">COMPUTADOR</p>
-                    <div class="estrela-grande espaço-computador">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
-                        <img src="assets/estrela_maior.png" alt="">
+                    <div class="estrela-grande" id="estrela-computador">
                     </div>
                 </div>
             </div>
@@ -319,21 +273,18 @@
                     <img src="assets/estrela_maior.png" alt=""> -->
                 <!-- </div> -->
             </div>
-            <div id="resultadoDado" class="div-jogar-dados div-fundos">
-                <!-- <img id="resultadoDado" class="img-jogar-dados" src="" alt=""> -->
-            </div>
-            <!-- <div class="div-jogar-dados div-fundos">JOGAR DADOS</div> -->
-            <div class="estrela-pequena">
-                <img src="assets/estrela_amarela.png" alt="">
-                <img src="assets/estrela_amarela.png" alt="">
-                <img src="assets/estrela_amarela.png" alt="">
-                <img src="assets/estrela_branca.png" alt="">
-            </div>
-            <div class="btn-pecas">
-                <button id="btn-pegar-03" class="btn btn-peca">PEGAR PEÇAS</button>
-                <button id="btn-nao-pegar-03" class="btn btn-peca">NÃO PEGAR</button>
+            <!-- <div class="div-jogar-dados div-fundos">
+                <img class="img-jogar-dados" src="assets/dado03.png" alt="">
+            </div> -->
+            <div class="div-jogar-dados div-fundos jogar">JOGAR DADOS</div>
+
+            <div id="resultadoDado" class="div-jogar-dados div-fundos is-hidden"></div>
+            <div class="btn-pecas is-hidden">
+                <button id="btn-pegar3" class="btn btn-peca">PEGAR PEÇAS</button>
+                <button id="btn-nao-pegar3" class="btn btn-peca">NÃO PEGAR</button>
             </div>
         </div>
+
         <!-- TELA MODAL 'MUITO BEM' -->
         <div id="modal-muito-bem" class="modal">
             <div class="container-feedback modal-container">
@@ -347,7 +298,7 @@
         <div id="modal-numero-sorteado" class="modal">
             <div class="container-feedback modal-container">
                 <div class="div-fundos div-feedback">
-                    <span class="close bt-close">&times;</span>
+                    <span class="close bt-close wrongOption">&times;</span>
                     <p class="texto-modal texto-modal-feedback-ruim">O NÚMERO SORTEADO NÃO É MAIOR QUE O NÚMERO DE
                         PEÇAS.</p>
                 </div>
@@ -382,6 +333,50 @@
             </div>
         </div>
     </section>
+    <!-- TELA JOGO 3 -->
+    <section id="secao-jogo-3" class="telas tela-jogo-3 is-hidden">
+        <div class="container-jogo container-jogo-1">
+            <button id="btn-ajuda" class="btn btn-ajuda">AJUDA</button>
+            <div class="div-pontos">
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome jogador"></p>
+                    <div class="estrela-grande espaco-jogador">
+                        <!-- <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="div-nome-pontos div-fundos">
+                    <p class="nome">COMPUTADOR</p>
+                    <div class="estrela-grande espaço-computador">
+                        <!--
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        <img src="assets/estrela_maior.png" alt="">
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="div-rodadas div-fundos estrela-rodadas">
+                <!-- <div class="estrela-grande-rodadas"> -->
+                <!-- <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt="">
+                    <img src="assets/estrela_maior.png" alt=""> -->
+                <!-- </div> -->
+            </div>
+
+            <!-- <div class="div-jogar-dados div-fundos">JOGAR DADOS</div> -->
+            <div class="estrela-pequena">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_amarela.png" alt="">
+                <img src="assets/estrela_branca.png" alt="">
+            </div>
+        </div>
+
+    </section>
 
     <!-- 
         Alteracoes no index.html
@@ -414,6 +409,7 @@
             </div>
         </div>
     </div>
+    <div class="littleHand is-hidden" style="position: absolute;top: 0;left: 0;z-index: 100" > <img src="assets/icons8-hand-80.png" alt=""></div>
 </body>
 
 </html>
