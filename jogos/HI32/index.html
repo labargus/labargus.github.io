@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conteudo Digital</title>
+    <link rel="shortcut icon" type="imagex/png" href="assets/icon.ico">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-124031348-1');
+    </script>
+
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> -->
+    
+    
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <!-- estilos -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <section class="tela-creditos is-hidden">
+        <div class="container" id="creditos">
+
+            <div id="estrutura" style="display: none">
+                <!-- Conteúdo da div que você deseja clonar -->
+                <div class="colunas">
+                    <!-- Insira na ID a coleção (CQT, SAE ou SPE) -->
+                    <div class="colecao" id="SPE">
+                        <!-- Insira na ID o segmento (EducacaoInfantil, AnosIniciais, AnosFinais ou EnsinoMedio) -->
+                        <div class="segmento" ID="AnosIniciais">
+                            <div class="setor diretorGeral"></div>
+                            <div class="setor diretorConteudo"></div>
+                            <div class="setor NCE"></div>
+                            <div class="setor NEL"></div>
+                            <div class="setor NTC"></div>
+                        </div>
+
+                        <!-- caso não haja créditos de imagem, comentar a div -->
+                        <!--<div class="creditos-imagens">
+                                <h2 class="cargo">Créditos de imagem:</h2>
+                                <p class="nome">teste</p>
+                            </div>-->
+                    </div>
+                    <div id="desenvolvimento"></div>
+                </div>
+                <div class="direitos"></div>
+            </div>
+
+            <script src="js/info-creditos.js"></script>
+
+            <!--Aqui vai os nomes da equipe do pedagógico e Interações Digitais -->
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_andreaB"></div>
+                <div class="cargo" id="cargo_designerInstrucional"></div>
+            </div>
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_DenyM"></div>
+                <div class="cargo" id="cargo_designerDigital"></div>
+            </div>
+            <div class="producaoOeds" style="display: none">
+                <div class="nome" id="nome_carlaC"></div>
+                <div class="cargo" id="cargo_desenvolvedor"></div>
+            </div>
+
+            <iframe id="iframeCredito" width="100%" height="100%"></iframe>
+        </div>
+        <div class="fechar-creditos">
+            <div class="fechar"></div>
+        </div>
+    </section>
+
+    <section class="abertura">
+        <div class="porquinho"></div>
+        <div class="titulo"></div>
+        <div class="button iniciar">INICIAR</div>
+        <div class="button creditos"></div>
+    </section>
+
+    <section class="tutorial hidden">
+        <div class="imgtutorial">
+            <div class="texto parte01">CLIQUE SOBRE O PERSONAGEM OU OBJETO QUE DESEJA ADICIONAR À CENA E O ARRASTE PARA
+                O CENÁRIO.</div>
+            <div class="texto parte02">CLIQUE NESSE BOTÃO PARA COMEÇAR DE NOVO.</div>
+            <div class="texto parte03">VOCÊ PODE ARRASTAR O ITEM DE VOLTA PARA O MENU.</div>
+            <div class="texto parte04">SIGA PARA O PRÓXIMO DESAFIO</div>
+            <div class="texto parte05">QUANDO TERMINAR, VOCÊ PODE SALVAR SUA COMPOSIÇÃO NO SEU COMPUTADOR CLICANDO AQUI.
+            </div>
+        </div>
+        <div class="button entendi">ENTENDI</div>
+    </section>
+
+    <section class="mobiletutorial hidden">
+        <div class="instrucoes"></div>
+        <div class="textomobile">- CLIQUE SOBRE O ITEM QUE DESEJA ADICIONAR À CENA E O ARRASTE PARA O CENÁRIO.</div>
+        <div class="porcocenario"></div>
+        <div class="textomobile">- VOCÊ PODE ARRASTAR O ITEM DE VOLTA PARA O MENU.</div>
+        <div class="textomobile">- PARA COMEÇAR NOVAMENTE, CLIQUE NO BOTÃO</div>
+        <div class="retorno"></div>
+        <div class="textomobile">- QUANDO TERMINAR, VOCÊ PODE SALVAR SUA COMPOSIÇÃO NO SEU DISPOSITIVO.</div>
+        <div class=" button entendimobile">ENTENDI</div>
+    </section>
+
+    <section class="jogotela telaum hidden" id="quest1">
+        <div class="jogotexto ">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
+            HISTÓRIA.</div>
+        <div class="telatotal">
+            <div class="refazer btRefazer "></div>
+            <div class="personagens pers1">
+                <div class="casa item" data-x="1vw" data-y="2vw"></div>
+                <div class="madeira item" data-x="15vw" data-y="2vw"></div>
+                <div class="lobo item" data-x="21vw" data-y="-9vw"></div>
+                <div class="tijolo item" data-x="5vw" data-y="16vw"></div>
+                <div class="porquinhobrinquedo item" data-x="15vw" data-y="14vw"></div>
+                <div class="serrote item" data-x="25vw" data-y="16vw"></div>
+                <div class="casaporquinho item" data-x="1vw" data-y="22vw">
+                </div>
+                <div class="pedrinhas item" data-x="13vw" data-y="25vw"></div>
+                <div class="doisporquinhos item" data-x="23vw" data-y="25vw">
+                </div>
+            </div>
+            <div class="cenario cena01" id="imagemPrint1"></div>
+        </div>
+        <div class="botoes ">
+            <div class="button proximo ">PRÓXIMO</div>
+            <div class="button salvar btsalvar1">SALVAR</div>
+        </div>
+    </section>
+
+    <section class="jogotela hidden" id="quest2">
+        <div class="jogotexto ">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
+            HISTÓRIA.</div>
+        <div class="telatotal">
+            <div class="refazer btRefazer "></div>
+            <div class="personagens pers2">
+                <div class="porquinhorelax item" data-x="1vw" data-y="2vw"></div>
+                <div class="martelo item" data-x="15vw" data-y="5vw"></div>
+                <div class="lobo_tela2 item" data-x="22vw" data-y="2vw"></div>
+                <div class="pigtoy item" data-x="1vw" data-y="14vw"></div>
+                <div class="machadinho item" data-x="14vw" data-y="16vw"></div>
+                <div class="bambu item" data-x="14vw" data-y="22vw"></div>
+                <div class="porquinholendo item" data-x="25vw" data-y="17vw">
+                </div>
+                <div class="corda item" data-x="13vw" data-y="28vw"></div>
+                <div class="feno item" data-x="25vw" data-y="28vw"></div>
+                <div class="paecimento item" data-x="1vw" data-y="25vw"></div>
+            </div>
+            <div class="cenario cena2" id="imagemPrint2"></div>
+        </div>
+        <div class="botoes">
+            <div class="button proximo ">PRÓXIMO</div>
+            <div class="button salvar btsalvar2">SALVAR</div>
+        </div>
+    </section>
+
+    <section class="jogotela hidden" id="quest3">
+        <div class="jogotexto">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
+            HISTÓRIA.</div>
+        <div class="telatotal btRefazer">
+            <div class="refazer"></div>
+            <div class="personagens pers3">
+                <div class="porquinhovinil item" data-x="1vw" data-y="2vw"></div>
+                <div class="porquinhoscombrinquedo item" data-x="20vw" data-y="2vw"></div>
+                <div class="pigread item" data-x="13vw" data-y="15vw"></div>
+                <div class="lobomauempe item" data-x="1vw" data-y="17vw"></div>
+                <div class="pigzen item" data-x="1vw" data-y="17vw"></div>
+            </div>
+            <div class="cenario cena03" id="imagemPrint3"></div>
+        </div>
+        <div class="botoes">
+            <div class="button finalizar">FINALIZAR</div>
+            <div class="button salvar btsalvar3">SALVAR</div>
+        </div>
+    </section>
+
+    <section class="telafinal hidden">
+        <div class="muitobem"></div>
+        <div class="jogotexto">VOCÊ CRIOU COMPOSIÇÕES INÉDITAS PARA ILUSTRAR AS SUAS CENAS FAVORITAS DA HISTÓRIA.</div>
+        <div class="button reiniciar">REINICIAR</div>
+    </section>
+
+
+    <div id="divhidden" class="hidden"></div>
+    <div class="areaDrag hidden">
+
+    </div>
+</body>
+<script src="js/script.js"></script>
+<script src="../../CREDITOS/creditos.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</html>

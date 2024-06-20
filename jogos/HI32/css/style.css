@@ -1,0 +1,1201 @@
+/* ---- Fontes para titulo ---- */
+
+/* AMATIC ---- 
+font-family: 'Amatic SC', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
+/* ---------------------------- */
+
+
+/* ---- Fontes para texto ---- */
+
+/* Opens Sans ---- 
+font-family: 'Open Sans', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,800;1,300;1,500;1,800&display=swap');
+
+/* ---------------------------- */
+/* Nunito ---- 
+font-family: "Nunito", sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* ---------------------------- */
+
+
+body {
+    position: relative;
+    height: 100%;
+    background-color: #fcf9e3;
+    min-height: 100vh;
+    font-family: "Nunito", sans-serif;
+}
+
+@media screen and (max-width: 1100px) and (orientation: portrait) {
+    body {
+        min-height: 120vh;
+    }
+}
+
+@media screen and (max-width: 700px) and (orientation: portrait) {
+    body {
+        min-height: 110vh;
+    }
+}
+
+element.style {
+    transform: null;
+    position: absolute;
+}
+
+.modal-content {
+    background-color: white;
+    font-size: 10pt;
+    overflow: hidden;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.modal-content h1 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.modal-content p {
+    margin-bottom: 10px;
+}
+
+.modal-content p.dir {
+    font-size: 7pt;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+
+.creditos {
+    background: url(../assets/botao_creditos.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    right: 30px;
+    position: absolute;
+    z-index: 25;
+}
+
+.creditos:hover {
+    transition: all 1s;
+    transform: scale(1.1);
+}
+
+/* Tela de Créditos*/
+
+.tela-creditos {
+    background: rgba(255, 255, 255, 0.9);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tela-creditos h2 {
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.fechar-creditos {
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    transition: 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fechar-creditos .fechar {
+    background-image: url(../assets/voltar-creditos.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
+}
+
+.fechar-creditos:hover {
+    transition: 1s;
+    transform: scale(1.1);
+}
+
+.blurdiv {
+    backdrop-filter: blur(20px);
+}
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
+#creditos {
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+}
+
+/*Fim Tela Créditos*/
+
+.hidden {
+    display: none !important;
+}
+
+html {
+    overflow-y: auto;
+}
+
+.relative {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.areaDrag {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.abertura {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #c8d368;
+    width: 100vw;
+    height: 100vh;
+}
+
+@media screen and (max-width: 1100px) and (orientation: portrait) {
+    .abertura {
+        min-height: 120vh;
+    }
+}
+
+@media screen and (max-width: 700px) and (orientation: portrait) {
+    .abertura {
+        min-height: 110vh;
+    }
+}
+
+.titulo {
+    position: relative;
+    background: url(../assets/titulo_os_tres_porquinhos.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50vw;
+    height: 20vw;
+    top: -9%;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .titulo {
+        width: 70vw;
+        height: 30vw;
+        top: -38%;
+    }
+}
+
+@media screen and (max-width: 700px) and (orientation: portrait) {
+    .titulo {
+        top: -30%;
+    }
+}
+
+.muitobem {
+    background: url(../assets/titulo_resposta_muito_bem.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 35vw;
+    height: 10vw;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .muitobem {
+        width: 45vw;
+        height: 15vw;
+    }
+}
+
+.porquinho {
+    position: relative;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_09.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10vw;
+    height: 10vw;
+    top: 50%;
+    right: 30%;
+}
+
+@media screen and (max-width: 1500px) and (orientation: landscape) {
+    .porquinho {
+        width: 16vw;
+        height: 16vw;
+        top: 45%;
+        right: 20%;
+    }
+}
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    .porquinho {
+        width: 16vw;
+        height: 16vw;
+        top: 55%;
+        right: 20%;
+    }
+}
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .porquinho {
+        width: 50vw;
+        height: 50vw;
+        top: 10%;
+        right: 0%;
+    }
+}
+
+
+
+.iniciar {
+    position: relative;
+    background-color: #45695E;
+    font-family: "Nunito", sans-serif;
+    color: #fff;
+    border: none;
+    font-weight: 800;
+    font-size: 1.5vw;
+    border-radius: 0.7vw;
+    cursor: pointer;
+    width: 10vw;
+    height: 4vw;
+    bottom: 2vw;
+}
+
+.iniciar:hover {
+    color: #fff;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .iniciar {
+        font-size: 5.5vw;
+        border-radius: 1vw;
+        cursor: pointer;
+        width: 30vw;
+        height: 15vw;
+    }
+}
+.reiniciar {
+    position: relative;
+    background-color: #45695E;
+    font-family: "Nunito", sans-serif;
+    color: #fff;
+    border: none;
+    font-weight: 800;
+    font-size: 1.5vw;
+    border-radius: 0.7vw;
+    cursor: pointer;
+    width: 10vw;
+    height: 4vw;
+    bottom: -3vw;
+}
+
+.reiniciar:hover {
+    color: #fff;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .reiniciar {
+        font-size: 5.5vw;
+        border-radius: 1vw;
+        cursor: pointer;
+        width: 30vw;
+        height: 15vw;
+    }
+}
+
+
+.botoes {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 75vw;
+    height: 5vw;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .botoes {
+        justify-content: center;
+        width: 80vw;
+        height: 15vw;
+    }
+}
+
+
+
+.salvar {
+    background-color: transparent;
+    font-family: "Nunito", sans-serif;
+    border: 2px solid #45695E;
+    color: #45695E;
+    font-weight: 800;
+    font-size: 1vw;
+    border-radius: 0.7vw;
+    cursor: pointer;
+    margin: 1vw;
+    width: 8vw;
+    height: 3vw;
+    z-index: 10;
+}
+
+.salvar:hover {
+    background-color: #45695E;
+    border: 2px solid #fff;
+    color: #ffffff;
+}
+
+.proximo,
+.finalizar{
+    background-color: #45695E;
+    font-family: "Nunito", sans-serif;
+    border: 2px solid #fff;
+    border: none;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1vw;
+    border-radius: 0.7vw;
+    cursor: pointer;
+    margin: 1vw;
+    width: 8vw;
+    height: 3vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+
+    .proximo,
+    .salvar,
+    .finalizar,
+    .reiniciar {
+        font-size: 3vw;
+        width: 20vw;
+        height: 8vw;
+    }
+}
+
+
+.proximo:hover,
+.finalizar:hover,
+.salvar:hover{
+    background-color: #D0B460;
+    border: 0.2vw solid #271912;
+    color: #271912;
+}
+
+
+.reiniciar:hover {
+    background-color: transparent;
+    border: 2px solid #45695E;
+    color: #45695E;
+}
+
+.tutorial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #d0b460;
+    width: 100vw;
+    height: 100vh;
+}
+
+.mobiletutorial {
+    display: none;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .tutorial {
+        display: none;
+    }
+
+    .mobiletutorial {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #E5DEC8;
+        width: 100vw;
+    }
+
+    .instrucoes {
+        position: relative;
+        background: url(../assets/mobile_titulo_intrucoes.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 60vw;
+        height: 15vw;
+    }
+
+    .textomobile {
+        position: relative;
+        font-weight: 700;
+        width: 80vw;
+        color: #000;
+        font-size: 2.7vw;
+    }
+
+    .porcocenario {
+        background: url(../assets/mobile_tela_instrucoes.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 4vw 0;
+        width: 50vw;
+        height: 100vw;
+    }
+
+    .retorno {
+        background: url(../assets/botao_reiniciar_icone.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        margin: 1vw 0;
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .entendimobile {
+        font-family: "Nunito", sans-serif;
+        font-weight: 800;
+        background-color: #45695E;
+        color: #fff;
+        font-size: 4vw;
+        margin: 1vw 0;
+        border-radius: 2vw;
+        width: 30vw;
+        height: 10vw;
+    }
+
+}
+
+@media screen and (max-width: 1100px) and (orientation: portrait) {
+    .mobiletutorial {
+        min-height: 120vh;
+    }
+}
+
+@media screen and (max-width: 700px) and (orientation: portrait) {
+    .mobiletutorial {
+        min-height: 110vh;
+    }
+}
+
+.imgtutorial {
+    position: relative;
+    background: url(../assets/desktop_tela_instrucoes.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 70vw;
+    height: 36vw;
+}
+
+.entendi {
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: transparent;
+    font-family: "Nunito", sans-serif;
+    font-weight: 800;
+    color: #271912;
+    font-size: 1.5vw;
+    background-color: #D0B460;
+    border: 0.2vw solid #271912;
+    border-radius: 0.7vw;
+    left: 30%;
+    width: 10vw;
+    height: 4vw;
+}
+
+.entendi:hover {
+    background-color: #271912;
+    color: #D0B460;
+    border-radius: 0.7vw;
+    border: 0.2vw solid #271912;
+}
+
+.texto {
+    position: absolute;
+    font-weight: 700;
+    color: #fff;
+    font-size: 0.8vw;
+}
+
+.parte01 {
+    top: 17.5%;
+    left: 2%;
+    width: 25vw;
+}
+
+.parte02 {
+    top: 25.5%;
+    right: 7.5%;
+    width: 16vw;
+}
+
+.parte03 {
+    top: 47.5%;
+    right: 0.5%;
+    width: 18vw;
+}
+
+.parte04 {
+    top: 62.5%;
+    right: 0.5%;
+    width: 19vw;
+}
+
+.parte05 {
+    top: 75.5%;
+    right: 41.5%;
+    width: 22vw;
+}
+
+.jogotela {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+
+.jogotexto {
+    font-weight: 700;
+    padding: 2vw 0 0 0;
+    color: #000;
+    font-size: 1.2vw;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .jogotexto {
+        width: 87vw;
+        text-align: center;
+        font-size: 3vw;
+    }
+}
+
+.telatotal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+    gap: 3vw;
+    margin: 2vw 0 0 0;
+    width: 75vw;
+    height: 35vw;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .telatotal {
+        flex-direction: column;
+        width: 140vw;
+        height: 140vw;
+    }
+}
+
+.telafinal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #C8D368;
+    width: 100vw;
+    height: 100vh;
+}
+
+.personagens {
+    position: relative;
+    background-color: #E5DEC8;
+    border-radius: 1vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: 0;
+    width: 35vw;
+    height: 35vw;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .personagens {
+        width: 65vw;
+        height: 65vw;
+    }
+}
+
+.cenario {
+    position: relative;
+    border-radius: 1vw;
+    width: 35vw;
+    height: 35vw;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .cenario {
+        width: 65vw;
+        height: 65vw;
+    }
+}
+
+.cena01 {
+    background: url(../assets/SPE_EI32_3em1_I028A.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+.cena02 {
+    background: url(../assets/SPE_EI32_3em1_I026.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+
+.cena03 {
+    background: url(../assets/SPE_EI32_3em1_I030.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.refazer {
+    position: absolute;
+    background: url(../assets/botao_reiniciar_icone.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 4vw;
+    height: 4vw;
+    right: -7%;
+    top: 1%;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .refazer {
+        width: 6vw;
+        height: 6vw;
+        right: 20%;
+        top: 3%;
+        z-index: 5;
+    }
+}
+
+
+.casa {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_13.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transform: translate(1vw, 2vw);
+    width: 14vw;
+    height: 12vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .casa {
+        width: 20vw;
+        height: 18vw;
+        transform: translate(1vw, 2vw);
+    }
+}
+
+.madeira {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_17.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(16vw, 2vw);
+    cursor: pointer;
+    width: 8vw;
+    height: 10vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .madeira {
+        width: 14vw;
+        height: 16vw;
+        transform: translate(25vw, 2vw);
+    }
+}
+
+.lobo {
+    position: absolute;
+    background: url(../assets/SPE_EI31_MP_I002_03.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(23vw, 2vw);
+    cursor: pointer;
+    width: 12vw;
+    height: 12vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .lobo {
+        width: 18vw;
+        height: 18vw;
+        transform: translate(45vw, 3vw);
+    }
+}
+
+.lobo_tela2 {
+    position: absolute;
+    background: url(../assets/SPE_EI31_MP_I002_03.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    width: 12vw;
+    height: 12vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .lobo_tela2 {
+        width: 18vw;
+        height: 18vw;
+        transform: translate(42vw, 2vw);
+    }
+}
+
+.tijolo {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_07.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(5vw, 16vw);
+    cursor: pointer;
+    width: 6vw;
+    height: 4vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .tijolo {
+        width: 12vw;
+        height: 10vw;
+        transform: translate(2vw, 50vw);
+    }
+}
+
+
+.porquinhobrinquedo {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_06.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(15vw, 14vw);
+    cursor: pointer;
+    width: 8vw;
+    height: 8vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .porquinhobrinquedo {
+        width: 13vw;
+        height: 12vw;
+        transform: translate(44vw, 23vw);
+    }
+}
+
+.serrote {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_23.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(25vw, 16vw);
+    cursor: pointer;
+    width: 7vw;
+    height: 6vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .serrote {
+        width: 13vw;
+        height: 12vw;
+        transform: translate(22vw, 25vw);
+    }
+}
+
+
+.casaporquinho {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_21.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(1vw, 22vw);
+    cursor: pointer;
+    width: 12vw;
+    height: 12vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .casaporquinho {
+        width: 18vw;
+        height: 18vw;
+        transform: translate(1vw, 26vw);
+    }
+}
+
+.pedrinhas {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_14.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transform: translate(13vw, 25vw);
+    width: 8vw;
+    height: 6vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .pedrinhas {
+        width: 14vw;
+        height: 12vw;
+        transform: translate(20vw, 48vw);
+    }
+}
+
+.doisporquinhos {
+    position: inherit;
+    background: url(../assets/SPE_EI31_MP_I002_11.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transform: translate(23vw, 25vw);
+    width: 10vw;
+    height: 10vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .doisporquinhos {
+        width: 20vw;
+        height: 20vw;
+        transform: translate(36vw, 44vw);
+    }
+}
+
+.porquinhorelax {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_14.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(1vw, 2vw);
+    cursor: pointer;
+    width: 10vw;
+    height: 9vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .porquinhorelax {
+        width: 16vw;
+        height: 15vw;
+        transform: translate(1vw, 2vw);
+    }
+}
+
+.martelo {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_28.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(15vw, 5vw);
+    cursor: pointer;
+    width: 5vw;
+    height: 5vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .martelo {
+        width: 11vw;
+        height: 11vw;
+        transform: translate(23vw, 5vw);
+    }
+}
+
+.pigtoy {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_06.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transform: translate(1vw, 14vw);
+    width: 10vw;
+    height: 9vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .pigtoy {
+        width: 16vw;
+        height: 15vw;
+        transform: translate(3vw, 23vw);
+    }
+}
+
+
+.machadinho {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_09.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(14vw, 16vw);
+    cursor: pointer;
+    width: 7vw;
+    height: 4vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .machadinho {
+        width: 13vw;
+        height: 10vw;
+        transform: translate(27vw, 28vw);
+    }
+}
+
+
+.porquinholendo {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_09.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(25vw, 17vw);
+    cursor: pointer;
+    width: 10vw;
+    height: 9vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .porquinholendo {
+        width: 16vw;
+        height: 15vw;
+        transform: translate(47vw, 25vw);
+    }
+}
+
+
+
+.corda {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_05.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(13vw, 28vw);
+    cursor: pointer;
+    width: 8vw;
+    height: 6vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .corda {
+        width: 14vw;
+        height: 12vw;
+        transform: translate(24vw, 51vw);
+    }
+}
+
+
+.bambu {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_16.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transform: translate(14vw, 22vw);
+    width: 8vw;
+    height: 6vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .bambu {
+        width: 14vw;
+        height: 12vw;
+        transform: translate(25vw, 37vw);
+    }
+}
+
+.feno {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_10.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(25vw, 28vw);
+    cursor: pointer;
+    width: 8vw;
+    height: 6vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .feno {
+        width: 14vw;
+        height: 12vw;
+        transform: translate(44vw, 46vw);
+    }
+}
+
+.paecimento {
+    position: absolute;
+    background: url(../assets/SPE_EI32_3em1_I027A-a-I027P_25.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(1vw, 25vw);
+    cursor: pointer;
+    width: 11vw;
+    height: 8vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .paecimento {
+        width: 17vw;
+        height: 14vw;
+        transform: translate(2vw, 46vw);
+    }
+}
+
+
+.porquinhovinil {
+    position: absolute;
+    background: url(../assets/SPE_EI31_MP_I002_06.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(1vw, 2vw);
+    cursor: pointer;
+    width: 10vw;
+    height: 9vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .porquinhovinil {
+        width: 16vw;
+        height: 15vw;
+        transform: translate(2vw, 4vw);
+    }
+}
+
+.porquinhoscombrinquedo {
+    position: absolute;
+    background: url(../assets/SPE_EI31_MP_I002_11.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(20vw, 2vw);
+    cursor: pointer;
+    width: 14vw;
+    height: 12vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .porquinhoscombrinquedo {
+        width: 20vw;
+        height: 18vw;
+        transform: translate(40vw, 4vw);
+    }
+}
+
+.pigread {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_09.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(13vw, 15vw);
+    cursor: pointer;
+    width: 9vw;
+    height: 9vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .pigread {
+        width: 20vw;
+        height: 18vw;
+        transform: translate(44vw, 37vw);
+    }
+}
+
+.lobomauempe {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_03.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(1vw, 17vw);
+    cursor: pointer;
+    width: 11vw;
+    height: 17vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .lobomauempe {
+        width: 16vw;
+        height: 21vw;
+        transform: translate(6vw, 37vw);
+    }
+}
+
+.pigzen {
+    position: absolute;
+    background: url(../assets/SPE_NV19_EI_32_LE_I050A-a-I050D_14.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(22vw, 25vw);
+    cursor: pointer;
+    width: 11vw;
+    height: 10vw;
+    z-index: 10;
+}
+
+@media screen and (max-width: 1500px) and (orientation: portrait) {
+    .pigzen {
+        width: 17vw;
+        height: 16vw;
+        transform: translate(23vw, 23vw);
+    }
+}

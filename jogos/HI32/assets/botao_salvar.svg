@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 121.97 48">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Nunito-Bold, Nunito;
+        font-size: 16.46px;
+        font-weight: 700;
+        letter-spacing: .01em;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #45695e;
+      }
+
+      .cls-2 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <path class="cls-2" d="M113.55,2c3.54,0,6.42,2.88,6.42,6.42v31.17c0,3.54-2.88,6.42-6.42,6.42H8.42c-3.54,0-6.42-2.88-6.42-6.42V8.42c0-3.54,2.88-6.42,6.42-6.42h105.13M113.55,0H8.42C3.77,0,0,3.77,0,8.42v31.17c0,4.65,3.77,8.42,8.42,8.42h105.13c4.65,0,8.42-3.77,8.42-8.42V8.42c0-4.65-3.77-8.42-8.42-8.42h0Z"/>
+  <text class="cls-1" transform="translate(26.95 29.55)"><tspan x="0" y="0">SALVAR</tspan></text>
+</svg>

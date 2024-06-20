@@ -1,0 +1,48 @@
+/* Animações básicas */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.question {
+    display: none;
+}
+
+.question.active {
+    display: block;
+    animation: fadeIn 0.5s forwards;
+}
+
+.question.outgoing {
+    animation: fadeOut 0.5s forwards;
+}
+
+/* Estilo adicional para centralizar conteúdo */
+#survey-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 20px;
+}
