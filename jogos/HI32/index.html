@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Conteudo Digital</title>
     <link rel="shortcut icon" type="imagex/png" href="assets/icon.ico">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
@@ -27,9 +28,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> -->
 
-
+    <script src="js/html2canvas.min.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/printThis.js"></script>
     <!-- estilos -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bulma.min.css">
@@ -75,7 +75,7 @@
                 <div class="cargo" id="cargo_designerInstrucional"></div>
             </div>
             <div class="producaoOeds" style="display: none">
-                <div class="nome" id="nome_DenyM"></div>
+                <div class="nome" id="nome_carlaC"></div>
                 <div class="cargo" id="cargo_designerDigital"></div>
             </div>
             <div class="producaoOeds" style="display: none">
@@ -121,15 +121,15 @@
         <div class=" button entendimobile">ENTENDI</div>
     </section>
 
-    <section class="jogotela telaum hidden" id="quest1">
-        <div class="jogotexto ">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
+    <section class="jogotela hidden" id="quest1">
+        <div class="jogotexto">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
             HISTÓRIA.</div>
         <div class="telatotal">
-            <div class="refazer btRefazer "></div>
+            <div class="refazer btRefazer"></div>
             <div class="personagens pers1">
                 <div class="casa item" data-x="1vw" data-y="2vw"></div>
                 <div class="madeira item" data-x="15vw" data-y="2vw"></div>
-                <div class="lobo item" data-x="21vw" data-y="-9vw"></div>
+                <div class="lobo item" data-x="23vw" data-y="2vw"></div>
                 <div class="tijolo item" data-x="5vw" data-y="16vw"></div>
                 <div class="porquinhobrinquedo item" data-x="15vw" data-y="14vw"></div>
                 <div class="serrote item" data-x="25vw" data-y="16vw"></div>
@@ -139,21 +139,19 @@
                 <div class="doisporquinhos item" data-x="23vw" data-y="25vw">
                 </div>
             </div>
-            <div class="cenario cena01" id="imagemPrint1">
-                <img src="assets/SPE_EI32_3em1_I028A.jpg" alt="Scene Image">
-            </div>
+            <div class="cenario cena01" id="imagemPrint1"></div>
         </div>
-        <div class="botoes ">
-            <div class="button proximo ">PRÓXIMO</div>
+        <div class="botoes">
+            <div class="button proximo">PRÓXIMO</div>
             <div class="button salvar btsalvar1">SALVAR</div>
         </div>
     </section>
 
     <section class="jogotela hidden" id="quest2">
-        <div class="jogotexto ">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
+        <div class="jogotexto">ARRASTE OS PERSONAGENS E ELEMENTOS NO CENÁRIO PARA COMPOR A CENA QUE MAIS GOSTOU DA
             HISTÓRIA.</div>
         <div class="telatotal">
-            <div class="refazer btRefazer "></div>
+            <div class="refazer btRefazer"></div>
             <div class="personagens pers2">
                 <div class="porquinhorelax item" data-x="1vw" data-y="2vw"></div>
                 <div class="martelo item" data-x="15vw" data-y="5vw"></div>
@@ -167,10 +165,10 @@
                 <div class="feno item" data-x="25vw" data-y="28vw"></div>
                 <div class="paecimento item" data-x="1vw" data-y="25vw"></div>
             </div>
-            <div class="cenario cena2" id="imagemPrint2"></div>
+            <div class="cenario cena02" id="imagemPrint2"></div>
         </div>
         <div class="botoes">
-            <div class="button proximo ">PRÓXIMO</div>
+            <div class="button proximo">PRÓXIMO</div>
             <div class="button salvar btsalvar2">SALVAR</div>
         </div>
     </section>
@@ -202,7 +200,7 @@
     </section>
 
 
-    <div id="divhidden" class="hidden"></div>
+
     <div class="areaDrag hidden">
 
     </div>

@@ -20,25 +20,25 @@ font-family: "Nunito", sans-serif;*/
 
 /* ---------------------------- */
 
-
 body {
     position: relative;
     height: 100%;
-    background-color: #fcf9e3;
+    background-color: #F2F2F2;
     min-height: 100vh;
-    font-family: "Nunito", sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
-@media screen and (max-width: 1100px) and (orientation: portrait) {
-    body {
-        min-height: 120vh;
-    }
+@font-face {
+    font-family: "Londrina Solid", sans-serif;
+    src: url('../assets/Londrina_Solid/LondrinaSolid-Black.ttf') format('ttf'),
+        url('../assets/Londrina_Solid/LondrinaSolid-Light.ttf') format('ttf'),
+        url('../assets/Londrina_Solid/LondrinaSolid-Regular.ttf') format('ttf'),
+        url('../assets/Londrina_Solid/LondrinaSolid-Thin.ttf') format('ttf');
 }
 
-@media screen and (max-width: 700px) and (orientation: portrait) {
-    body {
-        min-height: 110vh;
-    }
+@font-face {
+    font-family: "Nunito Sans", sans-serif;
+    src: url('../assets/Nunito/Nunito-VariableFont_wght.ttf') format('ttf');
 }
 
 element.style {
@@ -81,7 +81,7 @@ element.style {
     border: 0;
     width: 40px;
     height: 40px;
-    top: 20px;
+    bottom: 20px;
     right: 30px;
     position: absolute;
     z-index: 25;
@@ -189,18 +189,6 @@ html {
     height: 100vh;
 }
 
-@media screen and (max-width: 1100px) and (orientation: portrait) {
-    .abertura {
-        min-height: 120vh;
-    }
-}
-
-@media screen and (max-width: 700px) and (orientation: portrait) {
-    .abertura {
-        min-height: 110vh;
-    }
-}
-
 .titulo {
     position: relative;
     background: url(../assets/titulo_os_tres_porquinhos.svg);
@@ -215,12 +203,6 @@ html {
     .titulo {
         width: 70vw;
         height: 30vw;
-        top: -38%;
-    }
-}
-
-@media screen and (max-width: 700px) and (orientation: portrait) {
-    .titulo {
         top: -30%;
     }
 }
@@ -251,23 +233,6 @@ html {
     right: 30%;
 }
 
-@media screen and (max-width: 1500px) and (orientation: landscape) {
-    .porquinho {
-        width: 16vw;
-        height: 16vw;
-        top: 45%;
-        right: 20%;
-    }
-}
-
-@media screen and (max-width: 900px) and (orientation: landscape) {
-    .porquinho {
-        width: 16vw;
-        height: 16vw;
-        top: 55%;
-        right: 20%;
-    }
-}
 @media screen and (max-width: 1500px) and (orientation: portrait) {
     .porquinho {
         width: 50vw;
@@ -284,12 +249,11 @@ html {
     background-color: #45695E;
     font-family: "Nunito", sans-serif;
     color: #fff;
-    border: none;
     font-weight: 800;
     font-size: 1.5vw;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
     cursor: pointer;
-    width: 10vw;
+    width: 8vw;
     height: 4vw;
     bottom: 2vw;
 }
@@ -300,34 +264,6 @@ html {
 
 @media screen and (max-width: 1500px) and (orientation: portrait) {
     .iniciar {
-        font-size: 5.5vw;
-        border-radius: 1vw;
-        cursor: pointer;
-        width: 30vw;
-        height: 15vw;
-    }
-}
-.reiniciar {
-    position: relative;
-    background-color: #45695E;
-    font-family: "Nunito", sans-serif;
-    color: #fff;
-    border: none;
-    font-weight: 800;
-    font-size: 1.5vw;
-    border-radius: 0.7vw;
-    cursor: pointer;
-    width: 10vw;
-    height: 4vw;
-    bottom: -3vw;
-}
-
-.reiniciar:hover {
-    color: #fff;
-}
-
-@media screen and (max-width: 1500px) and (orientation: portrait) {
-    .reiniciar {
         font-size: 5.5vw;
         border-radius: 1vw;
         cursor: pointer;
@@ -356,13 +292,13 @@ html {
 
 
 .salvar {
-    background-color: transparent;
+    background-color: #fff;
     font-family: "Nunito", sans-serif;
     border: 2px solid #45695E;
     color: #45695E;
     font-weight: 800;
     font-size: 1vw;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
     cursor: pointer;
     margin: 1vw;
     width: 8vw;
@@ -377,7 +313,8 @@ html {
 }
 
 .proximo,
-.finalizar{
+.finalizar,
+.reiniciar {
     background-color: #45695E;
     font-family: "Nunito", sans-serif;
     border: 2px solid #fff;
@@ -385,7 +322,7 @@ html {
     color: #fff;
     font-weight: 800;
     font-size: 1vw;
-    border-radius: 0.7vw;
+    border-radius: 1vw;
     cursor: pointer;
     margin: 1vw;
     width: 8vw;
@@ -399,7 +336,7 @@ html {
     .salvar,
     .finalizar,
     .reiniciar {
-        font-size: 3vw;
+        font-size: 2vw;
         width: 20vw;
         height: 8vw;
     }
@@ -408,15 +345,9 @@ html {
 
 .proximo:hover,
 .finalizar:hover,
-.salvar:hover{
-    background-color: #D0B460;
-    border: 0.2vw solid #271912;
-    color: #271912;
-}
-
-
+.finalizar:hover,
 .reiniciar:hover {
-    background-color: transparent;
+    background-color: #fff;
     border: 2px solid #45695E;
     color: #45695E;
 }
@@ -447,6 +378,7 @@ html {
         flex-direction: column;
         background-color: #E5DEC8;
         width: 100vw;
+        height: 100vh;
     }
 
     .instrucoes {
@@ -460,6 +392,7 @@ html {
 
     .textomobile {
         position: relative;
+        font-family: "Londrina Solid", sans-serif;
         font-weight: 700;
         width: 80vw;
         color: #000;
@@ -499,18 +432,6 @@ html {
 
 }
 
-@media screen and (max-width: 1100px) and (orientation: portrait) {
-    .mobiletutorial {
-        min-height: 120vh;
-    }
-}
-
-@media screen and (max-width: 700px) and (orientation: portrait) {
-    .mobiletutorial {
-        min-height: 110vh;
-    }
-}
-
 .imgtutorial {
     position: relative;
     background: url(../assets/desktop_tela_instrucoes.png);
@@ -531,21 +452,20 @@ html {
     font-size: 1.5vw;
     background-color: #D0B460;
     border: 0.2vw solid #271912;
-    border-radius: 0.7vw;
     left: 30%;
-    width: 10vw;
+    width: 8vw;
     height: 4vw;
 }
 
 .entendi:hover {
     background-color: #271912;
     color: #D0B460;
-    border-radius: 0.7vw;
     border: 0.2vw solid #271912;
 }
 
 .texto {
     position: absolute;
+    font-family: "Londrina Solid", sans-serif;
     font-weight: 700;
     color: #fff;
     font-size: 0.8vw;
@@ -584,8 +504,8 @@ html {
 .jogotela {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     flex-direction: column;
+    background-color: #fcf9e3;
     width: 100vw;
     height: 100vh;
 }
@@ -593,6 +513,7 @@ html {
 
 
 .jogotexto {
+    font-family: "Londrina Solid", sans-serif;
     font-weight: 700;
     padding: 2vw 0 0 0;
     color: #000;
@@ -669,7 +590,12 @@ html {
     }
 }
 
+.cena01 {
+    background: url(../assets/SPE_EI32_3em1_I028A.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
 
+}
 
 .cena02 {
     background: url(../assets/SPE_EI32_3em1_I026.jpg);
@@ -701,8 +627,8 @@ html {
     .refazer {
         width: 6vw;
         height: 6vw;
-        right: 20%;
-        top: 3%;
+        right: 28%;
+        top: 43%;
         z-index: 5;
     }
 }
@@ -764,7 +690,7 @@ html {
     .lobo {
         width: 18vw;
         height: 18vw;
-        transform: translate(45vw, 3vw);
+        transform: translate(40vw, 2vw)
     }
 }
 
@@ -890,7 +816,7 @@ html {
 }
 
 .doisporquinhos {
-    position: inherit;
+    position: absolute;
     background: url(../assets/SPE_EI31_MP_I002_11.png);
     background-size: contain;
     background-repeat: no-repeat;

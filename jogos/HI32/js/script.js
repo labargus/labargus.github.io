@@ -1,7 +1,5 @@
 var armario1 = document.querySelector(".pers1");
 var armario2 = document.querySelector(".cena01");
-var imagemPrint1 = document.querySelector("#imagemPrint1");
-
 var isMobile = false;
 
 $(".creditos").on("click", function () {
@@ -36,41 +34,38 @@ $(".iniciar").on("click", function () {
 });
 
 $(".entendi").on("click", function () {
-  $(".tutorial").addClass("hidden");
-  $(".mobiletutorial").addClass("hidden");
-  $(".telaum").removeClass("hidden");
+  $(".tutorial").addClass("hidden").next().next().removeClass("hidden");
+  $(".areaDrag").removeClass("hidden");
 });
 
 $(".entendimobile").on("click", function () {
-  $(".mobiletutorial").addClass("hidden");
-  $(".tutorial").addClass("hidden");
+  $(".mobiletutorial").addClass("hidden").next().removeClass("hidden");
   isMobile = true;
-  $(".telaum").removeClass("hidden");
+  $(".areaDrag").removeClass("hidden");
 });
 
+$(document).ready(function () {
+  var telaAtual = 1;
+  var numTelas = $(".jogotela").length;
 
-var telaAtual = 1;
-var numTelas = $(".jogotela").length;
+  $(".proximo").click(function () {
+    if (telaAtual < numTelas) {
+      $("#quest" + telaAtual).addClass("hidden");
+      telaAtual++;
+      $("#quest" + telaAtual).removeClass("hidden");
 
-$(".proximo").click(function () {
-  if (telaAtual < numTelas) {
-    $("#quest" + telaAtual).addClass("hidden");
-    telaAtual++;
-    $("#quest" + telaAtual).removeClass("hidden");
-
-    armario1 = document.querySelector(".pers" + telaAtual);
-    armario2 = document.querySelector(".cena0" + telaAtual);
-    console.log(armario1, armario2);
-  }
+      armario1 = document.querySelector(".pers" + telaAtual);
+      armario2 = document.querySelector(".cena0" + telaAtual);
+      console.log(armario1, armario2);
+    }
+  });
 });
-
 
 $(".finalizar").on("click", function () {
   $(".jogotela").addClass("hidden");
   $(".telafinal").removeClass("hidden");
 });
 
-//RESET FINAL
 $(".reiniciar").on("click", function () {
   location.reload();
 });
@@ -84,20 +79,32 @@ $(".btRefazer").on("click", function () {
     let translateVolta =
       "translate(" +
       element.getAttribute("data-x") +
-      "vw, " +
+      ", " +
       element.getAttribute("data-y") +
-      "vw)";
+      ")";
     armario1.appendChild(element);
     element.style.transform = translateVolta;
   });
 });
-
-
-
 $(".btsalvar1").on("click", function () {
+  html2canvas(document.querySelector("#imagemPrint1")).then((canvas) => {
+    var canvasImg = canvas.toDataURL("image/jpg");
+    var imgWindow = window.open();
+    if (imgWindow) {
+      imgWindow.document.write("<html><head><title>Print</title></head><body style='text-align: center;'>");
+      imgWindow.document.write("<img src='" + canvasImg + "' alt='Canvas Image'>");
+      imgWindow.document.write("</body></html>");
+      imgWindow.document.close(); // Necessary for IE >= 10
+      imgWindow.focus(); // Necessary for IE >= 10
 
-  $("#imagemPrint1").printThis();
-
+      setTimeout(() => {
+        imgWindow.print();
+        imgWindow.close();
+      }, 250);
+    } else {
+      alert("Seu navegador bloqueou a janela de impressão. Para imprimir favor habilitar popups nessa pagina.");
+    }
+  });
 });
 
 $(".btsalvar2").on("click", function () {
@@ -132,60 +139,50 @@ $(".btsalvar3").on("click", function () {
   });
 });
 
-const itens1=[".casa",".madeira",".lobo",".tijolo",".porquinhobrinquedo",".serrote",".casaporquinho",".pedrinhas",".doisporquinhos"];
-const itens2=[".porquinhorelax",".martelo",".lobo_tela2",".pigtoy",".machadinho",".bambu",".porquinholendo",".corda",".feno",".paecimento"];
-const itens3=[".porquinhovinil",".porquinhoscombrinquedo",".pigread",".pigtoy",".pigzen"];
+//SCRIPT para arrastar e soltar:
+//tela 1
 
-$(function () {
-  for (let i = 0; i < itens1.length; i++) {
-    $(itens1[i]).draggable({
-      revert: "invalid"
-    });
-    $(itens1[i]).on("dragstart", function(event, ui) {
-      ui.helper.data('originalPosition', ui.helper.position());
-    });
-    $(itens1[i]).on("dragstop", function(event, ui) {
-      if (!ui.helper.dropped) {
-        ui.helper.animate(ui.helper.data('originalPosition'), "slow");
-      }
-    });
-    $(".cena0" + telaAtual).droppable({
-      accept: $(itens1[i]),
-      drop: function (event, ui) {
-        var dropped = ui.helper;
-        var droppedOn = $(this);
-        const dropAreaRect = droppedOn[0].getBoundingClientRect();
-      const objRect = dropped[0].getBoundingClientRect();
-  
-        $(dropped).detach().css({
-          top: event.clientY - dropAreaRect.top - objRect.height / 2,
-        left: event.clientX - dropAreaRect.left - objRect.width / 2
-        }).appendTo(droppedOn);
-      }
-    });
-    $(".pers" + telaAtual).droppable({
-      accept: $(itens1[i]),
-      drop: function (event, ui) {
-        var dropped = ui.helper;
-        var droppedOn = $(this);
-        const dropAreaRect = droppedOn[0].getBoundingClientRect();
-      const objRect = dropped[0].getBoundingClientRect();
-  
-        $(dropped).detach().css({
-          top: event.clientY - dropAreaRect.top - objRect.height / 2,
-        left: event.clientX - dropAreaRect.left - objRect.width / 2
-        }).appendTo(droppedOn);
-      }
-    });
-    
-  }
-  
-});
+const casa = document.querySelector(".casa");
+const madeira = document.querySelector(".madeira");
+const lobo = document.querySelector(".lobo");
+const tijolo = document.querySelector(".tijolo");
+const porquinhobrinquedo = document.querySelector(".porquinhobrinquedo");
+const serrote = document.querySelector(".serrote");
+const casaporquinho = document.querySelector(".casaporquinho");
+const pedrinhas = document.querySelector(".pedrinhas");
+const doisporquinhos = document.querySelector(".doisporquinhos");
+//tela 2
+const porquinhorelax = document.querySelector(".porquinhorelax");
+const martelo = document.querySelector(".martelo");
+const lobo_tela2 = document.querySelector(".lobo_tela2");
+const pigtoy = document.querySelector(".pigtoy");
+const machadinho = document.querySelector(".machadinho");
+const bambu = document.querySelector(".bambu");
+const porquinholendo = document.querySelector(".porquinholendo");
+const corda = document.querySelector(".corda");
+const feno = document.querySelector(".feno");
+const paecimento = document.querySelector(".paecimento");
+//tela 3
+const porquinhovinil = document.querySelector(".porquinhovinil");
+const porquinhoscombrinquedo = document.querySelector(
+  ".porquinhoscombrinquedo"
+);
+const pigread = document.querySelector(".pigread");
+const lobomauempe = document.querySelector(".lobomauempe");
+const pigzen = document.querySelector(".pigzen");
+//um pra cada div arrastavel
 
+let offsetX,
+  offsetY,
+  dragging = false;
+var objetoPegado;
+var translateVolta;
+let arraste = false;
+var oedMobile = false;
+if ("ontouchstart" in document.documentElement) {
+  oedMobile = true;
+}
 
-
-
-/*
 if (oedMobile) {
   //pra cada div arrastavel
   casa.addEventListener("touchstart", pega);
@@ -236,7 +233,6 @@ if (oedMobile) {
   feno.addEventListener("mousedown", pega);
   paecimento.addEventListener("mousedown", pega);
   //tela 3
-  
   porquinhovinil.addEventListener("mousedown", pega);
   porquinhoscombrinquedo.addEventListener("mousedown", pega);
   pigread.addEventListener("mousedown", pega);
@@ -246,7 +242,7 @@ if (oedMobile) {
 
 if (oedMobile) {
   document.addEventListener("touchmove", move);
-  document.addEventListener("touchstart", solta);
+  document.addEventListener("touchend", solta);
 } else {
   document.addEventListener("mousemove", move);
   document.addEventListener("mouseup", solta);
@@ -274,8 +270,9 @@ function solta(e) {
     ) {
       //objetoPegado.style.left = `${_clientx - dropAreaRect.left}px`;
       //objetoPegado.style.top = `${_clienty - dropAreaRect.top}px`;
-      objetoPegado.style.transform = `translate(${_clientx - dropAreaRect.left - objRect.width / 2
-        }px, ${_clienty - dropAreaRect.top - objRect.height / 2}px)`;
+      objetoPegado.style.transform = `translate(${
+        _clientx - dropAreaRect.left - objRect.width / 2
+      }px, ${_clienty - dropAreaRect.top - objRect.height / 2}px)`;
       armario2.appendChild(objetoPegado);
       objetoPegado.style.position = "absolute";
     } else {
@@ -288,7 +285,6 @@ function solta(e) {
     //
     //animateCSS(objetoPegado, 'tada');
     objetoPegado = null;
-
   }
 }
 
@@ -333,7 +329,7 @@ function move(e) {
 
   objetoPegado.style.transform = `translate(${x}px, ${y}px)`;
 }
-*/
+
 const animateCSS = (element, animation, prefix = "animate__") =>
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
