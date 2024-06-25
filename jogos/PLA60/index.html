@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Educacional - Demo</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Framework -->
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="framework/min/style.css">
+
+    <!-- JS -->
+    <script src="framework/min/aprimora.js"></script>
+    <!-- /Framework -->
+
+    <!-- Jogo -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="tinycarousel.css" type="text/css" media="screen" />
+
+    <script src="js/main.js"></script>
+    <script src="js/html2canvas.js"></script>
+    <script type="text/javascript" src="js/jquery.tinycarousel.min.js"></script>
+    <!-- analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-124031348-1');
+    </script>
+</head>
+
+<body>
+    <section id="stage">
+
+
+        <div id="intro" class="questions">
+            <div class="container">
+                <div class="scenes">
+                    <div class="boxes">
+                        <div class="box" data-box="1">
+
+                        </div>
+                        <div class="box" data-box="2">
+
+                        </div>
+                        <div class="box" data-box="3">
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="sidebar">
+                    <div class="btnsActions">
+                        <button class="addScene"></button>
+                        <button class="subScene"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Fim: intro -->
+
+        <div id="editor" class="questions">
+
+            <div id="quadrados">
+
+            </div>
+
+            <div class="container">
+                <div class="scenes">
+                    <div class="boxes">
+                        <div class="box">
+                            <div class="boxFilho child_1" data-box="1"></div>
+                            <div class="boxFilho child_2" data-box="2"></div>
+                            <div class="boxFilho child_3" data-box="3"></div>
+                            <div class="boxFilho child_4" data-box="4"></div>
+
+                            <div class="boxStage layout">
+                                <div class="popup setBackground">
+                                    <div id="slider1">
+                                        <a class="buttonsCarrousel next" href="#">&#60;</a>
+                                        <div class="viewport">
+                                            <ul class="overview">
+                                            </ul>
+                                        </div>
+                                        <a class="buttonsCarrousel prev" href="#">&#62;</a>
+                                    </div>
+
+                                    <div id="slider2">
+                                        <div>
+                                            <a class="buttonsCarrousel next" href="#">&#60;</a>
+                                        </div>
+                                        <div class="viewport">
+                                            <ul class="overview">
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <a class="buttonsCarrousel prev" href="#">&#62;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="scenarios">
+                            <div class="createScene"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btnsEditor">
+                    <button class="addBackground"></button>
+                    <button class="addPersonages"></button>
+                    <button class="addOnomatopeias"></button>
+                    <button class="addBallons"></button>
+                    <button class="addObjects"></button>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="btnsActions">
+                    <button class="btnAmpliar"></button>
+
+                    <button class="btnReduzir"></button>
+
+                    <button class="btnVertical"></button>
+                    <button class="btnHorizontal"></button>
+
+                    <button class="btnGirarHorario"></button>
+                    <button class="btnGirarAnteHora"></button>
+
+                    <button class="btnSobrepor"></button>
+
+                    <div class="clear"></div>
+
+                    <button class="btnDiminuirFonte"></button>
+                    <span class="font_a"></span>
+                    <button class="btnAumentarFonte"></button>
+
+                    <button class="btnExcluirImage"></button>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div id="historia" class="questions">
+            <div class="container">
+                <div class="scenes historia">
+                    <div class="historia">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--Fim: intro -->
+        </div>
+        </div>
+        <!--Fim: intro -->
+
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,397 @@
+body { 
+	background-color:#f4f4f4; 
+	background-image:-webkit-gradient(linear,0 0,100% 100%,color-stop(.25,rgba(255,255,255,.2)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,.2)),color-stop(.75,rgba(255,255,255,.2)),color-stop(.75,transparent),to(transparent));background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);background-image:-moz-linear-gradient(-45deg,rgba(255,255,255,.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);background-image:-ms-linear-gradient(-45deg,rgba(255,255,255,.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);background-image:-o-linear-gradient(-45deg,rgba(255,255,255,.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);background-image:linear-gradient(-45deg,rgba(255,255,255,.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.2) 75%,transparent 75%,transparent);-webkit-background-size:50px 50px;-moz-background-size:50px 50px;background-size:50px 50px; }
+
+
+#stage .questions .howToDo {
+	text-align: left;
+	padding: 10px 0px 0px;
+	color: #fff;
+}
+
+.questions{
+	width: 1000px;
+	height: 500px;
+	margin: 0 auto;
+	background: rgb(113, 160, 206);
+	
+}
+
+.questions .container{ }
+
+.scenes, .sidebar{
+	height: 420px; 
+}
+
+.scenes{
+	background: #fff;
+	width: 79.4%;
+	float: left;
+	border-right: 2px solid #689ACC;
+}
+
+#editor .scenes{
+	background: transparent;
+}
+
+.sidebar{
+	width: 20%;
+	float: right;
+	position: relative;
+}
+
+.boxes {
+	width: 100%;
+	margin-left: 10px;
+}
+#historia .boxes {
+	width: 750px;
+	margin: 0 auto;
+	background: red;
+}
+.box {
+	height: 225px;
+	width: 225px;
+	cursor: pointer;
+	position: relative;
+	float: left;
+	margin: 95px 10px;
+	border: solid 1px #000;
+}
+#intro .boxes div, #historia .boxes div{
+	display: block !important;
+	box-sizing: border-box !important;
+}
+
+
+#editor .box{
+	border: none !important;
+}
+
+
+.boxFilho img,.boxFilho span{
+	position: absolute;
+}
+
+.boxFilho span{
+	text-align: center;
+	padding-top: 17px;
+	padding-left: 17px;
+	padding-right: 17px;
+	font-family: fantasy;
+	letter-spacing: 2px;
+	}
+
+.boxFilho {
+    position: absolute;
+	text-align: center;
+	background: none repeat scroll 0% 0% #FFF;
+	background-position-x: -169px !important;
+	width: 363px;
+	height: 363px;
+	background-size: cover !important;
+}
+
+#editor .boxFilho{
+	top: -80px;
+    left: 275px;
+}
+
+.four .boxFilho{
+	width: 100%;
+}
+
+.boxFilho.tipo2{
+	top : -8px !important;
+	left: -8px !important;
+}
+.boxFilho.tipo3{
+	top : -70px !important;
+	left: -70px !important;		
+}
+.boxFilho.tipo4{	
+	top : -100px !important;
+	left: -100px !important;
+	border: solid 0px #000 !important;
+}
+
+.boxStage.layout {
+	width: 30%;
+	float: left;
+	height: 100%;
+}
+
+#editor .box1{
+	border: 1px solid #808080;
+	height: 340px;
+	cursor: pointer;
+	width: 100%;
+	display: block;
+	overflow: hidden;
+}
+
+.imgSelected {
+	border:5px black dotted !important;
+	cursor: pointer;
+}
+
+#intro .scenes img.ui-draggable.imgSelected {
+	border:none !important;
+	cursor: pointer;
+}
+#intro .scenes span.ui-draggable.imgSelected {
+	border:none !important;
+	cursor: pointer;
+}
+#historia .scenes img.ui-draggable.imgSelected {
+	border:none !important;
+	cursor: pointer;
+}
+#historia .scenes span.ui-draggable.imgSelected {
+	border:none !important;
+	cursor: pointer;
+}
+
+.flipH{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+.flipV{
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+    filter: FlipV;
+    -ms-filter: "FlipV";
+}
+
+#intro .sidebar .btnsActions{
+	width: 100%;
+	height: 70px;
+	margin: 155px 0;
+	text-align: center;
+}
+
+.btnsActions button{
+	width: 46px;
+	height: 66px;
+	margin: 0 20px;
+	border:none;
+	cursor: pointer;
+}
+
+.addScene{ 
+	background: url('images/btn_addScene.png') no-repeat; 
+}
+
+.subScene{ 
+	background: url('images/btn_subScene.png') no-repeat; 
+}
+
+.btnExcluirImage{
+	background: url('images/trash.png') no-repeat; 
+	top: 45px;
+	position: relative;
+	left: 60px;
+}
+
+.btnAmpliar{ 
+	background: url('images/btn_aumentar.png') no-repeat; 
+}
+
+.btnReduzir{ 
+	background: url('images/btn_diminuir.png') no-repeat;
+}
+
+.btnHorizontal{ 
+	background: url('images/btn_invertVert.png') no-repeat;
+}
+
+.btnVertical{ 
+	background: url('images/btn_invertHor.png') no-repeat;
+}
+
+.btnGirarHorario{ 
+	background: url('images/btn_girar.png') no-repeat;
+}
+
+.btnGirarAnteHora{ 
+	background: url('images/btn_girar.png') no-repeat; 
+	transform: scaleX(-1); 
+	-webkit-transform: scaleX(-1); 
+	-moz-transform: scaleX(-1);
+}
+
+.btnsActions button.btnSobrepor{ 
+	background: url('images/btn_sobrepor.png') no-repeat;
+	width: 58px; 
+	height: 48px; 
+	margin-left: 60px;
+}
+
+.btnAumentarFonte{ 
+	background: url('images/btn_addSize.png') no-repeat; 
+}
+
+.btnDiminuirFonte{ 
+	background: url('images/btn_subSize.png') no-repeat; 
+	position: relative; 
+	top: 50px;
+}
+
+.font_a{ 
+	width: 35px;
+	height: 38px;
+	background: url('images/fontA.png') no-repeat;
+	position: absolute;
+	z-index: 10;
+	top: 287px;
+	right: 90px;
+}
+
+
+.btnsEditor button{
+	border:none;
+	cursor: pointer;
+	width: 110px;
+	height: 84px;
+}
+
+.btnsEditor {
+	text-align: center;
+	margin-top: 10px;
+	position: absolute;
+	top: 385px;
+	left: 210px;
+}
+
+.addBackground  { 
+	background: url('images/btn1.png') no-repeat;
+}
+.addPersonages  { 
+	background: url('images/btn2.png') no-repeat;
+}
+.addOnomatopeias{ 
+	background: url('images/btn3.png') no-repeat;
+}
+.addBallons     { 
+	background: url('images/btn4.png') no-repeat;
+}
+.addObjects     { 
+	background: url('images/btn5.png') no-repeat;
+}
+
+
+.btnBgColor{
+	background: url(images/btn_gradiente.jpg) no-repeat;
+}
+
+#btnFundo1{
+	float: left;
+	background: url(images/fundos/cotidiano/cenario1.jpg) no-repeat;
+	background-size: contain;
+	height: 57px;
+	width: 115px;
+}
+#btnFundo2{
+	float: left;
+	background: url(images/fundos/escola/cenario1.jpg) no-repeat;
+	height: 57px;
+	width: 115px;
+	background-size: contain;
+}
+#btnFundo3{
+	float: left;
+	background: url(images/fundos/ferias/cenario1.jpg) no-repeat;
+	height: 57px;
+	width: 115px;
+	background-size: contain;
+}
+#btnFundo4{
+	float: left;
+	background: url(images/fundos/paisagem/cenario1.jpg) no-repeat;
+	height: 57px;
+	width: 115px;
+	background-size: contain;
+}
+
+#selectIMG{
+	width: 122px;
+	position: absolute;
+	top: 50px;
+	left: 65px;
+}
+#selectIMG li{
+	clear: both;
+}
+.row.boxes canvas, .row.historia canvas {
+	width: 100%;
+	height: 100%;
+}
+.scenes.historia{
+	width: 100%;
+	margin-top: 40px;
+}
+.row.historia div{
+	cursor: auto;
+}
+#slider2 li img {
+	height: 100% !important;
+	width: auto !important;
+}
+#slider1 li .personagens {
+	height: 100% !important;
+	width: auto !important;
+}
+#slider1 img.objetos {
+	margin-top: 19px;
+	height: 60% !important;
+	width: auto !important;
+}
+#slider2 li img.objeto {
+	height: 75% !important;
+	margin-top: 9px;
+}
+ #slider1 li .onomatopeias {
+	height: 59% !important;
+	width: auto !important;
+	vertical-align: middle;
+	padding-top: 19px;
+}
+#slider1 .baloes {
+	height: 75% !important;
+	width: auto !important;
+	margin-top: 13px;
+}
+#editor #quadrados {
+	position: absolute;
+	z-index: 100;
+}
+#editor #quadrados .box {
+	width: 20px !important;
+	background-image: none !important;
+	background: white !important;
+	height: 20px !important;
+	margin: 10px 2px !important;
+	cursor: default; 
+}
+
+#editor #quadrados .box *{
+	display: none !important;
+}
+
+#editor #quadrados .box.selected {
+	background: yellow !important;
+}
+@media screen and (max-width: 1024px){
+    .font_a {
+    	right: 117px;
+
+    }
+
+}

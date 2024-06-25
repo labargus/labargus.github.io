@@ -1,0 +1,145 @@
+/* Tiny Carousel */
+#slider1 {
+    height: 1%;
+     margin: 70px -69px 0px; 
+     position: relative; 
+     padding: 18px 111px 10px; 
+}
+#slider1 .viewport {
+    width: 150px;
+    height: 397px;
+    overflow: hidden;
+    position: relative;
+    margin-left: -25px;
+    bottom: 130px;
+}
+#slider1 .buttonsCarrousel {
+    background: #669966;
+    border-radius: 35px;
+    display: block;
+    position: absolute;
+    top: 76%;
+    left: 73px;
+    width: 35px;
+    height: 35px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-size: 22px;
+}
+#slider1 .next {
+    top: 288px;
+    left: 135px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+#slider1 .prev {
+    top: -150px;
+    left: 142px;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+#slider1 .buttonsCarrousel:hover{
+    color: white;
+    background: green;
+}
+#slider1 .disable { 
+    visibility: hidden; 
+}
+#slider1 .overview { 
+    list-style: none; 
+    position: absolute; 
+    padding: 0; 
+    margin: 0; 
+    width: 0px; 
+    left: 0; 
+    top:0; 
+    text-align: center; 
+}
+#slider1 .overview li {
+    float: left;
+    margin: 0px;
+    padding: 1px;
+    height: 95px;
+    border: 1px solid;
+    width: 141px;
+    background: rgb(243,240,232);
+    overflow: hidden;
+}
+#slider1 li .background {
+    height: 97px;
+}
+
+/* Tiny Carousel */
+#slider2 {
+    position: absolute;
+    top: -81px;
+    left: 210px;
+    background: rgba(255, 255, 255, 0.8);
+    width: 500px;
+    z-index: 9999999;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #999;
+}
+
+#slider2 div{
+    display: inline-block;
+}
+#slider2 div:nth-child(1), #slider2 div:nth-child(3){
+    position: relative;
+    top: -38px;
+    left: 7px;
+    z-index: 999999;
+}
+
+#slider2 .viewport {
+    width: 387px;
+    height: 86px;
+    overflow: hidden;
+    position: relative;
+    left: 16px;
+    z-index: 999999;
+    top: 5px;
+}
+
+#slider2 .buttonsCarrousel {
+    background: #669966;
+    border-radius: 35px;
+    display: block;
+    width: 35px;
+    height: 35px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-size: 22px;
+
+}
+#slider2 a.buttonsCarrousel.prev {
+    margin-left: 22px;
+}
+#slider2 .buttonsCarrousel:hover{
+    color: #669966;
+    background: #fff;
+}
+#slider2 .disable { visibility: hidden; }
+#slider2 .overview { list-style: none; position: absolute; padding: 0; margin: 0; width: 240px; left: 0; top: 0; }
+#slider2 .overview li {
+    float: left;
+    margin: 0px;
+    padding: 1px;
+    height: 82px;
+    border: 1px solid;
+    width: 125px;
+    background: rgb(243,240,232);
+    text-align: center;
+}
+/*.mirrored{
+    visibility: hidden;
+}
+*/
