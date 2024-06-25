@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Conversor de CMYK para ColorADD v0.1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+</head>
+<style>
+    @import url('https://fonts.cdnfonts.com/css/jakob');
+
+    #qrcode {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+
+    * {
+        font-family: 'Jakob', sans-serif;
+        font-size: 22px;
+    }
+
+    body {
+        font-family: 'Jakob', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgb(226 232 240);
+    }
+
+    .cont {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 50px;
+        flex-direction: column;
+    }
+
+    .left {
+        margin-right: 20px;
+    }
+
+    .caixaConteudo {
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    #pagesContainer {
+        display: grid;
+        /*grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));*/
+        grid-gap: 10px;
+        overflow-x: hidden;
+
+    }
+
+    textarea {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 20px;
+        margin-top: 10px;
+        width: 100%;
+        text-align: left;
+    }
+
+    input[type="number"] {
+        padding: 10px;
+        font-size: 25px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 10px;
+        width: 55%;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: column;
+        top: 20px;
+        left: 20px;
+        width: 100%;
+        background-color: #001236;
+        top: 0;
+        left: 0;
+        height: 20%;
+        margin-right: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #8d2be2;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 22px;
+
+    }
+
+    .roundbutton {
+        background-color: #fe8d03;
+        border: none;
+        color: white;
+        line-height: 12px;
+        text-align: center;
+        vertical-align: middle;
+        display: inline-block;
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .button {
+        background-color: #fe8d03;
+        border: none;
+        color: white;
+        padding: 20px;
+        line-height: 12px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        width: 50px;
+        height: 50px;
+        border-radius: 20px;
+    }
+
+    .caixaInfo {
+        background-color: #ffcc00;
+        border-radius: 20px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .quebraLinha {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .caixaDanger {
+        background-color: #ff0000;
+        color: white;
+    }
+
+    .popModal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30%;
+        height: 30%;
+        border-radius: 20px;
+        filter: drop-shadow(0 0 0.75rem rgb(121, 41, 5));
+        background-color: #ffcc00;
+        padding: 20px;
+    }
+
+    .popContent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+    }
+
+    .btModo {
+        width: 120px;
+        height: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        background-color: #ffea00;
+        border-radius: 10px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .color-palette {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .color-box {
+        width: 50px;
+        height: 50px;
+        margin: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .pageText {
+        pointer-events: none;
+    }
+
+    .checkmark {
+        position: absolute;
+        display: inline-block;
+
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        -ms-transform: rotate(45deg);
+        /* IE 9 */
+        -webkit-transform: rotate(45deg);
+        /* Chrome, Safari, Opera */
+        transform: rotate(45deg);
+    }
+
+    .checkmark_stem {
+        position: absolute;
+        width: 6px;
+        height: 18px;
+        background-color: #ffffff;
+        left: 11px;
+        top: 0px;
+    }
+
+    .checkmark_kick {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: #ffffff;
+        left: 5px;
+        top: 12px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #de8d00;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .nome {
+        font-size: 15px;
+    }
+</style>
+
+<body>
+    <div class="cont">
+        <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
+            <div style="width: 200px;">
+                <label for="number-inputC">C</label>
+                <input type="number" placeholder="21" id="number-inputC" min="0" max="100" value='21' />
+                <label for="number-input">%</label>
+            </div>
+            <div style="width: 200px;">
+                <label for="number-inputM">M</label>
+                <input type="number" placeholder="21" id="number-inputM" min="0" max="100" value='21' />
+                <label for="number-input">%</label>
+            </div>
+            <div style="width: 200px;">
+                <label for="number-inputY">Y</label>
+                <input type="number" placeholder="21" id="number-inputY" min="0" max="100" value='21' />
+                <label for="number-input">%</label>
+            </div>
+            <div style="width: 200px;">
+                <label for="number-inputK">K</label>
+                <input type="number" placeholder="21" id="number-inputK" min="0" max="100" value='21' />
+                <label for="number-input">%</label>
+            </div>
+
+        </div>
+        <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
+            <div id="corCmyk" style="width: 200px;height: 200px; border-radius: 25px;background-color: #de8d00;"></div>
+        </div>
+
+        <div id="colorAdd"
+            style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
+        </div>
+        <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
+            <img id="imgColorAdd" style="height: 200px;">
+        </div>
+
+    </div>
+    <div class="popModal hidden">
+        <div class="popContent">
+            <label for="base-color">Selecione a cor: </label>
+            <input type="color" value="#0091fe" id="base-color" onchange="mudaCor(this)" />
+            <button id="closeBtn" class="button" style="width: 100%;" onclick="fechaModal()">fechar</button>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        //v1 Augusto conversor de CMYK para color add
+        //problemas ao detectar roxo claro
+
+
+        const numberInputC = document.querySelector("#number-inputC");
+        const numberInputM = document.querySelector("#number-inputM");
+        const numberInputY = document.querySelector("#number-inputY");
+        const numberInputK = document.querySelector("#number-inputK");
+
+        const corCmyk = document.querySelector("#corCmyk");
+        const colorAdd = document.querySelector("#colorAdd");
+        const imgColorAdd = document.querySelector("#imgColorAdd");
+
+
+        numberInputC.addEventListener('input', function () {
+            readInputs(this);
+        });
+        numberInputM.addEventListener('input', function () {
+            readInputs(this);
+        });
+        numberInputY.addEventListener('input', function () {
+            readInputs(this);
+        });
+        numberInputK.addEventListener('input', function () {
+            readInputs(this);
+        });
+
+        function readInputs(_this) {
+            if (_this.value > 100) {
+                _this.value = 100;
+            }
+            const c = parseInt(numberInputC.value) / 100;
+            const m = parseInt(numberInputM.value) / 100;
+            const y = parseInt(numberInputY.value) / 100;
+            const k = parseInt(numberInputK.value) / 100;
+            const rgb = cmykToRgb(c, m, y, k);
+
+            const colorHex = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+            corCmyk.style.backgroundColor = colorHex;
+
+
+            let colorAddCode = cmykToColorAdd(c, m, y, k);
+            colorAdd.innerHTML = 'ColorADD:' + colorAddCode;
+
+            for (let color of colors) {
+                if (color.description === colorAddCode) {
+                    imgColorAdd.src = "simbolos/" + color.img;
+                    break;
+                }
+            }
+
+        }
+
+        function cmykToRgb(c, m, y, k) {
+            let r = 255 * (1 - c) * (1 - k);
+            let g = 255 * (1 - m) * (1 - k);
+            let b = 255 * (1 - y) * (1 - k);
+
+            return { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
+        }
+
+
+        //backup de RGB
+        function rgbToColorAdd(r, g, b) {
+            if (r > 200 && g < 50 && b < 50) return 'R';  // Red
+            if (r > 200 && g >= 50 && g < 100 && b < 50) return 'DR'; // Dark Red
+            if (r > 200 && g < 50 && b >= 50 && b < 100) return 'BR'; // Brick Red
+            if (r < 50 && g > 200 && b < 50) return 'G';  // Green
+            if (r < 50 && g < 50 && b > 200) return 'B';  // Blue
+            if (r > 200 && g > 200 && b < 50) return 'Y';  // Yellow
+            if (r > 200 && g > 200 && b > 200) return 'W';  // White
+            if (r < 50 && g < 50 && b < 50) return 'K';  // Black
+            // adicionar mais opcoes aqui mas achei complexo deixei como backup
+            return 'U';  // Unknown
+        }
+
+
+
+        function cmykToColorAdd(c, m, y, k) {
+            let rgb = cmykToRgb(c, m, y, k);
+            console.log(rgb)
+            return rgbToColorAdd2(rgb.r, rgb.g, rgb.b);
+        }
+
+        function rgbToColorAdd2(r, g, b) {
+            let minDistance = Infinity;
+            let closestColor = 'U';  // Unknown
+
+            for (let color of colors) {
+                let distance = colorDistance({ r, g, b }, color);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestColor = color.description;
+                }
+            }
+
+            return closestColor;
+        }
+        function colorDistance(c1, c2) {
+            return Math.sqrt(
+                Math.pow(c1.r - c2.r, 2) +
+                Math.pow(c1.g - c2.g, 2) +
+                Math.pow(c1.b - c2.b, 2)
+            );
+        }
+        const colors = [
+            { r: 255, g: 0, b: 42, description: 'RED | HSB 100 - AJ 11', img: "red.png" },
+            { r: 0, g: 85, b: 255, description: 'BLUE | HSB 100 - W 11', img: "blue.png" },
+            { r: 232, g: 232, b: 0, description: 'YELLOW | HSB 100 - G 12', img: "yellow.png" },
+            { r: 46, g: 255, b: 116, description: 'GREEN | HSB 100 - O 10', img: "green.png" },
+            { r: 128, g: 0, b: 255, description: 'PURPLE | HSB 100 - AB 11', img: "purple.png" },
+            { r: 255, g: 85, b: 0, description: 'ORANGE | HSB 100 - C 11', img: "orange.png" },
+            { r: 163, g: 109, b: 0, description: 'BROWN | HSB 100 - E 15', img: "brown.png" },
+            { r: 255, g: 255, b: 255, description: 'WHITE | HSB 10 - A 2', img: "white.png" },
+            { r: 0, g: 0, b: 0, description: 'BLACK | HSB 33 - A 21', img: "black.png" },
+            { r: 117, g: 0, b: 0, description: 'DARK RED | HSB 100 - A 17', img: "dark_red.png" },
+            { r: 0, g: 0, b: 117, description: 'DARK BLUE | HSB 100 - Y 17', img: "dark_blue.png" },
+            { r: 255, g: 212, b: 0, description: 'DARK YELLOW | HSB 100 - F 11', img: "dark_yellow.png" },
+            { r: 20, g: 117, b: 0, description: 'DARK GREEN | HSB 100 - L 17', img: "dark_green.png" },
+            { r: 59, g: 0, b: 117, description: 'DARK PURPLE | HSB 100 - AB 17', img: "dark_purple.png" },
+            { r: 232, g: 77, b: 0, description: 'DARK ORANGE | HSB 100 - C 12', img: "dark_orange.png" },
+            { r: 71, g: 35, b: 0, description: 'DARK BROWN | HSB 100 - D 19', img: "dark_brown.png" },
+            { r: 51, g: 51, b: 46, description: 'DARK grey | LUM-80 - G 2', img: "dark_grey.png" },
+            { r: 126, g: 140, b: 140, description: 'SILVER | HSB 10 - S 16', img: "silver.png" },
+            { r: 255, g: 189, b: 233, description: 'LIGHT RED | HSB 33 - AG 9', img: "light_red.png" },
+            { r: 0, g: 255, b: 255, description: 'LIGHT BLUE | HSB 100 - S 11', img: "light_blue.png" },
+            { r: 255, g: 255, b: 130, description: 'LIGHT YELLOW | HSB 66 - G 9', img: "light_yellow.png" },
+            { r: 155, g: 255, b: 46, description: 'LIGHT GREEN | HSB 100 - J 10', img: "light_green.png" },
+            { r: 232, g: 115, b: 255, description: 'LIGHT PURPLE | HSB 100 - AD 7', img: "light_purple.png" },
+            { r: 255, g: 201, b: 92, description: 'LIGHT ORANGE | HSB 100 - E 8', img: "light_orange.png" },
+            { r: 255, g: 213, b: 130, description: 'LIGHT BROWN | HSB 66 - E 9', img: "light_brown.png" },
+            { r: 186, g: 176, b: 167, description: 'LIGHT grey | HSB 10 - D 14', img: "light_grey.png" },
+            { r: 186, g: 145, b: 63, description: 'GOLD | HSB 66 - E 14', img: "gold.png" },
+        ];
+        const colorArray = [
+            ['l', 'l', 'l', 'j', 'j', 'j', 'j', 'j', 'j', 'w', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'w', 'w', 'w', 'w', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'w', 'w', 'l', 'l', 'l', 'l', 'l', 'l'],
+            ['l', 'l', 'l', 'k', 'k', 'j', 'j', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'l', 'l', 'l', 'l', 'l', 'l'],
+            ['l', 'l', 'l', 'k', 'k', 'j', 'j', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'm', 'l', 'l', 'l', 'l', 'l'],
+            ['l', 'l', 'l', 'k', 'k', 'j', 'j', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'm', 'l', 'l', 'l', 'l', 'l'],
+            ['l', 'l', 'l', 'k', 'k', 'c', 'j', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'm', 'm', 'l', 'l', 'l', 'l'],
+            ['l', 'l', 'k', 'k', 'k', 'c', 'c', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'a', 'h', 'h', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'l', 'l', 'l'],
+            ['l', 'l', 'k', 'k', 'k', 'c', 'c', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'a', 'a', 'a', 'h', 'm', 'm', 'm', 'm', 'm', 'l', 'l', 'l', 'l', 'l'],
+            ['e', 'd', 'd', 'd', 'k', 'c', 'c', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'm', 'm', 'm', 'l', 'l', 'e', 'e', 'e'],
+            ['e', 'd', 'd', 'd', 'k', 'c', 'c', 'i', 'i', 'i', 'i', 'b', 'b', 'b', 'b', 'i', 'i', 'h', 'h', 'h', 'h', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'f', 'm', 'm', 'l', 'l', 'e', 'e', 'e'],
+            ['e', 'e', 'd', 'd', 'd', 'q', 'c', 'i', 'i', 'i', 'i', 'b', 'b', 'b', 'b', 'i', 'i', 'h', 'h', 'h', 'h', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'f', 'm', 'm', 'm', 'l', 'e', 'e', 'e'],
+            ['e', 'e', 'r', 'd', 'd', 'q', 'c', 'i', 'i', 'i', 'b', 'b', 'b', 'b', 'b', 'b', 'i', 'i', 'h', 'h', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'f', 'f', 'm', 'm', 'l', 'e', 'e', 'e'],
+            ['s', 'e', 'r', 'r', 'd', 'q', 'c', 'i', 'i', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'h', 'h', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'f', 'f', 'm', 'm', 'f', 'e', 'e', 's'],
+            ['s', 's', 'r', 'r', 'd', 'q', 'i', 'i', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'h', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 's', 's', 's', 's'],
+            ['s', 's', 'r', 'r', 'g', 'n', 'i', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 's', 's', 's', 's'],
+            ['s', 's', 'r', 'r', 'g', 'n', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'a', 'a', 'a', 'a', 'o', 'o', 'o', 'o', 'o', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 's', 's', 's', 's'],
+            ['s', 's', 's', 'r', 'g', 'n', 'b', 'b', 'b', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'b', 'a', 'a', 'o', 'o', 'o', 'o', 'o', 'o', 't', 'f', 'f', 't', 'f', 'f', 't', 's', 's', 's', 's'],
+            ['s', 's', 's', 'g', 'g', 'g', 'p', 'b', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'a', 'a', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's', 's'],
+            ['s', 's', 'u', 'u', 'g', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's'],
+            ['s', 'u', 'u', 'u', 'u', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's', 'u'],
+            ['u', 'u', 'u', 'u', 'u', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 's', 's', 's', 'u']
+        ];
+
+    </script>
+</body>
+
+</html>
