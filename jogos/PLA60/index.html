@@ -2,176 +2,83 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <title>Educacional - Demo</title>
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Framework -->
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="framework/min/style.css">
-
-    <!-- JS -->
-    <script src="framework/min/aprimora.js"></script>
-    <!-- /Framework -->
-
+    <title>Jogo</title>
     <!-- Jogo -->
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="tinycarousel.css" type="text/css" media="screen" />
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/html2canvas.js"></script>
-    <script type="text/javascript" src="js/jquery.tinycarousel.min.js"></script>
-    <!-- analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    <!-- Google Analytics -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NVQX9JRG');
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-124031348-1');
     </script>
 </head>
 
 <body>
-    <section id="stage">
 
+    <!-- Main conteudo -->
+    <main>
 
-        <div id="intro" class="questions">
-            <div class="container">
-                <div class="scenes">
-                    <div class="boxes">
-                        <div class="box" data-box="1">
+        <!-- Telainicial -->
+        <section id="initial-screen" class="screen active" aria-labelledby="initial-title">
+            <header style="display: flex;height: 70vh; ">
+                <h1 id="initial-title" hidden>Editor de quadrinhos</h1>
+                <img src="assets/titulo.png" style="height: 100%;" alt="Home Image">
+                <div
+                    style="display: flex; justify-content: center; align-items: center; position: absolute; width: 80vw;height:70vh; left: 17vw;top: 30vh;">
+                    <img src="assets/botao.png" style="position: absolute;width: 12%;" alt="Home Image"
+                        onclick="startGame()">
+                </div>
 
-                        </div>
-                        <div class="box" data-box="2">
+            </header>
 
-                        </div>
-                        <div class="box" data-box="3">
+        </section>
 
-                        </div>
+        <!-- Tutorial  -->
+        <section id="tutorial-screen" class="screen" aria-labelledby="tutorial-title">
+            <header>
+                <h1 id="tutorial-title" hidden>Tutorial</h1>
+                <img id="jumpTutBt" src="assets/tutorial.jpg" style="height: 100vh;" alt="Home Image"
+                    onclick="continueToGame()">
+            </header>
+        </section>
 
+        <!-- Game Screen -->
+        <section id="game-screen" class="screen" aria-labelledby="game-title">
+            <header style="display: flex; flex-direction: column;width: 100%;height: 100%;">
+                <h1 id="game-title" hidden>The Game</h1>
+                <div style="display: flex; flex-direction: column;width: 100%;height: 100%;flex-wrap: wrap;">
+                    <div style="background-color: aquamarine; height: 10%;">
+                        <img src="assets/detalhe-topo.png" style="height: 100%;" alt="Home Image">
+                    </div>
+                    <div style="background-color: rgb(106, 84, 202); height: 70%;">
+                        
+                    </div>
+                    <div style="background-color: aquamarine; height: 20%;">
+                        <img src="assets/detalhe-base.png" style="height: 100%;" alt="Home Image">
                     </div>
                 </div>
+            </header>
 
+        </section>
 
-                <div class="sidebar">
-                    <div class="btnsActions">
-                        <button class="addScene"></button>
-                        <button class="subScene"></button>
-                    </div>
-                </div>
-            </div>
+    </main>
 
-        </div>
-        <!--Fim: intro -->
+    <!-- Footer -->
+    <footer class="footerCredito active">
+        <div class="credits-button" onclick="showCredits()">Créditos</div>
+    </footer>
 
-        <div id="editor" class="questions">
-
-            <div id="quadrados">
-
-            </div>
-
-            <div class="container">
-                <div class="scenes">
-                    <div class="boxes">
-                        <div class="box">
-                            <div class="boxFilho child_1" data-box="1"></div>
-                            <div class="boxFilho child_2" data-box="2"></div>
-                            <div class="boxFilho child_3" data-box="3"></div>
-                            <div class="boxFilho child_4" data-box="4"></div>
-
-                            <div class="boxStage layout">
-                                <div class="popup setBackground">
-                                    <div id="slider1">
-                                        <a class="buttonsCarrousel next" href="#">&#60;</a>
-                                        <div class="viewport">
-                                            <ul class="overview">
-                                            </ul>
-                                        </div>
-                                        <a class="buttonsCarrousel prev" href="#">&#62;</a>
-                                    </div>
-
-                                    <div id="slider2">
-                                        <div>
-                                            <a class="buttonsCarrousel next" href="#">&#60;</a>
-                                        </div>
-                                        <div class="viewport">
-                                            <ul class="overview">
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <a class="buttonsCarrousel prev" href="#">&#62;</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="scenarios">
-                            <div class="createScene"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="btnsEditor">
-                    <button class="addBackground"></button>
-                    <button class="addPersonages"></button>
-                    <button class="addOnomatopeias"></button>
-                    <button class="addBallons"></button>
-                    <button class="addObjects"></button>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <div class="btnsActions">
-                    <button class="btnAmpliar"></button>
-
-                    <button class="btnReduzir"></button>
-
-                    <button class="btnVertical"></button>
-                    <button class="btnHorizontal"></button>
-
-                    <button class="btnGirarHorario"></button>
-                    <button class="btnGirarAnteHora"></button>
-
-                    <button class="btnSobrepor"></button>
-
-                    <div class="clear"></div>
-
-                    <button class="btnDiminuirFonte"></button>
-                    <span class="font_a"></span>
-                    <button class="btnAumentarFonte"></button>
-
-                    <button class="btnExcluirImage"></button>
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-        <div id="historia" class="questions">
-            <div class="container">
-                <div class="scenes historia">
-                    <div class="historia">
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        <!--Fim: intro -->
-        </div>
-        </div>
-        <!--Fim: intro -->
-
-    </section>
 </body>
 
 </html>
