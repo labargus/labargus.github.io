@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="colorAddRGB2Code.js"></script>
 </head>
 <style>
     @import url('https://fonts.cdnfonts.com/css/jakob');
@@ -304,6 +305,12 @@
 
 <body>
     <div class="cont">
+        <div style="position: fixed; bottom: 20px;right: 20px;">
+            <img src="marca_site.png" alt="Marca do Site" style="filter: invert(100%);">
+        </div>
+        <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
+            Conversor de CMYK para ColorADD V0.1 
+        </div>
         <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
             <div style="width: 200px;">
                 <label for="number-inputC">C</label>
@@ -394,14 +401,19 @@
 
 
             let colorAddCode = cmykToColorAdd(c, m, y, k);
-            colorAdd.innerHTML = 'ColorADD:' + colorAddCode;
 
-            for (let color of colors) {
-                if (color.description === colorAddCode) {
-                    imgColorAdd.src = "simbolos/" + color.img;
-                    break;
-                }
+            console.log(parseInt(colorAddCode.x)-2, parseInt(colorAddCode.y)-2)
+
+            let letra=colorArray[parseInt(colorAddCode.y)-2][parseInt(colorAddCode.x)-2];
+            console.log(letra);
+
+            //busca na Array2d a letra representante da cor rbg pegada do XML
+            let description = colorDescriptions.find(desc => desc.letra === letra);
+            if (description) {
+                colorAdd.innerHTML = 'ColorADD: ' + description.description;
+                imgColorAdd.src = "simbolos/" + description.img;
             }
+
 
         }
 
@@ -413,23 +425,6 @@
             return { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
         }
 
-
-        //backup de RGB
-        function rgbToColorAdd(r, g, b) {
-            if (r > 200 && g < 50 && b < 50) return 'R';  // Red
-            if (r > 200 && g >= 50 && g < 100 && b < 50) return 'DR'; // Dark Red
-            if (r > 200 && g < 50 && b >= 50 && b < 100) return 'BR'; // Brick Red
-            if (r < 50 && g > 200 && b < 50) return 'G';  // Green
-            if (r < 50 && g < 50 && b > 200) return 'B';  // Blue
-            if (r > 200 && g > 200 && b < 50) return 'Y';  // Yellow
-            if (r > 200 && g > 200 && b > 200) return 'W';  // White
-            if (r < 50 && g < 50 && b < 50) return 'K';  // Black
-            // adicionar mais opcoes aqui mas achei complexo deixei como backup
-            return 'U';  // Unknown
-        }
-
-
-
         function cmykToColorAdd(c, m, y, k) {
             let rgb = cmykToRgb(c, m, y, k);
             console.log(rgb)
@@ -440,11 +435,11 @@
             let minDistance = Infinity;
             let closestColor = 'U';  // Unknown
 
-            for (let color of colors) {
+            for (let color of tableColors) {
                 let distance = colorDistance({ r, g, b }, color);
                 if (distance < minDistance) {
                     minDistance = distance;
-                    closestColor = color.description;
+                    closestColor = color;
                 }
             }
 
@@ -458,63 +453,37 @@
             );
         }
 
+        //essa array tem a descricao da cor, caminho da imagem, e usa a letra como propriedade de busca
         const colorDescriptions = [
-            { letra: 'a', cor: 'azul' },
-            { letra: 'c', cor: 'amarelo' },
-            { letra: 'e', cor: 'vermelho' },
-            { letra: 'b', cor: 'verde' },
-            { letra: 'd', cor: 'laranja' },
-            { letra: 'f', cor: 'roxo' },
-            { letra: 'g', cor: 'castanho' },
-            { letra: 'v', cor: 'branco' },
-            { letra: 'y', cor: 'preto' },
-            { letra: 'h', cor: 'azul claro' },
-            { letra: 'j', cor: 'amarelo claro' },
-            { letra: 'l', cor: 'vermelho claro' },
-            { letra: 'i', cor: 'verde claro' },
-            { letra: 'k', cor: 'laranja claro' },
-            { letra: 'm', cor: 'roxo claro' },
-            { letra: 'n', cor: 'castanho claro' },
-            { letra: 'w', cor: 'cinza claro' },
-            { letra: 'x', cor: 'rosa claro' },
-            { letra: 'o', cor: 'azul escuro' },
-            { letra: 'q', cor: 'amarelo escuro' },
-            { letra: 's', cor: 'vermelho escuro' },
-            { letra: 'p', cor: 'verde escuro' },
-            { letra: 'r', cor: 'laranja escuro' },
-            { letra: 't', cor: 'roxo escuro' },
-            { letra: 'u', cor: 'castanho escuro' },
-            { letra: 'z', cor: 'cinza escuro' }
+            { letra: 'a', cor: 'azul', description: 'BLUE | HSB 100 - W 11', img: "blue.png" },
+            { letra: 'c', cor: 'amarelo', description: 'YELLOW | HSB 100 - G 12', img: "yellow.png" },
+            { letra: 'e', cor: 'vermelho', description: 'RED | HSB 100 - AJ 11', img: "red.png" },
+            { letra: 'b', cor: 'verde', description: 'GREEN | HSB 100 - O 10', img: "green.png" },
+            { letra: 'd', cor: 'laranja', description: 'ORANGE | HSB 100 - C 11', img: "orange.png" },
+            { letra: 'f', cor: 'roxo', description: 'PURPLE | HSB 100 - AB 11', img: "purple.png" },
+            { letra: 'g', cor: 'castanho', description: 'BROWN | HSB 100 - E 15', img: "brown.png" },
+            { letra: 'v', cor: 'branco', description: 'WHITE | HSB 10 - A 2', img: "white.png" },
+            { letra: 'y', cor: 'preto', description: 'BLACK | HSB 33 - A 21', img: "black.png" },
+            { letra: 'h', cor: 'azul claro', description: 'LIGHT BLUE | HSB 100 - S 11', img: "light_blue.png" },
+            { letra: 'j', cor: 'amarelo claro', description: 'LIGHT YELLOW | HSB 66 - G 9', img: "light_yellow.png" },
+            { letra: 'l', cor: 'vermelho claro', description: 'LIGHT RED | HSB 33 - AG 9', img: "light_red.png" },
+            { letra: 'i', cor: 'verde claro', description: 'LIGHT GREEN | HSB 100 - J 10', img: "light_green.png" },
+            { letra: 'k', cor: 'laranja claro', description: 'LIGHT ORANGE | HSB 100 - E 8', img: "light_orange.png" },
+            { letra: 'm', cor: 'roxo claro', description: 'LIGHT PURPLE | HSB 100 - AD 7', img: "light_purple.png" },
+            { letra: 'n', cor: 'castanho claro', description: 'LIGHT BROWN | HSB 66 - E 9', img: "light_brown.png" },
+            { letra: 'w', cor: 'cinza claro', description: 'LIGHT grey | HSB 10 - D 14', img: "light_grey.png" },
+            { letra: 'x', cor: 'rosa claro', description: 'LIGHT RED | HSB 33 - AG 9', img: "light_red.png" },
+            { letra: 'o', cor: 'azul escuro', description: 'DARK BLUE | HSB 100 - Y 17', img: "dark_blue.png" },
+            { letra: 'q', cor: 'amarelo escuro', description: 'DARK YELLOW | HSB 100 - F 11', img: "dark_yellow.png" },
+            { letra: 's', cor: 'vermelho escuro', description: 'DARK RED | HSB 100 - A 17', img: "dark_red.png" },
+            { letra: 'p', cor: 'verde escuro', description: 'DARK GREEN | HSB 100 - L 17', img: "dark_green.png" },
+            { letra: 'r', cor: 'laranja escuro', description: 'DARK ORANGE | HSB 100 - C 12', img: "dark_orange.png" },
+            { letra: 't', cor: 'roxo escuro', description: 'DARK PURPLE | HSB 100 - AB 17', img: "dark_purple.png" },
+            { letra: 'u', cor: 'castanho escuro', description: 'DARK BROWN | HSB 100 - D 19', img: "dark_brown.png" },
+            { letra: 'z', cor: 'cinza escuro', description: 'DARK grey | LUM-80 - G 2', img: "dark_grey.png" }
         ];
-        const colors = [
-            { r: 255, g: 0, b: 42, description: 'RED | HSB 100 - AJ 11', img: "red.png" },
-            { r: 0, g: 85, b: 255, description: 'BLUE | HSB 100 - W 11', img: "blue.png" },
-            { r: 232, g: 232, b: 0, description: 'YELLOW | HSB 100 - G 12', img: "yellow.png" },
-            { r: 46, g: 255, b: 116, description: 'GREEN | HSB 100 - O 10', img: "green.png" },
-            { r: 128, g: 0, b: 255, description: 'PURPLE | HSB 100 - AB 11', img: "purple.png" },
-            { r: 255, g: 85, b: 0, description: 'ORANGE | HSB 100 - C 11', img: "orange.png" },
-            { r: 163, g: 109, b: 0, description: 'BROWN | HSB 100 - E 15', img: "brown.png" },
-            { r: 255, g: 255, b: 255, description: 'WHITE | HSB 10 - A 2', img: "white.png" },
-            { r: 0, g: 0, b: 0, description: 'BLACK | HSB 33 - A 21', img: "black.png" },
-            { r: 117, g: 0, b: 0, description: 'DARK RED | HSB 100 - A 17', img: "dark_red.png" },
-            { r: 0, g: 0, b: 117, description: 'DARK BLUE | HSB 100 - Y 17', img: "dark_blue.png" },
-            { r: 255, g: 212, b: 0, description: 'DARK YELLOW | HSB 100 - F 11', img: "dark_yellow.png" },
-            { r: 20, g: 117, b: 0, description: 'DARK GREEN | HSB 100 - L 17', img: "dark_green.png" },
-            { r: 59, g: 0, b: 117, description: 'DARK PURPLE | HSB 100 - AB 17', img: "dark_purple.png" },
-            { r: 232, g: 77, b: 0, description: 'DARK ORANGE | HSB 100 - C 12', img: "dark_orange.png" },
-            { r: 71, g: 35, b: 0, description: 'DARK BROWN | HSB 100 - D 19', img: "dark_brown.png" },
-            { r: 51, g: 51, b: 46, description: 'DARK grey | LUM-80 - G 2', img: "dark_grey.png" },
-            { r: 126, g: 140, b: 140, description: 'SILVER | HSB 10 - S 16', img: "silver.png" },
-            { r: 255, g: 189, b: 233, description: 'LIGHT RED | HSB 33 - AG 9', img: "light_red.png" },
-            { r: 0, g: 255, b: 255, description: 'LIGHT BLUE | HSB 100 - S 11', img: "light_blue.png" },
-            { r: 255, g: 255, b: 130, description: 'LIGHT YELLOW | HSB 66 - G 9', img: "light_yellow.png" },
-            { r: 155, g: 255, b: 46, description: 'LIGHT GREEN | HSB 100 - J 10', img: "light_green.png" },
-            { r: 232, g: 115, b: 255, description: 'LIGHT PURPLE | HSB 100 - AD 7', img: "light_purple.png" },
-            { r: 255, g: 201, b: 92, description: 'LIGHT ORANGE | HSB 100 - E 8', img: "light_orange.png" },
-            { r: 255, g: 213, b: 130, description: 'LIGHT BROWN | HSB 66 - E 9', img: "light_brown.png" },
-            { r: 186, g: 176, b: 167, description: 'LIGHT grey | HSB 10 - D 14', img: "light_grey.png" },
-            { r: 186, g: 145, b: 63, description: 'GOLD | HSB 66 - E 14', img: "gold.png" },
-        ];
+
+        //essa array 2d é a representacao do excell, apenas copiei e colei no Curror, ele fez o resto e organizou em uma Array2d
         const colorArray = [
             ['l', 'l', 'l', 'j', 'j', 'j', 'j', 'j', 'j', 'w', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'w', 'w', 'w', 'w', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'w', 'w', 'l', 'l', 'l', 'l', 'l', 'l'],
             ['l', 'l', 'l', 'k', 'k', 'j', 'j', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'i', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'h', 'm', 'm', 'm', 'm', 'l', 'l', 'l', 'l', 'l', 'l'],
