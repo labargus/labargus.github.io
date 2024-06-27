@@ -309,7 +309,7 @@
             <img src="marca_site.png" alt="Marca do Site" style="filter: invert(100%);">
         </div>
         <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
-            Conversor de CMYK para ColorADD V0.1 
+            Conversor de CMYK para ColorADD V0.1
         </div>
         <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
             <div style="width: 200px;">
@@ -400,11 +400,24 @@
             corCmyk.style.backgroundColor = colorHex;
 
 
-            let colorAddCode = cmykToColorAdd(c, m, y, k);
+            console.log(c,m,y,k)
 
-            console.log(parseInt(colorAddCode.x)-2, parseInt(colorAddCode.y)-2)
+            let colorAddCode = rgbToColorAdd(rgb.r, rgb.g, rgb.b);
 
-            let letra=colorArray[parseInt(colorAddCode.y)-2][parseInt(colorAddCode.x)-2];
+            //console.log(parseInt(colorAddCode.x) - 2, parseInt(colorAddCode.y) - 2)
+
+            //aqui uma marretinha pra corrigir cinzas e preto que nao tem na matriz
+            let letra = colorArray[parseInt(colorAddCode.y) - 2][parseInt(colorAddCode.x) - 2];
+            if (c == 0 && m == 0 && y == 0 && k == 0) {
+                letra="v";//branco
+            }else if(c == 0 && m == 0 && y == 0 && k == 1){
+                letra="y";//preto
+            }else if(c == 0 && m == 0 && y == 0 && k >= 0.5 && k<0.93){
+                letra="z";//cinza escuro
+            }else if(c == 0 && m == 0 && y == 0 && k > 0 && k<0.5){
+                letra="w";//cinxa claro
+            }
+            
             console.log(letra);
 
             //busca na Array2d a letra representante da cor rbg pegada do XML
@@ -413,8 +426,6 @@
                 colorAdd.innerHTML = 'ColorADD: ' + description.description;
                 imgColorAdd.src = "simbolos/" + description.img;
             }
-
-
         }
 
         function cmykToRgb(c, m, y, k) {
@@ -425,13 +436,7 @@
             return { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
         }
 
-        function cmykToColorAdd(c, m, y, k) {
-            let rgb = cmykToRgb(c, m, y, k);
-            console.log(rgb)
-            return rgbToColorAdd2(rgb.r, rgb.g, rgb.b);
-        }
-
-        function rgbToColorAdd2(r, g, b) {
+        function rgbToColorAdd(r, g, b) {
             let minDistance = Infinity;
             let closestColor = 'U';  // Unknown
 
@@ -442,7 +447,6 @@
                     closestColor = color;
                 }
             }
-
             return closestColor;
         }
         function colorDistance(c1, c2) {
@@ -502,9 +506,9 @@
             ['s', 's', 'r', 'r', 'g', 'n', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'a', 'a', 'a', 'a', 'o', 'o', 'o', 'o', 'o', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 's', 's', 's', 's'],
             ['s', 's', 's', 'r', 'g', 'n', 'b', 'b', 'b', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'b', 'a', 'a', 'o', 'o', 'o', 'o', 'o', 'o', 't', 'f', 'f', 't', 'f', 'f', 't', 's', 's', 's', 's'],
             ['s', 's', 's', 'g', 'g', 'g', 'p', 'b', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'a', 'a', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's', 's'],
-            ['s', 's', 'u', 'u', 'g', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's'],
-            ['s', 'u', 'u', 'u', 'u', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's', 'u'],
-            ['u', 'u', 'u', 'u', 'u', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 't', 't', 't', 't', 't', 's', 's', 's', 'u']
+            ['s', 's', 'u', 'u', 'g', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'o', 'y', 'o', 't', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's'],
+            ['s', 'u', 'y', 'u', 'u', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'o', 'y', 'y', 'y', 't', 't', 't', 't', 't', 't', 's', 's', 's', 's', 'u'],
+            ['y', 'y', 'y', 'y', 'y', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'o', 'o', 'o', 'o', 'y', 'y', 'y', 'y', 'y', 'o', 't', 't', 't', 't', 't', 's', 's', 's', 'y']
         ];
 
     </script>
