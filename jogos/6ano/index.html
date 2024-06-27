@@ -336,9 +336,6 @@
 
 	<script>
 
-		if (location.protocol != "https:") {
-			location.href = "https:" + window.location.href.substring(window.location.protocol.length);
-		}
 		function iniciaInteracao() {
 			const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 			const isAndroid = navigator.userAgent.toLowerCase().includes("android");
