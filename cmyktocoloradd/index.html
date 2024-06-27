@@ -311,6 +311,7 @@
         <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
             Conversor de CMYK para ColorADD V0.1
         </div>
+        
         <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
             <div style="width: 200px;">
                 <label for="number-inputC">C</label>
@@ -416,6 +417,14 @@
                 letra="z";//cinza escuro
             }else if(c == 0 && m == 0 && y == 0 && k > 0 && k<0.5){
                 letra="w";//cinxa claro
+            }else if (Math.abs(c - m) <= 0.05 && Math.abs(m - y) <= 0.05 && Math.abs(c - y) <= 0.05) {
+                //verifica se c,m e y sao iguais por uma diferenca de 0.05 entre eles
+                //depois soma com o k para formar o cinza claro ou escuro
+                if(c+k>0 && c+k<0.5){
+                    letra="w"
+                }else{
+                    letra="z"
+                }
             }
             
             console.log(letra);
