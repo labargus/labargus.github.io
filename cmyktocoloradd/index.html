@@ -38,7 +38,7 @@
         justify-content: space-between;
         align-items: flex-start;
         padding: 10px;
-        gap: 50px;
+        gap:20px;
         flex-direction: column;
     }
 
@@ -335,15 +335,15 @@
             </div>
 
         </div>
-        <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
-            <div id="corCmyk" style="width: 200px;height: 200px; border-radius: 25px;background-color: #de8d00;"></div>
-        </div>
-
-        <div id="colorAdd"
-            style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
-        </div>
+        
         <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
             <img id="imgColorAdd" style="height: 200px;">
+        </div>
+        <div style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
+            <div id="corCmyk" style="width: 200px;height: 50px; border-radius: 5px;background-color: #de8d00;"></div>
+        </div>
+        <div id="colorAdd"
+            style="display: flex; flex-direction: row;align-content: center;justify-content: center;width: 100%;">
         </div>
 
     </div>
@@ -386,8 +386,8 @@
             readInputs(this);
         });
 
-        function readInputs(_this) {
-            if (_this.value > 100) {
+        function readInputs(_this=null) {
+            if (_this && _this.value > 100) {
                 _this.value = 100;
             }
             const c = parseInt(numberInputC.value) / 100;
@@ -432,7 +432,7 @@
             //busca na Array2d a letra representante da cor rbg pegada do XML
             let description = colorDescriptions.find(desc => desc.letra === letra);
             if (description) {
-                colorAdd.innerHTML = 'ColorADD: ' + description.description;
+                colorAdd.innerHTML = description.description;
                 imgColorAdd.src = "simbolos/" + description.img;
             }
         }
@@ -465,6 +465,11 @@
                 Math.pow(c1.b - c2.b, 2)
             );
         }
+
+       
+        setTimeout(() => {
+            readInputs();
+        }, 1000);
 
         //essa array tem a descricao da cor, caminho da imagem, e usa a letra como propriedade de busca
         const colorDescriptions = [
