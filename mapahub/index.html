@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Super herois</title>
+
+	<script src="https://cdn.babylonjs.com/babylon.js"></script>
+	<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+
+
+	<style>
+		html, body {
+			overflow: hidden;
+		}
+		body {
+			background-color: rgb(0, 0, 0);
+		}
+
+		canvas {
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		button {
+			height: 60px;
+			border-radius: 10px;
+		}
+
+		.botoes {
+			width: 30%;
+			display: flex;
+			position: absolute;
+			left: 10px;
+			flex-direction: column;
+			gap: 10px;
+			overflow: hidden;
+		}
+
+		.layer {
+			width: 100%;
+			display: flex;
+			justify-content: start;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.screen {
+			position: absolute;
+			width: 100vw;
+			height: 90vh;
+			display: flex;
+			justify-content: center;
+			overflow: hidden;
+
+		}
+
+		.hide {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="botoes">
+		<div class="layer">
+			<div
+				style="display: flex;flex-direction: column; background-color: rgb(0, 0, 0);border-radius: 15px;padding: 10px; height: 100vh;">
+
+				<input type="text" id="searchInput" placeholder="Procure uma sala...">
+				<script>
+					document.getElementById('searchInput').addEventListener('input', function() {
+						var searchValue = this.value.toLowerCase();
+						var buttons = document.querySelectorAll('.bt');
+						
+						buttons.forEach(function(button) {
+							if (button.textContent.toLowerCase().includes(searchValue)) {
+								button.style.display = 'block';
+							} else {
+								button.style.display = 'none';
+							}
+						});
+					});
+				</script>
+				<button id="btsala1" class="bt">CWB - Sala Machado de Assis | 8 pessoas</button>
+				<button id="btsala2" class="bt">CWB - Sala Lauro de Oliveira Lima | 6 pessoas</button>
+				<button id="btsala3" class="bt">CWB - Sala Poty Lazzarotto | 8 pessoas</button>
+				<button id="btsala4" class="bt">CWB - Sala Enheduanna | 6 pessoas</button>
+				<button id="btsala5" class="bt">CWB - Sala Emília Ferreiro | 6 pessoas</button>
+				<button id="btsala6" class="bt">CWB - Sala Ana Miranda | 10 pessoas</button>
+				<button id="btsala7" class="bt">CWB - Sala Maria da Penha | 4 pessoas</button>
+				<button id="btsala8" class="bt">CWB - Sala Domingos Pellegrini | 4 pessoas</button>
+				<button id="btsala9" class="bt">CWB - Sala Mário de Andrade | 4 pessoas</button>
+				<button id="btsala10" class="bt">CWB - Sala Darcy Ribeiro | 4 pessoas</button>
+				<button id="btsala11" class="bt">CWB - Sala Mário Sérgio Cortella | 4 pessoas</button>
+				<button id="btsala12" class="bt">CWB - Sala Hélio Leites | 2 pessoas</button>
+				<button id="btsala13" class="bt">CWB - Sala Hipátia | 2 pessoas</button>
+				<button id="btsala14" class="bt">CWB - Sala Magda Soares | 2 pessoas</button>
+				<button id="btsala15" class="bt">CWB - Sala Alan Turing | 8 pessoas</button>
+				<button id="btsala16" class="bt">CWB - Sala Lady Murasaki | 4 pessoas</button>
+				<button id="btsala17" class="bt">CWB - Sala Marie Curie | 10 pessoas</button>
+				<button id="btsala18" class="bt">CWB - Sala Katherine Johnson | 4 pessoas</button>
+				<button id="btsala19" class="bt">CWB - Sala Isaac Newton | 4 pessoas</button>
+				<button id="btsala20" class="bt">CWB - Sala Zaha Hadid | 4 pessoas</button>
+				<button id="btsala21" class="bt">CWB - Arquibancada | 85 pessoas</button>
+				<button id="btsala22" class="bt">CWB - Sala Câmara Cascudo | 1 pessoa</button>
+				<button id="btsala23" class="bt">CWB - Sala Ariano Suassuna | 1 pessoa</button>
+				<button id="btsala24" class="bt">CWB - Sala César Lattes | 10 pessoas</button>
+				<button id="btsala25" class="bt">CWB - Sala Leonardo da Vinci | 25 pessoas</button>
+				<button id="btsala26" class="bt">CWB - Sala Ada Lovelace | 4 pessoas</button>
+				<button id="btsala27" class="bt">CWB - Sala Santos Dumont | 4 pessoas</button>
+			</div>
+		</div>
+
+	</div>
+
+	<canvas id="renderCanvas"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("renderCanvas");
+
+		var camera, scene, target, aniParado, aniVoando, aniForca;
+		var scene;
+		var salas = [];
+		var predio;
+		var isActive = false;
+		var pathTextures;
+
+		
+
+
+		var materialSalas;
+
+		var materialXray;
+
+		var engine = new BABYLON.Engine(canvas, true);
+
+
+		function copyCanvasContentsToClipboard() {
+			BABYLON.Tools.CreateScreenshotUsingRenderTarget(engine, camera, { width: 1920, height: 1080 });
+		}
+
+		var createScene = function () {
+			scene = new BABYLON.Scene(engine);
+			//scene.clearColor = new BABYLON.Color3(1, 1, 1);
+			scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Set the clear color to transparent
+
+			var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("meshes/environment.dds", scene);
+
+			target = new BABYLON.TransformNode('target', scene);
+			target.position.y = 0;
+			target.position.x = 2;
+			target.position.z = -2;
+
+			materialXray = new BABYLON.PBRMaterial("materialXray", scene);
+			materialXray.reflectionTexture = hdrTexture;
+			materialXray.metallic = 0.85;
+			materialXray.roughness = 0.2;
+			materialXray.alpha = 1;
+			materialXray.albedoColor = new BABYLON.Color3.FromHexString('#0022FF'); // Blue color for xray material
+			materialXray.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
+			anime({
+				targets: materialXray,
+				alpha: 0.25, // target x position
+				duration: 2000, // duration of the animation in milliseconds
+				easing: 'easeInOutQuad' // easing function
+			});
+
+			materialSalas = new BABYLON.PBRMaterial("materialXray", scene);
+			materialSalas.reflectionTexture = hdrTexture;
+			materialSalas.metallic = 0.5;
+			materialSalas.roughness = 0.52;
+			materialSalas.alpha = 0.5;
+			materialSalas.emissiveIntensity = 0.1; // Set emissive power for salas material
+			materialSalas.emissiveColor = new BABYLON.Color3.FromHexString('#FF5E00'); // Set emissive color for salas material
+			materialSalas.albedoColor = new BABYLON.Color3.FromHexString('#FF5E00'); // Orange color for xray material
+			//materialSalas.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
+
+
+
+
+
+
+			// Create a new ArcRotateCamera named "Camera" with initial parameters
+			// Create a new ArcRotateCamera named "Camera" with initial parameters
+			camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 5, new BABYLON.Vector3(0, 0, 0), scene);
+			// Parameters:
+			// - "Camera": The name of the camera
+			// - 0: Alpha, the rotation around the Y axis
+			// - 0: Beta, the rotation around the X axis
+			// - 10: Radius, the distance from the target
+			// - new BABYLON.Vector3(0, 0, 0): The target position of the camera
+			// - scene: The scene where the camera belongs
+			camera.setPosition(new BABYLON.Vector3(0, 0, 20));
+			camera.attachControl(canvas, true);
+			camera.panningSensibility = 0;
+			camera.upperBetaLimit = 1.2;
+			camera.lowerRadiusLimit = 8; // Set the lower limit of the camera's radius to its current radius to block zooming in
+			camera.upperRadiusLimit =25; // Set the upper limit of the camera's radius to its current radius to block zooming out
+			anime({
+				targets: camera.position,
+				x: 20, // target x position
+				y: 20, // target y position
+				z: 20, // target z position
+				duration: 2000, // duration of the animation in milliseconds
+				easing: 'easeInOutQuad', // easing function
+				update: function () {
+					camera.setTarget(BABYLON.Vector3.Zero());
+				}
+			});
+
+
+			/*directional light is defined by a direction (what a surprise!). The light is emitted from everywhere in the specified direction, and has an infinite range. An example of a directional light is when a distant planet is lit by the apparently parallel lines of light from its sun. Light in a downward direction will light the top of an object.
+		   */
+			const light0 = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(3, 2, 2), scene);
+
+			const shadowGenerator = new BABYLON.ShadowGenerator(1024, light0);
+
+			var light = new BABYLON.HemisphericLight("HemiLight", new BABYLON.Vector3(0, 1, 0), scene);
+			light.intensity = 1;
+
+			BABYLON.SceneLoader.ImportMesh("", "meshes/", "hub.glb", scene, function (newMeshes, particleSystems, skeletons) {
+
+				for (i = 0; i < newMeshes.length; i++) {
+					console.log(newMeshes[i].name)
+					if (newMeshes[i].name == "sae") {
+						predio=newMeshes[i];
+					}
+					if (newMeshes[i].name.includes("chao")) {
+						newMeshes[i].material = materialXray;
+					}
+					if (newMeshes[i].name.includes("sala")) {
+						newMeshes[i].material = materialSalas;
+						salas.push(newMeshes[i])
+					}
+
+
+				}
+				const gl = new BABYLON.GlowLayer("glow", scene);
+				gl.intensity = 0.85;
+			});
+
+			scene.onBeforeCameraRenderObservable.add(() => {
+				camera.setTarget(target.position)
+			})
+
+			const buttons = document.querySelectorAll('.bt');
+			buttons.forEach(button => {
+				button.onclick = function () {
+					const id = button.id.substring(6);
+					changesala(parseInt(id));
+				};
+			});
+
+
+			function changesala(_id) {
+				materialXray;
+				for (let sala of salas) {
+					if (sala.name === "sala" + _id) {
+						sala.material = materialSalas;
+						changesalaAnime(sala);
+					} else {
+						sala.material = materialXray;
+					}
+				}
+
+
+			}
+			function changesalaAnime(_qual) {
+				// Add your code here for the changesala function
+				console.log("Changing sala...", _qual.name);
+				predio.material=materialXray
+				anime({
+					targets: target.position,
+					x: _qual.position.x * -1,
+					y: _qual.position.y,
+					z: _qual.position.z,
+					duration: 1500,
+					easing: 'easeInOutQuad'
+				});
+				
+				anime({
+					targets: camera,
+					radius: 8,
+					duration: 1500, // duration of the animation in milliseconds
+					easing: 'easeInOutQuad' // easing function
+
+				});
+				anime({
+					targets: materialXray,
+					alpha: 0.2, // target x position
+					duration: 1500, // duration of the animation in milliseconds
+					easing: 'easeInOutQuad' // easing function
+				});
+				anime({
+					targets: materialSalas,
+					emissiveIntensity: 1, // target x position
+					duration: 1500, // duration of the animation in milliseconds
+					easing: 'easeInOutQuad' // easing function
+				});
+
+			}
+
+			return scene;
+
+
+		};
+
+		scene = createScene();
+		engine.runRenderLoop(function () {
+
+			scene.render();
+
+
+		});
+
+	</script>
+</body>
+
+</html>
