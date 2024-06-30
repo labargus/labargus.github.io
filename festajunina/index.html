@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Festa Junina</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .button {
+            font-size: 24px;
+
+            width: 200px;
+            height: 100px;
+        }
+        #output {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div style="display: flex;flex-wrap: wrap;">
+<div style="width: 50%;background-color: aqua;display: flex;flex-wrap: wrap;gap: 20px;">
+    <h1>Calculadora de Festa Junina</h1>
+    <button class="button" onclick="addItem('Cachorro Quente', 5)">Cachorro Quente - R$ 5</button>
+    <button class="button" onclick="addItem('Pipoca', 3)">Pipoca - R$ 3</button>
+    <button class="button" onclick="addItem('Quentão', 4)">Quentão - R$ 4</button>
+    <button class="button" onclick="addItem('Pastel', 6)">Pastel - R$ 6</button>
+    <button class="button" onclick="addItem('Refrigerante', 3)">Refrigerante - R$ 3</button>
+    <button class="button" onclick="addItem('Bolo', 4)">Bolo - R$ 4</button>
+    <button class="button" onclick="addItem('Maçã do Amor', 5)">Maçã do Amor - R$ 5</button>
+    <button class="button" onclick="addItem('Doce', 2)">Doce - R$ 2</button>
+</div>
+<div style="width: 50%;background-color: rgb(221, 255, 0);">
+    <h2>Itens</h2>
+    <ul id="itemList"></ul>
+
+    <div id="output">
+        Total: R$ <span id="totalAmount">0</span>
+    </div>
+
+    <div>
+        <label for="cashReceived">Dinheiro Recebido: R$</label>
+        <input type="number" id="cashReceived" oninput="calculateChange()" min="0">
+    </div>
+
+    <div id="output">
+        Troco: R$ <span id="changeAmount">0</span>
+    </div>
+</div>
+</div>
+
+    
+
+    <script>
+        let total = 0;
+        let items = [];
+
+        function addItem(name, price) {
+            items.push({ name, price });
+            total += price;
+            updateDisplay();
+        }
+
+        function removeItem(index) {
+            total -= items[index].price;
+            items.splice(index, 1);
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const itemList = document.getElementById('itemList');
+            itemList.innerHTML = '';
+            items.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - R$ ${item.price}`;
+                li.onclick = () => removeItem(index);
+                itemList.appendChild(li);
+            });
+            document.getElementById('totalAmount').textContent = total;
+            calculateChange();
+        }
+
+        function calculateChange() {
+            const cashReceived = parseFloat(document.getElementById('cashReceived').value) || 0;
+            const change = cashReceived - total;
+            document.getElementById('changeAmount').textContent = change >= 0 ? change.toFixed(2) : '0';
+        }
+    </script>
+
+</body>
+</html>
