@@ -111,16 +111,25 @@
 							<a id="btsala4" class="bt navbar-item">CWB - Sala Enheduanna | 6 pessoas</a>
 							<a id="btsala5" class="bt navbar-item">CWB - Sala Emília Ferreiro | 6 pessoas</a>
 							<a id="btsala6" class="bt navbar-item">CWB - Sala Ana Miranda | 10 pessoas</a>
+						</div>
+					</div>
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">1 Andar Mezanino</a>
+						<div class="navbar-dropdown">
 							<a id="btsala7" class="bt navbar-item">CWB - Sala Maria da Penha | 4 pessoas</a>
 							<a id="btsala8" class="bt navbar-item">CWB - Sala Domingos Pellegrini | 4 pessoas</a>
 							<a id="btsala9" class="bt navbar-item">CWB - Sala Mário de Andrade | 4 pessoas</a>
+						</div>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">1 Andar Mezanino Salão</a>
+						<div class="navbar-dropdown">
 							<a id="btsala10" class="bt navbar-item">CWB - Sala Darcy Ribeiro | 4 pessoas</a>
 							<a id="btsala11" class="bt navbar-item">CWB - Sala Mário Sérgio Cortella | 4 pessoas</a>
 							<a id="btsala12" class="bt navbar-item">CWB - Sala Hélio Leites | 2 pessoas</a>
 							<a id="btsala13" class="bt navbar-item">CWB - Sala Hipátia | 2 pessoas</a>
 							<a id="btsala14" class="bt navbar-item">CWB - Sala Magda Soares | 2 pessoas</a>
-
-
 						</div>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
@@ -255,14 +264,12 @@
 	<script type="text/javascript">
 
 		document.addEventListener('DOMContentLoaded', () => {
-
 			// Get all "navbar-burger" elements
 			const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
 			// Add a click event on each of them
 			$navbarBurgers.forEach(el => {
 				el.addEventListener('click', () => {
-
 					// Get the target from the "data-target" attribute
 					const target = el.dataset.target;
 					const $target = document.getElementById(target);
@@ -442,11 +449,11 @@
 				for (let sala of salas) {
 					if (sala.name === "sala" + _id) {
 						sala.material = materialSalas;
-						if (_id < 14) {
+						if (_id < 15) {
 							chao1 = chao.find(chao => chao.name === "chao1");
 							chao1.material = matChao;
 						}
-						if (_id >= 14) {
+						if (_id >= 15) {
 							chao1 = chao.find(chao => chao.name === "chao2");
 							chao1.material = matChao;
 						}
