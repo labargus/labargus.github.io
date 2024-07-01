@@ -4,16 +4,19 @@
 <head>
 	<meta charset="utf-8">
 	<title>Super herois</title>
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css">
 	<script src="https://cdn.babylonjs.com/babylon.js"></script>
 	<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/animejs"></script>
 
 
 	<style>
-		html, body {
+		html,
+		body {
 			overflow: hidden;
 		}
+
 		body {
 			background-color: rgb(0, 0, 0);
 		}
@@ -60,23 +63,117 @@
 		.hide {
 			display: none;
 		}
+
+		#info {
+			position: absolute;
+			bottom: 15%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #1f3f7a;
+			border-color: grey;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
 	</style>
 </head>
 
 <body>
+	<div style="position: absolute;top: 0px;width: 100%;">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="#">
+					<img src="marca_site.png" alt="Site Logo">
 
-	<div class="botoes">
-		<div class="layer">
-			<div
-				style="display: flex;flex-direction: column; background-color: rgb(0, 0, 0);border-radius: 15px;padding: 10px; height: 100vh;">
+				</a>
 
-				<input type="text" id="searchInput" placeholder="Procure uma sala...">
+				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+					data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item" onclick="location.reload()">
+						Inicio
+					</a>
+
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">1 Andar</a>
+						<div class="navbar-dropdown">
+							<a id="btsala1" class="bt navbar-item">CWB - Sala Machado de Assis | 8 pessoas</a>
+							<a id="btsala2" class="bt navbar-item">CWB - Sala Lauro de Oliveira Lima | 6 pessoas</a>
+							<a id="btsala3" class="bt navbar-item">CWB - Sala Poty Lazzarotto | 8 pessoas</a>
+							<a id="btsala4" class="bt navbar-item">CWB - Sala Enheduanna | 6 pessoas</a>
+							<a id="btsala5" class="bt navbar-item">CWB - Sala Emília Ferreiro | 6 pessoas</a>
+							<a id="btsala6" class="bt navbar-item">CWB - Sala Ana Miranda | 10 pessoas</a>
+							<a id="btsala7" class="bt navbar-item">CWB - Sala Maria da Penha | 4 pessoas</a>
+							<a id="btsala8" class="bt navbar-item">CWB - Sala Domingos Pellegrini | 4 pessoas</a>
+							<a id="btsala9" class="bt navbar-item">CWB - Sala Mário de Andrade | 4 pessoas</a>
+							<a id="btsala10" class="bt navbar-item">CWB - Sala Darcy Ribeiro | 4 pessoas</a>
+							<a id="btsala11" class="bt navbar-item">CWB - Sala Mário Sérgio Cortella | 4 pessoas</a>
+							<a id="btsala12" class="bt navbar-item">CWB - Sala Hélio Leites | 2 pessoas</a>
+							<a id="btsala13" class="bt navbar-item">CWB - Sala Hipátia | 2 pessoas</a>
+							<a id="btsala14" class="bt navbar-item">CWB - Sala Magda Soares | 2 pessoas</a>
+
+
+						</div>
+					</div>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link">2 Andar</a>
+						<div class="navbar-dropdown">
+							<a id="btsala15" class="bt navbar-item">CWB - Sala Alan Turing | 8 pessoas</a>
+							<a id="btsala16" class="bt navbar-item">CWB - Sala Lady Murasaki | 4 pessoas</a>
+							<a id="btsala17" class="bt navbar-item">CWB - Sala Marie Curie | 10 pessoas</a>
+							<a id="btsala18" class="bt navbar-item">CWB - Sala Katherine Johnson | 4 pessoas</a>
+							<a id="btsala19" class="bt navbar-item">CWB - Sala Isaac Newton | 4 pessoas</a>
+							<a id="btsala20" class="bt navbar-item">CWB - Sala Zaha Hadid | 4 pessoas</a>
+							<a id="btsala21" class="bt navbar-item">CWB - Arquibancada | 85 pessoas</a>
+							<a id="btsala22" class="bt navbar-item">CWB - Sala Câmara Cascudo | 1 pessoa</a>
+							<a id="btsala23" class="bt navbar-item">CWB - Sala Ariano Suassuna | 1 pessoa</a>
+							<a id="btsala24" class="bt navbar-item">CWB - Sala César Lattes | 10 pessoas</a>
+							<a id="btsala25" class="bt navbar-item">CWB - Sala Leonardo da Vinci | 25 pessoas</a>
+							<a id="btsala26" class="bt navbar-item">CWB - Sala Ada Lovelace | 4 pessoas</a>
+							<a id="btsala27" class="bt navbar-item">CWB - Sala Santos Dumont | 4 pessoas</a>
+						</div>
+					</div>
+				</div>
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<button class="button is-primary"
+							onclick="document.getElementById('searchModal').style.display='block'">
+							<span class="icon">
+								<i class="fas fa-search"></i>
+							</span>
+						</button>
+						<div class="navbar-dropdown is-active">
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="modal" id="searchModal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<input id="searchInput" type="text" placeholder="Pesquisar aqui..." class="input is-secondary">
+				<span class="icon">
+					<i class="fas fa-search"></i>
+				</span>
+
 				<script>
-					document.getElementById('searchInput').addEventListener('input', function() {
+					document.getElementById('searchInput').addEventListener('input', function () {
 						var searchValue = this.value.toLowerCase();
-						var buttons = document.querySelectorAll('.bt');
-						
-						buttons.forEach(function(button) {
+						var buttons = document.querySelectorAll('.item-search');
+
+						buttons.forEach(function (button) {
 							if (button.textContent.toLowerCase().includes(searchValue)) {
 								button.style.display = 'block';
 							} else {
@@ -85,59 +182,123 @@
 						});
 					});
 				</script>
-				<button id="btsala1" class="bt">CWB - Sala Machado de Assis | 8 pessoas</button>
-				<button id="btsala2" class="bt">CWB - Sala Lauro de Oliveira Lima | 6 pessoas</button>
-				<button id="btsala3" class="bt">CWB - Sala Poty Lazzarotto | 8 pessoas</button>
-				<button id="btsala4" class="bt">CWB - Sala Enheduanna | 6 pessoas</button>
-				<button id="btsala5" class="bt">CWB - Sala Emília Ferreiro | 6 pessoas</button>
-				<button id="btsala6" class="bt">CWB - Sala Ana Miranda | 10 pessoas</button>
-				<button id="btsala7" class="bt">CWB - Sala Maria da Penha | 4 pessoas</button>
-				<button id="btsala8" class="bt">CWB - Sala Domingos Pellegrini | 4 pessoas</button>
-				<button id="btsala9" class="bt">CWB - Sala Mário de Andrade | 4 pessoas</button>
-				<button id="btsala10" class="bt">CWB - Sala Darcy Ribeiro | 4 pessoas</button>
-				<button id="btsala11" class="bt">CWB - Sala Mário Sérgio Cortella | 4 pessoas</button>
-				<button id="btsala12" class="bt">CWB - Sala Hélio Leites | 2 pessoas</button>
-				<button id="btsala13" class="bt">CWB - Sala Hipátia | 2 pessoas</button>
-				<button id="btsala14" class="bt">CWB - Sala Magda Soares | 2 pessoas</button>
-				<button id="btsala15" class="bt">CWB - Sala Alan Turing | 8 pessoas</button>
-				<button id="btsala16" class="bt">CWB - Sala Lady Murasaki | 4 pessoas</button>
-				<button id="btsala17" class="bt">CWB - Sala Marie Curie | 10 pessoas</button>
-				<button id="btsala18" class="bt">CWB - Sala Katherine Johnson | 4 pessoas</button>
-				<button id="btsala19" class="bt">CWB - Sala Isaac Newton | 4 pessoas</button>
-				<button id="btsala20" class="bt">CWB - Sala Zaha Hadid | 4 pessoas</button>
-				<button id="btsala21" class="bt">CWB - Arquibancada | 85 pessoas</button>
-				<button id="btsala22" class="bt">CWB - Sala Câmara Cascudo | 1 pessoa</button>
-				<button id="btsala23" class="bt">CWB - Sala Ariano Suassuna | 1 pessoa</button>
-				<button id="btsala24" class="bt">CWB - Sala César Lattes | 10 pessoas</button>
-				<button id="btsala25" class="bt">CWB - Sala Leonardo da Vinci | 25 pessoas</button>
-				<button id="btsala26" class="bt">CWB - Sala Ada Lovelace | 4 pessoas</button>
-				<button id="btsala27" class="bt">CWB - Sala Santos Dumont | 4 pessoas</button>
-			</div>
+			</header>
+
+			<section class="modal-card-body">
+				<button id="btsearch1" class="item-search" style="display: none;">CWB - Sala Machado de Assis | 8
+					pessoas</button>
+				<button id="btsearch2" class="item-search" style="display: none;">CWB - Sala Lauro de Oliveira Lima | 6
+					pessoas</button>
+				<button id="btsearch3" class="item-search" style="display: none;">CWB - Sala Poty Lazzarotto | 8
+					pessoas</button>
+				<button id="btsearch4" class="item-search" style="display: none;">CWB - Sala Enheduanna | 6
+					pessoas</button>
+				<button id="btsearch5" class="item-search" style="display: none;">CWB - Sala Emília Ferreiro | 6
+					pessoas</button>
+				<button id="btsearch6" class="item-search" style="display: none;">CWB - Sala Ana Miranda | 10
+					pessoas</button>
+				<button id="btsearch7" class="item-search" style="display: none;">CWB - Sala Maria da Penha | 4
+					pessoas</button>
+				<button id="btsearch8" class="item-search" style="display: none;">CWB - Sala Domingos Pellegrini | 4
+					pessoas</button>
+				<button id="btsearch9" class="item-search" style="display: none;">CWB - Sala Mário de Andrade | 4
+					pessoas</button>
+				<button id="btsearch10" class="item-search" style="display: none;">CWB - Sala Darcy Ribeiro | 4
+					pessoas</button>
+				<button id="btsearch11" class="item-search" style="display: none;">CWB - Sala Mário Sérgio Cortella | 4
+					pessoas</button>
+				<button id="btsearch12" class="item-search" style="display: none;">CWB - Sala Hélio Leites | 2
+					pessoas</button>
+				<button id="btsearch13" class="item-search" style="display: none;">CWB - Sala Hipátia | 2
+					pessoas</button>
+				<button id="btsearch14" class="item-search" style="display: none;">CWB - Sala Magda Soares | 2
+					pessoas</button>
+				<button id="btsearch15" class="item-search" style="display: none;">CWB - Sala Alan Turing | 8
+					pessoas</button>
+				<button id="btsearch16" class="item-search" style="display: none;">CWB - Sala Lady Murasaki | 4
+					pessoas</button>
+				<button id="btsearch17" class="item-search" style="display: none;">CWB - Sala Marie Curie | 10
+					pessoas</button>
+				<button id="btsearch18" class="item-search" style="display: none;">CWB - Sala Katherine Johnson | 4
+					pessoas</button>
+				<button id="btsearch19" class="item-search" style="display: none;">CWB - Sala Isaac Newton | 4
+					pessoas</button>
+				<button id="btsearch20" class="item-search" style="display: none;">CWB - Sala Zaha Hadid | 4
+					pessoas</button>
+				<button id="btsearch21" class="item-search" style="display: none;">CWB - Arquibancada | 85
+					pessoas</button>
+				<button id="btsearch22" class="item-search" style="display: none;">CWB - Sala Câmara Cascudo | 1
+					pessoa</button>
+				<button id="btsearch23" class="item-search" style="display: none;">CWB - Sala Ariano Suassuna | 1
+					pessoa</button>
+				<button id="btsearch24" class="item-search" style="display: none;">CWB - Sala César Lattes | 10
+					pessoas</button>
+				<button id="btsearch25" class="item-search" style="display: none;">CWB - Sala Leonardo da Vinci | 25
+					pessoas</button>
+				<button id="btsearch26" class="item-search" style="display: none;">CWB - Sala Ada Lovelace | 4
+					pessoas</button>
+				<button id="btsearch27" class="item-search" style="display: none;">CWB - Sala Santos Dumont | 4
+					pessoas</button>
+			</section>
+			<footer class="modal-card-foot">
+				<div class="buttons">
+
+					<button class="button" onclick="closeModal()">Fechar</button>
+				</div>
+			</footer>
 		</div>
+	</div>
+	<div id="info" class="hide">
 
 	</div>
-
 	<canvas id="renderCanvas"></canvas>
 	<script type="text/javascript">
+
+		document.addEventListener('DOMContentLoaded', () => {
+
+			// Get all "navbar-burger" elements
+			const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+			// Add a click event on each of them
+			$navbarBurgers.forEach(el => {
+				el.addEventListener('click', () => {
+
+					// Get the target from the "data-target" attribute
+					const target = el.dataset.target;
+					const $target = document.getElementById(target);
+
+					// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+					el.classList.toggle('is-active');
+					$target.classList.toggle('is-active');
+
+				});
+			});
+
+		});
+
+
 		var canvas = document.getElementById("renderCanvas");
 
 		var camera, scene, target, aniParado, aniVoando, aniForca;
 		var scene;
 		var salas = [];
+		var chao = [];
 		var predio;
 		var isActive = false;
 		var pathTextures;
 
-		
+
 
 
 		var materialSalas;
-
+		var matChao;
 		var materialXray;
 
 		var engine = new BABYLON.Engine(canvas, true);
 
-
+		function closeModal() {
+			document.getElementById('searchModal').style.display = 'none'
+		}
 		function copyCanvasContentsToClipboard() {
 			BABYLON.Tools.CreateScreenshotUsingRenderTarget(engine, camera, { width: 1920, height: 1080 });
 		}
@@ -149,10 +310,7 @@
 
 			var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("meshes/environment.dds", scene);
 
-			target = new BABYLON.TransformNode('target', scene);
-			target.position.y = 0;
-			target.position.x = 2;
-			target.position.z = -2;
+
 
 			materialXray = new BABYLON.PBRMaterial("materialXray", scene);
 			materialXray.reflectionTexture = hdrTexture;
@@ -178,11 +336,20 @@
 			materialSalas.albedoColor = new BABYLON.Color3.FromHexString('#FF5E00'); // Orange color for xray material
 			//materialSalas.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
 
+			matChao = new BABYLON.PBRMaterial("materialXray", scene);
+			matChao.reflectionTexture = hdrTexture;
+			matChao.metallic = 0.85;
+			matChao.roughness = 0.2;
+			matChao.alpha = 1;
+			matChao.albedoColor = new BABYLON.Color3.FromHexString('#0022FF'); // Blue color for xray material
+			matChao.reflectivityColor = new BABYLON.Color3(0.003, 0.003, 0.003);
 
 
 
-
-
+			target = new BABYLON.TransformNode('target', scene);
+			target.position.y = 2;
+			target.position.x = 2;
+			target.position.z = -2;
 			// Create a new ArcRotateCamera named "Camera" with initial parameters
 			// Create a new ArcRotateCamera named "Camera" with initial parameters
 			camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 5, new BABYLON.Vector3(0, 0, 0), scene);
@@ -193,12 +360,12 @@
 			// - 10: Radius, the distance from the target
 			// - new BABYLON.Vector3(0, 0, 0): The target position of the camera
 			// - scene: The scene where the camera belongs
-			camera.setPosition(new BABYLON.Vector3(0, 0, 20));
+			camera.setPosition(new BABYLON.Vector3(0, 0, 10));
 			camera.attachControl(canvas, true);
 			camera.panningSensibility = 0;
 			camera.upperBetaLimit = 1.2;
 			camera.lowerRadiusLimit = 8; // Set the lower limit of the camera's radius to its current radius to block zooming in
-			camera.upperRadiusLimit =25; // Set the upper limit of the camera's radius to its current radius to block zooming out
+			camera.upperRadiusLimit = 25; // Set the upper limit of the camera's radius to its current radius to block zooming out
 			anime({
 				targets: camera.position,
 				x: 20, // target x position
@@ -226,10 +393,11 @@
 				for (i = 0; i < newMeshes.length; i++) {
 					console.log(newMeshes[i].name)
 					if (newMeshes[i].name == "sae") {
-						predio=newMeshes[i];
+						predio = newMeshes[i];
 					}
 					if (newMeshes[i].name.includes("chao")) {
 						newMeshes[i].material = materialXray;
+						chao.push(newMeshes[i])
 					}
 					if (newMeshes[i].name.includes("sala")) {
 						newMeshes[i].material = materialSalas;
@@ -246,6 +414,16 @@
 				camera.setTarget(target.position)
 			})
 
+			const buttonsSearch = document.querySelectorAll('.item-search');
+			buttonsSearch.forEach(button => {
+				button.onclick = function () {
+					const id = button.id.substring(8);
+
+					changesala(parseInt(id));
+					closeModal();
+				};
+			});
+
 			const buttons = document.querySelectorAll('.bt');
 			buttons.forEach(button => {
 				button.onclick = function () {
@@ -256,10 +434,22 @@
 
 
 			function changesala(_id) {
-				materialXray;
+				document.querySelector('#info').classList.remove("hide");
+				document.querySelector('#info').innerHTML = document.querySelector('#btsearch' + _id).innerHTML;
+				for (let ch of chao) {
+					ch.material = materialXray;
+				}
 				for (let sala of salas) {
 					if (sala.name === "sala" + _id) {
 						sala.material = materialSalas;
+						if (_id < 14) {
+							chao1 = chao.find(chao => chao.name === "chao1");
+							chao1.material = matChao;
+						}
+						if (_id >= 14) {
+							chao1 = chao.find(chao => chao.name === "chao2");
+							chao1.material = matChao;
+						}
 						changesalaAnime(sala);
 					} else {
 						sala.material = materialXray;
@@ -271,7 +461,7 @@
 			function changesalaAnime(_qual) {
 				// Add your code here for the changesala function
 				console.log("Changing sala...", _qual.name);
-				predio.material=materialXray
+				predio.material = materialXray
 				anime({
 					targets: target.position,
 					x: _qual.position.x * -1,
@@ -280,7 +470,7 @@
 					duration: 1500,
 					easing: 'easeInOutQuad'
 				});
-				
+
 				anime({
 					targets: camera,
 					radius: 8,
@@ -294,6 +484,7 @@
 					duration: 1500, // duration of the animation in milliseconds
 					easing: 'easeInOutQuad' // easing function
 				});
+
 				anime({
 					targets: materialSalas,
 					emissiveIntensity: 1, // target x position
