@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Super herois</title>
+	<title>Mapa Salas de reunião HUB Curitiba</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css">
 	<script src="https://cdn.babylonjs.com/babylon.js"></script>
@@ -66,6 +66,7 @@
 
 		#info {
 			position: absolute;
+			font-size: 2vh;
 			bottom: 15%;
 			left: 50%;
 			transform: translate(-50%, -50%);
@@ -73,13 +74,28 @@
 			border-color: grey;
 			padding: 10px;
 			border-radius: 5px;
+			max-width: 90%;
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+
+		.arrowButton {
+			width: 5vh;
+			height: 5vh;
+			background-color: #1f3f7a;
+			border-radius: 100%;
+			position: fixed;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 	</style>
 </head>
 
 <body>
 	<div style="position: absolute;top: 0px;width: 100%;">
+		<button class="arrowButton buttonRight" style="right: 10px;"><i
+				class="fas fa-arrow-right"></i></button>
+		<button class="arrowButton buttonLeft" style="left: 10px;"><i
+				class="fas fa-arrow-left"></i></button>
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="#">
@@ -103,10 +119,11 @@
 
 
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">1 Andar</a>
+						<a class="navbar-link">1º Andar</a>
 						<div class="navbar-dropdown">
 							<a id="btsala1" class="bt navbar-item">CWB - Sala Machado de Assis | 8 pessoas</a>
-							<a id="btsala2" class="bt navbar-item">CWB - Sala Lauro de Oliveira Lima | 6 pessoas</a>
+							<a id="btsala2" class="bt navbar-item">CWB - Sala Lauro de Oliveira Lima | 6
+								pessoas</a>
 							<a id="btsala3" class="bt navbar-item">CWB - Sala Poty Lazzarotto | 8 pessoas</a>
 							<a id="btsala4" class="bt navbar-item">CWB - Sala Enheduanna | 6 pessoas</a>
 							<a id="btsala5" class="bt navbar-item">CWB - Sala Emília Ferreiro | 6 pessoas</a>
@@ -115,25 +132,27 @@
 					</div>
 
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">1 Andar Mezanino</a>
+						<a class="navbar-link">1º Andar Mezanino</a>
 						<div class="navbar-dropdown">
 							<a id="btsala7" class="bt navbar-item">CWB - Sala Maria da Penha | 4 pessoas</a>
-							<a id="btsala8" class="bt navbar-item">CWB - Sala Domingos Pellegrini | 4 pessoas</a>
+							<a id="btsala8" class="bt navbar-item">CWB - Sala Domingos Pellegrini | 4
+								pessoas</a>
 							<a id="btsala9" class="bt navbar-item">CWB - Sala Mário de Andrade | 4 pessoas</a>
 						</div>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">1 Andar Mezanino Salão</a>
+						<a class="navbar-link">1º Andar Mezanino Salão</a>
 						<div class="navbar-dropdown">
 							<a id="btsala10" class="bt navbar-item">CWB - Sala Darcy Ribeiro | 4 pessoas</a>
-							<a id="btsala11" class="bt navbar-item">CWB - Sala Mário Sérgio Cortella | 4 pessoas</a>
+							<a id="btsala11" class="bt navbar-item">CWB - Sala Mário Sérgio Cortella | 4
+								pessoas</a>
 							<a id="btsala12" class="bt navbar-item">CWB - Sala Hélio Leites | 2 pessoas</a>
 							<a id="btsala13" class="bt navbar-item">CWB - Sala Hipátia | 2 pessoas</a>
 							<a id="btsala14" class="bt navbar-item">CWB - Sala Magda Soares | 2 pessoas</a>
 						</div>
 					</div>
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a class="navbar-link">2 Andar</a>
+						<a class="navbar-link">2º Andar</a>
 						<div class="navbar-dropdown">
 							<a id="btsala15" class="bt navbar-item">CWB - Sala Alan Turing | 8 pessoas</a>
 							<a id="btsala16" class="bt navbar-item">CWB - Sala Lady Murasaki | 4 pessoas</a>
@@ -145,7 +164,8 @@
 							<a id="btsala22" class="bt navbar-item">CWB - Sala Câmara Cascudo | 1 pessoa</a>
 							<a id="btsala23" class="bt navbar-item">CWB - Sala Ariano Suassuna | 1 pessoa</a>
 							<a id="btsala24" class="bt navbar-item">CWB - Sala César Lattes | 10 pessoas</a>
-							<a id="btsala25" class="bt navbar-item">CWB - Sala Leonardo da Vinci | 25 pessoas</a>
+							<a id="btsala25" class="bt navbar-item">CWB - Sala Leonardo da Vinci | 25
+								pessoas</a>
 							<a id="btsala26" class="bt navbar-item">CWB - Sala Ada Lovelace | 4 pessoas</a>
 							<a id="btsala27" class="bt navbar-item">CWB - Sala Santos Dumont | 4 pessoas</a>
 						</div>
@@ -263,25 +283,6 @@
 	<canvas id="renderCanvas"></canvas>
 	<script type="text/javascript">
 
-		document.addEventListener('DOMContentLoaded', () => {
-			// Get all "navbar-burger" elements
-			const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-			// Add a click event on each of them
-			$navbarBurgers.forEach(el => {
-				el.addEventListener('click', () => {
-					// Get the target from the "data-target" attribute
-					const target = el.dataset.target;
-					const $target = document.getElementById(target);
-
-					// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-					el.classList.toggle('is-active');
-					$target.classList.toggle('is-active');
-
-				});
-			});
-
-		});
 
 
 		var canvas = document.getElementById("renderCanvas");
@@ -293,7 +294,7 @@
 		var predio;
 		var isActive = false;
 		var pathTextures;
-
+		var index = 1;
 
 
 
@@ -439,8 +440,31 @@
 				};
 			});
 
+			const buttonRight = document.querySelector('.buttonRight');
+			const buttonLeft = document.querySelector('.buttonLeft');
+			buttonLeft.onclick = function () {
+				changesala("volta");
+			};
+			buttonRight.onclick = function () {
+				changesala("avanca");
+			};
 
 			function changesala(_id) {
+				console.log(_id)
+				if (_id == "volta") {
+					index--;
+					if (index < 1) {
+						index = 1;
+					}
+					_id = index;
+				} else if (_id == "avanca") {
+					index++;
+					if (index > 26) {
+						index = 27;
+					}
+					_id = index;
+				}
+
 				document.querySelector('#info').classList.remove("hide");
 				document.querySelector('#info').innerHTML = document.querySelector('#btsearch' + _id).innerHTML;
 				for (let ch of chao) {
