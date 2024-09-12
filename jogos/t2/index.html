@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Arrastar e Soltar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <h1>Ativididade de Filosofia - Falácias Lógicas</h1>
+            <button id="credits-button" onclick="showCredits()">Créditos</button>
+        </header>
+
+        <main id="main-content">
+            <section id="intro">
+
+                <p>Arraste as falácias lógicas numeradas de 1 a 4 para a área em seu respectivo texto A,B,C ou D.<p>
+                <button onclick="startGame()">INICIAR</button> 
+
+            </section>
+
+            <!-- Seção do jogo inicialmente oculta -->
+            <section id="game" style="display: none;">
+                <section class="alternativas">
+                    <h2>ALTERNATIVAS</h2>
+
+                    <!-- Alternativas arrastáveis -->
+                    <div class="answer" draggable="true" id="a1" ondragstart="drag(event)" style="background-color: #ffcccc;">1 - Recurso à força.</div>
+                    <div class="answer" draggable="true" id="a2" ondragstart="drag(event)" style="background-color: #ccffcc;">2 - Argumento por apelo à piedade.</div>
+                    <div class="answer" draggable="true" id="a3" ondragstart="drag(event)" style="background-color: #ccccff;">3 - Recurso à autoridade.</div>
+                    <div class="answer" draggable="true" id="a4" ondragstart="drag(event)" style="background-color: #ffffcc;">4 - Argumento por apelo ao povo.</div>
+                    
+                    <button id="verificar" onclick="verificarRespostas()">VERIFICAR</button>
+                </section>
+
+                <!-- Seção das perguntas -->
+                <section class="questions">
+
+                    <!-- Perguntas com áreas para arrastar as alternativas -->
+                    <div class="question" id="q1">
+                        A - Ah, se a maioria acha que é verdade, então deve mesmo ser verdade!
+                        <div class="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="question" id="q2">
+                        B - Você viu aquela atriz famosa que fez propaganda daquele hidratante? Com certeza deve ser ótimo!
+                        <div class="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="question" id="q3">
+                        C - Professora, por favor, preciso passar de ano! Eu não fui bem na prova aquele dia porque eu tive um pesadelo! Você já teve um pesadelo? Viu como é horrível?  Então! Eu preciso de nota, professora, por favor!
+                        <div class="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="question" id="q4">
+                        D - Se você não concordar comigo eu vou te bater, ouviu bem?
+                        <div class="dropzone" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+
+                </section>  
+            </section>
+
+            <!-- Seção de resultados, inicialmente oculta -->
+            <section id="result" style="display: none;">
+
+                <h2>Resultados</h2>
+                <div id="result-content"></div>
+
+                <button onclick="restartGame()">REINICIAR</button>
+
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Popup de créditos do autor -->
+    <div id="credits-popup" class="popup" style="display: none;">
+
+        <div class="popup-content">
+            <span class="close" onclick="closeCredits()">×</span>
+            <p>Créditos: Autor/Desenvolvedor</p>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
