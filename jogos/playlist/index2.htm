@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conteudo Digital</title>
+    <link rel="shortcut icon" type="imagex/png" href="assets/icon.ico">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124031348-1"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-124031348-1');
+    </script>
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> -->
+    <!-- estilos -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/plyr.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="modal m-cred">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="columns">
+                <div class="column">
+                    <!--Os IDs preenchem automaticamente o texto, não há necessidade de edição-->
+                    <div id="titulo"></div>
+                    <div id="diretores"></div>
+                    <div id="equipe"></div>
+                    <!--Para puxar o editor correto, será necessário inserir, como classe,
+                    - a coleção (CQT ou SPE) 
+                    - o nível [EI(ed Infantil), AI(anos Iniciais), AF(anos finais) ou EM(Ensino médio)]
+                    - o ano (AI11, A12, AI13, AI14, ... AF91, AF92..., EM01, EM02, EM03, EM04 ...)
+                    - e a matéria (ART BIO CIE EDF ESP FIL GEO HIS ING LIT MAT POR QUI SOC OT ou PV), separados por traço
+
+                    ***Excessão para EI, a classe para este será simplificada: SPE-EI ou CQT-EI (pois é um único editor para o EI inteiro)    -->
+                    <div id="EdConteudo" class="CQT-EI"></div>
+                    <!--<p>Créditos: </p>-->
+                    <hr>
+                    <!-- copywriter puxa automático-->
+                    <p class="dir"></p>
+                </div>
+            </div>
+            <button class="modal-close is-large close-cred" aria-label="close"></button>
+        </div>
+    </div>
+    <div class="header">
+        <div data-id="1" class="nuvens nuvem01 animate__animated animate__delay-2s animate__repeat-1 animate__swing"></div>
+        <div class="nuvens nuvem02 animate__animated animate__delay-1s animate__repeat-1 animate__swing"></div>
+        <div class="nuvens nuvem03 animate__animated animate__repeat-1 animate__swing"></div>
+        <div class="nuvens nuvem04 animate__animated animate__delay-3s animate__repeat-1 animate__swing"></div>
+        <a class="button creditos"></a>
+        <h1 class="titulo">JFK - 1º ano - Aluno</h1>
+    </div>
+    <div class="imagens"></div>
+    <div class="conteudo">
+        <div class="container">
+
+                <div class="playlist">
+                    <div class="plyr">
+                        <audio controls></audio>
+                    </div>
+                    <ul class='playlist--list'>
+                        <li data-id="0" data-image="assets/capas/capa01.jpg" data-audio="assets/audio/track05.mp3">Unit 5 – My toys (page 44)
+                            <span class="artist">Track 16</span>
+                        </li>
+                        <li data-id="1" data-image="assets/capas/capa02.jpg" data-audio="assets/audio/track06.mp3">Unit 5 – Listen and say (page 46)
+                            <span class="artist">Track 17</span>
+                        </li>
+                        <li data-id="2" data-image="assets/capas/capa03.jpg" data-audio="assets/audio/track07.mp3">Unit 5 – Let’s sing! – Teddy bear (page 48)
+                            <span class="artist">Track 18</span>
+                        </li>
+                    </ul>
+                </div>
+                <div style="display: none;"><svg xmlns="http://www.w3.org/2000/svg">
+                        <symbol id="plyr-captions-off" viewBox="0 0 18 18">
+                            <path d="M1 1c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h4.6l2.7 2.7c.2.2.4.3.7.3.3 0 .5-.1.7-.3l2.7-2.7H17c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1H1zm4.52 10.15c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41C8.47 4.96 7.46 3.76 5.5 3.76c-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69zm7.57 0c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41c-.28-1.15-1.29-2.35-3.25-2.35-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69z" fill-rule="evenodd" fill-opacity=".5" />
+                        </symbol>
+                        <symbol id="plyr-captions-on" viewBox="0 0 18 18">
+                            <path d="M1 1c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h4.6l2.7 2.7c.2.2.4.3.7.3.3 0 .5-.1.7-.3l2.7-2.7H17c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1H1zm4.52 10.15c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41C8.47 4.96 7.46 3.76 5.5 3.76c-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69zm7.57 0c1.99 0 3.01-1.32 3.28-2.41l-1.29-.39c-.19.66-.78 1.45-1.99 1.45-1.14 0-2.2-.83-2.2-2.34 0-1.61 1.12-2.37 2.18-2.37 1.23 0 1.78.75 1.95 1.43l1.3-.41c-.28-1.15-1.29-2.35-3.25-2.35-1.9 0-3.61 1.44-3.61 3.7 0 2.26 1.65 3.69 3.63 3.69z" fill-rule="evenodd" />
+                        </symbol>
+                        <symbol id="plyr-enter-fullscreen" viewBox="0 0 18 18">
+                            <path d="M10 3h3.6l-4 4L11 8.4l4-4V8h2V1h-7zM7 9.6l-4 4V10H1v7h7v-2H4.4l4-4z" />
+                        </symbol>
+                        <symbol id="plyr-exit-fullscreen" viewBox="0 0 18 18">
+                            <path d="M1 12h3.6l-4 4L2 17.4l4-4V17h2v-7H1zM16 .6l-4 4V1h-2v7h7V6h-3.6l4-4z" />
+                        </symbol>
+                        <symbol id="plyr-fast-forward" viewBox="0 0 18 18">
+                            <path d="M7.875 7.171L0 1v16l7.875-6.171V17L18 9 7.875 1z" />
+                        </symbol>
+                        <symbol id="plyr-muted" viewBox="0 0 18 18">
+                            <path d="M12.4 12.5l2.1-2.1 2.1 2.1 1.4-1.4L15.9 9 18 6.9l-1.4-1.4-2.1 2.1-2.1-2.1L11 6.9 13.1 9 11 11.1zM3.786 6.008H.714C.286 6.008 0 6.31 0 6.76v4.512c0 .452.286.752.714.752h3.072l4.071 3.858c.5.3 1.143 0 1.143-.602V2.752c0-.601-.643-.977-1.143-.601L3.786 6.008z" />
+                        </symbol>
+                        <symbol id="plyr-pause" viewBox="0 0 18 18">
+                            <path d="M6 1H3c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1zM12 1c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h3c.6 0 1-.4 1-1V2c0-.6-.4-1-1-1h-3z" />
+                        </symbol>
+                        <symbol id="plyr-play" viewBox="0 0 18 18">
+                            <path d="M15.562 8.1L3.87.225C3.052-.337 2 .225 2 1.125v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z" />
+                        </symbol>
+                        <symbol id="plyr-restart" viewBox="0 0 18 18">
+                            <path d="M9.7 1.2l.7 6.4 2.1-2.1c1.9 1.9 1.9 5.1 0 7-.9 1-2.2 1.5-3.5 1.5-1.3 0-2.6-.5-3.5-1.5-1.9-1.9-1.9-5.1 0-7 .6-.6 1.4-1.1 2.3-1.3l-.6-1.9C6 2.6 4.9 3.2 4 4.1 1.3 6.8 1.3 11.2 4 14c1.3 1.3 3.1 2 4.9 2 1.9 0 3.6-.7 4.9-2 2.7-2.7 2.7-7.1 0-9.9L16 1.9l-6.3-.7z" />
+                        </symbol>
+                        <symbol id="plyr-rewind" viewBox="0 0 18 18">
+                            <path d="M10.125 1L0 9l10.125 8v-6.171L18 17V1l-7.875 6.171z" />
+                        </symbol>
+                        <symbol id="plyr-volume" viewBox="0 0 18 18">
+                            <path d="M15.6 3.3c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4C15.4 5.9 16 7.4 16 9c0 1.6-.6 3.1-1.8 4.3-.4.4-.4 1 0 1.4.2.2.5.3.7.3.3 0 .5-.1.7-.3C17.1 13.2 18 11.2 18 9s-.9-4.2-2.4-5.7z" />
+                            <path d="M11.282 5.282a.909.909 0 0 0 0 1.316c.735.735.995 1.458.995 2.402 0 .936-.425 1.917-.995 2.487a.909.909 0 0 0 0 1.316c.145.145.636.262 1.018.156a.725.725 0 0 0 .298-.156C13.773 11.733 14.13 10.16 14.13 9c0-.17-.002-.34-.011-.51-.053-.992-.319-2.005-1.522-3.208a.909.909 0 0 0-1.316 0zM3.786 6.008H.714C.286 6.008 0 6.31 0 6.76v4.512c0 .452.286.752.714.752h3.072l4.071 3.858c.5.3 1.143 0 1.143-.602V2.752c0-.601-.643-.977-1.143-.601L3.786 6.008z" />
+                        </symbol>
+                    </svg></div>
+
+        </div>
+    </div>
+    <script src="https://cdn.plyr.io/1.6.13/plyr.js"></script>
+    <script src="js/script.js"></script>
+    <script src="../../CREDITOS/creditos.js"></script>
+</body>
+
+</html>
