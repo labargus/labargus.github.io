@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+<!------------------------------------------------------------------------>    
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/estilos.css">
+  <title>Bodega Costantini</title>
+</head>
+<!------------------------------------------------------------------------>    
+
+
+<body>
+<!------------------------------------------------------------------------>    
+<!-- audio automatico -->
+<audio id="meuAudio" autoplay>
+  <source src="/assets/tema_audio.mpeg" type="audio/mpeg">
+  Seu navegador não suporta o elemento de áudio.
+</audio>
+<!-- audio automatico -->
+
+<!-- MENU LATERAL -->
+<div class="menuLateral hidden">
+  <div class="menuBurguer"></div>
+  <div class="fecharMenu fecharMenuT">×</div>
+  <div class="textoTituloMenu">Menu</div>
+  <div onclick="showScreen('tela1')" class="textoMenu fecharMenuT">Página inicial</div>
+  <div onclick="showScreen('tela2')" class="textoMenu fecharMenuT">Sobre nós</div>
+  <!--<div onclick="showScreen('tela8')" class="textoMenu fecharMenuT">Nossa História</div>-->
+  <div onclick="showScreen('tela3')" class="textoMenu fecharMenuT">Identidade</div>
+  <div onclick="showScreen('tela4')" class="textoMenu fecharMenuT">Vinhedo</div>
+  <div onclick="showScreen('tela4')" class="textoMenu fecharMenuT">Vinho</div>
+  <div onclick="showScreen('tela4')" class="textoMenu fecharMenuT">Sidra</div>
+  <!-- <div onclick="showScreen('tela5')" class="textoMenu fecharMenuT">Vinhos</div>
+  <div onclick="showScreen('tela7')" class="textoMenu fecharMenuT">Espumante</div> -->
+  <div onclick="window.location.href='https://109367.hostgator.com.br/'" class="textoMenu fecharMenuT">Loja</div>
+  <div onclick="showScreen('tela7')" class="textoMenu fecharMenuT">Conteúdo exclusivo</div>
+  <div onclick="showScreen('tela6')" class="textoMenu fecharMenuT">Contato</div>
+</div>
+<!-- MENU LATERAL -->
+
+<!-- QUADRO FIXO -->
+<div class="quadroFixo ">
+  <div id="textoTituloMenuTI" class="textoTituloMenuTI hidden">Menu</div>
+  <div id="menuBurguerTI" class="menuBurguerTI hidden"></div>
+  <div onclick="showScreen('tela1')" class="logo"></div>
+  
+    
+  </div>
+
+<!-- QUADRO FIXO -->
+
+<!-- MODAL 18 ANOS -->
+<div id="caixaModal18" class="caixaModal18">
+  <div id="souMaior" class="Modal18 ">
+    <p class="tituloModal18">VOCÊ CONFIRMA TER <br>18 ANOS OU MAIS?</p>
+    <p class="textoModal18" style="font-family: Inter;">Para acessar nosso site, você<br> precisa ser maior de idade</p>
+    <div >
+      <p onclick="fechaModal18()" class="botaoModal18">CONFIRMAR</p>
+    </div>
+    <p onclick="naoSouMaior()" class="textoMenorModal18">Sou menor de idade</p>
+  </div>
+
+  <div id="naoSouMaior" class="Modal18 hidden">
+    <p class="tituloModal18">ACESSO NEGADO</p>
+    <p class="textoModal18">Sentimos muito, mas você não<br> possui idade legal para navegar <br>em nosso e-commerce</p>
+    <div >
+      
+      <button class="botaoModal18" onclick="window.close()">SAIR DO SITE</button>
+    </div>
+    
+  </div>
+</div>
+<!-- MODAL 18 ANOS -->
+<!------------------------------------------------------------------------>
+
+
+
+<!------------------------------------------------------------------------>
+<!-- TELA INICIAL -->
+<div id="tela1" class="telaInicial tela">
+
+  <!-- HEADER -->
+  <div class="quadroInicial ">
+    <div onclick="pausaAudio()" id="audioTocando" class="audioTocando "></div>
+    <div onclick="tocaAudio()" id="audioMutado" class="audioMutado hidden"></div>
+    <video id="videoBG" autoplay muted loop playsinline class="video-background">
+      <!-- Vídeo para telas menores que 768px -->
+      <source src="../assets/video_mobo.mp4" type="video/mp4" media="(max-width: 768px)">
+      
+      <!-- Vídeo para telas maiores que 768px -->
+      <source src="../assets/video.mp4" type="video/mp4" media="(min-width: 769px)">
+      
+      Seu navegador não suporta a tag de vídeo.
+    </video>
+    <div class="degradeHeader"></div>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('videoBG');
+    video.muted = true;
+    video.play();
+  });
+  </script>
+  <!-- HEADER -->
+
+  <!-- QUADRO TRIPLO --> 
+  <div id="menuTrinario" class="menuTrinario hidden">
+
+    <!-- menu 01-->
+    <div onclick="showScreen('tela3')" class="menu01">
+      <div class="blocoTexto">
+        <p class="textoTitulo">Identidade</p>
+        <p class="texto">Nossas raízes argentinas se entrelaçam com o terroir brasileiro para criar vinhos autorais que contam a história de uma tradição familiar.<br></p>
+      </div>
+      <div class="degrade"></div>
+    </div>
+    <!-- menu 01-->
+
+    <!-- menu 02-->
+    <div onclick="showScreen('tela4')" class="menu02">
+      <div class="blocoTexto">
+        <p class="textoTitulo">O vinhedo</p>
+        <p class="texto">Localizado em Porto Amazonas e conduzido pelo enólogo argentino Raúl Menegazzo, o vinhedo mescla as tradições de San Juan com o terroir brasileiro, resultando na produção de uvas únicas.</p>
+      </div>
+      <div class="degrade"></div>
+    </div>
+    <!-- menu 02-->
+
+    <!-- menu 03-->
+    <div onclick="showScreen('tela4')" class="menu03">
+      <div class="blocoTexto">
+        <p class="textoTitulo">Vinhos</p>
+        <p class="texto">Nossos vinhos são elaborados com uvas do vinhedo Costantini, em Porto Amazonas (Brasil).<br><br><br></p>
+      </div>
+      <div class="degrade"></div>
+    </div>
+    <!-- menu 03-->
+
+  </div>
+  <!-- QUADRO TRIPLO --> 
+
+  <!-- QUADRO SOBRE NOS --> 
+  <div id="sobreNos" class="sobreNos hidden">
+    <!--<div class="degradeSobreNos1"></div>-->
+    <div class="blocoTextoSobreNos1">
+      <p class="textoTitulo">Sobre nós</p>
+      <p class="texto">Unimos a tradição vinícola de San Juan, na Argentina, ao solo fértil de Porto Amazonas, no Brasil, para proporcionar uma experiência única com nossos vinhos. Celebramos nossa jornada familiar e inovamos na viticultura, garantindo que cada garrafa de Costantini conte uma história viva.</p>
+      
+      <p  class="texto">Todo vinho tem uma história, conheça a nossa.</p>
+      
+      <p onclick="showScreen('tela2')" class="saibaMaisSobreNos">Saiba mais</p>
+    </div>
+  </div>
+  <!-- QUADRO SOBRE NOS --> 
+
+</div> 
+<!-- TELA INICIAL -->
+
+<!-- TELA SOBRE NOS -->
+<div id="tela2" class="telaSobreNos tela hidden">
+
+  <!-- HEADER --> 
+  <div class="quadroSobreNos">
+      <p class="tituloQuadro">Sobre Nós</p>
+      <p class="textQuadro">Unimos a tradição Vinícola San Juan, na Argentina, com o solo fértil de Porto Amazonas, no Brasil, proporcionando uma experiência única em nossos vinhos. Celebramos nossa herança e inovamos na viticultura, garantindo que cada garrafa de Costantini conte uma história viva. Todo vinho tem uma história, conheça a nossa.<p>
+      <div class="degradeHeader"></div>
+
+  </div>
+  <!-- HEADER --> 
+
+  <!-- ROBERTO COSTANTINI -->
+  <div class="sobreRobConst">
+    <div class="fotoRob"></div>
+    <div class="textoRob">  
+      <p class="sobreRobConstTitu">Costantino Roberto Costantini Frack</p>
+      <p class="sobreRobConstText">Médico cardiologista, Costantino Costantini nasceu em San Juan, na Argentina, e atua em Curitiba desde o final dos anos 1970. Naturalizado Brasileiro, realizou a primeira angioplastia coronária da América Latina e é reconhecido por seu trabalho na cardiologia intervencionista em todo o mundo.</p>
+      <p class="sobreRobConstText">A infância no sítio do pai em Angaco, na Argentina, é a origem de sua paixão pelas uvas compartilhada com a medicina. Desde 1980, cultiva maçãs em Porto Amazonas, e em meados dos anos 2000, a partir de seu conhecimento em fruticultura, decidiu plantar mudas de uvas no terroir brasileiro, resgatando suas raízes argentinas.</p>
+      <p class="sobreRobConstText">Deste legado familiar nasceu a Bodega Costantini.</p>            
+    </div>
+  </div>
+  <!-- ROBERTO COSTANTINI -->
+
+  <!-- CITACAO --> 
+  <p class="citacao">“Sou mais brasileiro que todos, porque<br> escolhi este país para ser<br> meu lar, trabalhar e criar meus filhos.”</p>
+  <div class="fonteCitacaoImg"></div>
+  <!-- CITACAO --> 
+
+  <!-- RAUL MENEGAZZO -->
+  <div class="sobreEstMene">
+    <div class="textoRaul">  
+      <p class="sobreRobConstTitu">Raul Esteban Menegazzo</p>
+      <p class="sobreRobConstText">Formado na Argentina, foi um dos responsáveis pelo crescimento da produção de vinhos em San Juan nas décadas de 1970 e 1980, como enólogo da Bodega Resero. Raul aceitou o convite do amigo Costantino de conduzir as vinhas no terroir desconhecido de Porto Amazonas.</p>
+      <p class="sobreRobConstText">O desafio de produzir vinhos brasileiros com uvas que trazem o DNA de Angaco harmonizou com sua trajetória profissional de mais de cinco décadas no clima desértico e árido de San Juan.</p>        
+    </div>
+    <div class="fotoRaul"></div>
+  </div>
+  <!-- RAUL MENEGAZZO -->
+
+  <!-- QUADRO NOSSA EQUIPE  -->
+  <div class="nossaEquipe">
+    <div class="blocoTextoSobreNos">
+      <p class="textoTituloNossaEquipe">Nossa equipe</p>
+      <p class="textoEmbaixo">A combinação de juventude e experiência permite que este time multidisciplinar <br> mature o presente e o futuro da Bodega Costantini.</p>
+    </div>
+    <div class="degradeSobreNos"></div>
+  </div>
+  <!-- QUADRO NOSSA EQUIPE -->
+
+  <!-- NOSSA HISTORIA -->
+  <div>
+    <div class="cuidadoRespeitohid">
+      <div class="nossaHistnossaPal1">
+        <div class="fotoNossaHist"></div>
+        <div class="textoNossHis1">
+          <p class="sobreRobConstTitu">NOSSA HISTÓRIA, EM NOSSAS PALAVRAS.</p>
+          <p class="nossaHisText">Conheça a história de 3 gerações da família Costantini. Ela começa em Ascoli Piceno, na Italia, terra onde a paixão pelas uvas teve início com Francesco.</p>
+
+          <p class="nossaHisText">Seu segundo capítulo se dá na árida Angaco, Província de San Juan, na Argentina. Um cenário desértico que virou sinônimo da resiliência de seu filho Costantino Francisco.</p>
+            
+          <p class="nossaHisText">A jornada finaliza no terroir de Porto Amazonas, no Brasil, onde o ímpeto e a persistência frutificaram com o neto Costantino Costantini.</p>
+
+          
+          <p onclick="showScreen('tela8')" class="nossaHisTextBotao botaoQueroSaberMais botaoMenos10">QUERO SABER MAIS</p>
+        </div>
+        
+      </div> 
+      
+    </div>
+    
+  </div>
+  <!-- NOSSA HISTORIA -->
+
+</div> 
+<!-- TELA SOBRE NOS -->
+
+<!-- IDENTIDADE -->
+<div id="tela3" class="telaIdentidade tela hidden">
+
+  <!-- HEADER --> 
+  <div class="quadroIdentidade">
+      <p class="tituloQuadro">Identidade</p>
+      <p class="textQuadro tituloIdendidade">Nossas raízes argentinas se entrelaçam com o terroir brasileiro para criar vinhos autorais que contam a história de uma tradição familiar.</p>
+      <div class="degradeIdentidade"></div>
+  </div>
+  <!-- HEADER --> 
+
+  <!-- NOSSO DNA -->
+  <div class="nossoDNA">
+      <p class="titulosIdentidade3">DNA da Bodega</p>
+      <p class="textosIdentidade3">No coração das nossas vinhas, em terroir brasileiro, entrelaça-se a alma argentina com a tradição italiana na arte de criar vinhos excepcionais.</p>
+  </div>
+  <!-- NOSSO DNA -->
+
+  <!-- PAIXAO -->
+  <div id="textoPaixao" class="cuidadoRespeitohid">
+    <div class="blocosTextosIdentidadeMaior">
+      <div class="fotoPaixao"></div>
+      <div class="blocoIdentidadeNav">
+        <div onclick="mudaNavCuidado('textoPaixao')" class="navTela8_Before bckImg_apagado"></div>
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">Paixão</p>
+          <p class="textosIdentidade">Na Bodega Costantini, cada vinha traduz nossa paixão. Esta dedicação se expressa na atenção dada a todo processo vinícola, do plantio ao engarrafamento, buscando sempre expressar o melhor do terroir em nossos vinhos.
+            <br><br>
+            <spam class="slideIdentidade">Slide 1 de 6</spam></p>
+        </div>
+        <div onclick="mudaNavCuidado('textoImpeto')" class="navTela8_Next"></div>
+      </div>
+    </div>
+  </div>
+  <!-- PAIXAO -->
+
+  <!-- IMPETO -->
+  <div id="textoImpeto" class="cuidadoRespeitohid hidden">
+    <div class="blocosTextosIdentidadeMaior">
+      <div class="fotoImpeto"></div>
+
+      <div class="blocoIdentidadeNav">
+        <div onclick="mudaNavCuidado('textoPaixao')" class="navTela8_Before"></div>
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">Ímpeto</p>
+          <p class="textosIdentidade">O ímpeto da família Costantini se reflete em nossa vontade de inovar, superar desafios e criar vinhos que se destacam não apenas pela qualidade, mas também pela história que contam.
+          <br><br>
+          <spam class="slideIdentidade">Slide 2 de 6</spam></p>
+        </div>
+        <div onclick="mudaNavCuidado('textoIntensidade')" class="navTela8_Next"></div>
+      </div>
+    </div>
+  </div>
+  <!-- IMPETO -->
+
+  <!-- INTENSIDADE -->
+  <div id="textoIntensidade" class="cuidadoRespeitohid hidden">
+    <div class="blocosTextosIdentidadeMaior">
+      <div class="fotoIntensidade"></div>
+
+      <div class="blocoIdentidadeNav">
+
+        <div onclick="mudaNavCuidado('textoImpeto')" class="navTela8_Before"></div>
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">Intensidade</p>
+          <p class="textosIdentidade">Os vinhos da Bodega Costantini materializam a intensidade com a qual vivemos cada momento. Cada rótulo carrega a riqueza das raízes argentinas e a força da história que nos trouxe até Porto Amazonas, oferecendo experiências memoráveis a cada taça.<br><br>
+          <spam class="slideIdentidade">Slide 3 de 6</spam></p>
+        </div>
+        <div onclick="mudaNavCuidado('textoPersistencia')" class="navTela8_Next"></div>
+      </div>
+    </div>
+  </div>
+  <!-- INTENSIDADE -->
+
+  <!-- PERSISTENCIA -->
+  <div id="textoPersistencia" class="cuidadoRespeitohid hidden">
+    <div class="blocosTextosIdentidadeMaior">
+      <div class="fotoPersistencia"></div>
+
+      <div class="blocoIdentidadeNav">
+
+        <div onclick="mudaNavCuidado('textoIntensidade')" class="navTela8_Before"></div>
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">Persistência</p>
+          <p class="textosIdentidade">A persistência é a coluna vertebral da Bodega Costantini. Atravessamos décadas adaptando-nos a novos territórios, climas e desafios.
+          <br><br>
+          <spam class="slideIdentidade">Slide 4 de 6</spam></p>
+        </div>
+        <div onclick="mudaNavCuidado('textoResiliencia')" class="navTela8_Next"></div>
+      </div>
+
+    </div>
+  </div>
+  <!-- PERSISTENCIA -->
+
+  <!-- RESILIENCIA -->
+  <div id="textoResiliencia" class="cuidadoRespeitohid hidden">
+    <div class="blocosTextosIdentidadeMaior">
+      <div class="fotoResiliencia"></div>
+
+      <div class="blocoIdentidadeNav">
+
+        <div onclick="mudaNavCuidado('textoPersistencia')" class="navTela8_Before"></div>
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">Resiliência</p>
+          <p class="textosIdentidade">Nossa resiliência foi construída nas terras áridas de Angaco e nas adversidades superadas em cada capítulo de nossa história familiar. Na Bodega Costantini, transformamos obstáculos em oportunidades, fazendo com que cada dificuldade seja uma chance para crescer e aprimorar nossos vinhos.
+          <br><br>
+          <spam class="slideIdentidade">Slide 5 de 6</spam></p>
+        </div>
+        <div onclick="mudaNavCuidado('textoDisciplina')" class="navTela8_Next"></div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- RESILIENCIA -->
+  
+  <!-- DISCIPLINA -->
+  <div id="textoDisciplina" class="cuidadoRespeitohid hidden">
+    <div class="blocosTextosIdentidadeMaior">
+      <div class="fotoDisciplina"></div>
+
+      <div class="blocoIdentidadeNav">
+
+        <div onclick="mudaNavCuidado('textoResiliencia')" class="navTela8_Before"></div>
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">Disciplina</p>
+          <p class="textosIdentidade">A disciplina é a chave para a excelência na Bodega Costantini. Respeitamos rigorosamente cada etapa do processo de produção para assegurar a qualidade de nossos vinhos.
+          <br><br>
+          <spam class="slideIdentidade">Slide 6 de 6</spam></p>
+        </div>
+        <div onclick="mudaNavCuidado('textoDisciplina')" class="navTela8_Next bckImg_apagado"></div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- DISCIPLINA -->
+
+<br>
+<br>
+<br>
+<br>
+  <div id="textoPaixao" class="cuidadoRespeitohid">
+    <div class="blocosTextosIdentidadeMaior100" style="overflow: hidden;">
+      <div class="fotoMissao"></div>
+      <div class="blocoIdentidadeNav">
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade">MISSÃO</p>
+          <p class="textosIdentidade">Nossa missão é criar vinhos que reflitam a paixão, ímpeto e intensidade da nossa história familiar e proporcionem uma experiência única.
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div id="textoPaixao" class="cuidadoRespeitohid">
+    <div class="blocosTextosIdentidadeMaior100" style="overflow: hidden; height: 350px;">
+      <div class="blocoIdentidadeNav" style="width: 70vW;">
+        <div class="blocosTextosIdentidade">
+          <p class="titulosIdentidade" >VISÃO</p>
+          <p class="textosIdentidade">Pretendemos ser reconhecidos como uma vinícola de referência, onde a tradição argentina e a diversidade brasileira se encontram para criar vinhos de qualidade. 
+
+            Queremos que cada vinho produzido seja uma celebração da nossa história e dos valores que nos definem, oferecendo aos amantes do vinho ao redor do mundo uma experiência rica e autêntica.
+        </div>
+      </div>
+      <div class="fotoVisao"></div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
+
+</div> 
+<!-- IDENTIDADE -->
+
+<!-- O VINHEDO -->
+<div id="tela4" class="telaVinhedo tela hidden">
+
+  <!-- HEADER --> 
+  <div class="quadroVinhedo">
+      <p class="tituloQuadro">O vinhedo</p>
+      <p class="textQuadro1">Conduzido pelo enólogo argentino Raul Menegazzo, o vinhedo mescla as tradições vitivinícolas de San Juan com características do terroir brasileiro, resultando na produção de uvas únicas. <br><br>
+
+      Localizado em Porto Amazonas, a região conta com um clima subtropical úmido, e a uma altitude de 875 metros. O vinhedo destaca-se por seu solo fértil e distinto, onde as uvas encontraram condições ideais para um desenvolvimento pleno e equilibrado.</p>
+      <div class="degradeVinhedo"></div>
+  </div>
+  <!-- HEADER --> 
+
+  <!-- SOBRE O VINHEDO -->
+  <div class="oVinhedoSobreOVinhedo">
+    <div class="blodoTextoVinhedo">
+      <p class="sobreVinhedoTitu">Sobre o vinhedo</p>
+      <p class="sobreVinhedoText">No coração de nosso vinhedo estão a alma argentina e a arte italiana para criar vinhos excepcionais.</p>
+      
+      <br>
+
+      <p class="sobreVinhedoTitu2">Variedades</p>
+      <p class="sobreVinhedoText">Syrah, Malbec, Tannat, Cabernet Sauvignon e Bonarda.</p>
+
+      <br>
+
+      <p class="sobreVinhedoTitu2">Dados</p>
+      <p class="sobreVinhedoText">Dados: 5 hectares de área total em uma altitude de 875m. </p>
+
+      
+
+    </div>
+    <div class="fotoVinhedo"></div>
+    
+    <div class="slideMenu"></div>
+  </div>
+  <!-- SOBRE O VINHEDO -->
+
+  <!-- VINHOS -->
+  <div class="sobreOVinhedoVinhos">
+    
+    <div class="blocoTextoVinhoSidra"> 
+      
+      <p class="vinhosSidraTitu">VINHOS</p>
+      <p class="vinhosSidraText">Elaborados com uvas do vinhedo Costantini, localizado em Porto Amazonas, no Brasil, e raízes na Cordilheira dos Andes, na região argentina de Angaco, nossos vinhos são um convite para degustar um pouco da história da família Costantini. Cada garrafa está enraizada nas tradições dos parreirais argentinos, agora florescendo em solo brasileiro.</p>         
+    </div>
+    <div class="fotoVinhoSidra"></div>
+  </div>
+  <!-- VINHOS-->
+
+  <!-- NOSSOS VINHOS -->
+  <div class="sobreVinhedoNossosVinhos">
+    <div class="blocoNossosVinhos">
+      <p class="nossosVinhosTitu">Nossos vinhos</p>
+      <p class="nossosVinhosText">Escolha para você ou para presente! (frase de exemplo)</p>
+      <div class="blocoNossosVinhosSub">
+        <div class="blocoNossosVinhosSubVinho1">
+          <div class="garrafasVinhos1"></div>
+          <p class="nomeVinho">ENIGMA<br>R$ 90</p>
+          <div onclick="nossoVinhoENIGMA()" class=" botaoMaiInfo">MAIS INFORMAÇÕES</div>
+        </div>
+        <div class="blocoNossosVinhosSubVinho2">
+          <div class="garrafasVinhos2"></div>
+          <p class="nomeVinho">DON COSTANTINO <br>R$ 90</p>
+          <div onclick="nossoVinhoDONCOSTANTINO()" class=" botaoMaiInfo">MAIS INFORMAÇÕES</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- NOSSOS VINHOS -->
+
+  <!-- SIDRA -->
+  <div class="sobreOVinhedoVinhos">
+    <div class="fotoVinhoSidra2"></div> 
+    <div class="blocoTextoVinhoSidra"> 
+      <p class="vinhosSidraTitu">SIDRA</p>
+      <p class="vinhosSidraText">Nosso espumante de maçã é feito através do método champenoise, criado na França para a elaboração dos famosos Champagnes, e o mesmo utilizado na produção dos melhores espumantes do mundo.</p>  
+      <p class="vinhosSidraText">Este processo envolve uma segunda fermentação na própria garrafa, resultando em uma sidra com um sabor mais profundo e elegante.</p>        
+    </div>
+  </div>
+  <!-- SIDRA-->
+
+  <!-- NOSSAS SiDRA -->
+  <div class="sobreVinhedoNossosVinhos">
+    <div class="blocoNossosVinhos">
+      <p class="nossosVinhosTitu">Nossa sidra</p>
+      <p class="nossosVinhosText">Escolha para você ou para presente! (frase de exemplo)</p>
+      <div class="blocoNossosVinhosSub">
+        <div class="blocoNossosVinhosSubVinho1">
+          <div class="garrafasVinhos3"></div>
+          <p class="nomeVinho">ANGELICA FRACK SECO<br>R$ 90</p>
+          <p onclick="nossaSidraAGELICASECO()" class=" botaoMaiInfo">MAIS INFORMAÇÕES</p>
+        </div>
+        <div class="blocoNossosVinhosSubVinho2">
+          <div class="garrafasVinhos4"></div>
+          <p class="nomeVinho">ANGELICA FRACK MEIO SECO<br>R$ 90</p>
+          <p onclick="nossaSidraAGELICAmeioSECO()" class=" botaoMaiInfo">MAIS INFORMAÇÕES</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- NOSSAS SiDRA -->
+
+</div> 
+<!-- O VINHEDO -->
+
+<!-- TELA NOSSA HISTÓRIA -->
+<div id="tela8" class="telaNossaHistoria tela hidden">
+
+  <!-- HEADER --> 
+  <div class="quadroNossaHistoria">
+    <div class="blocoNossaHistoriaMain">
+      <p class="tituloNossaHistoria">NOSSA HISTÓRIA</p>
+
+      <p class="textoNossaHistoria">Conheça a história de 3 gerações da família Costantini. Ela começa em Ascoli Piceno, na Italia, terra onde a paixão pelas uvas teve início com Francesco.</p>
+      <p class="textoNossaHistoria">Seu segundo capítulo se dá na  árida Angaco, Província de San Juan, na Argentina. Um cenário desértico que virou sinônimo da resiliência de seu filho Costantino Francisco. </p>
+      <p class="textoNossaHistoria">A jornada finaliza no terroir de Porto Amazonas, no Brasil, onde o ímpeto e a persistência frutificaram com o neto Costantino Costantini.</p>
+    </div>
+    <div class="degradeNossaHistoria"></div>
+  </div>
+  <!-- HEADER --> 
+
+  <!-- NOSSA HISTORIA TELA 01 -->
+  <div id="nossaHistoriaTela01" class="">
+
+    <!-- navegacao -->
+    <div class="navegadorNossaHistoria">
+      <div class="navegadorNossaHistoriaforw bckImg_apagado"></div>
+      <div class="tituloNavegadorNossaHistoria">a jornada de francisco</div>
+      <div onclick="nossaHistoriaTela1()" class="navegadorNossaHistoriaforw"></div>
+    </div>
+    <!-- navegacao -->
+
+    <!-- o ano era 1861. --> 
+    <div class="era1861">
+      <div class="desenhoNossaHistoria01"></div>
+      <div class="blocoTextoNossaHistTela01">  
+        <p class="vinhosSidraTitu">o ano era 1861.</p>
+        <p class="vinhosSidraText">Pastina, tranquilo distrito de Ascoli Piceno, na região central da Itália. Francesco Costantini vê a luz do mundo pela primeira vez no dia 5 de novembro. O filho de Eurósia Palatroni e Salvatore Costantini nasceu numa família abastada e cresceu em um palacete cercado por vinhedos que se estendiam pela região de Marche, entre as montanhas e o mar.</p>
+
+        <p class="vinhosSidraText">Ascoli Piceno, conhecida como a cidade da pedra branca - uma joia medieval com seus edifícios de mármore travertino e campanários -, transpira história. A região é caracterizada pela produção de uvas nativas, falésias e praias com seixos brancos banhadas pelo Adriático.</p>
+          
+        <p class="vinhosSidraText">Nesse cenário singular, Francesco foi criado correndo entre as vinhas, mas o destino preparava desafios nunca imaginados e colocou em seu caminho Maria Alfonsi, jovem de origem modesta e 14 anos mais moça que ele.</p>         
+      </div>
+    </div>
+    <!-- o ano era 1861. -->
+
+    <!-- as alegrias do casamento -->
+    <div class="alegriasCasamento">
+      <div class="textoAlegriasCasamento">
+        <p class="sobreVinhedoTitu">as alegrias do casamento</p>
+        <p class="sobreVinhedoText">Filha de Romano Alfonsi e Juditta Setteni,a menina trazia consigo uma essência interessante, mistura de humildade e ousadia. A paixão que contrariou os pais de Francesco não o impediu de casar-se com Maria, em 12 de novembro de 1896. </p>
+
+        <p class="sobreVinhedoText">O ímpeto e a resiliência - características que viriam aflorar em toda sua descendência - já se destacavam nos dois jovens que, ignorando as convenções sociais, venceram o medo. A onda migratória varria a Itália no final do século XIX, uma cerimônia secreta os uniu, em Ascoli Piceno, e os dois partiram em lua de mel rumo ao desconhecido.</p>
+      </div>
+      <div class="desenhoNossaHistoria02"></div>
+      <div class="slideMenu"></div>
+    </div>
+    <!-- as alegrias do casamento -->
+
+    <!-- UMA NOVA JORNADA --> 
+    <div class="quadroNossaHistoria03">
+      <!--<div class="degradeNossaHistoria2"></div>-->
+      <div class="blocoNossaHistoria">
+        
+        <p class="tituloNossaHistoria">uma nova jornada</p>
+
+        <p class="textoNossaHistoria03">O porto de Genova foi o ponto de partida, e o destino era Buenos Aires. A distante Argentina se tornava o país preferido dos imigrantes italianos e Francesco e Maria lançaram-se a uma nova vida. Buenos Aires testemunhava a formação de uma sociedade diversificada e em crescimento que mais tarde viria a ser conhecida como a “Paris da América do Sul”. Mas o ponto final de Francesco e Maria seria bem mais adiante. Na capital federal ficavam aqueles imigrantes com bens e algumas posses. Quanto menos tinham, mais longe eram conduzidos.
+
+        <p class="textoNossaHistoria03">Sem dinheiro, nem outras posses, o jovem casal foi levado pela ferrocarril até o último e mais remoto ponto: a árida e desértica Província de San Juan, no Norte da Argentina, 11.742 km distante de suas raízes na exuberante Ascoli Piceno.</p>
+      </p>
+      
+      </div>
+      
+    </div>
+    <!-- UMA NOVA JORNADA -->
+
+    <!-- italianos ou argentinos? --> 
+    <div class="italiaArgentinos">
+      <div class="desenhoNossaHistoria04"></div>
+      <div class="blocoTextoNossaHistTela04">  
+        <p class="vinhosSidraTitu">italianos ou argentinos?</p>
+        <p class="vinhosSidraText">O casal teve 7 filhos em terras argentinas: Argentina, Salvador, Oscar, Olga, Costantino Francisco, Magdalena e Amilcar. A Argentina, com sua receptividade aos imigrantes, tornou-se o lar da família Costantini, assim como de milhões de outros italianos que buscavam uma vida melhor. E os italianos, com sua força de trabalho, habilidades e cultura, desempenharam um papel fundamental na construção de um novo mundo.</p>
+  
+        <p class="vinhosSidraText">Historiadores destacam o sucesso dos imigrantes italianos na Argentina, que rapidamente encontraram oportunidades para investir suas economias e alcançar mobilidade econômica e social. Às vésperas da Primeira Guerra Mundial, os italianos na Argentina se destacavam como um grupo bem-sucedido, integrando-se à sociedade de maneira notável. Em 1914, os estrangeiros chegaram a compor 30% da população da Argentina e 60% dos habitantes de Buenos Aires. A elite argentina da segunda metade do século XIX via na imigração europeia elemento essencial para a formação de um país moderno.</p>
+              
+      </div>
+    </div>
+    <!-- italianos ou argentinos? -->
+
+    <!--  -->
+    <div class="blocoTextoNossaHistUltimo">
+      <div class="desenhoNossaHistoria05"></div>
+      <div class="textoNossaHistUltimo">
+        <p class="vinhosSidraText">Filha de Romano Alfonsi e Juditta Setteni,a menina trazia consigo uma essência interessante, mistura de humildade e ousadia. A paixão que contrariou os pais de Francesco não o impediu de casar-se com Maria, em 12 de novembro de 1896. </p>
+
+        <p class="vinhosSidraText">O ímpeto e a resiliência - características que viriam aflorar em toda sua descendência - já se destacavam nos dois jovens que, ignorando as convenções sociais, venceram o medo. A onda migratória varria a Itália no final do século XIX, uma cerimônia secreta os uniu, em Ascoli Piceno, e os dois partiram em lua de mel rumo ao desconhecido.</p>
+        <div onclick="nossaHistoriaTela1BT()" class="botaoPROXparte">Próxima parte</div>
+      </div>
+      
+      
+    </div>
+    <!--  -->
+     
+  </div>
+  <!-- NOSSA HISTORIA TELA 01 --> 
+
+  <!-- NOSSA HISTORIA TELA 02 -->
+  <div id="nossaHistoriaTela02" class="hidden">
+
+    <!-- navegacao -->
+    <div class="navegadorNossaHistoria">
+      <div onclick="nossaHistoriaTela4('')" class="navegadorNossaHistoriaBack"></div>
+      <div class="tituloNavegadorNossaHistoria">A VINHA DA RESILIÊNCIA</div>
+      <div onclick="nossaHistoriaTela2('')" class="navegadorNossaHistoriaforw"></div>
+    </div>
+    <!-- navegacao -->
+    
+    <!-- Costantino Francisco Costantini, --> 
+    <div class="era1861">
+      <div class="desenhoNossaHistoria06"></div>
+      <div class="blocoTextoNossaHistTela02">  
+        <p class="vinhosSidraTitu">Costantino Francisco Costantini,</p>
+        <p class="vinhosSidraText">o quinto filho de Francesco, nasceu sob o sol ardente do norte argentino, que ao se pôr dá lugar ao vento frio vindo da Cordilheira dos Andes.  Até seus dez anos, vestiu-se com roupas trazidas da Inglaterra e da Itália, legado aristocrático de seu pai. Ele tinha onze anos quando o destino mostrou sua face impiedosa e o pai Francesco perdeu seus vinhedos com a falência.</p>
+
+        <p class="vinhosSidraText">O menino se viu obrigado a abandonar as vestimentas refinadas e se tornar auxiliar de mecânico na primeira oficina da Ford, na cidade de San Juan. A reviravolta que o lançou nas entranhas da mecânica e das estradas poeirentas também escreveu seu fado – ou seu tango.</p>
+          
+        <p class="vinhosSidraText">Herdeiro do espírito intrépido e da simpatia do pai, o rapaz conquistou seu espaço rapidamente na Ford. Com menos de vinte anos era um arrojado piloto de corridas e com vinte e poucos anos, se tornou gerente da loja.</p>       
+      </div>
+    </div>
+    <!-- Costantino Francisco Costantini, -->
+
+    <!-- don costantino na pista -->
+    <div class="sobreNaPista">
+      <div class="textoNaPista">
+        <p class="sobreVinhedoTitu">don costantino na pista</p>
+        <p class="sobreVinhedoText">Sua ousadia não conhecia limites, e em pouco tempo, Costantino Francisco era um destacado piloto de rali em toda a Argentina. Nas pistas, enfrentava desafios com determinação. Sua corrida memorável teria lhe garantido fama internacional, não tivesse o carro quebrado na última volta, dando o título a Oscar Alfredo Galvez, um ídolo do automobilismo argentino.</p>
+
+        <p class="sobreVinhedoText">Embora uma falha no carro o impedisse de vencer, ele ganhou reconhecimento. Décadas depois, reencontrou Leopoldo Ortiz, um espectador daquela corrida, no casamento de seus filhos, Costantino Roberto e Isela Margarita.</p>
+      </div>
+      <div class="desenhoNossaHistoria07"></div>
+      <div class="slideMenu"></div>
+    </div>
+    <!-- don costantino na pista -->
+
+    <!-- A HERANÇA DE COSTANTINO --> 
+    <div class="quadroNossaHistoria08 quadroNossaHistoria03">
+      <!--<div class="degradeNossaHistoria2"></div> -->
+
+      <div class="blocoNossaHistoria">
+
+        <p class="tituloNossaHistoria">A herança de costantino</p>
+
+        <p class="textoNossaHistoria03">Costantino recebeu como herança a natureza sociável do pai. Seu carisma conquistou Angelica del Carmen Frack, de uma família de Córdoba, que chegara a San Juan. Casaram-se em 1938 e juntos começaram a escrever o próximo capítulo da saga Costantini. No mesmo ano, tiveram sua primogênita Mirta, em 1938. Quatro anos depois, em 1942, nasceu Susana. Em 1945, nascia o único filho homem do casal, Costantino Roberto. E, em seguida, a caçula Maria Isabel, em 1947.</p>
+
+        <p class="textoNossaHistoria03">Com a morte de Francesco, Costantino Francisco decidiu honrar o legado familiar e, em 1944, adquiriu uma propriedade rural em Angaco, aos pés do Pie de Palo, na pré-Cordilheira dos Andes. A região, árida e desafiadora, tornou-se um símbolo da resiliência da família Costantini.</p>
+      
+      </div>
+    </div>
+    <!-- A HERANÇA DE COSTANTINO -->
+
+    <!-- desafios da naturza --> 
+    <div class="desafiosNatur">
+      <div class="desenhoNossaHistoria08"></div>
+      <div class="blocoTextoVinhoSidra blocoDesafiosNatur">  
+        <p class="vinhosSidraTitu">desafios da natureza</p>
+        <p class="vinhosSidraText">A natureza travou batalhas com Costantino Francisco e seu sítio em Angaco. A água, recurso essencial para a viticultura, foi a primeira. A aridez do solo da região era o grande desafio para que as videiras frutificassem. Superado este primeiro embate, havia o granizo, violento e implacável, especialmente na primavera e no verão.</p>
+  
+        <p class="vinhosSidraText">Após o grande terremoto de 1994, maior tragédia natural da Argentina, cujo epicentro foi San Juan, um inteligente sistema de escoamento de água do degelo dos Andes foi construído na região. Represas ao longo das cordilheiras passaram a aproveitar a água do degelo e canais cortando a cidade transformaram completamente o ambiente, fazendo de San Juan uma das cidades mais verdes do país.</p>
+              
+      </div>
+    </div>
+    <!-- desafios da naturza -->
+
+    <!--  -->
+    <div class="blocofinalNossHist">
+      <div class="blocoTextoNossaHistTel02">
+        <p class="textoNossaHistTel02">O sistema de gestão da água - artigo de extrema necessidade - assegurava que as cidades vizinhas recebessem o necessário por meio de comportas e sub-canais. Obviamente, Angaco estava mais longe e a água que chegava, quando chegava, era pouca. Embora numa condição muito melhor, a água continuou sendo um desafio para Costantino Francisco.</p>
+
+        <p class="textoNossaHistTel02">Assim como San Juan foi o fim da linha (no sentido literal da estrada de ferro) para seu pai, Francesco, Angaco tornou-se o ponto final, no sentido figurado, para Costantino Francisco. Era o último ponto em que a água chegava. Ainda assim, a vinha da resiliência mostrou que a paixão pelo vinho também floresce em terrenos aparentemente inóspitos.</p>
+        <div onclick="nossaHistoriaTela2BT()" class="botaoMaiInfo botaoMaiInfo2">Próxima parte</div>
+      </div>
+      
+    </div>
+    <!--  -->
+  </div>
+  <!-- NOSSA HISTORIA TELA 02 --> 
+
+  <!-- NOSSA HISTORIA TELA 03 -->
+  <div id="nossaHistoriaTela03" class=" hidden">
+
+    <!-- navegacao -->
+    <div>
+      <div class="navegadorNossaHistoria">
+        <div onclick="nossaHistoriaTela3('')" class="navegadorNossaHistoriaBack"></div>
+        <div class="tituloNavegadorNossaHistoria">Vinhos da Paixão</div>
+        <div class="navegadorNossaHistoriaforw bckImg_apagado"></div>
+      </div>
+    </div>
+    <!-- navegacao -->
+    
+    <!-- COSTANTINO ROBERTO, --> 
+    <div class="era1861 era18612">
+      <div class="desenhoNossaHistoria09"></div>
+      <div class="blocoTextoNossaHistTela03">  
+        <p class="vinhosSidraTitu">COSTANTINO ROBERTO,</p>
+        <p class="vinhosSidraText">o terceiro filho de Costantino Francisco, herdou não apenas o nome, mas também a resiliência do pai e a impetuosidade do avô Francesco. Suas melhores memórias são as de Angaco, nos finais de semana de infância e adolescência, no sítio ao pé das Cordilheiras.</p>
+
+        <p class="vinhosSidraText">Angaco, apesar de árido, era o refúgio da família Costantini e ali estava a sua essência. Costantino Roberto recorda vividamente dos dias ensolarados que transcorriam como um rio tranquilo e suas expectativas de menino iam tão longe quanto as montanhas que se estendiam ao horizonte. Desse paraíso, Costantino também traz a lembrança de duas preocupações persistentes pairando sobre seu pai: a falta de água e as temidas chuvas de granizo, que chegavam impiedosas no verão e na primavera.</p>
+          
+        <p class="vinhosSidraText">Movido pela mente inquieta e a ousadia - legados ancestrais -,  Costantino Roberto decidiu estudar Medicina em Córdoba, onde sua irmã Susana também mergulhava na nobre e prestigiosa profissão. Lá, encontrou suas duas primeiras paixões: a cardiologia e a bela filha de Isela Cernuda e do advogado Leopoldo Ortiz.</p>       
+      </div>
+    </div>
+    <!-- COSTANTINO ROBERTO, -->
+
+    <!-- do vinho à medicina -->
+    <div class="blocoVinhoMedicina sobreVinhoMed">
+      <div class="textoVinhoMedicina doVinhoaMedicina">
+        <p class="sobreVinhedoTitu">do vinho à medicina</p>
+        <p class="sobreVinhedoText">Em 1965, conheceu Isela Ortiz e o amor à primeira vista o instigiou a terminar seus estudos e a se casar em 10 de janeiro de 1970. Em busca de oportunidades de residência médica que coubessem em seu bolso, considerou opções no México e em São Paulo. O Hospital das Clínicas em São Paulo foi o escolhido, e em 1971, Costantino Roberto chegou à capital paulista. O nascimento de Isela, em 12 de agosto de 1971, marcou o início de uma nova fase para a família que ficou no Brasil por dois anos. Em 1972, já de volta a San Juan, o casal teve seu segundo filho, Costantino Costantini.</p>
+      </div>
+      <div class="desenhoNossaHistoria10"></div>
+      <div class="slideMenu"></div>
+    </div>
+    <!-- do vinho à medicina -->
+
+    <!-- ARGENTINA EUA BRASIL --> 
+    <div class="quadroNossaHistoria12 quadroNossaHistoria03">
+      <div class="blocoNossaHistoria">
+        <p class="tituloNossaHistoria">argentina × eua × brasil</p>
+
+        <p class="textoNossaHistoria03">A já conhecida inquietude dos Costantini, o levou, em 1973 com esposa e os dois filhos para Los Angeles, nos Estados Unidos. Lá, dedicou-se a pesquisas sobre infarto agudo do miocárdio. Este trabalho resultou, mais tarde, no desenvolvimento de uma técnica inovadora de tratamento por cateter, inédito na América Latina, nos anos 1980, em que Costantino Roberto Costantini foi precursor.
+
+        <p class="textoNossaHistoria03">De volta à Argentina, as condições não eram as ideais para sua especialidade. Um convite para revalidar seu diploma o trouxe ao Brasil, inicialmente em Londrina, onde morou por seis meses no porão do hospital, deixando a família na Argentina. Um outro convite o levou a Curitiba, onde vive até hoje. Em 1976, nasceu o terceiro filho do casal, Alessandro e, em seguida Julián, o quarto filho.</p>
+      
+      </div>
+      <!--<div class="degradeNossaHistoria2"></div>-->
+    </div>
+    <!-- ARGENTINA EUA BRASIL --> 
+
+    <!-- de volta às raízes --> 
+    <div class="deVolta voltaRaiz">
+      <div class="desenhoNossaHistoria11"></div>
+      <div class="blocoTextoVinhoSidra blocotextoVotltaRaiz">  
+        <p class="vinhosSidraTitu">de volta às raízes</p>
+        <p class="vinhosSidraText">Em 1980, já estabelecido e reconhecido profissionalmente, o DNA da família falou alto novamente. A vontade de resgatar as raízes levou Costantino Roberto, com a ajuda da irmã Mirta e do pai, a comprar seus primeiros hectares em Porto Amazonas. Inicialmente dedicou-se ao cultivo de maçã, mais tarde outras frutas. Mas a paixão pela viticultura nunca diminuiu, e o sonho era produzir uvas.</p>
+  
+        <p class="vinhosSidraText">Nos anos 2000, em uma visita a San Juan com seu cunhado Salvador Lo Cascio, conheceu o enólogo Raúl Menegazzo. O encontro deu início a uma grande amizade e ao retorno às suas raízes. Com Raúl realizou experimentos enigmáticos com videiras únicas, começando o cultivo de uvas Syrah, Tannat, Cabernet Sauvignon e Malbec no terroir de Porto Amazonas.</p>
+              
+      </div>
+    </div>
+    <!-- de volta às raízes -->
+
+    <!--  -->
+    <div class="nossaHIsfinal finalNossaHis"> 
+      <div class="desenhoNossaHistoria12"></div>
+      <div class="finfinal blocoFinal">
+        <p class="vinhosSidraText">Em 2013, com a ajuda de José Luis Nucete e dos irmãos Fernando e Juliano Rausis, começou a produzir vinhos em pequena escala, para consumo próprio. A incessante busca por aprimorar o sabor final, que honra e perpetua o legado de seu pai e avô, deu origem à Bodega Costantini.</p>
+
+        <p class="vinhosSidraText">Em 2022, se deu a primeira produção de vinhos únicos e espumantes de maçã pelo método de champenoise. Esta empreitada, nascida da paixão e da resiliência, continua uma tradição familiar, transformando desafios em oportunidades e sonhos em realidade.</p>
+      </div>
+      
+    </div>
+    <!--  -->
+  </div>
+  <!-- NOSSA HISTORIA TELA 03 --> 
+
+</div> 
+<!-- TELA TELA NOSSA HISTÓRIA -->
+
+<!-- OS VINHOS -->
+<div id="tela5" class="telaVinhos tela hidden">
+    
+  <div class="quadroVinhos">
+    <div class="degradeVinhos"></div>
+
+    <div id="vinhoENIGMA" class="quadroInformacoesVinhos telaENIGMA hidden">
+
+      <div class="caracteristicasVinhosHeader">
+        <div class="caracteristicasVinhosHeadervinho"></div>
+        <div class="caracteristicasVinhosHeaderTexto">
+          <div class="sobreRobConstTitu">ENIGMA - R$ 90</div>
+          <div class="sobreRobConstText">Vinho equilibrado com predominância da uva Syrah, aromas florais e minerais, com bom corpo e boa persistência.</div>
+          <p onclick="window.location.href='https://109367.hostgator.com.br/vinhos/vinho-enigma-p'" class="nossaHisTextBotao botaoQueroSaberMais">Comprar</p>
+        </div>
+        
+      </div>
+
+      <div class="caracteristicasVinhosBody">
+        <div class="caracteristicasVinhosCol01">
+
+          <div class="caracteItem">
+            <div class="icone01"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Uvas</div>
+              <div class="caracterTexto">Syrah, Tannat, Cabernet Sauvignon, Malbec e Bonarda.</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone02"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Classificação</div>
+              <div class="caracterTexto">Seco</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone03"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Safra</div>
+              <div class="caracterTexto">2022</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone04"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Amadurecimento</div>
+              <div class="caracterTexto">2 anos em garrafa</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem">
+            <div class="icone04"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Teor alcoólico</div>
+              <div class="caracterTexto">13.5%</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem">
+            <div class="icone05"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Teor alcoólico</div>
+              <div class="caracterTexto">13.5%</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone06"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Temperatura de serviço</div>
+              <div class="caracterTexto">16°C - 18°C</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone07"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Decantação</div>
+              <div class="caracterTexto">30 minutos</div>
+            </div>
+          </div>
+
+  
+        </div>
+        <div class="caracteristicasVinhosCol02">
+
+            <div class="caracteItem">
+              <div class="icone08"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Potencial de guarda</div>
+                <div class="caracterTexto">5 anos</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone09"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Visual</div>
+                <div class="caracterTexto">Coloração rubi de média profundidade.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone10"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Olfato</div>
+                <div class="caracterTexto">Frutas vermelhas, doce de leite, café, um leve toque de envelhecimento e tostado.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone11"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Paladar</div>
+                <div class="caracterTexto">Equilibrado, médio corpo, taninos macios, boa acidez e persistência.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone12"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Sugestões de harmonização</div>
+                <div class="caracterTexto">Pratos de estrutura equilibrada, carnes vermelhas assadas e grelhadas. Dicas: Bife Ancho, massas com molhos à base de tomate, risotos, empanadas, pizzas, tábua de frios.</div>
+              </div>
+            </div>
+          
+
+        </div>
+      </div>
+
+      
+
+    </div>
+
+    <div id="vinhoDONCOSTANTINO" class="quadroInformacoesVinhos telaDONCOSTANTINO hidden">
+
+      <div class="caracteristicasVinhosHeader">
+        <div class="caracteristicasVinhosHeadervinho2"></div>
+        <div class="caracteristicasVinhosHeaderTexto">
+          <div class="sobreRobConstTitu">Don costantino - R$ 90</div>
+          <div class="sobreRobConstText">Texto descritivo.</div>
+          <p onclick="window.location.href='https://109367.hostgator.com.br/vinhos/vinho-don-costantino-p'" class="nossaHisTextBotao botaoQueroSaberMais">Comprar</p>
+        </div>
+        
+      </div>
+
+      <div class="caracteristicasVinhosBody">
+        <div class="caracteristicasVinhosCol01">
+
+          <div class="caracteItem">
+            <div class="icone01"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Uvas</div>
+              <div class="caracterTexto">Syrah, Tannat, Cabernet Sauvignon.</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone02"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Classificação</div>
+              <div class="caracterTexto">Seco</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone03"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Safra</div>
+              <div class="caracterTexto">2022</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone04"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Amadurecimento</div>
+              <div class="caracterTexto">2 anos em garrafa</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem">
+            <div class="icone04"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Teor alcoólico</div>
+              <div class="caracterTexto">13.5%</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem">
+            <div class="icone05"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Teor alcoólico</div>
+              <div class="caracterTexto">13.5%</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone06"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Temperatura de serviço</div>
+              <div class="caracterTexto">16°C - 18°C</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone07"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Decantação</div>
+              <div class="caracterTexto">30 minutos</div>
+            </div>
+          </div>
+
+  
+        </div>
+        <div class="caracteristicasVinhosCol02">
+
+            <div class="caracteItem">
+              <div class="icone08"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Potencial de guarda</div>
+                <div class="caracterTexto">5 anos</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone09"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Visual</div>
+                <div class="caracterTexto">Coloração rubi de média profundidade.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone10"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Olfato</div>
+                <div class="caracterTexto">Frutas vermelhas, chocolate meio amargo, couro, tabaco, café e um toque de mineralidade. Excelente complexidade</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone11"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Paladar</div>
+                <div class="caracterTexto">Equilibrado, complexo, bom corpo, boa acidez, taninos marcantes, final médio/longo.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone12"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Sugestões de harmonização</div>
+                <div class="caracterTexto">Pratos mais estruturados. Carnes assadas, de caça, molhos à base de queijo e de tomate. Dicas: Bife de Chorizo, costela suína, empanadas.</div>
+              </div>
+            </div> 
+          
+
+        </div>
+      </div>
+
+      
+
+    </div>
+    
+    <div id="sidraAGELICASECO" class="quadroInformacoesVinhos telaANGELICASECO hidden">
+
+      <div class="caracteristicasVinhosHeader">
+        <div class="caracteristicasVinhosHeadervinho3"></div>
+        <div class="caracteristicasVinhosHeaderTexto">
+          <div class="sobreRobConstTitu">Angelica frack seco - R$ 90</div>
+          <div class="sobreRobConstText">Utilizando as maçãs do nosso pomar, a Bodega Costantini colhe e seleciona durante os meses de verão as melhores maçãs para a sua elaboração, com um rigoroso controle em cada um de seus processos. <br>
+
+          Esse cuidado assegura um sabor único e equilibrado, ideal para acompanhar qualquer ocasião. Nossa sidra tem como característica a elegância e complexidade, sendo realizadas as versões demi-sec e brut.</div>
+          <p onclick="window.location.href='https://109367.hostgator.com.br/espumantes/angelica-frack-seco-p'" class="nossaHisTextBotao botaoQueroSaberMais">Comprar</p>
+        </div>
+        
+      </div>
+
+      <div class="caracteristicasVinhosBody">
+        <div class="caracteristicasVinhosCol01">
+
+          <div class="caracteItem">
+            <div class="icone13"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Maçãs</div>
+              <div class="caracterTexto">Maçãs selecionadas Monalisa.</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone02"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Classificação</div>
+              <div class="caracterTexto">Seco</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone14"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Método de elaboração</div>
+              <div class="caracterTexto">Champenoise</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone04"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Amadurecimento</div>
+              <div class="caracterTexto">6 meses sobre leveduras na segunda fermentação em garrafa.</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem"> 
+            <div class="icone05"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Teor alcoólico</div>
+              <div class="caracterTexto">8%</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem">
+            <div class="icone06"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Temperatura de serviço</div>
+              <div class="caracterTexto">5°C</div>
+            </div>
+          </div>
+
+
+
+  
+        </div>
+        <div class="caracteristicasVinhosCol02">
+        
+            <div class="caracteItem">
+              <div class="icone09"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Visual</div>
+                <div class="caracterTexto">Coloração amarelo-claro com reflexos esverdeados e perlage elegante.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone10"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Olfato</div>
+                <div class="caracterTexto">Olfato Frutas cítricas e floral.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone11"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Paladar</div>
+                <div class="caracterTexto">Fresco, frutas brancas, frutas cítricas e de boa persistência.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone12"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Sugestões de harmonização</div>
+                <div class="caracterTexto">Culinária japonesa, ostras frescas, peixe grelhado, saladas.</div>
+              </div>
+            </div>
+          
+
+        </div>
+      </div>
+
+      
+
+    </div>
+
+    <div id="sidraAGELICAmeioSECO" class="quadroInformacoesVinhos telaANGELICAMEIOSECO hidden">
+
+      <div class="caracteristicasVinhosHeader">
+        <div class="caracteristicasVinhosHeadervinho4"></div>
+        <div class="caracteristicasVinhosHeaderTexto">
+          <div class="sobreRobConstTitu">Angelica frack meio seco - R$ 90</div>
+          <div class="sobreRobConstText">Utilizando as maçãs do nosso pomar, a Bodega Costantini colhe e seleciona durante os meses de verão as melhores maçãs para a sua elaboração, com um rigoroso controle em cada um de seus processos. <br>
+
+          Esse cuidado assegura um sabor único e equilibrado, ideal para acompanhar qualquer ocasião. Nossa sidra tem como característica a elegância e complexidade, sendo realizadas as versões demi-sec e brut.</div>
+          <p onclick="window.location.href='https://109367.hostgator.com.br/espumantes/angelica-frack-meio-seco-p'" class="nossaHisTextBotao botaoQueroSaberMais">Comprar</p>
+        </div>
+        
+      </div>
+
+      <div class="caracteristicasVinhosBody">
+        <div class="caracteristicasVinhosCol01">
+
+          <div class="caracteItem">
+            <div class="icone13"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Maçãs</div>
+              <div class="caracterTexto">Maçãs selecionadas Monalisa.</div>
+            </div>
+          </div>
+
+          <div class="caracteItem">
+            <div class="icone02"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Classificação</div>
+              <div class="caracterTexto">Seco</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone14"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Método de elaboração</div>
+              <div class="caracterTexto">Champenoise</div>
+            </div>
+          </div>
+  
+          <div class="caracteItem">
+            <div class="icone04"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Amadurecimento</div>
+              <div class="caracterTexto">6 meses sobre leveduras na segunda fermentação em garrafa.</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem"> 
+            <div class="icone05"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Teor alcoólico</div>
+              <div class="caracterTexto">8%</div>
+            </div>
+          </div>
+    
+          <div class="caracteItem">
+            <div class="icone06"></div>
+            <div class="blocoTextoIcones">
+              <div class="caracterTitulo">Temperatura de serviço</div>
+              <div class="caracterTexto">5°C</div>
+            </div>
+          </div>
+
+
+
+  
+        </div>
+        <div class="caracteristicasVinhosCol02">
+        
+            <div class="caracteItem">
+              <div class="icone09"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Visual</div>
+                <div class="caracterTexto">Coloração amarelo-claro com reflexos esverdeados e perlage elegante.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone10"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Olfato</div>
+                <div class="caracterTexto">Olfato Frutas cítricas e floral.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone11"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Paladar</div>
+                <div class="caracterTexto">Fresco, frutas brancas, frutas cítricas e de boa persistência.</div>
+              </div>
+            </div>
+          
+            <div class="caracteItem">
+              <div class="icone12"></div>
+              <div class="blocoTextoIcones">
+                <div class="caracterTitulo">Sugestões de harmonização</div>
+                <div class="caracterTexto">Culinária japonesa, ostras frescas, peixe grelhado, saladas.</div>
+              </div>
+            </div>
+          
+
+        </div>
+      </div>
+
+      
+
+    </div>
+  </div>
+        
+</div>
+<!-- OS VINHOS -->
+
+<!-- ESPUMANTE -->
+<div id="tela9" class="telaVinhos tela hidden">
+ 
+    <!-- HEADER --> 
+    <div class="quadroEspumante">
+        <p class="tituloQuadro">Espumante</p>
+        <p class="textQuadroE">Nosso espumante de maçã é feito através do método champenoise, criado na França para a elaboração dos famosos Champagnes, e o mesmo utilizado na produção dos melhores espumantes do mundo.<br><br>
+        Este processo envolve uma segunda fermentação na própria garrafa, resultando em uma sidra com um sabor mais profundo e elegante</p>
+        <div class="degradeEspumante"></div>
+    </div>
+    <!-- HEADER --> 
+
+    <!-- ESPUMANTE -->
+    <div class="cuidadoRespeito">
+        <div class="fotoVinho1"></div>
+        <div class="textoEspumante">
+            <p class="sobreRobConstTitu">Angelica Frack</p>
+            <p class="sobreRobConstText">Utilizando as maçãs do nosso pomar, a Bodega Costantini colhe e seleciona durante os meses de verão as melhores maçãs para a sua elaboração, com um rigoroso controle em cada um de seus processos. <br><br>
+            Esse cuidado assegura um sabor único e equilibrado, ideal para acompanhar qualquer ocasião. Nossa sidra tem como característica a elegância e complexidade, sendo realizadas as versões demi-sec e brut.
+            </p>
+            
+        </div>
+        
+        <div class="slideMenu"></div>
+    </div>
+    <!-- ESPUMANTE -->
+
+
+</div> 
+<!-- ESPUMANTE -->
+
+<!--CONTEUDO EXCLUSIVO -->
+<div id="tela7" class="telaVinhos tela hidden">
+ 
+    <!-- HEADER --> 
+    <div class="quadroSecreto">
+        <div class="degradeVinhos"></div>
+    </div>
+    <!-- HEADER --> 
+
+<!-- ASSISTA --> 
+<div class="assistaTitulo">Assista nossa história</div>
+  
+<div class="assista">
+  <video id="player" width="100%" controls poster="./assets/poster3.png">
+      <source src="./assets/mobile/parte3.mp4" type="video/mp4">
+      Seu navegador não suporta o elemento de vídeo.
+  </video>
+</div>
+
+<div class="menuVideos">
+  <div class="blocoMenuVideos" onclick="trocarVideo('./assets/mobile/parte1.mp4', './assets/poster1.png')">
+    <div class="video01 parte1"></div>
+    <div class="blocosTextoVideos">
+      <div class="menuVideosTitu">Conheça Nossa História</div>
+      <div class="menuVideosText">Parte 1</div>
+    </div>
+  </div>
+
+  <div class="blocoMenuVideos" onclick="trocarVideo('./assets/mobile/parte2.mp4', './assets/poster2.png')">
+    <div class="video01 parte2"></div>
+    <div class="blocosTextoVideos">
+      <div class="menuVideosTitu">Conheça Nossa História</div>
+      <div class="menuVideosText">Parte 2</div>
+    </div>
+  </div>
+
+  <div class="blocoMenuVideos" onclick="trocarVideo('./assets/mobile/parte3.mp4', './assets/poster3.png')">
+    <div class="video01 parte3"></div>
+    <div class="blocosTextoVideos">
+      <div class="menuVideosTitu">Conheça Nossa História</div>
+      <div class="menuVideosText">Parte 3</div>
+    </div>
+  </div>
+</div>
+<!-- ASSISTA --> 
+
+
+
+
+    <!-- AUDIOS --> 
+    <div class="blocoAudio">
+
+      <div class="oucaHistoria">Escute nossa história</div>
+      
+      <div class="oucaPartes">Parte 1</div>
+      <div class="custom-audio-player">
+        <button id="play-pause-btn-1">&#9658;</button>
+        <input type="range" id="seek-slider-1" value="0" max="100">
+        <span id="current-time-1">0:00</span>
+        <input type="range" id="volume-slider-1" value="100" max="100">
+        <audio id="audio-1">
+          <source src="./assets/11.mpeg" type="audio/mpeg">
+        </audio>
+      </div>
+        
+      <div class="oucaPartes">Parte 2</div>
+      <div class="custom-audio-player">
+        <button id="play-pause-btn-2">&#9658;</button>
+        <input type="range" id="seek-slider-2" value="0" max="100">
+        <span id="current-time-2">0:00</span>
+        <input type="range" id="volume-slider-2" value="100" max="100">
+        <audio id="audio-2">
+          <source src="./assets/22.mpeg" type="audio/mpeg">
+        </audio>
+      </div>
+        
+      <div class="oucaPartes">Parte 3</div>
+      <div class="custom-audio-player">
+        <button id="play-pause-btn-3">&#9658;</button>
+        <input type="range" id="seek-slider-3" value="0" max="100">
+        <span id="current-time-3">0:00</span>
+        <input type="range" id="volume-slider-3" value="100" max="100">
+        <audio id="audio-3">
+          <source src="./assets/33.mpeg" type="audio/mpeg">
+        </audio>
+      </div>
+        
+      
+    </div>
+    <!-- AUDIOS --> 
+
+    <!-- iNTERAJA --> 
+    <div class="interajaBloco">
+      <div class="fotoInteraja"></div>
+      <p class=" interejaTitu">Interaja com nossos vinhos</p>
+      <p class="interajaTexto">Instale o aplicativo da Bodega Costantini e descubra uma nova maneira de interagir com a nossa história!</p>
+      <p onclick="instala()" class="nossaHisText3 btInstalarAPP centraliza">INSTALAR APLICATIVO</p>
+    </div>
+    <!-- iNTERAJA --> 
+
+    <!-- NOSSA HISTORIA -->
+    <div>
+      <div class="cuidadoRespeitohid">
+        <div class="nossaHistnossaPal">
+          <div class="fotoNossaHist"></div>
+          <div class="textoNossHis">
+            <p class="textoNossaHistNossasPal">NOSSA HISTÓRIA, EM NOSSAS PALAVRAS.</p>
+            <p class="nossaHisText">Clique no botão a seguir para conhecer os pormenores de nossa história:</p>
+            
+            <p onclick="showScreen('tela8')" class="nossaHisText botaoQueroSaberMais">QUERO SABER MAIS</p>
+          </div>
+          
+        </div> 
+        
+      </div>
+      
+    </div>
+    <!-- NOSSA HISTORIA -->
+
+
+
+</div> 
+<!--CONTEUDO EXCLUSIVO -->
+
+<!-- CONTATO -->
+<div id="tela6" class="telaVinhedo tela hidden">
+
+  <!-- HEADER --> 
+  <div class="quadroContato">
+    <div class="blocoTextoContato">
+      <p class="tituloContato">Contato</p>
+      <p class="textoContato">Ficou com alguma dúvida? Entre em contato com<br> a nossa equipe pelos canais a seguir:</p>
+      <p class="textoContato"><strong>WhatsApp:</strong> 41 91234 5678</p>
+      <p class="textoContato"><strong>E-mail:</strong> bodegacostantini@exemplo.com</p>
+    </div>
+    <div class="degradeContato"></div>
+  </div>
+  <!-- HEADER --> 
+
+  <!-- QUADRO EXPERIENCIA E DEGUSTACAO  
+  <div class="expDegustacao">
+      <div class="blocoTextoSobreNos">
+          <p class="textoTitulo">Experiência de degustação</p>
+          <p class="texto">Parágrafo breve dando<br>
+              uma introdução ao<br>
+              trabalho da vinícola. No<br>
+              máximo umas seis ou<br>
+              sete linhas, não mais<br>
+              do que isso.</p>
+          <p onclick="showScreen('tela2')" class="agendarXP">Agendar experiência</p>
+      </div>
+      <div class="degradeSobreNos"></div>
+  </div>
+    QUADRO EXPERIENCIA E DEGUSTACAO -->
+
+  <!-- QUADRO VIDEO DA VINICOLA
+  <div class="sobreNos">
+      
+  </div>
+    QUADRO VIDEO DA VINICOLA--> 
+
+
+
+
+
+
+</div> 
+<!-- CONTATO -->
+<!------------------------------------------------------------------------>
+
+
+
+<!------------------------------------------------------------------------>
+<!-- FOOTER FIXO -->
+<footer id="footer" class="footer hidden">
+    <div class="logoFooter"></div>
+    <div class="telefone-email">+55 41 91234-5678</div>
+    <div class="telefone-email">contato@bodegacostantini.com</div>
+    
+    <div class="redesSociais">
+        <div class="face" style="cursor: pointer;"></div>
+        <div class="insta" style="cursor: pointer;"></div>
+        <div class="wtsp" style="cursor: pointer;"></div>
+        <div class="telegram" style="cursor: pointer;"></div>
+    </div>
+    <!--<div onclick="showScreen('tela6')" class="contatoMail" style="cursor: pointer;">Entre em contato</div>-->
+    <div onclick="voltarAoTopo()" id="voltar-ao-topo" class="paraoTopo"></div>
+    
+    
+
+</footer>
+<!-- FOOTER FIXO -->
+<!------------------------------------------------------------------------>
+
+
+</body>
+<script src="./js/script.js"></script>
+</html>
