@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Página Básica</title>
+</head>
+
+<body>
+    <nav class="menu">
+        <label>Menu Lateral esquerda</label>
+    </nav>
+    <div class="container">
+        <h1>Container Lateral</h1>
+        <p>@media (min-width: 1024px) {
+            body {
+            background-color: rgb(117, 194, 140), 244, 244;
+            }
+            .container {
+            margin-left: 300px;
+            }
+            }
+
+            /* Tablet Styles */
+            @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+            background-color: #7db2e7;
+            }
+            .container {
+            margin-left: 300px;
+            }
+            }
+
+            /* Mobile Styles */
+            @media (max-width: 767px) {
+            body {
+            background-color: #f7a2a2;
+            }
+            .menu{
+            left: -300px;
+            }
+            .container {
+            margin: auto;
+            margin-left: 0px !important;
+            }
+            }</p>
+    </div>
+</body>
+
+</html>
